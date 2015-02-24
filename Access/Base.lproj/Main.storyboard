@@ -126,7 +126,7 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PGv-BD-lqQ" id="gts-Oz-O37">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" image="missionmoon" translatesAutoresizingMaskIntoConstraints="NO" id="YwJ-8W-k22">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" image="missionmoon-64" translatesAutoresizingMaskIntoConstraints="NO" id="YwJ-8W-k22">
                                             <rect key="frame" x="16" y="18" width="64" height="33"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="64" id="9vZ-vP-4Wy"/>
@@ -258,6 +258,7 @@
     <resources>
         <image name="first" width="30" height="30"/>
         <image name="missionmoon" width="500" height="225"/>
+        <image name="missionmoon-64" width="64" height="64"/>
         <image name="second" width="30" height="30"/>
     </resources>
 </document>
