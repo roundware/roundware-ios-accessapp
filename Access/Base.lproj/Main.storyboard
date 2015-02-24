@@ -186,58 +186,101 @@
                         <viewControllerLayoutGuide type="top" id="L7p-HK-0SC"/>
                         <viewControllerLayoutGuide type="bottom" id="Djb-ko-YwX"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW">
+                    <view key="view" contentMode="scaleAspectFit" id="QS5-Rx-YEW">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EXHIBITION" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3l3-IK-Ca2">
-                                <rect key="frame" x="26" y="30" width="69" height="15"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AAT-uh-Cyo">
+                                <rect key="frame" x="-4" y="0.0" width="608" height="56"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="EXHIBITION" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3l3-IK-Ca2">
+                                        <rect key="frame" x="10" y="20" width="69" height="15"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Mission Moon" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ch3-Ic-Fic">
+                                        <rect key="frame" x="10" y="35" width="111" height="21"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="feZ-c1-df3">
+                                        <rect key="frame" x="538" y="19" width="30" height="33"/>
+                                        <fontDescription key="fontDescription" name="AvenirNextCondensed-Heavy" family="Avenir Next Condensed" pointSize="15"/>
+                                        <state key="normal" title="➡︎➡︎">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zEy-5k-sPV">
+                                        <rect key="frame" x="508" y="20" width="30" height="30"/>
+                                        <state key="normal" title="➤">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YeK-G2-gGE">
+                                        <rect key="frame" x="478" y="19" width="30" height="33"/>
+                                        <fontDescription key="fontDescription" name="AvenirNextCondensed-Heavy" family="Avenir Next Condensed" pointSize="15"/>
+                                        <state key="normal" title="⬅︎⬅︎">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.91764705882352937" green="0.91764705882352937" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="zEy-5k-sPV" firstAttribute="trailing" secondItem="feZ-c1-df3" secondAttribute="leading" id="2EX-91-LsE"/>
+                                    <constraint firstItem="zEy-5k-sPV" firstAttribute="centerY" secondItem="YeK-G2-gGE" secondAttribute="centerY" id="83d-hU-D4z"/>
+                                    <constraint firstItem="3l3-IK-Ca2" firstAttribute="leading" secondItem="AAT-uh-Cyo" secondAttribute="leading" constant="10" id="Axr-Ao-W3g"/>
+                                    <constraint firstItem="YeK-G2-gGE" firstAttribute="centerY" secondItem="ch3-Ic-Fic" secondAttribute="top" id="BKm-eW-Ak4"/>
+                                    <constraint firstItem="3l3-IK-Ca2" firstAttribute="top" secondItem="AAT-uh-Cyo" secondAttribute="top" constant="20" id="OsW-ZR-GUm"/>
+                                    <constraint firstItem="zEy-5k-sPV" firstAttribute="centerY" secondItem="feZ-c1-df3" secondAttribute="centerY" id="Q0k-we-Tkv"/>
+                                    <constraint firstItem="ch3-Ic-Fic" firstAttribute="leading" secondItem="AAT-uh-Cyo" secondAttribute="leading" constant="10" id="Sb9-wg-Jm6"/>
+                                    <constraint firstItem="zEy-5k-sPV" firstAttribute="leading" secondItem="YeK-G2-gGE" secondAttribute="trailing" id="XBU-PZ-DYH"/>
+                                    <constraint firstAttribute="bottom" secondItem="ch3-Ic-Fic" secondAttribute="bottom" id="Zbv-jj-Wu2"/>
+                                    <constraint firstItem="ch3-Ic-Fic" firstAttribute="top" secondItem="3l3-IK-Ca2" secondAttribute="bottom" id="kOG-19-syQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="feZ-c1-df3" secondAttribute="trailing" constant="40" id="li9-ke-Xkn"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="listen" translatesAutoresizingMaskIntoConstraints="NO" id="vOt-nT-0DA">
+                                <rect key="frame" x="16" y="56" width="568" height="135"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DAVID SAYS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xgM-ZB-hfe">
+                                <rect key="frame" x="26" y="201" width="59" height="12"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
+                                <color key="textColor" red="0.91764705882352937" green="0.91764705882352937" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mission Moon" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ch3-Ic-Fic">
-                                <rect key="frame" x="26" y="45" width="111" height="21"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="We watched the Apollo VIII launch from our home in Ohio.  We were glued to the TV the whole night!" translatesAutoresizingMaskIntoConstraints="NO" id="f6x-QI-zsI">
+                                <rect key="frame" x="26" y="223" width="548" height="287"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="★★★★☆" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pR0-wO-UjW">
+                                <rect key="frame" x="26" y="520" width="85" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="feZ-c1-df3">
-                                <rect key="frame" x="544" y="29" width="30" height="33"/>
-                                <fontDescription key="fontDescription" name="AvenirNextCondensed-Heavy" family="Avenir Next Condensed" pointSize="15"/>
-                                <state key="normal" title="➡︎➡︎">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zEy-5k-sPV">
-                                <rect key="frame" x="504" y="29" width="30" height="30"/>
-                                <state key="normal" title="➤">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YeK-G2-gGE">
-                                <rect key="frame" x="464" y="29" width="30" height="33"/>
-                                <fontDescription key="fontDescription" name="AvenirNextCondensed-Heavy" family="Avenir Next Condensed" pointSize="15"/>
-                                <state key="normal" title="⬅︎⬅︎">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="3l3-IK-Ca2" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" constant="10" id="0a0-pO-mMd"/>
-                            <constraint firstItem="zEy-5k-sPV" firstAttribute="centerY" secondItem="YeK-G2-gGE" secondAttribute="centerY" constant="-1.5" id="7CF-0A-Tkj"/>
-                            <constraint firstItem="YeK-G2-gGE" firstAttribute="centerY" secondItem="ch3-Ic-Fic" secondAttribute="top" id="YU5-pt-wSM"/>
-                            <constraint firstItem="3l3-IK-Ca2" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" constant="10" id="g1f-P2-0II"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="feZ-c1-df3" secondAttribute="trailing" constant="10" id="hn3-6U-SaF"/>
-                            <constraint firstItem="zEy-5k-sPV" firstAttribute="leading" secondItem="YeK-G2-gGE" secondAttribute="trailing" constant="10" id="iPQ-Ja-ma6"/>
-                            <constraint firstItem="ch3-Ic-Fic" firstAttribute="top" secondItem="3l3-IK-Ca2" secondAttribute="bottom" id="lzq-ox-Yy0"/>
-                            <constraint firstItem="feZ-c1-df3" firstAttribute="leading" secondItem="zEy-5k-sPV" secondAttribute="trailing" constant="10" id="sag-TI-BsV"/>
-                            <constraint firstItem="ch3-Ic-Fic" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" constant="10" id="wHW-Wy-nRi"/>
-                            <constraint firstItem="feZ-c1-df3" firstAttribute="centerY" secondItem="zEy-5k-sPV" secondAttribute="centerY" constant="1.5" id="zXP-2T-WsU"/>
+                            <constraint firstItem="AAT-uh-Cyo" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" constant="-20" id="3cT-Va-yn7"/>
+                            <constraint firstItem="AAT-uh-Cyo" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" constant="-20" id="CrZ-Mv-MPb"/>
+                            <constraint firstItem="vOt-nT-0DA" firstAttribute="top" secondItem="AAT-uh-Cyo" secondAttribute="bottom" id="GJm-Qo-m6c"/>
+                            <constraint firstItem="vOt-nT-0DA" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" id="LYX-YC-VfW"/>
+                            <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="pR0-wO-UjW" secondAttribute="bottom" constant="10" id="Plf-oO-38m"/>
+                            <constraint firstItem="f6x-QI-zsI" firstAttribute="top" secondItem="xgM-ZB-hfe" secondAttribute="bottom" constant="10" id="Qyk-8m-5OS"/>
+                            <constraint firstItem="f6x-QI-zsI" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" constant="10" id="ZGn-yz-5cZ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="f6x-QI-zsI" secondAttribute="trailing" constant="10" id="cCm-L1-diX"/>
+                            <constraint firstItem="xgM-ZB-hfe" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" constant="10" id="e1c-RV-3gw"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="AAT-uh-Cyo" secondAttribute="trailing" constant="-20" id="epW-Vm-JUG"/>
+                            <constraint firstItem="xgM-ZB-hfe" firstAttribute="top" secondItem="vOt-nT-0DA" secondAttribute="bottom" constant="10" id="k7P-AU-Jjq"/>
+                            <constraint firstItem="pR0-wO-UjW" firstAttribute="top" secondItem="f6x-QI-zsI" secondAttribute="bottom" constant="10" id="lf2-pO-iJa"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="vOt-nT-0DA" secondAttribute="trailing" id="uwZ-it-XmE"/>
+                            <constraint firstItem="pR0-wO-UjW" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" constant="10" id="yv2-ww-wk3"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Listen" image="second" id="cPa-gy-q4n"/>
@@ -292,7 +335,8 @@
     </scenes>
     <resources>
         <image name="first" width="30" height="30"/>
-        <image name="missionmoon" width="500" height="225"/>
+        <image name="listen" width="175" height="135"/>
+        <image name="missionmoon" width="250" height="113"/>
         <image name="missionmoon-64" width="64" height="64"/>
         <image name="second" width="30" height="30"/>
     </resources>
