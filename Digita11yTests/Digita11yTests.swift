@@ -1,6 +1,6 @@
 //
-//  AccessTests.swift
-//  AccessTests
+//  Digita11yTests.swift
+//  Digita11yTests
 //
 //  Created by Parveen Kaler on 2015-02-23.
 //  Copyright (c) 2015 Roundware. All rights reserved.
@@ -9,7 +9,7 @@
 import UIKit
 import XCTest
 
-class AccessTests: XCTestCase {
+class Digita11yTests: XCTestCase {
     
     override func setUp() {
         super.setUp()

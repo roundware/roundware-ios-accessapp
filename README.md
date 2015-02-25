@@ -1,4 +1,4 @@
-# Roundware Access
+# Roundware Digita11y
 
 Native iOS client for Roundware
 
@@ -13,5 +13,5 @@ $ [sudo] gem install cocoapods
 And then install the podfiles before open the workspace file
 ``` shell
 $ pod install
-$ open Access.xcworkspace 
+$ open Digita11y.xcworkspace 
 ```

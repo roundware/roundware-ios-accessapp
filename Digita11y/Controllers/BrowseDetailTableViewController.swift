@@ -1,16 +1,16 @@
 //
-//  BrowseTableViewController.swift
-//  Access
+//  BrowseDetailTableViewController.swift
+//  Digita11y
 //
-//  Created by Parveen Kaler on 2015-02-23.
+//  Created by Parveen Kaler on 2015-02-24.
 //  Copyright (c) 2015 Roundware. All rights reserved.
 //
 
 import UIKit
 
-class BrowseTableViewController: UITableViewController {
+class BrowseDetailTableViewController: UITableViewController {
 
-  let CellIdentifier = "BrowseCellIdentifier"
+  let CellIdentifier = "BrowseDetailCellIdentifier"
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -30,16 +30,7 @@ class BrowseTableViewController: UITableViewController {
   }
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    if let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as? BrowseTableViewCell {
-      return cell
-    }
-
-    return UITableViewCell()
-  }
-
-
-  // MARK: - Navigation
-
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as UITableViewCell
+    return cell
   }
 }

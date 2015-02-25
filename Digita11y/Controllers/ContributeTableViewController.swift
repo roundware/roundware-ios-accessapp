@@ -1,6 +1,6 @@
 //
 //  ContributeTableViewController.swift
-//  Access
+//  Digita11y
 //
 //  Created by Parveen Kaler on 2015-02-24.
 //  Copyright (c) 2015 Roundware. All rights reserved.

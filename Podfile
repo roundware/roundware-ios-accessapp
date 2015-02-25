@@ -3,8 +3,8 @@ platform :ios, '8.0'
 
 inhibit_all_warnings!
 
-target 'Access' do
+target 'Digita11y' do
 end
 
-target 'AccessTests' do
+target 'Digita11yTests' do
 end

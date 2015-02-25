@@ -4,9 +4,9 @@ before_all do
   # increment_build_number
 
   ipa({
-    workspace: "Access.xcworkspace",
+    workspace: "Digita11y.xcworkspace",
     configuration: "Release",
-    scheme: "Access",
+    scheme: "Digita11y",
   })
 end
 

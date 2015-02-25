@@ -47,7 +47,7 @@ ipa do
     # If you only want to upload app metadata, remove the complete ipa block.
 
     # system("ipa build --verbose") # build your project using Shenzhen
-    "./Access.ipa" # Tell 'Deliver' where it can find the finished ipa file
+    "./Digita11y.ipa" # Tell 'Deliver' where it can find the finished ipa file
 end
 
 # ipa "./latest.ipa" # this can be used instead of the `do` block, if you prefer manually building the ipa file

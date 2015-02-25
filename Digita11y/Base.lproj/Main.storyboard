@@ -6,17 +6,17 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Access MVP-->
+        <!--Digita11y MVP-->
         <scene sceneID="M1N-Qp-NeK">
             <objects>
-                <tableViewController id="IA4-HA-cIB" customClass="BrowseTableViewController" customModule="Access" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="IA4-HA-cIB" customClass="BrowseTableViewController" customModule="Digita11y" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="rFV-ZF-Lsz">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BrowseCellIdentifier" rowHeight="125" id="g2b-7e-aYd" customClass="BrowseTableViewCell" customModule="Access" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BrowseCellIdentifier" rowHeight="125" id="g2b-7e-aYd" customClass="BrowseTableViewCell" customModule="Digita11y" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="g2b-7e-aYd" id="UkG-6q-ucY">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -68,7 +68,7 @@
                             <outlet property="delegate" destination="IA4-HA-cIB" id="p0W-PZ-wNn"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Access MVP" id="teU-pq-R5r"/>
+                    <navigationItem key="navigationItem" title="Digita11y MVP" id="teU-pq-R5r"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ufz-am-XEh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -77,7 +77,7 @@
         <!--Browse Detail Table View Controller-->
         <scene sceneID="7Lt-oF-2g8">
             <objects>
-                <tableViewController id="0qf-4s-bo6" customClass="BrowseDetailTableViewController" customModule="Access" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="0qf-4s-bo6" customClass="BrowseDetailTableViewController" customModule="Digita11y" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="2kb-h7-s81">
                         <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -181,7 +181,7 @@
         <!--Listen-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
-                <viewController id="8rJ-Kc-sve" customClass="SecondViewController" customModule="Access" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="8rJ-Kc-sve" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="L7p-HK-0SC"/>
                         <viewControllerLayoutGuide type="bottom" id="Djb-ko-YwX"/>
@@ -292,7 +292,7 @@
         <!--Contribute-->
         <scene sceneID="XHN-2c-Fdk">
             <objects>
-                <tableViewController id="Mst-m9-Cpj" customClass="ContributeTableViewController" customModule="Access" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Mst-m9-Cpj" customClass="ContributeTableViewController" customModule="Digita11y" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Qdg-Nd-tEa">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
