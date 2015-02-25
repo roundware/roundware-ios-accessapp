@@ -19,6 +19,7 @@
 		4E5946971A9BE9A5007ED02C /* BrowseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5946951A9BE9A5007ED02C /* BrowseTableViewCell.swift */; };
 		4E5946991A9D2095007ED02C /* BrowseDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5946981A9D2095007ED02C /* BrowseDetailTableViewController.swift */; };
 		4E59469A1A9D2095007ED02C /* BrowseDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5946981A9D2095007ED02C /* BrowseDetailTableViewController.swift */; };
+		4E59469C1A9D4BFA007ED02C /* ContributeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E59469B1A9D4BFA007ED02C /* ContributeTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		4E5946901A9BBFB7007ED02C /* BrowseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BrowseTableViewController.swift; path = Controllers/BrowseTableViewController.swift; sourceTree = "<group>"; };
 		4E5946951A9BE9A5007ED02C /* BrowseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BrowseTableViewCell.swift; path = Views/BrowseTableViewCell.swift; sourceTree = "<group>"; };
 		4E5946981A9D2095007ED02C /* BrowseDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BrowseDetailTableViewController.swift; path = Controllers/BrowseDetailTableViewController.swift; sourceTree = "<group>"; };
+		4E59469B1A9D4BFA007ED02C /* ContributeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContributeTableViewController.swift; path = Controllers/ContributeTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 			children = (
 				4E5946901A9BBFB7007ED02C /* BrowseTableViewController.swift */,
 				4E5946981A9D2095007ED02C /* BrowseDetailTableViewController.swift */,
+				4E59469B1A9D4BFA007ED02C /* ContributeTableViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -244,6 +247,7 @@
 				4E5946961A9BE9A5007ED02C /* BrowseTableViewCell.swift in Sources */,
 				4E59466F1A9BB81B007ED02C /* AppDelegate.swift in Sources */,
 				4E5946911A9BBFB7007ED02C /* BrowseTableViewController.swift in Sources */,
+				4E59469C1A9D4BFA007ED02C /* ContributeTableViewController.swift in Sources */,
 				4E5946991A9D2095007ED02C /* BrowseDetailTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

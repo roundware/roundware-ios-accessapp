@@ -289,6 +289,60 @@
             </objects>
             <point key="canvasLocation" x="750" y="360"/>
         </scene>
+        <!--Contribute-->
+        <scene sceneID="XHN-2c-Fdk">
+            <objects>
+                <tableViewController id="Mst-m9-Cpj" customClass="ContributeTableViewController" customModule="Access" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Qdg-Nd-tEa">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="d9b-iQ-jZg">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="k4q-iL-EYE">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UWo-p8-9YE">
+                                    <rect key="frame" x="10" y="10" width="580" height="44"/>
+                                    <color key="backgroundColor" red="0.9882352941176471" green="0.0" blue="0.396078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="44" id="SFz-Se-Ds5"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                    <state key="normal" title="Upload all media">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="UWo-p8-9YE" secondAttribute="trailing" constant="10" id="1XF-lf-e2U"/>
+                                <constraint firstAttribute="bottom" secondItem="UWo-p8-9YE" secondAttribute="bottom" constant="10" id="Q4F-bU-nmX"/>
+                                <constraint firstItem="UWo-p8-9YE" firstAttribute="top" secondItem="k4q-iL-EYE" secondAttribute="top" constant="10" id="cLx-1O-Fue"/>
+                                <constraint firstItem="UWo-p8-9YE" firstAttribute="leading" secondItem="k4q-iL-EYE" secondAttribute="leading" constant="10" id="vKn-Kd-eVd"/>
+                            </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="Q4F-bU-nmX"/>
+                                </mask>
+                            </variation>
+                        </view>
+                        <connections>
+                            <outlet property="dataSource" destination="Mst-m9-Cpj" id="dxI-Iz-fSk"/>
+                            <outlet property="delegate" destination="Mst-m9-Cpj" id="gy1-WZ-A4x"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Contribute" image="first" id="kaP-aY-9tT"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="On5-Jv-hJH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="750" y="1165"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
@@ -302,6 +356,7 @@
                     <connections>
                         <segue destination="XqT-Yg-vHH" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
+                        <segue destination="Mst-m9-Cpj" kind="relationship" relationship="viewControllers" id="XPn-Io-2eX"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
