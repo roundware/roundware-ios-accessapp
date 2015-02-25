@@ -11,11 +11,13 @@ import UIKit
 class ContributeTableViewController: UITableViewController {
 
   let CellIdentifier = "ContributeCellIdentifier"
+  let AudioDrawerCellIdentifier = "AudioDrawerCellIdentifier"
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    self.tableView.rowHeight = 44.0
+    tableView.rowHeight = UITableViewAutomaticDimension
+    tableView.estimatedRowHeight = 125.0
   }
 
   // MARK: - Table view data source
@@ -25,22 +27,30 @@ class ContributeTableViewController: UITableViewController {
   }
 
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      return 3
+      return 4
   }
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    var cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier) as UITableViewCell?
-    if cell == nil {
-      cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: CellIdentifier)
-      cell?.textLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 17.0)
-    }
 
-    if indexPath.row == 0 {
-      cell?.textLabel?.text = "Add Audio"
-    } else if indexPath.row == 1 {
-      cell?.textLabel?.text = "Add Photos"
-    } else {
-      cell?.textLabel?.text = "Add Text"
+    var cell: UITableViewCell?  // This can be a let in Xcode 6.3
+
+    if indexPath.row == 1 {
+      cell = tableView.dequeueReusableCellWithIdentifier(AudioDrawerCellIdentifier, forIndexPath: indexPath) as? UITableViewCell
+    }
+    else {
+      cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier) as UITableViewCell?
+      if cell == nil {
+        cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: CellIdentifier)
+        cell?.textLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 17.0)
+      }
+
+      if indexPath.row == 0 {
+        cell?.textLabel?.text = "Add Audio"
+      } else if indexPath.row == 1 {
+        cell?.textLabel?.text = "Add Photos"
+      } else {
+        cell?.textLabel?.text = "Add Text"
+      }
     }
 
     return cell!
