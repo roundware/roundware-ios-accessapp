@@ -13,6 +13,8 @@ class ContributeTableViewController: UITableViewController {
   let CellIdentifier = "ContributeCellIdentifier"
   let AudioDrawerCellIdentifier = "AudioDrawerCellIdentifier"
 
+  var showAudioDrawer: Bool = false
+
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -27,14 +29,14 @@ class ContributeTableViewController: UITableViewController {
   }
 
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      return 4
+    return 3 + (self.showAudioDrawer ? 1 : 0)
   }
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
     var cell: UITableViewCell?  // This can be a let in Xcode 6.3
 
-    if indexPath.row == 1 {
+    if self.showAudioDrawer && indexPath.row == 1 {
       cell = tableView.dequeueReusableCellWithIdentifier(AudioDrawerCellIdentifier, forIndexPath: indexPath) as? UITableViewCell
     }
     else {
@@ -54,5 +56,12 @@ class ContributeTableViewController: UITableViewController {
     }
 
     return cell!
+  }
+
+  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    if indexPath.row == 0 {
+      self.showAudioDrawer = !self.showAudioDrawer
+      self.tableView.reloadData()
+    }
   }
 }
