@@ -10,46 +10,7 @@
 	<string>46</string>
 	<key>objects</key>
 	<dict>
-		<key>1239981342407E8E460D73AF</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>C934F6EA07C14209D70AB20C</string>
-				<string>66D61BA243038BB529B57C04</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
-		<key>206425132B96FDE765865CAA</key>
-		<dict>
-			<key>children</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Targets Support Files</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>513ABAFAF16CF7DDD6B144AC</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>7F604CC980C480A1449310C2</string>
-				<string>F10C618BC3A19C292BDD912C</string>
-				<string>57A6EB69C5D2711A0D2E3F11</string>
-				<string>206425132B96FDE765865CAA</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>57A6EB69C5D2711A0D2E3F11</key>
+		<key>16B5A50612AF9B362F5A9620</key>
 		<dict>
 			<key>children</key>
 			<array/>
@@ -60,7 +21,108 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>66D61BA243038BB529B57C04</key>
+		<key>3FF01B24764F2D55C551E9D2</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text</string>
+			<key>name</key>
+			<string>Podfile</string>
+			<key>path</key>
+			<string>../Podfile</string>
+			<key>sourceTree</key>
+			<string>SOURCE_ROOT</string>
+			<key>xcLanguageSpecificationIdentifier</key>
+			<string>xcode.lang.ruby</string>
+		</dict>
+		<key>4BE0D1057A545F145D62CEDE</key>
+		<dict>
+			<key>children</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Targets Support Files</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5233DB5399626B59A28A83A1</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>E5BC34E698A550F73ADB6BD2</string>
+				<string>C6F4CFC37153B09825871545</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>5F43FE5EA1A56F37AC68822D</key>
+		<dict>
+			<key>attributes</key>
+			<dict>
+				<key>LastUpgradeCheck</key>
+				<string>0510</string>
+			</dict>
+			<key>buildConfigurationList</key>
+			<string>5233DB5399626B59A28A83A1</string>
+			<key>compatibilityVersion</key>
+			<string>Xcode 3.2</string>
+			<key>developmentRegion</key>
+			<string>English</string>
+			<key>hasScannedForEncodings</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXProject</string>
+			<key>knownRegions</key>
+			<array>
+				<string>en</string>
+			</array>
+			<key>mainGroup</key>
+			<string>AAB27E3383183073A5BA8A3B</string>
+			<key>productRefGroup</key>
+			<string>16B5A50612AF9B362F5A9620</string>
+			<key>projectDirPath</key>
+			<string></string>
+			<key>projectReferences</key>
+			<array/>
+			<key>projectRoot</key>
+			<string></string>
+			<key>targets</key>
+			<array/>
+		</dict>
+		<key>AAB27E3383183073A5BA8A3B</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>3FF01B24764F2D55C551E9D2</string>
+				<string>B79C51FD5FA6A6A56151A120</string>
+				<string>16B5A50612AF9B362F5A9620</string>
+				<string>4BE0D1057A545F145D62CEDE</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B79C51FD5FA6A6A56151A120</key>
+		<dict>
+			<key>children</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>C6F4CFC37153B09825871545</key>
 		<dict>
 			<key>buildSettings</key>
 			<dict>
@@ -126,58 +188,7 @@
 			<key>name</key>
 			<string>Release</string>
 		</dict>
-		<key>7F604CC980C480A1449310C2</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text</string>
-			<key>name</key>
-			<string>Podfile</string>
-			<key>path</key>
-			<string>../Podfile</string>
-			<key>sourceTree</key>
-			<string>SOURCE_ROOT</string>
-			<key>xcLanguageSpecificationIdentifier</key>
-			<string>xcode.lang.ruby</string>
-		</dict>
-		<key>A0A34B7384317289B6FCBA82</key>
-		<dict>
-			<key>attributes</key>
-			<dict>
-				<key>LastUpgradeCheck</key>
-				<string>0510</string>
-			</dict>
-			<key>buildConfigurationList</key>
-			<string>1239981342407E8E460D73AF</string>
-			<key>compatibilityVersion</key>
-			<string>Xcode 3.2</string>
-			<key>developmentRegion</key>
-			<string>English</string>
-			<key>hasScannedForEncodings</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXProject</string>
-			<key>knownRegions</key>
-			<array>
-				<string>en</string>
-			</array>
-			<key>mainGroup</key>
-			<string>513ABAFAF16CF7DDD6B144AC</string>
-			<key>productRefGroup</key>
-			<string>57A6EB69C5D2711A0D2E3F11</string>
-			<key>projectDirPath</key>
-			<string></string>
-			<key>projectReferences</key>
-			<array/>
-			<key>projectRoot</key>
-			<string></string>
-			<key>targets</key>
-			<array/>
-		</dict>
-		<key>C934F6EA07C14209D70AB20C</key>
+		<key>E5BC34E698A550F73ADB6BD2</key>
 		<dict>
 			<key>buildSettings</key>
 			<dict>
@@ -248,19 +259,8 @@
 			<key>name</key>
 			<string>Debug</string>
 		</dict>
-		<key>F10C618BC3A19C292BDD912C</key>
-		<dict>
-			<key>children</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Frameworks</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 	</dict>
 	<key>rootObject</key>
-	<string>A0A34B7384317289B6FCBA82</string>
+	<string>5F43FE5EA1A56F37AC68822D</string>
 </dict>
 </plist>

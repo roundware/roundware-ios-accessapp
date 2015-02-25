@@ -1,0 +1,40 @@
+before_all do
+  # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
+  cocoapods
+  # increment_build_number
+
+  ipa({
+    workspace: "Access.xcworkspace",
+    configuration: "Release",
+    scheme: "Access",
+  })
+end
+
+lane :inhouse do
+  sigh
+end
+
+lane :beta do
+  sigh
+  deliver :skip_deploy, :beta
+end
+
+lane :deploy do
+  # snapshot
+  sigh
+  deliver :skip_deploy, :force
+  # frameit
+end
+
+after_all do |lane|
+  # This block is called, only if the executed lane was successful
+  # slack({
+  #   message: "Successfully deployed new App Update for [App](http://link.com).",
+  #   success: true,
+  #   channel: 'development'
+  # })
+end
+
+
+error do |lane, exception|
+end

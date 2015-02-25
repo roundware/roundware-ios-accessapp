@@ -15,7 +15,9 @@ xcuserdata
 DerivedData
 *.hmap
 *.ipa
+*.dSYM.zip
 *.xcuserstate
+report.xml
 
 # CocoaPods
 #
