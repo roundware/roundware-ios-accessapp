@@ -382,7 +382,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PhotoDrawerCellIdentifier" rowHeight="114" id="z1R-KJ-YUs">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PhotoDrawerCellIdentifier" rowHeight="144" id="z1R-KJ-YUs">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="z1R-KJ-YUs" id="hk0-a8-xzY">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -405,7 +405,7 @@
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         </textView>
                                         <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Dl-t4-MaY">
-                                            <rect key="frame" x="28" y="92" width="272" height="30"/>
+                                            <rect key="frame" x="28" y="92" width="272" height="33"/>
                                             <color key="backgroundColor" red="0.98823529409999999" green="0.0" blue="0.39607843139999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <state key="normal" title="Camera">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -413,7 +413,7 @@
                                             </state>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5I5-83-j7O">
-                                            <rect key="frame" x="310" y="92" width="272" height="30"/>
+                                            <rect key="frame" x="310" y="92" width="272" height="33"/>
                                             <color key="backgroundColor" red="0.98823529409999999" green="0.0" blue="0.39607843139999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <state key="normal" title="From Library">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -426,10 +426,12 @@
                                         <constraint firstItem="5I5-83-j7O" firstAttribute="centerY" secondItem="5Dl-t4-MaY" secondAttribute="centerY" id="Gxs-hS-WVq"/>
                                         <constraint firstItem="FVc-So-TqY" firstAttribute="leading" secondItem="bhs-4L-Y5g" secondAttribute="trailing" constant="10" id="J0W-NQ-O72"/>
                                         <constraint firstItem="bhs-4L-Y5g" firstAttribute="top" secondItem="hk0-a8-xzY" secondAttribute="topMargin" constant="10" id="JBE-Dt-Kc4"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="5Dl-t4-MaY" secondAttribute="bottom" constant="10" id="Owp-HO-f7X"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="FVc-So-TqY" secondAttribute="trailing" constant="10" id="bNe-xm-kU9"/>
                                         <constraint firstItem="bhs-4L-Y5g" firstAttribute="top" secondItem="FVc-So-TqY" secondAttribute="top" id="cU6-U7-tzm"/>
                                         <constraint firstItem="5Dl-t4-MaY" firstAttribute="leading" secondItem="hk0-a8-xzY" secondAttribute="leadingMargin" constant="20" id="eyx-pW-Mcq"/>
                                         <constraint firstItem="5I5-83-j7O" firstAttribute="leading" secondItem="5Dl-t4-MaY" secondAttribute="trailing" constant="10" id="gqY-0e-sUI"/>
+                                        <constraint firstItem="5I5-83-j7O" firstAttribute="height" secondItem="5Dl-t4-MaY" secondAttribute="height" id="jjw-be-Oar"/>
                                         <constraint firstItem="bhs-4L-Y5g" firstAttribute="leading" secondItem="hk0-a8-xzY" secondAttribute="leadingMargin" constant="10" id="oG8-8G-Lv3"/>
                                         <constraint firstItem="5Dl-t4-MaY" firstAttribute="width" secondItem="5I5-83-j7O" secondAttribute="width" id="vSJ-Z7-PhG"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="5I5-83-j7O" secondAttribute="trailing" constant="10" id="vpS-dh-8Ug"/>

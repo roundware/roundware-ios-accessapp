@@ -70,7 +70,7 @@ class ContributeTableViewController: UITableViewController {
       cell.textLabel?.text = "Add Text"
       return cell
     case .TextDrawer:
-      debugPrintln("")
+      break // Need to build out this cell
     }
 
     return UITableViewCell()
@@ -114,7 +114,7 @@ class ContributeTableViewController: UITableViewController {
         }
       }
     case .Text:
-      debugPrintln("")
+      break // Need to insert/remove this cell
     default:
       break
     }
