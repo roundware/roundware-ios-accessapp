@@ -6,7 +6,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Digita11y MVP-->
+        <!--Digita11y-->
         <scene sceneID="M1N-Qp-NeK">
             <objects>
                 <tableViewController id="IA4-HA-cIB" customClass="BrowseTableViewController" customModule="Digita11y" customModuleProvider="target" sceneMemberID="viewController">
@@ -24,15 +24,15 @@
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" image="missionmoon" translatesAutoresizingMaskIntoConstraints="NO" id="Fqg-sK-Nzq">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="124"/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mission Moon" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MD1-wv-z2B">
-                                            <rect key="frame" x="8" y="95" width="111" height="21"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exhibition" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kK3-c6-ysC">
                                             <rect key="frame" x="8" y="64" width="76" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mission Moon" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MD1-wv-z2B">
+                                            <rect key="frame" x="8" y="95" width="111" height="21"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -68,7 +68,7 @@
                             <outlet property="delegate" destination="IA4-HA-cIB" id="p0W-PZ-wNn"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Digita11y MVP" id="teU-pq-R5r"/>
+                    <navigationItem key="navigationItem" title="Digita11y" id="teU-pq-R5r"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ufz-am-XEh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -89,15 +89,15 @@
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" image="missionmoon" translatesAutoresizingMaskIntoConstraints="NO" id="3Bb-dJ-bcs">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="125"/>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mission Moon" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3mS-yl-VGz">
-                                    <rect key="frame" x="8" y="93" width="130" height="24"/>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exhibition" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ToS-gi-5Iq">
                                     <rect key="frame" x="8" y="64" width="76" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mission Moon" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3mS-yl-VGz">
+                                    <rect key="frame" x="8" y="93" width="130" height="24"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
@@ -203,11 +203,11 @@
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="feZ-c1-df3">
-                                        <rect key="frame" x="538" y="19" width="30" height="33"/>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YeK-G2-gGE">
+                                        <rect key="frame" x="478" y="19" width="30" height="33"/>
                                         <fontDescription key="fontDescription" name="AvenirNextCondensed-Heavy" family="Avenir Next Condensed" pointSize="15"/>
-                                        <state key="normal" title="➡︎➡︎">
-                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="⬅︎⬅︎">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
@@ -218,11 +218,11 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YeK-G2-gGE">
-                                        <rect key="frame" x="478" y="19" width="30" height="33"/>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="feZ-c1-df3">
+                                        <rect key="frame" x="538" y="19" width="30" height="33"/>
                                         <fontDescription key="fontDescription" name="AvenirNextCondensed-Heavy" family="Avenir Next Condensed" pointSize="15"/>
-                                        <state key="normal" title="⬅︎⬅︎">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" title="➡︎➡︎">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
