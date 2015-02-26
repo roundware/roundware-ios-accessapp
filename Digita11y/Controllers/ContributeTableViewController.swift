@@ -59,7 +59,10 @@ class ContributeTableViewController: UITableViewController {
       cell.textLabel?.text = "Add Photos"
       return cell
     case .PhotoDrawer:
-      return tableView.dequeueReusableCellWithIdentifier(PhotoDrawerCellIdentifier, forIndexPath: indexPath) as UITableViewCell
+      var cell = tableView.dequeueReusableCellWithIdentifier(PhotoDrawerCellIdentifier, forIndexPath: indexPath) as PhotoDrawerTableViewCell
+      cell.textView.placeholder = "Describe this photo..."
+      cell.textView.placeholderTextColor = UIColor.lightGrayColor()
+      return cell
     case .Text:
       var cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: CellIdentifier)
       cell.textLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 17.0)
