@@ -24,9 +24,7 @@ class ContributeTableViewController: UITableViewController {
   let CellIdentifier = "ContributeCellIdentifier"
   let AudioDrawerCellIdentifier = "AudioDrawerCellIdentifier"
   let PhotoDrawerCellIdentifier = "PhotoDrawerCellIdentifier"
-
-  var showAudioDrawer = false
-  var showPhotoDrawer = false
+  let TextDrawerCellIdentifier = "TextDrawerCellIdentifier"
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -54,69 +52,57 @@ class ContributeTableViewController: UITableViewController {
       cell.textLabel?.text = "Add Audio"
       return cell
     case .AudioDrawer:
-      var cell = tableView.dequeueReusableCellWithIdentifier(AudioDrawerCellIdentifier, forIndexPath: indexPath) as UITableViewCell
-      return cell
+      return tableView.dequeueReusableCellWithIdentifier(AudioDrawerCellIdentifier, forIndexPath: indexPath) as UITableViewCell
     case .Photo:
       var cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: CellIdentifier)
       cell.textLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 17.0)
       cell.textLabel?.text = "Add Photos"
       return cell
     case .PhotoDrawer:
-      var cell = tableView.dequeueReusableCellWithIdentifier(PhotoDrawerCellIdentifier, forIndexPath: indexPath) as UITableViewCell
-      return cell
+      return tableView.dequeueReusableCellWithIdentifier(PhotoDrawerCellIdentifier, forIndexPath: indexPath) as UITableViewCell
     case .Text:
       var cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: CellIdentifier)
       cell.textLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 17.0)
       cell.textLabel?.text = "Add Text"
       return cell
     case .TextDrawer:
-      break // Need to build out this cell
+      var cell = tableView.dequeueReusableCellWithIdentifier(TextDrawerCellIdentifier, forIndexPath: indexPath) as TextDrawerTableViewCell
+      cell.textView.placeholder = "Write something..."
+      cell.textView.placeholderTextColor = UIColor.lightGrayColor()
+      return cell
     }
-
-    return UITableViewCell()
   }
 
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     let type = self.cells[indexPath.row]
     switch (type) {
     case .Audio:
-      // Remove audio drawer?
-      for (var i = 0; i < self.cells.count; ++i) {
-        if self.cells[i] == Cell.AudioDrawer {
-          self.cells.removeAtIndex(i)
-          self.tableView.reloadData()
-          return
-        }
-      }
-      // Must be that we have to add the audio drawer
-      for (var i = 0; i < self.cells.count; ++i) {
-        if self.cells[i] == Cell.Audio {
-          self.cells.insert(Cell.AudioDrawer, atIndex: i+1)
-          self.tableView.reloadData()
-          return
-        }
-      }
+      toggleDrawer(Cell.AudioDrawer, parent: Cell.Audio)
     case .Photo:
-      // Remove photo drawer?
-      for (var i = 0; i < self.cells.count; ++i) {
-        if self.cells[i] == Cell.PhotoDrawer {
-          self.cells.removeAtIndex(i)
-          self.tableView.reloadData()
-          return
-        }
-      }
-      // Must be that we have to add the audio drawer
-      for (var i = 0; i < self.cells.count; ++i) {
-        if self.cells[i] == Cell.Photo {
-          self.cells.insert(Cell.PhotoDrawer, atIndex: i+1)
-          self.tableView.reloadData()
-          return
-        }
-      }
+      toggleDrawer(Cell.PhotoDrawer, parent: Cell.Photo)
     case .Text:
-      break // Need to insert/remove this cell
+      toggleDrawer(Cell.TextDrawer, parent: Cell.Text)
     default:
       break
+    }
+  }
+
+  func toggleDrawer(drawer: Cell, parent: Cell) {
+    // Remove drawer?
+    for (var i = 0; i < self.cells.count; ++i) {
+      if self.cells[i] == drawer {
+        self.cells.removeAtIndex(i)
+        self.tableView.reloadData()
+        return
+      }
+    }
+    // Must be that we have to add the drawer
+    for (var i = 0; i < self.cells.count; ++i) {
+      if self.cells[i] == parent {
+        self.cells.insert(drawer, atIndex: i+1)
+        self.tableView.reloadData()
+        return
+      }
     }
   }
 }

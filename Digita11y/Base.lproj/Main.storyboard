@@ -394,7 +394,7 @@
                                                 <constraint firstAttribute="height" constant="64" id="zR8-1x-aYy"/>
                                             </constraints>
                                         </imageView>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="FVc-So-TqY">
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="FVc-So-TqY" customClass="SZTextView">
                                             <rect key="frame" x="92" y="18" width="490" height="64"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
@@ -437,6 +437,29 @@
                                         <constraint firstAttribute="trailingMargin" secondItem="5I5-83-j7O" secondAttribute="trailing" constant="10" id="vpS-dh-8Ug"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TextDrawerCellIdentifier" rowHeight="144" id="FvH-ao-ihK" customClass="TextDrawerTableViewCell" customModule="Digita11y" customModuleProvider="target">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FvH-ao-ihK" id="kcV-Wz-cP7">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oJK-bN-FR4" customClass="SZTextView">
+                                            <rect key="frame" x="18" y="18" width="564" height="107"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        </textView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="oJK-bN-FR4" secondAttribute="bottom" constant="10" id="Gk5-aP-dVT"/>
+                                        <constraint firstItem="oJK-bN-FR4" firstAttribute="leading" secondItem="kcV-Wz-cP7" secondAttribute="leadingMargin" constant="10" id="M8y-Nc-NNh"/>
+                                        <constraint firstItem="oJK-bN-FR4" firstAttribute="top" secondItem="kcV-Wz-cP7" secondAttribute="topMargin" constant="10" id="cTu-TP-qtR"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="oJK-bN-FR4" secondAttribute="trailing" constant="10" id="eGW-bu-jPS"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="textView" destination="oJK-bN-FR4" id="2VO-PG-iYc"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

@@ -19,6 +19,9 @@
 		4E5946991A9D2095007ED02C /* BrowseDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5946981A9D2095007ED02C /* BrowseDetailTableViewController.swift */; };
 		4E59469A1A9D2095007ED02C /* BrowseDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5946981A9D2095007ED02C /* BrowseDetailTableViewController.swift */; };
 		4E59469C1A9D4BFA007ED02C /* ContributeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E59469B1A9D4BFA007ED02C /* ContributeTableViewController.swift */; };
+		4EA3928C1A9FBCAD00308613 /* TextDrawerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA3928B1A9FBCAD00308613 /* TextDrawerTableViewCell.swift */; };
+		4EA3928D1A9FBCAD00308613 /* TextDrawerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA3928B1A9FBCAD00308613 /* TextDrawerTableViewCell.swift */; };
+		A258A79619066C709E276516 /* libPods-Digita11y.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A102BA3854E1C1CFF54EDE6C /* libPods-Digita11y.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +35,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0D00D72D58B06AAFC88F3442 /* Pods-Digita11y.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Digita11y.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Digita11y/Pods-Digita11y.debug.xcconfig"; sourceTree = "<group>"; };
+		2B7449CB3A4A9A0A5971C1B1 /* Pods-Digita11y.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Digita11y.release.xcconfig"; path = "Pods/Target Support Files/Pods-Digita11y/Pods-Digita11y.release.xcconfig"; sourceTree = "<group>"; };
 		4E5946691A9BB81A007ED02C /* Digita11y.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Digita11y.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E59466D1A9BB81B007ED02C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4E59466E1A9BB81B007ED02C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AppDelegate.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -45,6 +50,9 @@
 		4E5946951A9BE9A5007ED02C /* BrowseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = BrowseTableViewCell.swift; path = Views/BrowseTableViewCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		4E5946981A9D2095007ED02C /* BrowseDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = BrowseDetailTableViewController.swift; path = Controllers/BrowseDetailTableViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		4E59469B1A9D4BFA007ED02C /* ContributeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = ContributeTableViewController.swift; path = Controllers/ContributeTableViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		4EA3928B1A9FBCAD00308613 /* TextDrawerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextDrawerTableViewCell.swift; path = Views/TextDrawerTableViewCell.swift; sourceTree = "<group>"; };
+		4EA3928E1A9FBDBC00308613 /* Digita11y-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Digita11y-Bridging-Header.h"; sourceTree = "<group>"; };
+		A102BA3854E1C1CFF54EDE6C /* libPods-Digita11y.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Digita11y.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A258A79619066C709E276516 /* libPods-Digita11y.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,6 +80,8 @@
 				4E59466B1A9BB81A007ED02C /* Digita11y */,
 				4E5946831A9BB81B007ED02C /* Digita11yTests */,
 				4E59466A1A9BB81A007ED02C /* Products */,
+				DDB8F3E017B97669B568B3A2 /* Pods */,
+				5D2900C9F3F2E43C9F1D7A3B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -89,9 +100,8 @@
 				4E5946941A9BE966007ED02C /* Views */,
 				4E5946931A9BBFBD007ED02C /* Controllers */,
 				4E59466E1A9BB81B007ED02C /* AppDelegate.swift */,
-				4E5946741A9BB81B007ED02C /* Main.storyboard */,
+				4EA3928E1A9FBDBC00308613 /* Digita11y-Bridging-Header.h */,
 				4E5946771A9BB81B007ED02C /* Images.xcassets */,
-				4E5946791A9BB81B007ED02C /* LaunchScreen.xib */,
 				4E59466C1A9BB81B007ED02C /* Supporting Files */,
 			);
 			path = Digita11y;
@@ -135,9 +145,29 @@
 		4E5946941A9BE966007ED02C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4E5946741A9BB81B007ED02C /* Main.storyboard */,
+				4E5946791A9BB81B007ED02C /* LaunchScreen.xib */,
 				4E5946951A9BE9A5007ED02C /* BrowseTableViewCell.swift */,
+				4EA3928B1A9FBCAD00308613 /* TextDrawerTableViewCell.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		5D2900C9F3F2E43C9F1D7A3B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A102BA3854E1C1CFF54EDE6C /* libPods-Digita11y.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DDB8F3E017B97669B568B3A2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0D00D72D58B06AAFC88F3442 /* Pods-Digita11y.debug.xcconfig */,
+				2B7449CB3A4A9A0A5971C1B1 /* Pods-Digita11y.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -147,9 +177,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4E59468A1A9BB81B007ED02C /* Build configuration list for PBXNativeTarget "Digita11y" */;
 			buildPhases = (
+				D32EC83AD36F08D3EF624F67 /* Check Pods Manifest.lock */,
 				4E5946651A9BB81A007ED02C /* Sources */,
 				4E5946661A9BB81A007ED02C /* Frameworks */,
 				4E5946671A9BB81A007ED02C /* Resources */,
+				B1B34116A1B07E17B5705909 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -236,12 +268,46 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		B1B34116A1B07E17B5705909 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Digita11y/Pods-Digita11y-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D32EC83AD36F08D3EF624F67 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		4E5946651A9BB81A007ED02C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				4E5946961A9BE9A5007ED02C /* BrowseTableViewCell.swift in Sources */,
+				4EA3928C1A9FBCAD00308613 /* TextDrawerTableViewCell.swift in Sources */,
 				4E59466F1A9BB81B007ED02C /* AppDelegate.swift in Sources */,
 				4E5946911A9BBFB7007ED02C /* BrowseTableViewController.swift in Sources */,
 				4E59469C1A9D4BFA007ED02C /* ContributeTableViewController.swift in Sources */,
@@ -257,6 +323,7 @@
 				4E5946871A9BB81B007ED02C /* Digita11yTests.swift in Sources */,
 				4E5946921A9BBFB7007ED02C /* BrowseTableViewController.swift in Sources */,
 				4E5946971A9BE9A5007ED02C /* BrowseTableViewCell.swift in Sources */,
+				4EA3928D1A9FBCAD00308613 /* TextDrawerTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,6 +397,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "0894c961-264f-4fbf-b349-22be1dc7f429";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Digita11y/Digita11y-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -368,6 +436,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PROVISIONING_PROFILE = "0894c961-264f-4fbf-b349-22be1dc7f429";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Digita11y/Digita11y-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -375,6 +444,7 @@
 		};
 		4E59468B1A9BB81B007ED02C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0D00D72D58B06AAFC88F3442 /* Pods-Digita11y.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Smartful Studios Inc.";
@@ -388,6 +458,7 @@
 		};
 		4E59468C1A9BB81B007ED02C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2B7449CB3A4A9A0A5971C1B1 /* Pods-Digita11y.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Smartful Studios Inc.";
