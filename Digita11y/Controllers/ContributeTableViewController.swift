@@ -10,10 +10,23 @@ import UIKit
 
 class ContributeTableViewController: UITableViewController {
 
+  enum Cell {
+    case Audio
+    case AudioDrawer
+    case Photo
+    case PhotoDrawer
+    case Text
+    case TextDrawer
+  }
+
+  var cells = [Cell.Audio, Cell.Photo, Cell.Text]
+
   let CellIdentifier = "ContributeCellIdentifier"
   let AudioDrawerCellIdentifier = "AudioDrawerCellIdentifier"
+  let PhotoDrawerCellIdentifier = "PhotoDrawerCellIdentifier"
 
-  var showAudioDrawer: Bool = false
+  var showAudioDrawer = false
+  var showPhotoDrawer = false
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -29,39 +42,81 @@ class ContributeTableViewController: UITableViewController {
   }
 
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 3 + (self.showAudioDrawer ? 1 : 0)
+    return cells.count
   }
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-
-    var cell: UITableViewCell?  // This can be a let in Xcode 6.3
-
-    if self.showAudioDrawer && indexPath.row == 1 {
-      cell = tableView.dequeueReusableCellWithIdentifier(AudioDrawerCellIdentifier, forIndexPath: indexPath) as? UITableViewCell
+    let type = self.cells[indexPath.row]
+    switch (type) {
+    case .Audio:
+      var cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: CellIdentifier)
+      cell.textLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 17.0)
+      cell.textLabel?.text = "Add Audio"
+      return cell
+    case .AudioDrawer:
+      var cell = tableView.dequeueReusableCellWithIdentifier(AudioDrawerCellIdentifier, forIndexPath: indexPath) as UITableViewCell
+      return cell
+    case .Photo:
+      var cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: CellIdentifier)
+      cell.textLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 17.0)
+      cell.textLabel?.text = "Add Photos"
+      return cell
+    case .PhotoDrawer:
+      var cell = tableView.dequeueReusableCellWithIdentifier(PhotoDrawerCellIdentifier, forIndexPath: indexPath) as UITableViewCell
+      return cell
+    case .Text:
+      var cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: CellIdentifier)
+      cell.textLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 17.0)
+      cell.textLabel?.text = "Add Text"
+      return cell
+    case .TextDrawer:
+      debugPrintln("")
     }
-    else {
-      cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier) as UITableViewCell?
-      if cell == nil {
-        cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: CellIdentifier)
-        cell?.textLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 17.0)
-      }
 
-      if indexPath.row == 0 {
-        cell?.textLabel?.text = "Add Audio"
-      } else if indexPath.row == 1 {
-        cell?.textLabel?.text = "Add Photos"
-      } else {
-        cell?.textLabel?.text = "Add Text"
-      }
-    }
-
-    return cell!
+    return UITableViewCell()
   }
 
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    if indexPath.row == 0 {
-      self.showAudioDrawer = !self.showAudioDrawer
-      self.tableView.reloadData()
+    let type = self.cells[indexPath.row]
+    switch (type) {
+    case .Audio:
+      // Remove audio drawer?
+      for (var i = 0; i < self.cells.count; ++i) {
+        if self.cells[i] == Cell.AudioDrawer {
+          self.cells.removeAtIndex(i)
+          self.tableView.reloadData()
+          return
+        }
+      }
+      // Must be that we have to add the audio drawer
+      for (var i = 0; i < self.cells.count; ++i) {
+        if self.cells[i] == Cell.Audio {
+          self.cells.insert(Cell.AudioDrawer, atIndex: i+1)
+          self.tableView.reloadData()
+          return
+        }
+      }
+    case .Photo:
+      // Remove photo drawer?
+      for (var i = 0; i < self.cells.count; ++i) {
+        if self.cells[i] == Cell.PhotoDrawer {
+          self.cells.removeAtIndex(i)
+          self.tableView.reloadData()
+          return
+        }
+      }
+      // Must be that we have to add the audio drawer
+      for (var i = 0; i < self.cells.count; ++i) {
+        if self.cells[i] == Cell.Photo {
+          self.cells.insert(Cell.PhotoDrawer, atIndex: i+1)
+          self.tableView.reloadData()
+          return
+        }
+      }
+    case .Text:
+      debugPrintln("")
+    default:
+      break
     }
   }
 }
