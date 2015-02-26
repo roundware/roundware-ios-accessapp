@@ -50,6 +50,7 @@ class ContributeTableViewController: UITableViewController {
       var cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: CellIdentifier)
       cell.textLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 17.0)
       cell.textLabel?.text = "Add Audio"
+      cell.selectionStyle = .None
       return cell
     case .AudioDrawer:
       return tableView.dequeueReusableCellWithIdentifier(AudioDrawerCellIdentifier, forIndexPath: indexPath) as UITableViewCell
@@ -57,6 +58,7 @@ class ContributeTableViewController: UITableViewController {
       var cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: CellIdentifier)
       cell.textLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 17.0)
       cell.textLabel?.text = "Add Photos"
+      cell.selectionStyle = .None
       return cell
     case .PhotoDrawer:
       var cell = tableView.dequeueReusableCellWithIdentifier(PhotoDrawerCellIdentifier, forIndexPath: indexPath) as PhotoDrawerTableViewCell
@@ -67,6 +69,7 @@ class ContributeTableViewController: UITableViewController {
       var cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: CellIdentifier)
       cell.textLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 17.0)
       cell.textLabel?.text = "Add Text"
+      cell.selectionStyle = .None
       return cell
     case .TextDrawer:
       var cell = tableView.dequeueReusableCellWithIdentifier(TextDrawerCellIdentifier, forIndexPath: indexPath) as TextDrawerTableViewCell
@@ -95,7 +98,9 @@ class ContributeTableViewController: UITableViewController {
     for (var i = 0; i < self.cells.count; ++i) {
       if self.cells[i] == drawer {
         self.cells.removeAtIndex(i)
-        self.tableView.reloadData()
+        self.tableView.beginUpdates()
+        self.tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: i, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Top)
+        self.tableView.endUpdates()
         return
       }
     }
@@ -103,7 +108,9 @@ class ContributeTableViewController: UITableViewController {
     for (var i = 0; i < self.cells.count; ++i) {
       if self.cells[i] == parent {
         self.cells.insert(drawer, atIndex: i+1)
-        self.tableView.reloadData()
+        self.tableView.beginUpdates()
+        self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: i+1, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Top)
+        self.tableView.endUpdates()
         return
       }
     }
