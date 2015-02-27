@@ -15,8 +15,20 @@ class BrowseDetailTableViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    self.automaticallyAdjustsScrollViewInsets = false
+
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 125.0
+  }
+
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+
+    self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+    self.navigationController?.navigationBar.shadowImage = UIImage()
+    self.navigationController?.navigationBar.translucent = true
+    self.navigationController?.view.backgroundColor = UIColor.clearColor()
+    self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
   }
 
   // MARK: - Table view data source

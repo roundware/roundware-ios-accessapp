@@ -19,6 +19,11 @@ class BrowseTableViewController: UITableViewController {
     tableView.estimatedRowHeight = 125.0
   }
 
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    self.navigationController?.navigationBar.setBackgroundImage(nil, forBarMetrics: .Default)
+  }
+
   // MARK: - Table view data source
 
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
