@@ -83,39 +83,36 @@
                             <rect key="frame" x="0.0" y="64" width="600" height="125"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" image="missionmoon" translatesAutoresizingMaskIntoConstraints="NO" id="3Bb-dJ-bcs">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" image="browse-cell" translatesAutoresizingMaskIntoConstraints="NO" id="3Bb-dJ-bcs">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="125"/>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exhibition" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ToS-gi-5Iq">
-                                    <rect key="frame" x="8" y="64" width="76" height="21"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <rect key="frame" x="8" y="80" width="64" height="17"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mission Moon" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3mS-yl-VGz">
-                                    <rect key="frame" x="8" y="93" width="130" height="24"/>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                    <rect key="frame" x="8" y="97" width="105" height="20"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="♡" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VH8-D7-dDf">
-                                    <rect key="frame" x="575" y="96" width="17" height="21"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
+                                <imageView userInteractionEnabled="NO" contentMode="bottomRight" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" translatesAutoresizingMaskIntoConstraints="NO" id="bUp-0H-xbD">
+                                    <rect key="frame" x="576" y="103" width="16" height="14"/>
+                                </imageView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstAttribute="bottom" secondItem="VH8-D7-dDf" secondAttribute="bottom" constant="8" id="3TW-OH-QG3"/>
+                                <constraint firstAttribute="trailing" secondItem="bUp-0H-xbD" secondAttribute="trailing" constant="8" id="4df-em-8Oa"/>
                                 <constraint firstAttribute="bottom" secondItem="3mS-yl-VGz" secondAttribute="bottom" constant="8" id="5Ej-Si-cYG"/>
                                 <constraint firstAttribute="bottom" secondItem="3Bb-dJ-bcs" secondAttribute="bottom" id="8rg-Ln-Rvc"/>
                                 <constraint firstItem="ToS-gi-5Iq" firstAttribute="leading" secondItem="0BV-E1-QPc" secondAttribute="leading" constant="8" id="AQr-60-YhP"/>
                                 <constraint firstItem="3Bb-dJ-bcs" firstAttribute="top" secondItem="0BV-E1-QPc" secondAttribute="top" id="BfX-of-Z1J"/>
                                 <constraint firstAttribute="trailing" secondItem="3Bb-dJ-bcs" secondAttribute="trailing" id="G0e-3H-RMp"/>
-                                <constraint firstAttribute="trailing" secondItem="VH8-D7-dDf" secondAttribute="trailing" constant="8" id="QTv-OU-wSs"/>
+                                <constraint firstAttribute="bottom" secondItem="bUp-0H-xbD" secondAttribute="bottom" constant="8" id="UPg-TT-akF"/>
                                 <constraint firstItem="3mS-yl-VGz" firstAttribute="leading" secondItem="0BV-E1-QPc" secondAttribute="leading" constant="8" id="YN1-M7-G0Y"/>
-                                <constraint firstItem="3mS-yl-VGz" firstAttribute="top" secondItem="ToS-gi-5Iq" secondAttribute="bottom" constant="8" id="e75-tV-hsl"/>
+                                <constraint firstItem="3mS-yl-VGz" firstAttribute="top" secondItem="ToS-gi-5Iq" secondAttribute="bottom" id="e75-tV-hsl"/>
                                 <constraint firstItem="3Bb-dJ-bcs" firstAttribute="leading" secondItem="0BV-E1-QPc" secondAttribute="leading" id="x7z-Ad-kMl"/>
                             </constraints>
                         </view>
@@ -570,7 +567,6 @@
         <image name="first" width="30" height="30"/>
         <image name="heart" width="16" height="14"/>
         <image name="listen" width="175" height="135"/>
-        <image name="missionmoon" width="250" height="113"/>
         <image name="missionmoon-64" width="64" height="64"/>
         <image name="second" width="30" height="30"/>
     </resources>
