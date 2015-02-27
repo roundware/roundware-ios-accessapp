@@ -42,7 +42,9 @@ class BrowseDetailTableViewController: UITableViewController {
   }
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as UITableViewCell
+    let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as BrowseDetailTableViewCell
+    cell.artifactImageView.layer.cornerRadius = 32.0
+    cell.artifactImageView.layer.masksToBounds = true
     return cell
   }
 }

@@ -117,15 +117,16 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="BrowseDetailCellIdentifier" selectionStyle="default" indentationWidth="10" reuseIdentifier="BrowseDetailCellIdentifier" rowHeight="80" id="PGv-BD-lqQ">
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="BrowseDetailCellIdentifier" selectionStyle="default" indentationWidth="10" reuseIdentifier="BrowseDetailCellIdentifier" rowHeight="94" id="PGv-BD-lqQ" customClass="BrowseDetailTableViewCell" customModule="Digita11y" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PGv-BD-lqQ" id="gts-Oz-O37">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" image="missionmoon-64" translatesAutoresizingMaskIntoConstraints="NO" id="YwJ-8W-k22">
-                                            <rect key="frame" x="16" y="18" width="64" height="33"/>
+                                            <rect key="frame" x="16" y="18" width="64" height="64"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="64" id="9vZ-vP-4Wy"/>
+                                                <constraint firstAttribute="height" constant="64" id="GZg-yu-npr"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Telescope M-53 Audio 1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CoT-dJ-026">
@@ -156,10 +157,19 @@
                                         <constraint firstItem="7iy-No-B3g" firstAttribute="top" secondItem="CoT-dJ-026" secondAttribute="bottom" constant="4" id="Rfp-Zr-273"/>
                                         <constraint firstItem="fOG-Ki-9km" firstAttribute="top" secondItem="gts-Oz-O37" secondAttribute="topMargin" constant="10" id="TvX-wM-4Ms"/>
                                         <constraint firstItem="7iy-No-B3g" firstAttribute="leading" secondItem="YwJ-8W-k22" secondAttribute="trailing" constant="20" id="UaO-qc-DPX"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="7iy-No-B3g" secondAttribute="bottom" constant="27" id="WM9-rA-9tF"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="fOG-Ki-9km" secondAttribute="trailing" constant="12" id="kRZ-bi-aug"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="YwJ-8W-k22" secondAttribute="bottom" constant="20" id="x3x-Pp-7kS"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="x3x-Pp-7kS"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="artifactImageView" destination="YwJ-8W-k22" id="Xwc-dZ-gJW"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
