@@ -25,14 +25,14 @@
                                             <rect key="frame" x="0.0" y="2" width="600" height="122"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exhibition" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kK3-c6-ysC">
-                                            <rect key="frame" x="8" y="64" width="76" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <rect key="frame" x="8" y="79" width="64" height="17"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mission Moon" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MD1-wv-z2B">
-                                            <rect key="frame" x="8" y="95" width="111" height="21"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                            <rect key="frame" x="8" y="96" width="105" height="20"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -52,7 +52,7 @@
                                         <constraint firstItem="Fqg-sK-Nzq" firstAttribute="leading" secondItem="UkG-6q-ucY" secondAttribute="leadingMargin" constant="-8" id="JD2-CL-Atr"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="agE-YV-a7B" secondAttribute="trailing" constant="10" id="Pq0-aV-2fe"/>
                                         <constraint firstItem="MD1-wv-z2B" firstAttribute="leading" secondItem="UkG-6q-ucY" secondAttribute="leadingMargin" id="VRT-pQ-GCq"/>
-                                        <constraint firstItem="MD1-wv-z2B" firstAttribute="top" secondItem="kK3-c6-ysC" secondAttribute="bottom" constant="10" id="cDH-40-mAm"/>
+                                        <constraint firstItem="MD1-wv-z2B" firstAttribute="top" secondItem="kK3-c6-ysC" secondAttribute="bottom" id="cDH-40-mAm"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="agE-YV-a7B" secondAttribute="bottom" constant="10" id="yZF-LG-mNt"/>
                                     </constraints>
                                 </tableViewCellContentView>
