@@ -22,7 +22,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" image="browse-cell" translatesAutoresizingMaskIntoConstraints="NO" id="Fqg-sK-Nzq">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="124"/>
+                                            <rect key="frame" x="0.0" y="2" width="600" height="122"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exhibition" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kK3-c6-ysC">
                                             <rect key="frame" x="8" y="64" width="76" height="21"/>
@@ -48,7 +48,7 @@
                                         <constraint firstAttribute="trailingMargin" secondItem="Fqg-sK-Nzq" secondAttribute="trailing" constant="-8" id="54B-9f-ezd"/>
                                         <constraint firstItem="kK3-c6-ysC" firstAttribute="leading" secondItem="UkG-6q-ucY" secondAttribute="leadingMargin" id="8q7-jN-qvc"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="Fqg-sK-Nzq" secondAttribute="bottom" constant="-8" id="ApU-JH-MZ3"/>
-                                        <constraint firstItem="Fqg-sK-Nzq" firstAttribute="top" secondItem="UkG-6q-ucY" secondAttribute="topMargin" constant="-8" id="EDw-dJ-irK"/>
+                                        <constraint firstItem="Fqg-sK-Nzq" firstAttribute="top" secondItem="UkG-6q-ucY" secondAttribute="topMargin" constant="-6" id="EDw-dJ-irK"/>
                                         <constraint firstItem="Fqg-sK-Nzq" firstAttribute="leading" secondItem="UkG-6q-ucY" secondAttribute="leadingMargin" constant="-8" id="JD2-CL-Atr"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="agE-YV-a7B" secondAttribute="trailing" constant="10" id="Pq0-aV-2fe"/>
                                         <constraint firstItem="MD1-wv-z2B" firstAttribute="leading" secondItem="UkG-6q-ucY" secondAttribute="leadingMargin" id="VRT-pQ-GCq"/>
@@ -569,7 +569,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="browse-cell" width="640" height="250"/>
+        <image name="browse-cell" width="320" height="125"/>
         <image name="first" width="30" height="30"/>
         <image name="listen" width="175" height="135"/>
         <image name="missionmoon" width="250" height="113"/>
