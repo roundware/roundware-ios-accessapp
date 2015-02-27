@@ -130,14 +130,14 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Telescope M-53 Audio 1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CoT-dJ-026">
-                                            <rect key="frame" x="100" y="18" width="190" height="21"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                            <rect key="frame" x="100" y="18" width="179" height="20"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Adler Collection M-353" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7iy-No-B3g">
-                                            <rect key="frame" x="100" y="43" width="129" height="15"/>
-                                            <fontDescription key="fontDescription" type="italicSystem" pointSize="12"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="1000" text="Adler Collection M-353" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7iy-No-B3g">
+                                            <rect key="frame" x="100" y="38" width="119" height="14"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -154,18 +154,12 @@
                                         <constraint firstItem="YwJ-8W-k22" firstAttribute="top" secondItem="gts-Oz-O37" secondAttribute="topMargin" constant="10" id="DYf-WO-uuR"/>
                                         <constraint firstItem="YwJ-8W-k22" firstAttribute="leading" secondItem="gts-Oz-O37" secondAttribute="leadingMargin" constant="8" id="EFg-8u-8Kr"/>
                                         <constraint firstItem="CoT-dJ-026" firstAttribute="leading" secondItem="YwJ-8W-k22" secondAttribute="trailing" constant="20" id="Qt2-Xb-Wgl"/>
-                                        <constraint firstItem="7iy-No-B3g" firstAttribute="top" secondItem="CoT-dJ-026" secondAttribute="bottom" constant="4" id="Rfp-Zr-273"/>
+                                        <constraint firstItem="7iy-No-B3g" firstAttribute="top" secondItem="CoT-dJ-026" secondAttribute="bottom" id="Rfp-Zr-273"/>
                                         <constraint firstItem="fOG-Ki-9km" firstAttribute="top" secondItem="gts-Oz-O37" secondAttribute="topMargin" constant="10" id="TvX-wM-4Ms"/>
                                         <constraint firstItem="7iy-No-B3g" firstAttribute="leading" secondItem="YwJ-8W-k22" secondAttribute="trailing" constant="20" id="UaO-qc-DPX"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="7iy-No-B3g" secondAttribute="bottom" constant="27" id="WM9-rA-9tF"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="7iy-No-B3g" secondAttribute="bottom" constant="33" id="WM9-rA-9tF"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="fOG-Ki-9km" secondAttribute="trailing" constant="12" id="kRZ-bi-aug"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="YwJ-8W-k22" secondAttribute="bottom" constant="20" id="x3x-Pp-7kS"/>
                                     </constraints>
-                                    <variation key="default">
-                                        <mask key="constraints">
-                                            <exclude reference="x3x-Pp-7kS"/>
-                                        </mask>
-                                    </variation>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="artifactImageView" destination="YwJ-8W-k22" id="Xwc-dZ-gJW"/>
