@@ -45,6 +45,8 @@ class BrowseDetailTableViewController: UITableViewController {
     let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as BrowseDetailTableViewCell
     cell.artifactImageView.layer.cornerRadius = 32.0
     cell.artifactImageView.layer.masksToBounds = true
+    cell.ratingLabel.layer.cornerRadius = 2.0
+    cell.ratingLabel.layer.masksToBounds = true
     return cell
   }
 }
