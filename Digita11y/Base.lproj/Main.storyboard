@@ -204,20 +204,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AAT-uh-Cyo">
-                                <rect key="frame" x="-4" y="44" width="608" height="56"/>
+                                <rect key="frame" x="-4" y="44" width="608" height="98"/>
                                 <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ohW-3X-uaL">
+                                        <rect key="frame" x="10" y="24" width="588" height="29"/>
+                                        <segments>
+                                            <segment title="Questions"/>
+                                            <segment title="Contributors"/>
+                                            <segment title="Categories"/>
+                                        </segments>
+                                    </segmentedControl>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="EXHIBITION" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3l3-IK-Ca2">
-                                        <rect key="frame" x="10" y="20" width="69" height="15"/>
+                                        <rect key="frame" x="10" y="62" width="69" height="15"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Mission Moon" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ch3-Ic-Fic">
-                                        <rect key="frame" x="10" y="35" width="111" height="21"/>
+                                        <rect key="frame" x="10" y="77" width="111" height="21"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YeK-G2-gGE">
-                                        <rect key="frame" x="478" y="19" width="30" height="33"/>
+                                        <rect key="frame" x="478" y="61" width="30" height="33"/>
                                         <fontDescription key="fontDescription" name="AvenirNextCondensed-Heavy" family="Avenir Next Condensed" pointSize="15"/>
                                         <state key="normal" title="⬅︎⬅︎">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -225,14 +233,14 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zEy-5k-sPV">
-                                        <rect key="frame" x="508" y="20" width="30" height="30"/>
+                                        <rect key="frame" x="508" y="62" width="30" height="30"/>
                                         <state key="normal" title="➤">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="feZ-c1-df3">
-                                        <rect key="frame" x="538" y="19" width="30" height="33"/>
+                                        <rect key="frame" x="538" y="61" width="30" height="33"/>
                                         <fontDescription key="fontDescription" name="AvenirNextCondensed-Heavy" family="Avenir Next Condensed" pointSize="15"/>
                                         <state key="normal" title="➡︎➡︎">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -246,26 +254,29 @@
                                     <constraint firstItem="zEy-5k-sPV" firstAttribute="centerY" secondItem="YeK-G2-gGE" secondAttribute="centerY" id="83d-hU-D4z"/>
                                     <constraint firstItem="3l3-IK-Ca2" firstAttribute="leading" secondItem="AAT-uh-Cyo" secondAttribute="leading" constant="10" id="Axr-Ao-W3g"/>
                                     <constraint firstItem="YeK-G2-gGE" firstAttribute="centerY" secondItem="ch3-Ic-Fic" secondAttribute="top" id="BKm-eW-Ak4"/>
-                                    <constraint firstItem="3l3-IK-Ca2" firstAttribute="top" secondItem="AAT-uh-Cyo" secondAttribute="top" constant="20" id="OsW-ZR-GUm"/>
+                                    <constraint firstItem="ohW-3X-uaL" firstAttribute="leading" secondItem="AAT-uh-Cyo" secondAttribute="leading" constant="10" id="EgM-NS-SUa"/>
+                                    <constraint firstItem="ohW-3X-uaL" firstAttribute="top" secondItem="AAT-uh-Cyo" secondAttribute="top" constant="24" id="PgT-jq-ThC"/>
                                     <constraint firstItem="zEy-5k-sPV" firstAttribute="centerY" secondItem="feZ-c1-df3" secondAttribute="centerY" id="Q0k-we-Tkv"/>
                                     <constraint firstItem="ch3-Ic-Fic" firstAttribute="leading" secondItem="AAT-uh-Cyo" secondAttribute="leading" constant="10" id="Sb9-wg-Jm6"/>
                                     <constraint firstItem="zEy-5k-sPV" firstAttribute="leading" secondItem="YeK-G2-gGE" secondAttribute="trailing" id="XBU-PZ-DYH"/>
                                     <constraint firstAttribute="bottom" secondItem="ch3-Ic-Fic" secondAttribute="bottom" id="Zbv-jj-Wu2"/>
+                                    <constraint firstItem="ohW-3X-uaL" firstAttribute="bottom" secondItem="3l3-IK-Ca2" secondAttribute="top" constant="-10" id="dK7-sW-u2E"/>
+                                    <constraint firstAttribute="trailing" secondItem="ohW-3X-uaL" secondAttribute="trailing" constant="10" id="e1j-4B-2ps"/>
                                     <constraint firstItem="ch3-Ic-Fic" firstAttribute="top" secondItem="3l3-IK-Ca2" secondAttribute="bottom" id="kOG-19-syQ"/>
                                     <constraint firstAttribute="trailing" secondItem="feZ-c1-df3" secondAttribute="trailing" constant="40" id="li9-ke-Xkn"/>
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="listen" translatesAutoresizingMaskIntoConstraints="NO" id="vOt-nT-0DA">
-                                <rect key="frame" x="16" y="100" width="568" height="135"/>
+                                <rect key="frame" x="16" y="142" width="568" height="135"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DAVID SAYS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xgM-ZB-hfe">
-                                <rect key="frame" x="26" y="245" width="59" height="12"/>
+                                <rect key="frame" x="26" y="287" width="59" height="12"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
                                 <color key="textColor" red="0.91764705882352937" green="0.91764705882352937" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="We watched the Apollo VIII launch from our home in Ohio.  We were glued to the TV the whole night!" translatesAutoresizingMaskIntoConstraints="NO" id="f6x-QI-zsI">
-                                <rect key="frame" x="26" y="267" width="548" height="243"/>
+                                <rect key="frame" x="26" y="309" width="548" height="201"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
