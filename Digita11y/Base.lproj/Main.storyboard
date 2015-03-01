@@ -206,7 +206,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AAT-uh-Cyo">
                                 <rect key="frame" x="-4" y="44" width="608" height="105"/>
                                 <subviews>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ohW-3X-uaL">
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ohW-3X-uaL">
                                         <rect key="frame" x="10" y="30" width="588" height="29"/>
                                         <segments>
                                             <segment title="Questions"/>
@@ -214,7 +214,7 @@
                                             <segment title="Categories"/>
                                         </segments>
                                     </segmentedControl>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="EXHIBITION" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3l3-IK-Ca2">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EXHIBITION" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3l3-IK-Ca2">
                                         <rect key="frame" x="10" y="68" width="79" height="17"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                         <nil key="highlightedColor"/>
@@ -224,7 +224,7 @@
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YeK-G2-gGE">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YeK-G2-gGE">
                                         <rect key="frame" x="489" y="74" width="22" height="22"/>
                                         <accessibility key="accessibilityConfiguration" hint="Rewinds" label="Rewinds"/>
                                         <state key="normal" image="rewind-button">
@@ -232,7 +232,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zEy-5k-sPV">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zEy-5k-sPV">
                                         <rect key="frame" x="521" y="74" width="15" height="22"/>
                                         <accessibility key="accessibilityConfiguration" hint="Plays" label="Plays"/>
                                         <state key="normal" image="player-button">
@@ -240,7 +240,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="feZ-c1-df3">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="feZ-c1-df3">
                                         <rect key="frame" x="546" y="74" width="22" height="22"/>
                                         <accessibility key="accessibilityConfiguration" hint="Forwards" label="Forwards"/>
                                         <state key="normal" image="forward-button">
@@ -267,13 +267,16 @@
                                     <constraint firstAttribute="trailing" secondItem="feZ-c1-df3" secondAttribute="trailing" constant="40" id="li9-ke-Xkn"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="DAVID SAYS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xgM-ZB-hfe">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="500" image="listen-heroshot" translatesAutoresizingMaskIntoConstraints="NO" id="pqQ-hr-w4Q">
+                                <rect key="frame" x="16" y="149" width="568" height="257"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="DAVID SAYS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xgM-ZB-hfe">
                                 <rect key="frame" x="26" y="406" width="65" height="14"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                 <color key="textColor" red="0.91764705882352937" green="0.91764705882352937" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" text="We watched the Apollo VIII launch from our home in Ohio.  We were glued to the TV the whole night!" translatesAutoresizingMaskIntoConstraints="NO" id="f6x-QI-zsI">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="We watched the Apollo VIII launch from our home in Ohio.  We were glued to the TV the whole night!" translatesAutoresizingMaskIntoConstraints="NO" id="f6x-QI-zsI">
                                 <rect key="frame" x="26" y="430" width="548" height="80"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -312,11 +315,15 @@
                             <constraint firstItem="in0-oq-W0K" firstAttribute="centerY" secondItem="yQZ-Yx-PQN" secondAttribute="centerY" id="Xja-9G-Ytz"/>
                             <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="ehH-lV-m5I" secondAttribute="bottom" constant="10" id="Y7J-Eu-mq7"/>
                             <constraint firstItem="f6x-QI-zsI" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" constant="10" id="ZGn-yz-5cZ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="pqQ-hr-w4Q" secondAttribute="trailing" id="aOS-An-2aU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="f6x-QI-zsI" secondAttribute="trailing" constant="10" id="cCm-L1-diX"/>
                             <constraint firstItem="xgM-ZB-hfe" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" constant="10" id="e1c-RV-3gw"/>
                             <constraint firstAttribute="trailingMargin" secondItem="AAT-uh-Cyo" secondAttribute="trailing" constant="-20" id="epW-Vm-JUG"/>
+                            <constraint firstItem="pqQ-hr-w4Q" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" id="gDQ-Es-Ovk"/>
+                            <constraint firstItem="xgM-ZB-hfe" firstAttribute="top" secondItem="pqQ-hr-w4Q" secondAttribute="bottom" id="sBG-6H-19w"/>
                             <constraint firstItem="yQZ-Yx-PQN" firstAttribute="trailing" secondItem="in0-oq-W0K" secondAttribute="leading" id="spz-Uc-QiR"/>
                             <constraint firstItem="4aE-qk-TGW" firstAttribute="leading" secondItem="in0-oq-W0K" secondAttribute="trailing" id="t4e-kQ-z0e"/>
+                            <constraint firstItem="pqQ-hr-w4Q" firstAttribute="top" secondItem="AAT-uh-Cyo" secondAttribute="bottom" id="uoW-sq-9RO"/>
                             <constraint firstItem="yQZ-Yx-PQN" firstAttribute="leading" secondItem="GO1-5m-0GW" secondAttribute="trailing" id="xXl-c3-eSJ"/>
                             <constraint firstItem="ehH-lV-m5I" firstAttribute="centerY" secondItem="GO1-5m-0GW" secondAttribute="centerY" id="zPF-B0-TZp"/>
                         </constraints>
@@ -612,6 +619,7 @@
         <image name="first" width="30" height="30"/>
         <image name="forward-button" width="22" height="13"/>
         <image name="heart" width="16" height="14"/>
+        <image name="listen-heroshot" width="320" height="286"/>
         <image name="missionmoon-64" width="64" height="64"/>
         <image name="play-button" width="12" height="15"/>
         <image name="player-button" width="15" height="17"/>
