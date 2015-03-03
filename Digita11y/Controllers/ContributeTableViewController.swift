@@ -56,17 +56,9 @@ class ContributeTableViewController: UITableViewController {
       cell.selectionStyle = .None
       return cell
     case .AudioDrawer1:
-      var cell = UITableViewCell(style: .Value2, reuseIdentifier: CellIdentifier)
-      cell.textLabel?.text = "I'm telling a story"
-      cell.textLabel?.sizeToFit()
-      cell.selectionStyle = .None
-      return cell
+      return tableView.dequeueReusableCellWithIdentifier("ImTellingAStoryCellIdentifier", forIndexPath: indexPath) as UITableViewCell
     case .AudioDrawer2:
-      var cell = UITableViewCell(style: .Value2, reuseIdentifier: CellIdentifier)
-      cell.textLabel?.text = "I'm talking about an exhibition"
-      cell.textLabel?.sizeToFit()
-      cell.selectionStyle = .None
-      return cell
+      return tableView.dequeueReusableCellWithIdentifier("ExhibitionCellIdentifier", forIndexPath: indexPath) as UITableViewCell
     case .AudioDrawer3:
       var cell = UITableViewCell(style: .Value2, reuseIdentifier: CellIdentifier)
       cell.textLabel?.text = "I'm talking about an artifact"
