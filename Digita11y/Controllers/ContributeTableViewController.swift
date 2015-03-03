@@ -3,7 +3,7 @@
 //  Digita11y
 //
 //  Created by Parveen Kaler on 2015-02-24.
-//  Copyright (c) 2015 Roundware. All rights reserved.
+//  Copyright (c) 2015 Smartful Studios Inc. All rights reserved.
 //
 
 import UIKit
@@ -48,16 +48,16 @@ class ContributeTableViewController: UITableViewController {
     switch (type) {
     case .Audio:
       var cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: CellIdentifier)
-      cell.textLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 17.0)
-      cell.textLabel?.text = "Add Audio"
+      cell.textLabel?.text = "Audio"
+      cell.accessoryView = UIImageView(image: UIImage(named: "microphone"))
       cell.selectionStyle = .None
       return cell
     case .AudioDrawer:
       return tableView.dequeueReusableCellWithIdentifier(AudioDrawerCellIdentifier, forIndexPath: indexPath) as UITableViewCell
     case .Photo:
       var cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: CellIdentifier)
-      cell.textLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 17.0)
-      cell.textLabel?.text = "Add Photos"
+      cell.textLabel?.text = "Photos"
+      cell.accessoryView = UIImageView(image: UIImage(named: "image"))
       cell.selectionStyle = .None
       return cell
     case .PhotoDrawer:
@@ -67,8 +67,8 @@ class ContributeTableViewController: UITableViewController {
       return cell
     case .Text:
       var cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: CellIdentifier)
-      cell.textLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 17.0)
-      cell.textLabel?.text = "Add Text"
+      cell.textLabel?.text = "Text"
+      cell.accessoryView = UIImageView(image: UIImage(named: "text"))
       cell.selectionStyle = .None
       return cell
     case .TextDrawer:
