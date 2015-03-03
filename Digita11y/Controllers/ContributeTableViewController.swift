@@ -12,6 +12,9 @@ class ContributeTableViewController: UITableViewController {
 
   enum Cell {
     case Audio
+    case AudioDrawer1
+    case AudioDrawer2
+    case AudioDrawer3
     case AudioDrawer
     case Photo
     case PhotoDrawer
@@ -52,6 +55,24 @@ class ContributeTableViewController: UITableViewController {
       cell.accessoryView = UIImageView(image: UIImage(named: "microphone"))
       cell.selectionStyle = .None
       return cell
+    case .AudioDrawer1:
+      var cell = UITableViewCell(style: .Value2, reuseIdentifier: CellIdentifier)
+      cell.textLabel?.text = "I'm telling a story"
+      cell.textLabel?.sizeToFit()
+      cell.selectionStyle = .None
+      return cell
+    case .AudioDrawer2:
+      var cell = UITableViewCell(style: .Value2, reuseIdentifier: CellIdentifier)
+      cell.textLabel?.text = "I'm talking about an exhibition"
+      cell.textLabel?.sizeToFit()
+      cell.selectionStyle = .None
+      return cell
+    case .AudioDrawer3:
+      var cell = UITableViewCell(style: .Value2, reuseIdentifier: CellIdentifier)
+      cell.textLabel?.text = "I'm talking about an artifact"
+      cell.textLabel?.sizeToFit()
+      cell.selectionStyle = .None
+      return cell
     case .AudioDrawer:
       return tableView.dequeueReusableCellWithIdentifier(AudioDrawerCellIdentifier, forIndexPath: indexPath) as UITableViewCell
     case .Photo:
@@ -81,9 +102,13 @@ class ContributeTableViewController: UITableViewController {
 
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     let type = self.cells[indexPath.row]
+
     switch (type) {
     case .Audio:
-      toggleDrawer(Cell.AudioDrawer, parent: Cell.Audio)
+      toggleDrawer(Cell.AudioDrawer1, parent: Cell.Audio)
+      toggleDrawer(Cell.AudioDrawer2, parent: Cell.AudioDrawer1)
+      toggleDrawer(Cell.AudioDrawer3, parent: Cell.AudioDrawer2)
+      toggleDrawer(Cell.AudioDrawer, parent: Cell.AudioDrawer3)
     case .Photo:
       toggleDrawer(Cell.PhotoDrawer, parent: Cell.Photo)
     case .Text:
