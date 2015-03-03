@@ -378,22 +378,22 @@
                             </variation>
                         </view>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImTellingAStoryCellIdentifier" rowHeight="144" id="YT8-3L-5AH" customClass="TextDrawerTableViewCell" customModule="Digita11y" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="StoryCellIdentifier" rowHeight="144" id="pxL-LM-qwl" customClass="TextDrawerTableViewCell" customModule="Digita11y" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YT8-3L-5AH" id="6MO-Zz-ikY">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pxL-LM-qwl" id="MpD-Gg-Qcc">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="I'm telling a story" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rbc-j8-nw0">
-                                            <rect key="frame" x="18" y="18" width="111" height="127"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="I'm telling a story" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hOM-xh-afv">
+                                            <rect key="frame" x="18" y="18" width="111" height="107"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="Rbc-j8-nw0" firstAttribute="top" secondItem="6MO-Zz-ikY" secondAttribute="topMargin" constant="10" id="FEb-mG-pE4"/>
-                                        <constraint firstItem="Rbc-j8-nw0" firstAttribute="bottom" secondItem="6MO-Zz-ikY" secondAttribute="bottomMargin" constant="10" id="aGN-zE-aq0"/>
-                                        <constraint firstItem="Rbc-j8-nw0" firstAttribute="leading" secondItem="6MO-Zz-ikY" secondAttribute="leadingMargin" constant="10" id="qOd-In-bwX"/>
+                                        <constraint firstItem="hOM-xh-afv" firstAttribute="leading" secondItem="MpD-Gg-Qcc" secondAttribute="leadingMargin" constant="10" id="CQ5-eK-qvC"/>
+                                        <constraint firstItem="hOM-xh-afv" firstAttribute="top" secondItem="MpD-Gg-Qcc" secondAttribute="topMargin" constant="10" id="S5Q-9f-0LI"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="hOM-xh-afv" secondAttribute="bottom" constant="10" id="qyd-IO-dag"/>
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -413,6 +413,25 @@
                                         <constraint firstAttribute="bottomMargin" secondItem="YrY-aQ-i8u" secondAttribute="bottom" constant="10" id="E8l-fP-89K"/>
                                         <constraint firstItem="YrY-aQ-i8u" firstAttribute="top" secondItem="aBa-Ky-bOG" secondAttribute="topMargin" constant="10" id="YJk-BX-062"/>
                                         <constraint firstItem="YrY-aQ-i8u" firstAttribute="leading" secondItem="aBa-Ky-bOG" secondAttribute="leadingMargin" constant="10" id="n7R-iE-kyH"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ArtifactCellIdentifier" rowHeight="144" id="Dpd-Pk-obI" customClass="TextDrawerTableViewCell" customModule="Digita11y" customModuleProvider="target">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dpd-Pk-obI" id="s8l-bu-Vo6">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I'm talking about an artifact" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7OV-2u-yge">
+                                            <rect key="frame" x="18" y="18" width="177" height="107"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="7OV-2u-yge" firstAttribute="leading" secondItem="s8l-bu-Vo6" secondAttribute="leadingMargin" constant="10" id="CBb-sG-ov1"/>
+                                        <constraint firstItem="7OV-2u-yge" firstAttribute="top" secondItem="s8l-bu-Vo6" secondAttribute="topMargin" constant="10" id="KQT-4X-Est"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="7OV-2u-yge" secondAttribute="bottom" constant="10" id="P1G-ns-kda"/>
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
