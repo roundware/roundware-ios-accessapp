@@ -628,7 +628,7 @@
         <scene sceneID="Ok3-fZ-x4a">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="XqT-Yg-vHH" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Browse" image="first" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Browse" image="browse-tab-icon" id="acW-dT-cKf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="FTZ-xm-ES6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -652,7 +652,7 @@
         <scene sceneID="rDx-hq-qEb">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7j4-Da-wXB" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Listen" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Listen" image="listen-tab-icon" id="cPa-gy-q4n"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="m5q-nY-ATM">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -676,7 +676,7 @@
         <scene sceneID="qVl-Rw-dQJ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tpp-bF-1ch" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Contribute" image="first" id="kaP-aY-9tT"/>
+                    <tabBarItem key="tabBarItem" title="Contribute" image="contribute-tab-icon" id="kaP-aY-9tT"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="09K-gl-QGb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -700,17 +700,18 @@
     <resources>
         <image name="browse-cell" width="320" height="125"/>
         <image name="browse-detail" width="640" height="282"/>
-        <image name="first" width="30" height="30"/>
+        <image name="browse-tab-icon" width="612" height="792"/>
+        <image name="contribute-tab-icon" width="612" height="792"/>
         <image name="forward-button" width="22" height="13"/>
         <image name="heart" width="16" height="14"/>
         <image name="listen-heroshot" width="320" height="286"/>
+        <image name="listen-tab-icon" width="612" height="792"/>
         <image name="missionmoon-64" width="64" height="64"/>
         <image name="play-button" width="12" height="15"/>
         <image name="player-button" width="15" height="17"/>
         <image name="record-button" width="39" height="39"/>
         <image name="rewind-button" width="22" height="13"/>
         <image name="scrubber" width="350" height="4"/>
-        <image name="second" width="30" height="30"/>
         <image name="star" width="27" height="24"/>
         <image name="star-empty" width="26" height="24"/>
     </resources>
