@@ -277,7 +277,7 @@
                                 <color key="textColor" red="0.91764705882352937" green="0.91764705882352937" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="We watched the Apollo VIII launch from our home in Ohio.  We were glued to the TV the whole night!" translatesAutoresizingMaskIntoConstraints="NO" id="f6x-QI-zsI">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="We watched the Apollo VIII launch from our home in Ohio.  We were glued to the TV the whole night!" translatesAutoresizingMaskIntoConstraints="NO" id="f6x-QI-zsI">
                                 <rect key="frame" x="26" y="430" width="548" height="80"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -339,7 +339,7 @@
         <scene sceneID="XHN-2c-Fdk">
             <objects>
                 <tableViewController id="Mst-m9-Cpj" customClass="ContributeTableViewController" customModule="Digita11y" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Qdg-Nd-tEa">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Qdg-Nd-tEa">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
