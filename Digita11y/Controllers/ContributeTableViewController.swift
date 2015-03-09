@@ -11,10 +11,8 @@ import UIKit
 class ContributeTableViewController: UITableViewController {
 
   enum Cell {
+    case Artifact
     case Audio
-    case AudioDrawer1
-    case AudioDrawer2
-    case AudioDrawer3
     case AudioDrawer
     case Photo
     case PhotoDrawer
@@ -22,7 +20,7 @@ class ContributeTableViewController: UITableViewController {
     case TextDrawer
   }
 
-  var cells = [Cell.Audio, Cell.Photo, Cell.Text]
+  var cells = [Cell.Artifact, Cell.Audio, Cell.Photo, Cell.Text]
 
   let CellIdentifier = "ContributeCellIdentifier"
   let AudioDrawerCellIdentifier = "AudioDrawerCellIdentifier"
@@ -49,18 +47,14 @@ class ContributeTableViewController: UITableViewController {
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let type = self.cells[indexPath.row]
     switch (type) {
+    case .Artifact:
+      return tableView.dequeueReusableCellWithIdentifier("ArtifactCellIdentifier", forIndexPath: indexPath) as UITableViewCell
     case .Audio:
       var cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: CellIdentifier)
       cell.textLabel?.text = "Audio"
       cell.accessoryView = UIImageView(image: UIImage(named: "microphone"))
       cell.selectionStyle = .None
       return cell
-    case .AudioDrawer1:
-      return tableView.dequeueReusableCellWithIdentifier("StoryCellIdentifier", forIndexPath: indexPath) as UITableViewCell
-    case .AudioDrawer2:
-      return tableView.dequeueReusableCellWithIdentifier("ExhibitionCellIdentifier", forIndexPath: indexPath) as UITableViewCell
-    case .AudioDrawer3:
-      return tableView.dequeueReusableCellWithIdentifier("ArtifactCellIdentifier", forIndexPath: indexPath) as UITableViewCell
     case .AudioDrawer:
       return tableView.dequeueReusableCellWithIdentifier(AudioDrawerCellIdentifier, forIndexPath: indexPath) as UITableViewCell
     case .Photo:
@@ -93,10 +87,7 @@ class ContributeTableViewController: UITableViewController {
 
     switch (type) {
     case .Audio:
-      toggleDrawer(Cell.AudioDrawer1, parent: Cell.Audio)
-      toggleDrawer(Cell.AudioDrawer2, parent: Cell.AudioDrawer1)
-      toggleDrawer(Cell.AudioDrawer3, parent: Cell.AudioDrawer2)
-      toggleDrawer(Cell.AudioDrawer, parent: Cell.AudioDrawer3)
+      toggleDrawer(Cell.AudioDrawer, parent: Cell.Audio)
     case .Photo:
       toggleDrawer(Cell.PhotoDrawer, parent: Cell.Photo)
     case .Text:
