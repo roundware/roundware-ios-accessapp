@@ -436,7 +436,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AudioDrawerCellIdentifier" rowHeight="114" id="mqH-La-Lmw">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AudioDrawerCellIdentifier" rowHeight="114" id="mqH-La-Lmw">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mqH-La-Lmw" id="5DC-HU-1Xc">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -508,7 +508,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PhotoDrawerCellIdentifier" rowHeight="144" id="z1R-KJ-YUs" customClass="PhotoDrawerTableViewCell" customModule="Digita11y" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PhotoDrawerCellIdentifier" rowHeight="144" id="z1R-KJ-YUs" customClass="PhotoDrawerTableViewCell" customModule="Digita11y" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="z1R-KJ-YUs" id="hk0-a8-xzY">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -566,7 +566,7 @@
                                     <outlet property="textView" destination="FVc-So-TqY" id="Bth-KH-qcb"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TextDrawerCellIdentifier" rowHeight="144" id="FvH-ao-ihK" customClass="TextDrawerTableViewCell" customModule="Digita11y" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TextDrawerCellIdentifier" rowHeight="144" id="FvH-ao-ihK" customClass="TextDrawerTableViewCell" customModule="Digita11y" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FvH-ao-ihK" id="kcV-Wz-cP7">
                                     <autoresizingMask key="autoresizingMask"/>
