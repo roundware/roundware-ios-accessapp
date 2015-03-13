@@ -546,6 +546,8 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="cameraButton" destination="5Dl-t4-MaY" id="gSl-2S-hWZ"/>
+                                    <outlet property="libraryButton" destination="5I5-83-j7O" id="UuW-3n-gqA"/>
                                     <outlet property="textView" destination="FVc-So-TqY" id="Bth-KH-qcb"/>
                                 </connections>
                             </tableViewCell>

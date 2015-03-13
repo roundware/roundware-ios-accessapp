@@ -72,6 +72,8 @@ class ContributeTableViewController: UITableViewController {
       var cell = tableView.dequeueReusableCellWithIdentifier(PhotoDrawerCellIdentifier, forIndexPath: indexPath) as! PhotoDrawerTableViewCell
       cell.textView.placeholder = "Describe this photo..."
       cell.textView.placeholderTextColor = UIColor.lightGrayColor()
+      cell.cameraButton.addTarget(self, action: "cameraButton", forControlEvents: .TouchUpInside)
+      cell.libraryButton.addTarget(self, action: "libraryButton", forControlEvents: .TouchUpInside)
       return cell
     case .Text:
       var cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: CellIdentifier)
@@ -140,5 +142,15 @@ class ContributeTableViewController: UITableViewController {
     debugPrintln("uploadAudio")
     var rwf = RWFramework.sharedInstance
     rwf.addRecording()
+  }
+
+  func cameraButton() {
+    var rwf = RWFramework.sharedInstance
+    rwf.doImage()
+  }
+
+  func libraryButton() {
+    var rwf = RWFramework.sharedInstance
+    rwf.doPhotoLibrary()
   }
 }
