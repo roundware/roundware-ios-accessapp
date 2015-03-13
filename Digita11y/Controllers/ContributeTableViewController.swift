@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RWFramework
 
 class ContributeTableViewController: UITableViewController {
 
@@ -56,7 +57,9 @@ class ContributeTableViewController: UITableViewController {
       cell.selectionStyle = .None
       return cell
     case .AudioDrawer:
-      return tableView.dequeueReusableCellWithIdentifier(AudioDrawerCellIdentifier, forIndexPath: indexPath) as! UITableViewCell
+      var cell =  tableView.dequeueReusableCellWithIdentifier(AudioDrawerCellIdentifier, forIndexPath: indexPath) as! AudioDrawerTableViewCell
+      cell.recordButton.addTarget(self, action: "record", forControlEvents: .TouchUpInside)
+      return cell
     case .Photo:
       var cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: CellIdentifier)
       cell.textLabel?.text = "Photos"
@@ -118,5 +121,10 @@ class ContributeTableViewController: UITableViewController {
         return
       }
     }
+  }
+
+  func record() {
+    var rwf = RWFramework.sharedInstance
+    rwf.isRecording() ? rwf.stopRecording() : rwf.startRecording()
   }
 }
