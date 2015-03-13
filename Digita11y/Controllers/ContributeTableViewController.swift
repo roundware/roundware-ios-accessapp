@@ -48,7 +48,7 @@ class ContributeTableViewController: UITableViewController {
     let type = self.cells[indexPath.row]
     switch (type) {
     case .Artifact:
-      return tableView.dequeueReusableCellWithIdentifier("ArtifactCellIdentifier", forIndexPath: indexPath) as UITableViewCell
+      return tableView.dequeueReusableCellWithIdentifier("ArtifactCellIdentifier", forIndexPath: indexPath) as! UITableViewCell
     case .Audio:
       var cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: CellIdentifier)
       cell.textLabel?.text = "Audio"
@@ -56,7 +56,7 @@ class ContributeTableViewController: UITableViewController {
       cell.selectionStyle = .None
       return cell
     case .AudioDrawer:
-      return tableView.dequeueReusableCellWithIdentifier(AudioDrawerCellIdentifier, forIndexPath: indexPath) as UITableViewCell
+      return tableView.dequeueReusableCellWithIdentifier(AudioDrawerCellIdentifier, forIndexPath: indexPath) as! UITableViewCell
     case .Photo:
       var cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: CellIdentifier)
       cell.textLabel?.text = "Photos"
@@ -64,7 +64,7 @@ class ContributeTableViewController: UITableViewController {
       cell.selectionStyle = .None
       return cell
     case .PhotoDrawer:
-      var cell = tableView.dequeueReusableCellWithIdentifier(PhotoDrawerCellIdentifier, forIndexPath: indexPath) as PhotoDrawerTableViewCell
+      var cell = tableView.dequeueReusableCellWithIdentifier(PhotoDrawerCellIdentifier, forIndexPath: indexPath) as! PhotoDrawerTableViewCell
       cell.textView.placeholder = "Describe this photo..."
       cell.textView.placeholderTextColor = UIColor.lightGrayColor()
       return cell
@@ -75,7 +75,7 @@ class ContributeTableViewController: UITableViewController {
       cell.selectionStyle = .None
       return cell
     case .TextDrawer:
-      var cell = tableView.dequeueReusableCellWithIdentifier(TextDrawerCellIdentifier, forIndexPath: indexPath) as TextDrawerTableViewCell
+      var cell = tableView.dequeueReusableCellWithIdentifier(TextDrawerCellIdentifier, forIndexPath: indexPath) as! TextDrawerTableViewCell
       cell.textView.placeholder = "Write something..."
       cell.textView.placeholderTextColor = UIColor.lightGrayColor()
       return cell

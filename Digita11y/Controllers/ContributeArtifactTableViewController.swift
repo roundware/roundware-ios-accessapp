@@ -3,7 +3,7 @@
 //  Digita11y
 //
 //  Created by Parveen Kaler on 2015-03-09.
-//  Copyright (c) 2015 Roundware. All rights reserved.
+//  Copyright (c) 2015 Smartful Studios Inc. All rights reserved.
 //
 
 import UIKit
@@ -23,7 +23,7 @@ class ContributeArtifactTableViewController: UITableViewController {
   }
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("ContributeArtifactCellIdentifier", forIndexPath: indexPath) as UITableViewCell
+    let cell = tableView.dequeueReusableCellWithIdentifier("ContributeArtifactCellIdentifier", forIndexPath: indexPath) as! UITableViewCell
     cell.textLabel?.text = self.cells[indexPath.row]
     return cell
   }

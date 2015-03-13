@@ -3,7 +3,7 @@
 //  Digita11y
 //
 //  Created by Parveen Kaler on 2015-02-24.
-//  Copyright (c) 2015 Roundware. All rights reserved.
+//  Copyright (c) 2015 Smartful Studios Inc. All rights reserved.
 //
 
 import UIKit
@@ -42,7 +42,7 @@ class BrowseDetailTableViewController: UITableViewController {
   }
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as BrowseDetailTableViewCell
+    let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as! BrowseDetailTableViewCell
     cell.artifactImageView.layer.cornerRadius = 32.0
     cell.artifactImageView.layer.masksToBounds = true
     cell.ratingLabel.layer.cornerRadius = 2.0
