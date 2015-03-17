@@ -129,7 +129,17 @@ class ContributeTableViewController: UITableViewController {
 
   func recordAudio(button: UIButton) {
     var rwf = RWFramework.sharedInstance
-    rwf.isRecording() ? rwf.stopRecording() : rwf.startRecording()
+    if rwf.isRecording() {
+      rwf.stopRecording()
+    } else {
+      setupAudio() { granted, error in
+        debugPrintln("Audio granted: \(granted), Error: \(error)")
+        if granted && error == nil {
+          debugPrintln("Start recording")
+          rwf.startRecording()
+        }
+      }
+    }
 
     var indexPath = NSIndexPath(forRow: button.tag, inSection: 0)
     if let cell = self.tableView.cellForRowAtIndexPath(indexPath) as? AudioDrawerTableViewCell {

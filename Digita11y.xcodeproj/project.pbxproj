@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E462A381AB7DFA600623B7E /* SetupAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E462A371AB7DFA600623B7E /* SetupAudio.swift */; };
+		4E462A391AB7DFA600623B7E /* SetupAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E462A371AB7DFA600623B7E /* SetupAudio.swift */; };
 		4E59466F1A9BB81B007ED02C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E59466E1A9BB81B007ED02C /* AppDelegate.swift */; };
 		4E5946761A9BB81B007ED02C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E5946741A9BB81B007ED02C /* Main.storyboard */; };
 		4E5946781A9BB81B007ED02C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E5946771A9BB81B007ED02C /* Images.xcassets */; };
@@ -86,6 +88,7 @@
 /* Begin PBXFileReference section */
 		0D00D72D58B06AAFC88F3442 /* Pods-Digita11y.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Digita11y.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Digita11y/Pods-Digita11y.debug.xcconfig"; sourceTree = "<group>"; };
 		2B7449CB3A4A9A0A5971C1B1 /* Pods-Digita11y.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Digita11y.release.xcconfig"; path = "Pods/Target Support Files/Pods-Digita11y/Pods-Digita11y.release.xcconfig"; sourceTree = "<group>"; };
+		4E462A371AB7DFA600623B7E /* SetupAudio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SetupAudio.swift; path = Operations/SetupAudio.swift; sourceTree = "<group>"; };
 		4E5946691A9BB81A007ED02C /* Digita11y.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Digita11y.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E59466D1A9BB81B007ED02C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4E59466E1A9BB81B007ED02C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AppDelegate.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -131,6 +134,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4E462A351AB7DF8400623B7E /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				4E462A371AB7DFA600623B7E /* SetupAudio.swift */,
+			);
+			name = Operations;
+			sourceTree = "<group>";
+		};
 		4E5946601A9BB81A007ED02C = {
 			isa = PBXGroup;
 			children = (
@@ -154,6 +165,7 @@
 		4E59466B1A9BB81A007ED02C /* Digita11y */ = {
 			isa = PBXGroup;
 			children = (
+				4E462A351AB7DF8400623B7E /* Operations */,
 				4E6C4AB41AB2703B00B5FEAC /* External */,
 				4E5946941A9BE966007ED02C /* Views */,
 				4E5946931A9BBFBD007ED02C /* Controllers */,
@@ -425,6 +437,7 @@
 				4E5946911A9BBFB7007ED02C /* BrowseTableViewController.swift in Sources */,
 				4E6D9CB81AAE2A040002D543 /* MicrophoneLevelsView.swift in Sources */,
 				4E59469C1A9D4BFA007ED02C /* ContributeTableViewController.swift in Sources */,
+				4E462A381AB7DFA600623B7E /* SetupAudio.swift in Sources */,
 				4E5946991A9D2095007ED02C /* BrowseDetailTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -443,6 +456,7 @@
 				4EA3928D1A9FBCAD00308613 /* TextDrawerTableViewCell.swift in Sources */,
 				4E6D9CB91AAE2A040002D543 /* MicrophoneLevelsView.swift in Sources */,
 				4E6C4AC91AB2ADEA00B5FEAC /* AudioDrawerTableViewCell.swift in Sources */,
+				4E462A391AB7DFA600623B7E /* SetupAudio.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
