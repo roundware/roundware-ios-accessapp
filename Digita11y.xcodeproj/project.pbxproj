@@ -165,10 +165,10 @@
 		4E59466B1A9BB81A007ED02C /* Digita11y */ = {
 			isa = PBXGroup;
 			children = (
-				4E462A351AB7DF8400623B7E /* Operations */,
 				4E6C4AB41AB2703B00B5FEAC /* External */,
 				4E5946941A9BE966007ED02C /* Views */,
 				4E5946931A9BBFBD007ED02C /* Controllers */,
+				4E462A351AB7DF8400623B7E /* Operations */,
 				4E59466E1A9BB81B007ED02C /* AppDelegate.swift */,
 				4EA3928E1A9FBDBC00308613 /* Digita11y-Bridging-Header.h */,
 				4E5946771A9BB81B007ED02C /* Images.xcassets */,

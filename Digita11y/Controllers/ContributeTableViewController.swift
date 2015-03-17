@@ -152,20 +152,20 @@ class ContributeTableViewController: UITableViewController, RWFrameworkProtocol 
   func uploadAudio() {
     debugPrintln("uploadAudio")
     var rwf = RWFramework.sharedInstance
-    rwf.addRecording()
     rwf.delegate = self
+    rwf.addRecording()
   }
 
   func cameraButton() {
     var rwf = RWFramework.sharedInstance
-    rwf.doImage()
     rwf.delegate = self
+    rwf.doImage()
   }
 
   func libraryButton() {
     var rwf = RWFramework.sharedInstance
-    rwf.doPhotoLibrary()
     rwf.delegate = self
+    rwf.doPhotoLibrary()
   }
 
   func rwRecordingProgress(percentage: Double) {
@@ -179,6 +179,19 @@ class ContributeTableViewController: UITableViewController, RWFrameworkProtocol 
   }
 
   func rwImagePickerControllerDidFinishPickingMedia(info: [NSObject : AnyObject]) {
-    debugPrintln("Image: \(info)")
+    for var i = 0; i < self.tableView.numberOfRowsInSection(0); ++i {
+      var indexPath = NSIndexPath(forRow: i, inSection: 0)
+      if let cell = self.tableView.cellForRowAtIndexPath(indexPath) as? PhotoDrawerTableViewCell {
+        cell.textView.hidden = false
+        cell.photoView.hidden = false
+
+        if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
+          cell.photoView.image = image
+        } else if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+          cell.photoView.image = image
+        }
+        return
+      }
+    }
   }
 }
