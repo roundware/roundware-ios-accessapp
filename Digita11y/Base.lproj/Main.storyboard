@@ -487,6 +487,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="progressLabel" destination="Njv-Ve-die" id="n4k-w1-fYO"/>
                                     <outlet property="recordButton" destination="kAU-0z-JUK" id="3PL-yd-PPV"/>
                                     <outlet property="uploadButton" destination="fbJ-qJ-ld7" id="g9c-k7-Pbm"/>
                                 </connections>

@@ -38,12 +38,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate, RWFrameworkProtocol {
 
   func rwPostSessionsSuccess() {
   }
-
-  func rwRecordingProgress(percentage: Double) {
-    debugPrintln("Progress: \(percentage)")
-  }
-
-  func rwImagePickerControllerDidFinishPickingMedia(info: [NSObject : AnyObject]) {
-    debugPrintln("Image: \(info)")
-  }
 }
