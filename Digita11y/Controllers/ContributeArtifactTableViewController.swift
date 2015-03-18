@@ -1,11 +1,3 @@
-//
-//  ContributeArtifactTableViewController.swift
-//  Digita11y
-//
-//  Created by Parveen Kaler on 2015-03-09.
-//  Copyright (c) 2015 Smartful Studios Inc. All rights reserved.
-//
-
 import UIKit
 
 class ContributeArtifactTableViewController: UITableViewController {
