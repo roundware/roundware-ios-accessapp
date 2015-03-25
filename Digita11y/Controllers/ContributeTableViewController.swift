@@ -159,11 +159,20 @@ class ContributeTableViewController: UITableViewController, RWFrameworkProtocol 
     rwf.doPhotoLibrary()
   }
 
-  func rwRecordingProgress(percentage: Double) {
+  func rwRecordingProgress(percentage: Double, maxDuration: NSTimeInterval, peakPower: Float, averagePower: Float) {
     for var i = 0; i < self.tableView.numberOfRowsInSection(0); ++i {
       var indexPath = NSIndexPath(forRow: i, inSection: 0)
       if let cell = self.tableView.cellForRowAtIndexPath(indexPath) as? AudioDrawerTableViewCell {
-        cell.progressLabel.text = String(format:"%f", percentage)
+
+        var dt = percentage*maxDuration
+        var sec = Int(dt%60.0)
+        var milli = Int(100*(dt - floor(dt)))
+        var secStr = sec < 10 ? "0\(sec)" : "\(sec)"
+        var milliStr = milli < 10 ? "0\(milli)" : "\(milli)"
+        cell.progressLabel.text = "00:\(secStr):\(milliStr)"
+
+        cell.microphoneLevelsView.percent = (peakPower + 120.0)/120.0
+
         return
       }
     }
