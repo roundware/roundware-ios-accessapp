@@ -25,6 +25,9 @@ class ContributeTableViewController: UITableViewController, RWFrameworkProtocol 
 
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 125.0
+
+    var rwf = RWFramework.sharedInstance
+    rwf.addDelegate(self)
   }
 
   // MARK: - Table view data source
@@ -121,7 +124,6 @@ class ContributeTableViewController: UITableViewController, RWFrameworkProtocol 
 
   func recordAudio(button: UIButton) {
     var rwf = RWFramework.sharedInstance
-    rwf.delegate = self
     if rwf.isRecording() {
       rwf.stopRecording()
     } else {
@@ -144,19 +146,16 @@ class ContributeTableViewController: UITableViewController, RWFrameworkProtocol 
   func uploadAudio() {
     debugPrintln("uploadAudio")
     var rwf = RWFramework.sharedInstance
-    rwf.delegate = self
     rwf.addRecording()
   }
 
   func cameraButton() {
     var rwf = RWFramework.sharedInstance
-    rwf.delegate = self
     rwf.doImage()
   }
 
   func libraryButton() {
     var rwf = RWFramework.sharedInstance
-    rwf.delegate = self
     rwf.doPhotoLibrary()
   }
 
