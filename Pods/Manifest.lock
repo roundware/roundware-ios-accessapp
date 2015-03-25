@@ -1,10 +1,13 @@
 PODS:
+  - CrashlyticsFramework (2.2.9)
   - SZTextView (1.1.10)
 
 DEPENDENCIES:
+  - CrashlyticsFramework (~> 2.2)
   - SZTextView (~> 1.1)
 
 SPEC CHECKSUMS:
+  CrashlyticsFramework: 013bae3c30d5b9bfad1aa10008e155e18473984c
   SZTextView: 8f1126696c6d54e5f0d672bbecf259ef65b04aeb
 
-COCOAPODS: 0.36.0.beta.2
+COCOAPODS: 0.36.0
