@@ -16,6 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, RWFrameworkProtocol {
     return true
   }
 
+  // MARK: - RWFrameworkProtocol
+
   func setupRWFramework() {
     var rwf = RWFramework.sharedInstance
     rwf.addDelegate(self)
