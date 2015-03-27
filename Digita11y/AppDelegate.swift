@@ -34,4 +34,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, RWFrameworkProtocol {
 
   func rwPostSessionsSuccess() {
   }
+
+  func rwGetProjectsIdTagsSuccess(data: NSData?) {
+    let json = JSON(data: data!)
+    var speak = json["speak"].array?.map { TagGroup(json: $0) } ?? []
+    var listen = json["listen"].array?.map { TagGroup(json: $0) } ?? []
+    debugPrintln(speak)
+    debugPrintln(listen)
+  }
+
+  func rwGetProjectsIdTagsFailure(error: NSError?) {
+    debugPrintln(error)
+  }
 }

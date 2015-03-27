@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E347D821AC4D4A800F4C810 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E347D811AC4D4A800F4C810 /* Tag.swift */; };
+		4E347D831AC4D4A800F4C810 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E347D811AC4D4A800F4C810 /* Tag.swift */; };
 		4E462A381AB7DFA600623B7E /* SetupAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E462A371AB7DFA600623B7E /* SetupAudio.swift */; };
 		4E462A391AB7DFA600623B7E /* SetupAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E462A371AB7DFA600623B7E /* SetupAudio.swift */; };
 		4E59466F1A9BB81B007ED02C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E59466E1A9BB81B007ED02C /* AppDelegate.swift */; };
@@ -88,6 +90,7 @@
 /* Begin PBXFileReference section */
 		0D00D72D58B06AAFC88F3442 /* Pods-Digita11y.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Digita11y.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Digita11y/Pods-Digita11y.debug.xcconfig"; sourceTree = "<group>"; };
 		2B7449CB3A4A9A0A5971C1B1 /* Pods-Digita11y.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Digita11y.release.xcconfig"; path = "Pods/Target Support Files/Pods-Digita11y/Pods-Digita11y.release.xcconfig"; sourceTree = "<group>"; };
+		4E347D811AC4D4A800F4C810 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tag.swift; path = Models/Tag.swift; sourceTree = "<group>"; };
 		4E462A371AB7DFA600623B7E /* SetupAudio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SetupAudio.swift; path = Operations/SetupAudio.swift; sourceTree = "<group>"; };
 		4E5946691A9BB81A007ED02C /* Digita11y.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Digita11y.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E59466D1A9BB81B007ED02C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -134,6 +137,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4E347D7F1AC4D47B00F4C810 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4E347D811AC4D4A800F4C810 /* Tag.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		4E462A351AB7DF8400623B7E /* Operations */ = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				4E6C4AB41AB2703B00B5FEAC /* External */,
+				4E347D7F1AC4D47B00F4C810 /* Model */,
 				4E5946941A9BE966007ED02C /* Views */,
 				4E5946931A9BBFBD007ED02C /* Controllers */,
 				4E462A351AB7DF8400623B7E /* Operations */,
@@ -453,6 +465,7 @@
 				4E59469C1A9D4BFA007ED02C /* ContributeTableViewController.swift in Sources */,
 				4E462A381AB7DFA600623B7E /* SetupAudio.swift in Sources */,
 				4E5946991A9D2095007ED02C /* BrowseDetailTableViewController.swift in Sources */,
+				4E347D821AC4D4A800F4C810 /* Tag.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,6 +473,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E347D831AC4D4A800F4C810 /* Tag.swift in Sources */,
 				4EF024791AA1288600F93604 /* BrowseDetailTableViewCell.swift in Sources */,
 				4E59469A1A9D2095007ED02C /* BrowseDetailTableViewController.swift in Sources */,
 				4E6ACDDE1AAE528400314A9F /* ContributeArtifactTableViewController.swift in Sources */,

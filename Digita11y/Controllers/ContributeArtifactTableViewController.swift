@@ -1,6 +1,7 @@
 import UIKit
+import RWFramework
 
-class ContributeArtifactTableViewController: UITableViewController {
+class ContributeArtifactTableViewController: UITableViewController, RWFrameworkProtocol {
   
   var cells = ["Lovell Pressure Suit", "Telescope M-53", "Apollo XVII Moon Rock", "Apollo XIII Manual"]
 
