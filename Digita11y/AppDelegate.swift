@@ -17,11 +17,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, RWFrameworkProtocol {
   }
 
   func setupRWFramework() {
-    var vc = self.window!.rootViewController as! RootTabBarController
-    vc.rwData = RWData()
+    var root = self.window!.rootViewController as! RootTabBarController
+    root.delegate = root
+    root.rwData = RWData()
 
     var rwf = RWFramework.sharedInstance
-    rwf.addDelegate(vc)
+    rwf.addDelegate(root)
     rwf.start()
   }
 }

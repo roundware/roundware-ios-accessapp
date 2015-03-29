@@ -1,7 +1,7 @@
 import UIKit
 import RWFramework
 
-class ContributeTableViewController: UITableViewController, RWFrameworkProtocol {
+class ContributeTableViewController: BaseViewController, RWFrameworkProtocol {
 
   enum Cell {
     case Artifact

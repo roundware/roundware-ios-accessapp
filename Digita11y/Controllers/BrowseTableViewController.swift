@@ -1,6 +1,6 @@
 import UIKit
 
-class BrowseTableViewController: UITableViewController {
+class BrowseTableViewController: BaseViewController {
 
   let CellIdentifier = "BrowseCellIdentifier"
 
