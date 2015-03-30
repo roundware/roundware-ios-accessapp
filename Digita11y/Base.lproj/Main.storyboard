@@ -7,7 +7,7 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--Digita11y-->
+        <!--Browse-->
         <scene sceneID="M1N-Qp-NeK">
             <objects>
                 <tableViewController id="IA4-HA-cIB" customClass="BrowseTableViewController" customModule="Digita11y" customModuleProvider="target" sceneMemberID="viewController">
@@ -66,7 +66,7 @@
                             <outlet property="delegate" destination="IA4-HA-cIB" id="p0W-PZ-wNn"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Digita11y" id="teU-pq-R5r"/>
+                    <navigationItem key="navigationItem" title="Browse" id="teU-pq-R5r"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ufz-am-XEh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
