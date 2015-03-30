@@ -5,22 +5,15 @@ class MicrophoneLevelsView: UIView {
 
   @IBInspectable var onColor: UIColor = UIColor.blueColor()
   @IBInspectable var offColor: UIColor = UIColor.redColor()
-  @IBInspectable var numLevels: Int = 20
-  @IBInspectable var percent: Float = 0.3
-
-  var timer: NSTimer?
-  var angle: Float = 0.0
+  @IBInspectable var numLevels: Int = 40
+  @IBInspectable var percent: Float = 0.0 {
+    didSet {
+      self.setNeedsDisplay()
+    }
+  }
 
   required init(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
-    self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
-    self.timer?.fire()
-  }
-
-  func update() {
-    angle += 0.1
-    self.percent = abs(sin(angle))
-    self.setNeedsDisplay()
   }
 
   override func drawRect(rect: CGRect) {

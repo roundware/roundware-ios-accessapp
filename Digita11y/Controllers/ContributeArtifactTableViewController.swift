@@ -1,8 +1,19 @@
 import UIKit
+import RWFramework
 
-class ContributeArtifactTableViewController: UITableViewController {
-  
-  var cells = ["Lovell Pressure Suit", "Telescope M-53", "Apollo XVII Moon Rock", "Apollo XIII Manual"]
+class ContributeArtifactTableViewController: BaseTableViewController, RWFrameworkProtocol {
+
+  func objectTags() -> TagGroup? {
+    if let speakTags = self.rwData?.speakTags {
+      for tag in speakTags {
+        if tag.code == "object" {
+          return tag
+        }
+      }
+    }
+
+    return nil
+  }
 
   // MARK: - Table view data source
 
@@ -11,12 +22,22 @@ class ContributeArtifactTableViewController: UITableViewController {
   }
 
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      return self.cells.count
+
+    if let tags = self.objectTags() {
+      return tags.options.count
+    }
+
+    return 0
   }
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("ContributeArtifactCellIdentifier", forIndexPath: indexPath) as! UITableViewCell
-    cell.textLabel?.text = self.cells[indexPath.row]
+
+    if let tags = self.objectTags() {
+      var tag = tags.options[indexPath.row]
+      cell.textLabel?.text = tag.tagDescription
+    }
+
     return cell
   }
 }
