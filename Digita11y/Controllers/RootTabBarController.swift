@@ -10,6 +10,8 @@ class RootTabBarController: UITabBarController, UITabBarControllerDelegate, RWFr
     if let nav = self.selectedViewController as? UINavigationController {
       if let vc = nav.topViewController as? BaseViewController {
         vc.rwData = self.rwData
+      } else if let vc = nav.topViewController as? BaseTableViewController {
+        vc.rwData = self.rwData
       }
     }
   }
@@ -40,8 +42,12 @@ class RootTabBarController: UITabBarController, UITabBarControllerDelegate, RWFr
   func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
     if let vc = viewController as? BaseViewController {
       vc.rwData = self.rwData
+    } else if let vc = viewController as? BaseTableViewController{
+      vc.rwData = self.rwData
     } else if let nav = viewController as? UINavigationController {
       if let vc = nav.topViewController as? BaseViewController {
+        vc.rwData = self.rwData
+      } else if let vc = viewController as? BaseTableViewController{
         vc.rwData = self.rwData
       }
     }

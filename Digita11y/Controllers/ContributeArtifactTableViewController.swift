@@ -1,8 +1,8 @@
 import UIKit
 import RWFramework
 
-class ContributeArtifactTableViewController: BaseViewController, RWFrameworkProtocol {
-  
+class ContributeArtifactTableViewController: BaseTableViewController, RWFrameworkProtocol {
+
   func objectTags() -> TagGroup? {
     if let speakTags = self.rwData?.speakTags {
       for tag in speakTags {

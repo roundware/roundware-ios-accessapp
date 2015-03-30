@@ -209,7 +209,7 @@
         <!--Listen-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
-                <viewController id="8rJ-Kc-sve" sceneMemberID="viewController">
+                <viewController id="8rJ-Kc-sve" customClass="ListenViewController" customModule="Digita11y" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="L7p-HK-0SC"/>
                         <viewControllerLayoutGuide type="bottom" id="Djb-ko-YwX"/>
@@ -246,6 +246,9 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="previous:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="KNs-gQ-Pue"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zEy-5k-sPV">
                                         <rect key="frame" x="521" y="74" width="15" height="22"/>
@@ -254,6 +257,9 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="play:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="mqA-jT-cji"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="feZ-c1-df3">
                                         <rect key="frame" x="546" y="74" width="22" height="22"/>
@@ -262,6 +268,9 @@
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="next:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="yoo-yU-zCC"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.91764705882352937" green="0.91764705882352937" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -344,6 +353,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Listen" id="pkP-qY-7Zv"/>
+                    <connections>
+                        <outlet property="descriptionTextView" destination="f6x-QI-zsI" id="0bk-Vt-ouu"/>
+                        <outlet property="exhibitionLabel" destination="3l3-IK-Ca2" id="GDS-gp-dhH"/>
+                        <outlet property="imageView" destination="pqQ-hr-w4Q" id="cBs-rt-Pkh"/>
+                        <outlet property="titleLabel" destination="ch3-Ic-Fic" id="tdt-HR-6eQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
