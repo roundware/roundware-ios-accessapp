@@ -7,7 +7,7 @@ DEPENDENCIES:
   - SZTextView (~> 1.1)
 
 SPEC CHECKSUMS:
-  CrashlyticsFramework: 013bae3c30d5b9bfad1aa10008e155e18473984c
-  SZTextView: 8f1126696c6d54e5f0d672bbecf259ef65b04aeb
+  CrashlyticsFramework: 5a6a8d7a0731bc75c63c3bd3d704962d5d8717cc
+  SZTextView: c814e6dcb2303e3e79feb0fd27cf44d74e3c59a6
 
 COCOAPODS: 0.36.0
