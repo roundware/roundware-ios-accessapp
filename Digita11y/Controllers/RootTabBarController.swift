@@ -27,12 +27,34 @@ class RootTabBarController: UITabBarController, UITabBarControllerDelegate, RWFr
   func rwPostSessionsSuccess() {
   }
 
+  func rwGetProjectsIdSuccess(data: NSData?) {
+    if let projectData = RWFrameworkConfig.getConfigDataFromGroup(group: RWFrameworkConfig.ConfigGroup.Project) as? NSDictionary {
+      var rwf = RWFramework.sharedInstance
+      let project_id = projectData["project_id"] as! NSNumber
+      let dict: [String:String] = ["project_id": project_id.stringValue]
+      rwf.apiGetAssets(dict, success: { (data) -> Void in
+        if (data != nil) {
+          let json = JSON(data: data!)
+        }
+        }) { (error) -> Void in
+          debugPrintln(error)
+      }
+    }
+  }
+
+  func rwPostStreamsSuccess(data: NSData?) {
+    let json = JSON(data: data!)
+    debugPrintln(json)
+  }
+
+  func rwPostStreamsFailure(error: NSError?) {
+    debugPrintln(error)
+  }
+
   func rwGetProjectsIdTagsSuccess(data: NSData?) {
     let json = JSON(data: data!)
     self.rwData?.speakTags = json["speak"].array?.map { TagGroup(json: $0) } ?? []
     self.rwData?.listenTags = json["listen"].array?.map { TagGroup(json: $0) } ?? []
-    debugPrintln(self.rwData?.speakTags)
-    debugPrintln(self.rwData?.listenTags)
   }
 
   func rwGetProjectsIdTagsFailure(error: NSError?) {

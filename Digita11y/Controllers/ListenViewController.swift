@@ -18,10 +18,10 @@ class ListenViewController: BaseViewController {
   }
 
   @IBAction func previous(sender: AnyObject) {
-    RWFramework.sharedInstance.next()
+    RWFramework.sharedInstance.current()
   }
 
   @IBAction func next(sender: AnyObject) {
-    RWFramework.sharedInstance.current()
+    RWFramework.sharedInstance.next()
   }
 }
