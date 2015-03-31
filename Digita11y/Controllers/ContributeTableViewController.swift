@@ -128,12 +128,14 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     var rwf = RWFramework.sharedInstance
     if rwf.isRecording() {
       rwf.stopRecording()
+      button.accessibilityLabel = "Record audio"
     } else {
       setupAudio() { granted, error in
         debugPrintln("Audio granted: \(granted), Error: \(error)")
         if granted && error == nil {
           debugPrintln("Start recording")
           rwf.startRecording()
+          button.accessibilityLabel = "Pause audio"
         }
       }
     }
@@ -166,7 +168,7 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
         var milli = Int(100*(dt - floor(dt)))
         var secStr = sec < 10 ? "0\(sec)" : "\(sec)"
         cell.progressLabel.text = "00:\(secStr)"
-        cell.progressLabel.accessibilityHint = "\(secStr) seconds"
+        cell.progressLabel.accessibilityLabel = "\(secStr) seconds"
 
         cell.microphoneLevelsView.percent = (peakPower + 120.0)/120.0
 
