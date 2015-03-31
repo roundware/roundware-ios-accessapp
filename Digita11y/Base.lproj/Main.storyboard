@@ -25,12 +25,6 @@
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" image="browse-cell" translatesAutoresizingMaskIntoConstraints="NO" id="Fqg-sK-Nzq">
                                             <rect key="frame" x="0.0" y="2" width="600" height="122"/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exhibition" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kK3-c6-ysC">
-                                            <rect key="frame" x="8" y="79" width="64" height="17"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mission Moon" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MD1-wv-z2B">
                                             <rect key="frame" x="8" y="96" width="105" height="20"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
@@ -44,14 +38,12 @@
                                     <constraints>
                                         <constraint firstItem="MD1-wv-z2B" firstAttribute="bottom" secondItem="UkG-6q-ucY" secondAttribute="bottomMargin" id="301-LT-jgw"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="Fqg-sK-Nzq" secondAttribute="trailing" constant="-8" id="54B-9f-ezd"/>
-                                        <constraint firstItem="kK3-c6-ysC" firstAttribute="leading" secondItem="UkG-6q-ucY" secondAttribute="leadingMargin" id="8q7-jN-qvc"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="Fqg-sK-Nzq" secondAttribute="bottom" constant="-8" id="ApU-JH-MZ3"/>
                                         <constraint firstItem="Fqg-sK-Nzq" firstAttribute="top" secondItem="UkG-6q-ucY" secondAttribute="topMargin" constant="-6" id="EDw-dJ-irK"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="E6T-Np-rhO" secondAttribute="bottom" id="HsW-dI-71p"/>
                                         <constraint firstItem="Fqg-sK-Nzq" firstAttribute="leading" secondItem="UkG-6q-ucY" secondAttribute="leadingMargin" constant="-8" id="JD2-CL-Atr"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="E6T-Np-rhO" secondAttribute="trailing" id="MRm-LG-bJd"/>
                                         <constraint firstItem="MD1-wv-z2B" firstAttribute="leading" secondItem="UkG-6q-ucY" secondAttribute="leadingMargin" id="VRT-pQ-GCq"/>
-                                        <constraint firstItem="MD1-wv-z2B" firstAttribute="top" secondItem="kK3-c6-ysC" secondAttribute="bottom" id="cDH-40-mAm"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -87,12 +79,6 @@
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" image="browse-detail" translatesAutoresizingMaskIntoConstraints="NO" id="3Bb-dJ-bcs">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="160"/>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exhibition" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ToS-gi-5Iq">
-                                    <rect key="frame" x="8" y="113" width="64" height="17"/>
-                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mission Moon" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3mS-yl-VGz">
                                     <rect key="frame" x="8" y="130" width="105" height="20"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
@@ -117,7 +103,6 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="bUp-0H-xbD" secondAttribute="trailing" constant="8" id="4df-em-8Oa"/>
-                                <constraint firstItem="ToS-gi-5Iq" firstAttribute="leading" secondItem="0BV-E1-QPc" secondAttribute="leading" constant="8" id="AQr-60-YhP"/>
                                 <constraint firstItem="3Bb-dJ-bcs" firstAttribute="top" secondItem="0BV-E1-QPc" secondAttribute="top" id="BfX-of-Z1J"/>
                                 <constraint firstAttribute="trailing" secondItem="3Bb-dJ-bcs" secondAttribute="trailing" id="G0e-3H-RMp"/>
                                 <constraint firstAttribute="trailing" secondItem="B5R-JL-ZZ5" secondAttribute="trailing" constant="10" id="HjT-LC-YLk"/>
@@ -126,7 +111,6 @@
                                 <constraint firstItem="3mS-yl-VGz" firstAttribute="leading" secondItem="0BV-E1-QPc" secondAttribute="leading" constant="8" id="YN1-M7-G0Y"/>
                                 <constraint firstItem="B5R-JL-ZZ5" firstAttribute="leading" secondItem="0BV-E1-QPc" secondAttribute="leading" constant="10" id="bxU-IE-0c3"/>
                                 <constraint firstItem="bUp-0H-xbD" firstAttribute="bottom" secondItem="3Bb-dJ-bcs" secondAttribute="bottom" constant="-10" id="cWZ-Jy-gkm"/>
-                                <constraint firstItem="3mS-yl-VGz" firstAttribute="top" secondItem="ToS-gi-5Iq" secondAttribute="bottom" id="e75-tV-hsl"/>
                                 <constraint firstAttribute="bottom" secondItem="B5R-JL-ZZ5" secondAttribute="bottom" constant="10" id="w1L-2p-KUt"/>
                                 <constraint firstItem="3Bb-dJ-bcs" firstAttribute="leading" secondItem="0BV-E1-QPc" secondAttribute="leading" id="x7z-Ad-kMl"/>
                             </constraints>
