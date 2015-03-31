@@ -165,8 +165,8 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
         var sec = Int(dt%60.0)
         var milli = Int(100*(dt - floor(dt)))
         var secStr = sec < 10 ? "0\(sec)" : "\(sec)"
-        var milliStr = milli < 10 ? "0\(milli)" : "\(milli)"
-        cell.progressLabel.text = "00:\(secStr):\(milliStr)"
+        cell.progressLabel.text = "00:\(secStr)"
+        cell.progressLabel.accessibilityHint = "\(secStr) seconds"
 
         cell.microphoneLevelsView.percent = (peakPower + 120.0)/120.0
 
