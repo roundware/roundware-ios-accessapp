@@ -70,7 +70,7 @@ class RootTabBarController: UITabBarController, UITabBarControllerDelegate, RWFr
     } else if let nav = viewController as? UINavigationController {
       if let vc = nav.topViewController as? BaseViewController {
         vc.rwData = self.rwData
-      } else if let vc = viewController as? BaseTableViewController{
+      } else if let vc = nav.topViewController as? BaseTableViewController{
         vc.rwData = self.rwData
       }
     }

@@ -50,6 +50,7 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
       cell.textLabel?.text = "Audio"
       cell.accessoryView = UIImageView(image: UIImage(named: "microphone"))
       cell.selectionStyle = .None
+      cell.accessibilityHint = "Contribute an audio observation"
       return cell
     case .AudioDrawer:
       var cell =  tableView.dequeueReusableCellWithIdentifier(AudioDrawerCellIdentifier, forIndexPath: indexPath) as! AudioDrawerTableViewCell
@@ -62,6 +63,7 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
       cell.textLabel?.text = "Photos"
       cell.accessoryView = UIImageView(image: UIImage(named: "image"))
       cell.selectionStyle = .None
+      cell.accessibilityHint = "Contribute a photo observation"
       return cell
     case .PhotoDrawer:
       var cell = tableView.dequeueReusableCellWithIdentifier(PhotoDrawerCellIdentifier, forIndexPath: indexPath) as! PhotoDrawerTableViewCell
@@ -74,6 +76,7 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
       cell.textLabel?.text = "Text"
       cell.accessoryView = UIImageView(image: UIImage(named: "text"))
       cell.selectionStyle = .None
+      cell.accessibilityHint = "Contribute thoughts on observation"
       return cell
     case .TextDrawer:
       var cell = tableView.dequeueReusableCellWithIdentifier(TextDrawerCellIdentifier, forIndexPath: indexPath) as! TextDrawerTableViewCell
