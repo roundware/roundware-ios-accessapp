@@ -384,6 +384,7 @@
                                 <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UWo-p8-9YE">
                                     <rect key="frame" x="10" y="10" width="580" height="44"/>
                                     <color key="backgroundColor" red="0.9882352941176471" green="0.0" blue="0.396078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <accessibility key="accessibilityConfiguration" hint="Upload images and text"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="44" id="SFz-Se-Ds5"/>
                                     </constraints>
