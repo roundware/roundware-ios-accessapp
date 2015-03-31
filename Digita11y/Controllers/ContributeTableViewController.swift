@@ -56,7 +56,7 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
       var cell =  tableView.dequeueReusableCellWithIdentifier(AudioDrawerCellIdentifier, forIndexPath: indexPath) as! AudioDrawerTableViewCell
       cell.recordButton.tag = indexPath.row
       cell.recordButton.addTarget(self, action: "recordAudio:", forControlEvents: .TouchUpInside)
-      cell.uploadButton.addTarget(self, action: "uploadAudio", forControlEvents: .TouchUpInside)
+      cell.previewButton.addTarget(self, action: "previewAudio", forControlEvents: .TouchUpInside)
       return cell
     case .Photo:
       var cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: CellIdentifier)
@@ -142,15 +142,19 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
 
     var indexPath = NSIndexPath(forRow: button.tag, inSection: 0)
     if let cell = self.tableView.cellForRowAtIndexPath(indexPath) as? AudioDrawerTableViewCell {
-      cell.uploadButton.enabled = true
-      cell.uploadButton.setNeedsDisplay()
+      cell.previewButton.enabled = true
+      cell.previewButton.setNeedsDisplay()
     }
   }
 
-  func uploadAudio() {
+  func previewAudio() {
     debugPrintln("uploadAudio")
     var rwf = RWFramework.sharedInstance
-    rwf.addRecording()
+    if rwf.isPlayingBack() {
+      rwf.stopPlayback()
+    } else {
+      rwf.startPlayback()
+    }
   }
 
   func cameraButton() {
