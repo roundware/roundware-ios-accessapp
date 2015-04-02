@@ -135,7 +135,7 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
         if granted && error == nil {
           debugPrintln("Start recording")
           rwf.startRecording()
-          button.accessibilityLabel = "Pause audio"
+          button.accessibilityLabel = "Pause recording"
         }
       }
     }

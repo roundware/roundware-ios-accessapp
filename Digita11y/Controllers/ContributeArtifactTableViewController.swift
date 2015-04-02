@@ -35,7 +35,7 @@ class ContributeArtifactTableViewController: BaseTableViewController, RWFramewor
 
     if let tags = self.objectTags() {
       var tag = tags.options[indexPath.row]
-      cell.textLabel?.text = tag.tagDescription
+      cell.textLabel?.text = tag.value
     }
 
     return cell
