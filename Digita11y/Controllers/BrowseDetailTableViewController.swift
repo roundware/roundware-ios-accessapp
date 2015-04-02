@@ -15,13 +15,13 @@ class BrowseDetailTableViewController: UITableViewController {
     tableView.estimatedRowHeight = 125.0
 
     if let v = self.segmentedControl.subviews[0] as? UIView {
-      v.accessibilityLabel = "Filters by artifact"
+      v.accessibilityHint = "Filters by artifact"
     }
     if let v = self.segmentedControl.subviews[1] as? UIView {
-      v.accessibilityLabel = "Filters by contributor"
+      v.accessibilityHint = "Filters by contributor"
     }
     if let v = self.segmentedControl.subviews[2] as? UIView {
-      v.accessibilityLabel = "Filters by medium"
+      v.accessibilityHint = "Filters by medium"
     }
   }
 

@@ -184,9 +184,6 @@
                         <subviews>
                             <imageView clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="500" image="listen-heroshot" translatesAutoresizingMaskIntoConstraints="NO" id="pqQ-hr-w4Q">
                                 <rect key="frame" x="-4" y="149" width="608" height="286"/>
-                                <accessibility key="accessibilityConfiguration">
-                                    <bool key="isElement" value="YES"/>
-                                </accessibility>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AAT-uh-Cyo">
                                 <rect key="frame" x="-4" y="44" width="608" height="105"/>
@@ -289,6 +286,9 @@
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="uploadAllMedia:" destination="Mst-m9-Cpj" eventType="touchUpInside" id="TxZ-av-AeL"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -305,32 +305,6 @@
                             </variation>
                         </view>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ArtifactCellIdentifier" rowHeight="144" id="Dpd-Pk-obI" customClass="TextDrawerTableViewCell" customModule="Digita11y" customModuleProvider="target">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dpd-Pk-obI" id="s8l-bu-Vo6">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is about an artifact" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7OV-2u-yge">
-                                            <rect key="frame" x="18" y="18" width="152" height="107"/>
-                                            <accessibility key="accessibilityConfiguration" hint=""/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="7OV-2u-yge" firstAttribute="leading" secondItem="s8l-bu-Vo6" secondAttribute="leadingMargin" constant="10" id="CBb-sG-ov1"/>
-                                        <constraint firstItem="7OV-2u-yge" firstAttribute="top" secondItem="s8l-bu-Vo6" secondAttribute="topMargin" constant="10" id="KQT-4X-Est"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="7OV-2u-yge" secondAttribute="bottom" constant="10" id="P1G-ns-kda"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <accessibility key="accessibilityConfiguration" hint="Select artifact to contribute observations for">
-                                    <bool key="isElement" value="YES"/>
-                                </accessibility>
-                                <connections>
-                                    <segue destination="YIK-7U-NXG" kind="show" id="DEL-Om-jNK"/>
-                                </connections>
-                            </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AudioDrawerCellIdentifier" rowHeight="114" id="mqH-La-Lmw" customClass="AudioDrawerTableViewCell" customModule="Digita11y" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mqH-La-Lmw" id="5DC-HU-1Xc">
@@ -397,6 +371,32 @@
                                     <outlet property="previewButton" destination="UZD-Ch-a1S" id="7Vq-EV-9Rl"/>
                                     <outlet property="progressLabel" destination="Njv-Ve-die" id="n4k-w1-fYO"/>
                                     <outlet property="recordButton" destination="kAU-0z-JUK" id="3PL-yd-PPV"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ArtifactCellIdentifier" rowHeight="144" id="Dpd-Pk-obI" customClass="TextDrawerTableViewCell" customModule="Digita11y" customModuleProvider="target">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dpd-Pk-obI" id="s8l-bu-Vo6">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is about an artifact" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7OV-2u-yge">
+                                            <rect key="frame" x="18" y="18" width="152" height="107"/>
+                                            <accessibility key="accessibilityConfiguration" hint=""/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="7OV-2u-yge" firstAttribute="leading" secondItem="s8l-bu-Vo6" secondAttribute="leadingMargin" constant="10" id="CBb-sG-ov1"/>
+                                        <constraint firstItem="7OV-2u-yge" firstAttribute="top" secondItem="s8l-bu-Vo6" secondAttribute="topMargin" constant="10" id="KQT-4X-Est"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="7OV-2u-yge" secondAttribute="bottom" constant="10" id="P1G-ns-kda"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <accessibility key="accessibilityConfiguration" hint="Select artifact to contribute observations for">
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
+                                <connections>
+                                    <segue destination="YIK-7U-NXG" kind="show" id="DEL-Om-jNK"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PhotoDrawerCellIdentifier" rowHeight="144" id="z1R-KJ-YUs" customClass="PhotoDrawerTableViewCell" customModule="Digita11y" customModuleProvider="target">
@@ -478,6 +478,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Contribute" id="Id6-R3-I0P"/>
+                    <connections>
+                        <outlet property="uploadButton" destination="UWo-p8-9YE" id="OyN-tb-at4"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="On5-Jv-hJH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

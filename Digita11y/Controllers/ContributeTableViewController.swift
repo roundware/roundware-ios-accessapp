@@ -20,6 +20,8 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
   let PhotoDrawerCellIdentifier = "PhotoDrawerCellIdentifier"
   let TextDrawerCellIdentifier = "TextDrawerCellIdentifier"
 
+  @IBOutlet weak var uploadButton: UIButton!
+
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -196,5 +198,9 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
         return
       }
     }
+  }
+
+  @IBAction func uploadAllMedia(sender: AnyObject) {
+    RWFramework.sharedInstance.uploadAllMedia()
   }
 }
