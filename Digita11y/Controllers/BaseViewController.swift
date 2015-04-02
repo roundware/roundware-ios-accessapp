@@ -6,6 +6,8 @@ class BaseViewController: UIViewController {
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if let to = segue.destinationViewController as? BaseViewController {
       to.rwData = self.rwData
+    } else if let to = segue.destinationViewController as? BaseTableViewController {
+      to.rwData = self.rwData
     }
   }
 }
@@ -15,6 +17,8 @@ class BaseTableViewController: UITableViewController {
 
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if let to = segue.destinationViewController as? BaseViewController {
+      to.rwData = self.rwData
+    } else if let to = segue.destinationViewController as? BaseTableViewController {
       to.rwData = self.rwData
     }
   }

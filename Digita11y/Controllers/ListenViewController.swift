@@ -10,6 +10,7 @@ class ListenViewController: BaseViewController {
 
   override func viewDidAppear(animated: Bool) {
     super.viewDidAppear(animated)
+    RWFramework.sharedInstance.requestWhenInUseAuthorizationForLocation()
   }
 
   @IBAction func play(sender: AnyObject) {
