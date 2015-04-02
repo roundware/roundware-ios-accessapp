@@ -46,14 +46,6 @@ class ListenViewController: BaseViewController {
     // rwObserveValueForKeyPath
   }
 
-  @IBAction func previous(sender: AnyObject) {
-    RWFramework.sharedInstance.current()
-  }
-
-  @IBAction func next(sender: AnyObject) {
-    RWFramework.sharedInstance.next()
-  }
-
   func rwLocationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
 
   }
