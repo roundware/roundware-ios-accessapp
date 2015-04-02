@@ -23,7 +23,6 @@ class BrowseDetailTableViewController: UITableViewController {
     if let v = self.segmentedControl.subviews[2] as? UIView {
       v.accessibilityLabel = "Filters by medium"
     }
-
   }
 
   override func viewWillAppear(animated: Bool) {
