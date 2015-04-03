@@ -50,9 +50,11 @@ class ListenViewController: BaseViewController, RWFrameworkProtocol {
     var rwf = RWFramework.sharedInstance
     if rwf.isPlaying {
       rwf.stop()
+      self.playButton.setImage(UIImage(named: "player-button"), forState: .Normal)
       SVProgressHUD.dismiss()
     } else {
       rwf.play()
+      self.playButton.setImage(UIImage(named: "stop-button"), forState: .Normal)
       SVProgressHUD.showWithStatus("Loading Stream")
     }
   }
