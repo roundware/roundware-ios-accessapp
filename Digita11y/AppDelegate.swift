@@ -23,6 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, RWFrameworkProtocol {
 
     var rwf = RWFramework.sharedInstance
     rwf.addDelegate(root)
-    rwf.start(letFrameworkRequestWhenInUseAuthorizationForLocation: false)
+    rwf.start()
   }
 }
