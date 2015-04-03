@@ -48,27 +48,22 @@ class ListenViewController: BaseViewController, RWFrameworkProtocol {
 
   @IBAction func play(sender: AnyObject) {
     var rwf = RWFramework.sharedInstance
-    rwf.isPlaying ? rwf.stop() : rwf.play()
-    // put up spinner
-  }
-
-  func rwLocationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-    debugPrintln("ListenViewController: didUpdateLocations")
-  }
-
-  func rwLocationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-    debugPrintln("ListenViewController: didChangeAuthorizationStatus")
+    if rwf.isPlaying {
+      rwf.stop()
+      SVProgressHUD.dismiss()
+    } else {
+      rwf.play()
+      SVProgressHUD.showWithStatus("Loading Stream")
+    }
   }
 
   func rwPostStreamsSuccess(data: NSData?) {
     self.playButton.enabled = true
-    let json = JSON(data: data!)
-    debugPrintln("ListenViewController: rwPostStreamsSuccess\n\(json)")
   }
 
   func rwObserveValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
     if keyPath == "timedMetadata" {
-      debugPrintln("keypath")
+      SVProgressHUD.dismiss()
     }
   }
 }
