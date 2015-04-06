@@ -59,6 +59,7 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
       cell.recordButton.tag = indexPath.row
       cell.recordButton.addTarget(self, action: "recordAudio:", forControlEvents: .TouchUpInside)
       cell.previewButton.addTarget(self, action: "previewAudio", forControlEvents: .TouchUpInside)
+      self.updateAudioCell(cell, toggleButton: false)
       return cell
     case .Photo:
       var cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: CellIdentifier)
@@ -126,29 +127,52 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     }
   }
 
-  func recordAudio(button: UIButton) {
+  func updateAudioCell(cell: AudioDrawerTableViewCell, toggleButton: Bool) {
     var rwf = RWFramework.sharedInstance
     if rwf.isRecording() {
-      rwf.stopRecording()
-      button.accessibilityLabel = "Record audio"
-      if let cell = self.findAudioDrawerTableViewCell() {
+      if toggleButton {
+        rwf.stopRecording()
+      }
+      cell.recordButton.accessibilityLabel = "Preview audio"
+      cell.microphoneLevelsView.percent = 0.0
+      cell.recordButton.setImage(UIImage(named: "play-button"), forState: .Normal)
+    } else if rwf.isPlayingBack() {
+      if toggleButton {
+        rwf.stopPlayback()
+      }
+      cell.recordButton.accessibilityLabel = "Preview audio"
+      cell.microphoneLevelsView.percent = 0.0
+      cell.recordButton.setImage(UIImage(named: "play-button"), forState: .Normal)
+    } else if rwf.hasRecording() {
+      if toggleButton {
+        rwf.startPlayback()
+        cell.recordButton.accessibilityLabel = "Stop playback"
+        cell.recordButton.setImage(UIImage(named: "stop-button"), forState: .Normal)
+        cell.progressLabel.text = "00:00"
+        cell.progressLabel.accessibilityLabel = "0 seconds"
+      } else {
+        cell.recordButton.accessibilityLabel = "Preview audio"
         cell.microphoneLevelsView.percent = 0.0
+        cell.recordButton.setImage(UIImage(named: "play-button"), forState: .Normal)
       }
     } else {
-      setupAudio() { granted, error in
-        debugPrintln("Audio granted: \(granted), Error: \(error)")
-        if granted && error == nil {
-          debugPrintln("Start recording")
-          rwf.startRecording()
-          button.accessibilityLabel = "Pause recording"
+      if toggleButton {
+        setupAudio() { granted, error in
+          if granted && error == nil {
+            rwf.startRecording()
+            cell.recordButton.accessibilityLabel = "Pause recording"
+            cell.recordButton.setImage(UIImage(named: "stop-button"), forState: .Normal)
+            cell.progressLabel.text = "00:00"
+            cell.progressLabel.accessibilityLabel = "0 seconds"
+          }
         }
       }
     }
+  }
 
-    var indexPath = NSIndexPath(forRow: button.tag, inSection: 0)
-    if let cell = self.tableView.cellForRowAtIndexPath(indexPath) as? AudioDrawerTableViewCell {
-      cell.previewButton.enabled = true
-      cell.previewButton.setNeedsDisplay()
+  func recordAudio(button: UIButton) {
+    if let cell = self.findAudioDrawerTableViewCell() {
+      self.updateAudioCell(cell, toggleButton: true)
     }
   }
 
@@ -181,7 +205,7 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     return nil
   }
 
-  func rwRecordingProgress(percentage: Double, maxDuration: NSTimeInterval, peakPower: Float, averagePower: Float) {
+  func updateAudioPercentage(percentage: Double, maxDuration: NSTimeInterval, peakPower: Float, averagePower: Float) {
     if let cell = self.findAudioDrawerTableViewCell() {
       var dt = percentage*maxDuration
       var sec = Int(dt%60.0)
@@ -192,6 +216,28 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
 
       cell.microphoneLevelsView.percent = (averagePower + 120.0)/120.0
     }
+  }
+
+  func rwRecordingProgress(percentage: Double, maxDuration: NSTimeInterval, peakPower: Float, averagePower: Float) {
+    self.updateAudioPercentage(percentage, maxDuration: maxDuration, peakPower: peakPower, averagePower: averagePower)
+  }
+
+  func rwPlayingBackProgress(percentage: Double, duration: NSTimeInterval, peakPower: Float, averagePower: Float) {
+    self.updateAudioPercentage(percentage, maxDuration: duration, peakPower: peakPower, averagePower: averagePower)
+  }
+
+  func rwAudioRecorderDidFinishRecording() {
+    var cell = self.findAudioDrawerTableViewCell()
+    cell?.recordButton.accessibilityLabel = "Preview audio"
+    cell?.microphoneLevelsView.percent = 0.0
+    cell?.recordButton.setImage(UIImage(named: "play-button"), forState: .Normal)
+  }
+
+  func rwAudioPlayerDidFinishPlaying() {
+    var cell = self.findAudioDrawerTableViewCell()
+    cell?.recordButton.accessibilityLabel = "Preview audio"
+    cell?.microphoneLevelsView.percent = 0.0
+    cell?.recordButton.setImage(UIImage(named: "play-button"), forState: .Normal)
   }
 
   func rwImagePickerControllerDidFinishPickingMedia(info: [NSObject : AnyObject]) {
