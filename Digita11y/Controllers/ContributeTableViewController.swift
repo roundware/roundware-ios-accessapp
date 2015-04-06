@@ -15,10 +15,14 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
 
   var cells = [Cell.Artifact, Cell.Audio, Cell.Photo, Cell.Text]
 
-  let CellIdentifier = "ContributeCellIdentifier"
+  let CellIdentifier            = "ContributeCellIdentifier"
   let AudioDrawerCellIdentifier = "AudioDrawerCellIdentifier"
   let PhotoDrawerCellIdentifier = "PhotoDrawerCellIdentifier"
-  let TextDrawerCellIdentifier = "TextDrawerCellIdentifier"
+  let TextDrawerCellIdentifier  = "TextDrawerCellIdentifier"
+
+  let RecordButtonFilename = "audio-record-button"
+  let PlayButtonFilename   = "audio-play-button"
+  let StopButtonFilename   = "audio-stop-button"
 
   @IBOutlet weak var uploadButton: UIButton!
 
@@ -135,25 +139,25 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
       }
       cell.recordButton.accessibilityLabel = "Preview audio"
       cell.microphoneLevelsView.percent = 0.0
-      cell.recordButton.setImage(UIImage(named: "play-button"), forState: .Normal)
+      cell.recordButton.setImage(UIImage(named: PlayButtonFilename), forState: .Normal)
     } else if rwf.isPlayingBack() {
       if toggleButton {
         rwf.stopPlayback()
       }
       cell.recordButton.accessibilityLabel = "Preview audio"
       cell.microphoneLevelsView.percent = 0.0
-      cell.recordButton.setImage(UIImage(named: "play-button"), forState: .Normal)
+      cell.recordButton.setImage(UIImage(named: PlayButtonFilename), forState: .Normal)
     } else if rwf.hasRecording() {
       if toggleButton {
         rwf.startPlayback()
         cell.recordButton.accessibilityLabel = "Stop playback"
-        cell.recordButton.setImage(UIImage(named: "stop-button"), forState: .Normal)
+        cell.recordButton.setImage(UIImage(named: StopButtonFilename), forState: .Normal)
         cell.progressLabel.text = "00:00"
         cell.progressLabel.accessibilityLabel = "0 seconds"
       } else {
         cell.recordButton.accessibilityLabel = "Preview audio"
         cell.microphoneLevelsView.percent = 0.0
-        cell.recordButton.setImage(UIImage(named: "play-button"), forState: .Normal)
+        cell.recordButton.setImage(UIImage(named: PlayButtonFilename), forState: .Normal)
       }
     } else {
       if toggleButton {
@@ -161,7 +165,7 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
           if granted && error == nil {
             rwf.startRecording()
             cell.recordButton.accessibilityLabel = "Pause recording"
-            cell.recordButton.setImage(UIImage(named: "stop-button"), forState: .Normal)
+            cell.recordButton.setImage(UIImage(named: self.StopButtonFilename), forState: .Normal)
             cell.progressLabel.text = "00:00"
             cell.progressLabel.accessibilityLabel = "0 seconds"
           }
@@ -180,12 +184,11 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     var rwf = RWFramework.sharedInstance
     rwf.stopRecording()
     rwf.stopPlayback()
-    rwf.removeRecording()
     rwf.deleteRecording()
     if let cell = self.findAudioDrawerTableViewCell() {
       cell.recordButton.accessibilityLabel = "Record audio"
       cell.microphoneLevelsView.percent = 0.0
-      cell.recordButton.setImage(UIImage(named: "record-button"), forState: .Normal)
+      cell.recordButton.setImage(UIImage(named: RecordButtonFilename), forState: .Normal)
       cell.progressLabel.text = "00:00"
       cell.progressLabel.accessibilityLabel = "0 seconds"
     }
@@ -254,14 +257,14 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     var cell = self.findAudioDrawerTableViewCell()
     cell?.recordButton.accessibilityLabel = "Preview audio"
     cell?.microphoneLevelsView.percent = 0.0
-    cell?.recordButton.setImage(UIImage(named: "play-button"), forState: .Normal)
+    cell?.recordButton.setImage(UIImage(named: PlayButtonFilename), forState: .Normal)
   }
 
   func rwAudioPlayerDidFinishPlaying() {
     var cell = self.findAudioDrawerTableViewCell()
     cell?.recordButton.accessibilityLabel = "Preview audio"
     cell?.microphoneLevelsView.percent = 0.0
-    cell?.recordButton.setImage(UIImage(named: "play-button"), forState: .Normal)
+    cell?.recordButton.setImage(UIImage(named: PlayButtonFilename), forState: .Normal)
   }
 
   func rwImagePickerControllerDidFinishPickingMedia(info: [NSObject : AnyObject]) {
@@ -305,7 +308,9 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
       toggleDrawer(Cell.TextDrawer, parent: Cell.Text)
     }
 
-    RWFramework.sharedInstance.uploadAllMedia()
+    var rwf = RWFramework.sharedInstance
+    rwf.addRecording()
+    rwf.uploadAllMedia()
 
     self.navigationController?.tabBarController?.selectedIndex = 0
   }
