@@ -32,6 +32,8 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 125.0
 
+    self.uploadButton.layer.cornerRadius = 2.0
+
     var rwf = RWFramework.sharedInstance
     rwf.addDelegate(self)
   }
@@ -62,6 +64,7 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
       var cell =  tableView.dequeueReusableCellWithIdentifier(AudioDrawerCellIdentifier, forIndexPath: indexPath) as! AudioDrawerTableViewCell
       cell.recordButton.tag = indexPath.row
       cell.recordButton.addTarget(self, action: "recordAudio:", forControlEvents: .TouchUpInside)
+      cell.discardButton.layer.cornerRadius = 2.0
       cell.discardButton.addTarget(self, action: "discardAudio", forControlEvents: .TouchUpInside)
       self.updateAudioCell(cell, toggleButton: false)
       return cell
@@ -132,7 +135,10 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
   }
 
   func updateAudioCell(cell: AudioDrawerTableViewCell, toggleButton: Bool) {
+
     var rwf = RWFramework.sharedInstance
+    cell.discardButton.enabled = rwf.hasRecording()
+
     if rwf.isRecording() {
       if toggleButton {
         rwf.stopRecording()
@@ -186,6 +192,7 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     rwf.stopPlayback()
     rwf.deleteRecording()
     if let cell = self.findAudioDrawerTableViewCell() {
+      cell.discardButton.enabled = false
       cell.recordButton.accessibilityLabel = "Record audio"
       cell.microphoneLevelsView.percent = 0.0
       cell.recordButton.setImage(UIImage(named: RecordButtonFilename), forState: .Normal)
