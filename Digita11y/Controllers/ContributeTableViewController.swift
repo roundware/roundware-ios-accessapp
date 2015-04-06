@@ -58,7 +58,7 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
       var cell =  tableView.dequeueReusableCellWithIdentifier(AudioDrawerCellIdentifier, forIndexPath: indexPath) as! AudioDrawerTableViewCell
       cell.recordButton.tag = indexPath.row
       cell.recordButton.addTarget(self, action: "recordAudio:", forControlEvents: .TouchUpInside)
-      cell.previewButton.addTarget(self, action: "previewAudio", forControlEvents: .TouchUpInside)
+      cell.discardButton.addTarget(self, action: "discardAudio", forControlEvents: .TouchUpInside)
       self.updateAudioCell(cell, toggleButton: false)
       return cell
     case .Photo:
@@ -176,16 +176,18 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     }
   }
 
-  func previewAudio() {
-    debugPrintln("uploadAudio")
+  func discardAudio() {
     var rwf = RWFramework.sharedInstance
-    if rwf.isPlayingBack() {
-      rwf.stopPlayback()
-      if let cell = self.findAudioDrawerTableViewCell() {
-        cell.microphoneLevelsView.percent = 0.0
-      }
-    } else {
-      rwf.startPlayback()
+    rwf.stopRecording()
+    rwf.stopPlayback()
+    rwf.removeRecording()
+    rwf.deleteRecording()
+    if let cell = self.findAudioDrawerTableViewCell() {
+      cell.recordButton.accessibilityLabel = "Record audio"
+      cell.microphoneLevelsView.percent = 0.0
+      cell.recordButton.setImage(UIImage(named: "record-button"), forState: .Normal)
+      cell.progressLabel.text = "00:00"
+      cell.progressLabel.accessibilityLabel = "0 seconds"
     }
   }
 
