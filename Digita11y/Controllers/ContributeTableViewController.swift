@@ -131,6 +131,9 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     if rwf.isRecording() {
       rwf.stopRecording()
       button.accessibilityLabel = "Record audio"
+      if let cell = self.findAudioDrawerTableViewCell() {
+        cell.microphoneLevelsView.percent = 0.0
+      }
     } else {
       setupAudio() { granted, error in
         debugPrintln("Audio granted: \(granted), Error: \(error)")
@@ -154,6 +157,9 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     var rwf = RWFramework.sharedInstance
     if rwf.isPlayingBack() {
       rwf.stopPlayback()
+      if let cell = self.findAudioDrawerTableViewCell() {
+        cell.microphoneLevelsView.percent = 0.0
+      }
     } else {
       rwf.startPlayback()
     }
@@ -164,22 +170,27 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     rwf.doImage()
   }
 
-  func rwRecordingProgress(percentage: Double, maxDuration: NSTimeInterval, peakPower: Float, averagePower: Float) {
+  func findAudioDrawerTableViewCell() -> AudioDrawerTableViewCell? {
     for var i = 0; i < self.tableView.numberOfRowsInSection(0); ++i {
       var indexPath = NSIndexPath(forRow: i, inSection: 0)
       if let cell = self.tableView.cellForRowAtIndexPath(indexPath) as? AudioDrawerTableViewCell {
-
-        var dt = percentage*maxDuration
-        var sec = Int(dt%60.0)
-        var milli = Int(100*(dt - floor(dt)))
-        var secStr = sec < 10 ? "0\(sec)" : "\(sec)"
-        cell.progressLabel.text = "00:\(secStr)"
-        cell.progressLabel.accessibilityLabel = "\(secStr) seconds"
-
-        cell.microphoneLevelsView.percent = (peakPower + 120.0)/120.0
-
-        return
+        return cell
       }
+    }
+
+    return nil
+  }
+
+  func rwRecordingProgress(percentage: Double, maxDuration: NSTimeInterval, peakPower: Float, averagePower: Float) {
+    if let cell = self.findAudioDrawerTableViewCell() {
+      var dt = percentage*maxDuration
+      var sec = Int(dt%60.0)
+      var milli = Int(100*(dt - floor(dt)))
+      var secStr = sec < 10 ? "0\(sec)" : "\(sec)"
+      cell.progressLabel.text = "00:\(secStr)"
+      cell.progressLabel.accessibilityLabel = "\(secStr) seconds"
+
+      cell.microphoneLevelsView.percent = (averagePower + 120.0)/120.0
     }
   }
 
