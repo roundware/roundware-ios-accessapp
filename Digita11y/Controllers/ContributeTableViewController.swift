@@ -83,8 +83,8 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
       return cell
     case .TextDrawer:
       var cell = tableView.dequeueReusableCellWithIdentifier(TextDrawerCellIdentifier, forIndexPath: indexPath) as! TextDrawerTableViewCell
-      cell.textView.placeholder = "Write something..."
-      cell.textView.placeholderTextColor = UIColor.lightGrayColor()
+      cell.contributeTextView.placeholder = "Write something..."
+      cell.contributeTextView.placeholderTextColor = UIColor.lightGrayColor()
       return cell
     }
   }
@@ -207,6 +207,28 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     return nil
   }
 
+  func findPhotoDrawerTableViewCell() -> PhotoDrawerTableViewCell? {
+    for var i = 0; i < self.tableView.numberOfRowsInSection(0); ++i {
+      var indexPath = NSIndexPath(forRow: i, inSection: 0)
+      if let cell = self.tableView.cellForRowAtIndexPath(indexPath) as? PhotoDrawerTableViewCell {
+        return cell
+      }
+    }
+
+    return nil
+  }
+
+  func findTextDrawerTableViewCell() -> TextDrawerTableViewCell? {
+    for var i = 0; i < self.tableView.numberOfRowsInSection(0); ++i {
+      var indexPath = NSIndexPath(forRow: i, inSection: 0)
+      if let cell = self.tableView.cellForRowAtIndexPath(indexPath) as? TextDrawerTableViewCell {
+        return cell
+      }
+    }
+
+    return nil
+  }
+
   func updateAudioPercentage(percentage: Double, maxDuration: NSTimeInterval, peakPower: Float, averagePower: Float) {
     if let cell = self.findAudioDrawerTableViewCell() {
       var dt = percentage*maxDuration
@@ -260,6 +282,31 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
   }
 
   @IBAction func uploadAllMedia(sender: AnyObject) {
+    if let audio = self.findAudioDrawerTableViewCell() {
+      audio.recordButton.accessibilityLabel = "Record audio"
+      audio.microphoneLevelsView.percent = 0.0
+      audio.recordButton.setImage(UIImage(named: "record-button"), forState: .Normal)
+      audio.progressLabel.text = "00:00"
+      audio.progressLabel.accessibilityLabel = "0 seconds"
+
+      toggleDrawer(Cell.AudioDrawer, parent: Cell.Audio)
+    }
+
+    if let photo = self.findPhotoDrawerTableViewCell() {
+      photo.textView.text = ""
+      photo.textView.hidden = true
+      photo.photoView.image = nil
+      photo.photoView.hidden = true
+
+      toggleDrawer(Cell.PhotoDrawer, parent: Cell.Photo)
+    }
+
+    if let txt = self.findTextDrawerTableViewCell() {
+      toggleDrawer(Cell.TextDrawer, parent: Cell.Text)
+    }
+
     RWFramework.sharedInstance.uploadAllMedia()
+
+    self.navigationController?.tabBarController?.selectedIndex = 0
   }
 }

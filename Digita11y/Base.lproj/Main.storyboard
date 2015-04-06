@@ -468,7 +468,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="textView" destination="oJK-bN-FR4" id="2VO-PG-iYc"/>
+                                    <outlet property="contributeTextView" destination="oJK-bN-FR4" id="9nG-6E-srM"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
