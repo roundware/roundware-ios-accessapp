@@ -112,26 +112,39 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
   }
 
   func toggleDrawer(drawer: Cell, parent: Cell) {
-    // Remove drawer?
+    self.tableView.beginUpdates()
+
+    var removed = false
     for (var i = 0; i < self.cells.count; ++i) {
+      // Need to check before removing because the cell will dissapear
       if self.cells[i] == drawer {
+        removed = true
+      }
+
+      switch self.cells[i] {
+      case Cell.AudioDrawer, Cell.PhotoDrawer, Cell.TextDrawer:
         self.cells.removeAtIndex(i)
-        self.tableView.beginUpdates()
         self.tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: i, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Top)
-        self.tableView.endUpdates()
-        return
+      default:
+        break
       }
     }
+
+    if removed {
+      self.tableView.endUpdates()
+      return
+    }
+
     // Must be that we have to add the drawer
     for (var i = 0; i < self.cells.count; ++i) {
       if self.cells[i] == parent {
         self.cells.insert(drawer, atIndex: i+1)
-        self.tableView.beginUpdates()
         self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: i+1, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Top)
-        self.tableView.endUpdates()
-        return
+        break
       }
     }
+
+    self.tableView.endUpdates()
   }
 
   func updateAudioCell(cell: AudioDrawerTableViewCell, toggleButton: Bool) {
