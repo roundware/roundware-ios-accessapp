@@ -181,7 +181,7 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     } else {
       if toggleButton {
         rwf.startRecording()
-        cell.recordButton.accessibilityLabel = "Pause recording"
+        cell.recordButton.accessibilityLabel = "Stop recording"
         cell.recordButton.setImage(UIImage(named: self.StopButtonFilename), forState: .Normal)
         cell.progressLabel.text = "00:00"
         cell.progressLabel.accessibilityLabel = "0 seconds"
