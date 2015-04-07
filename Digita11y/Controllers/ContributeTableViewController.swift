@@ -167,15 +167,11 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
       }
     } else {
       if toggleButton {
-        setupAudio() { granted, error in
-          if granted && error == nil {
-            rwf.startRecording()
-            cell.recordButton.accessibilityLabel = "Pause recording"
-            cell.recordButton.setImage(UIImage(named: self.StopButtonFilename), forState: .Normal)
-            cell.progressLabel.text = "00:00"
-            cell.progressLabel.accessibilityLabel = "0 seconds"
-          }
-        }
+        rwf.startRecording()
+        cell.recordButton.accessibilityLabel = "Pause recording"
+        cell.recordButton.setImage(UIImage(named: self.StopButtonFilename), forState: .Normal)
+        cell.progressLabel.text = "00:00"
+        cell.progressLabel.accessibilityLabel = "0 seconds"
       }
     }
   }

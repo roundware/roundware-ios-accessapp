@@ -11,6 +11,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, RWFrameworkProtocol {
     Crashlytics.startWithAPIKey("69056dd4dfd70d4a7ca049983df384d1c090537f")
     UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
 
+    setupAudio() { granted, error in
+      if granted == false {
+        debugPrintln("Unable to setup audio: \(error)")
+      }
+    }
     setupRWFramework()
 
     return true
