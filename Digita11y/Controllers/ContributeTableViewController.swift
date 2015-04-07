@@ -1,7 +1,7 @@
 import UIKit
 import RWFramework
 
-class ContributeTableViewController: BaseTableViewController, RWFrameworkProtocol {
+class ContributeTableViewController: BaseTableViewController, RWFrameworkProtocol, UITextViewDelegate, UITextFieldDelegate {
 
   enum Cell {
     case Artifact
@@ -25,6 +25,8 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
   let StopButtonFilename   = "audio-stop-button"
 
   @IBOutlet weak var uploadButton: UIButton!
+
+  var uploadText = ""
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -79,6 +81,8 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
       var cell = tableView.dequeueReusableCellWithIdentifier(PhotoDrawerCellIdentifier, forIndexPath: indexPath) as! PhotoDrawerTableViewCell
       cell.textView.placeholder = "Describe this photo..."
       cell.textView.placeholderTextColor = UIColor.lightGrayColor()
+      cell.textView.returnKeyType = .Done
+      cell.textView.delegate = self
       cell.cameraButton.addTarget(self, action: "cameraButton", forControlEvents: .TouchUpInside)
       return cell
     case .Text:
@@ -92,6 +96,8 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
       var cell = tableView.dequeueReusableCellWithIdentifier(TextDrawerCellIdentifier, forIndexPath: indexPath) as! TextDrawerTableViewCell
       cell.contributeTextView.placeholder = "Write something..."
       cell.contributeTextView.placeholderTextColor = UIColor.lightGrayColor()
+      cell.contributeTextView.returnKeyType = .Done
+      cell.contributeTextView.delegate = self
       return cell
     }
   }
@@ -300,6 +306,21 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     }
   }
 
+  func textViewDidChange(textView: UITextView) {
+    debugPrintln(textView.text)
+    self.uploadText = textView.text
+  }
+
+  func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+    // This is a complete hack, but some reason textViewShouldEnd isn't being called
+    if contains(text, "\n") {
+      textView.resignFirstResponder()
+      return false
+    }
+
+    return true
+  }
+
   @IBAction func uploadAllMedia(sender: AnyObject) {
     if let audio = self.findAudioDrawerTableViewCell() {
       audio.recordButton.accessibilityLabel = "Record audio"
@@ -325,6 +346,11 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     }
 
     var rwf = RWFramework.sharedInstance
+    if self.uploadText.isEmpty == false {
+      rwf.addText(self.uploadText)
+      self.uploadText = ""
+    }
+
     rwf.addRecording()
     rwf.uploadAllMedia()
 
