@@ -51,10 +51,12 @@ class ListenViewController: BaseViewController, RWFrameworkProtocol {
     if rwf.isPlaying {
       rwf.stop()
       self.playButton.setImage(UIImage(named: "player-button"), forState: .Normal)
+      self.playButton.accessibilityLabel = "Play button"
       SVProgressHUD.dismiss()
     } else {
       rwf.play()
       self.playButton.setImage(UIImage(named: "stop-button"), forState: .Normal)
+      self.playButton.accessibilityLabel = "Stop button"
       SVProgressHUD.showWithStatus("Loading Stream")
     }
   }
