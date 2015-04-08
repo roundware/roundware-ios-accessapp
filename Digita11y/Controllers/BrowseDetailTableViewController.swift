@@ -3,6 +3,7 @@ import UIKit
 class BrowseDetailTableViewController: UITableViewController {
 
   let CellIdentifier = "BrowseDetailCellIdentifier"
+  var tagID = 0
 
   @IBOutlet weak var segmentedControl: UISegmentedControl!
 
@@ -37,6 +38,11 @@ class BrowseDetailTableViewController: UITableViewController {
     self.navigationItem.title = "Mission Moon"
 
     self.navigationController?.navigationBar.becomeFirstResponder()
+  }
+
+  override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(animated)
+    debugPrintln("TAGID: \(self.tagID)")
   }
 
   // MARK: - Table view data source

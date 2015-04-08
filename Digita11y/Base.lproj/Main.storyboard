@@ -42,7 +42,7 @@
                                 <connections>
                                     <outlet property="bannerImageView" destination="Fqg-sK-Nzq" id="ch6-bZ-J6g"/>
                                     <outlet property="titleLabel" destination="MD1-wv-z2B" id="0MN-lg-UXe"/>
-                                    <segue destination="0qf-4s-bo6" kind="show" id="nxD-0L-hQt"/>
+                                    <segue destination="0qf-4s-bo6" kind="show" identifier="BrowseDetailSegue" id="nxD-0L-hQt"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

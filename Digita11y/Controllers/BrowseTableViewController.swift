@@ -33,6 +33,7 @@ class BrowseTableViewController: BaseTableViewController, RWFrameworkProtocol {
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     if let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as? BrowseTableViewCell {
+      cell.tag = self.rwData?.exhibitions[indexPath.row].tagId ?? 0
       cell.titleLabel.text = self.rwData?.exhibitions[indexPath.row].value
       return cell
     }
@@ -44,7 +45,21 @@ class BrowseTableViewController: BaseTableViewController, RWFrameworkProtocol {
   // MARK: - Navigation
 
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if segue.identifier == "BrowseDetailSegue" {
+      if let to = segue.destinationViewController as? BrowseDetailTableViewController {
+        if let cell = sender as? UITableViewCell {
+          to.tagID = cell.tag
+        }
+      }
+    }
   }
+  override func performSegueWithIdentifier(identifier: String?, sender: AnyObject?) {
+    if identifier == "BrowseDetailSegue" {
+      debugPrintln("\(sender)")
+    }
+  }
+
+  // MARK: - RWFrameworkProtocol
 
   func rwGetProjectsIdTagsSuccess(data: NSData?) {
     self.tableView.reloadData()
