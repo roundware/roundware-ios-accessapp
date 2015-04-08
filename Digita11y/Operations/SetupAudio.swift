@@ -19,7 +19,7 @@ func setupAudio(audioSetup: (granted: Bool, error: NSError?) -> Void) {
     }
   }
 
-  if !avAudioSession.overrideOutputAudioPort(AVAudioSessionPortOverride.Speaker, error:&error) {
+  if !avAudioSession.overrideOutputAudioPort(AVAudioSessionPortOverride.None, error:&error) {
     if let e = error {
       debugPrintln(e.localizedDescription)
     }
