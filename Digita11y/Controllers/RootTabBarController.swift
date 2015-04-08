@@ -35,7 +35,7 @@ class RootTabBarController: UITabBarController, UITabBarControllerDelegate, RWFr
       rwf.apiGetAssets(dict, success: { (data) -> Void in
         if (data != nil) {
           let json = JSON(data: data!)
-//          debugPrintln(json)
+          self.rwData?.projects = json.array?.map { Project(json: $0) } ?? []
         }
         }) { (error) -> Void in
 //          debugPrintln(error)
