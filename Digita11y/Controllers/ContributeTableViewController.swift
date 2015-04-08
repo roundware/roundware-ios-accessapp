@@ -354,6 +354,11 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     rwf.addRecording()
     rwf.uploadAllMedia()
 
-    self.navigationController?.tabBarController?.selectedIndex = 0
+    let alertController = UIAlertController(title: "Thank You", message: "Thank you for your contribution", preferredStyle: .Alert)
+    let ok = UIAlertAction(title: "OK", style: .Default) { action in
+      self.navigationController?.tabBarController?.selectedIndex = 0
+    }
+    alertController.addAction(ok)
+    self.presentViewController(alertController, animated: true) { }
   }
 }
