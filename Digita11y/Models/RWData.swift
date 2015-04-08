@@ -6,9 +6,10 @@ class RWData {
   var speakTags: [TagGroup] = []
   var listenTags: [TagGroup] = []
   var projects: [Project] = []
-  var exhibitions: [TagGroup] {
+  var exhibitions: [Tag] {
     get {
-      return listenTags.filter { $0.code == "exhibition" }
+      var group = listenTags.filter { $0.code == "exhibition" }
+      return group.first?.options ?? []
     }
   }
 }

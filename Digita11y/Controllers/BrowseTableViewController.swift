@@ -1,6 +1,7 @@
 import UIKit
+import RWFramework
 
-class BrowseTableViewController: BaseTableViewController {
+class BrowseTableViewController: BaseTableViewController, RWFrameworkProtocol {
 
   let CellIdentifier = "BrowseCellIdentifier"
 
@@ -10,6 +11,9 @@ class BrowseTableViewController: BaseTableViewController {
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 125.0
     tableView.tableFooterView = UIView(frame: CGRectZero)
+
+    var rwf = RWFramework.sharedInstance
+    rwf.addDelegate(self)
   }
 
   override func viewWillAppear(animated: Bool) {
@@ -20,15 +24,16 @@ class BrowseTableViewController: BaseTableViewController {
   // MARK: - Table view data source
 
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-      return 1
+    return 1
   }
 
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      return 0
+    return self.rwData?.exhibitions.count ?? 0
   }
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     if let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as? BrowseTableViewCell {
+      cell.titleLabel.text = self.rwData?.exhibitions[indexPath.row].value
       return cell
     }
 
@@ -39,5 +44,9 @@ class BrowseTableViewController: BaseTableViewController {
   // MARK: - Navigation
 
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+  }
+
+  func rwGetProjectsIdTagsSuccess(data: NSData?) {
+    self.tableView.reloadData()
   }
 }
