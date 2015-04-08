@@ -9,6 +9,7 @@ class BrowseTableViewController: BaseTableViewController {
 
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 125.0
+    tableView.tableFooterView = UIView(frame: CGRectZero)
   }
 
   override func viewWillAppear(animated: Bool) {
@@ -23,7 +24,7 @@ class BrowseTableViewController: BaseTableViewController {
   }
 
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      return 10
+      return 0
   }
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
