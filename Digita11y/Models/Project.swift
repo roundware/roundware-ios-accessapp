@@ -13,12 +13,15 @@ struct Project {
   var project = 0
   var assetID = 0
   var mediaType = MediaType.None
+  var tagIDs: [Int] = []
+  var fileURL = NSURL()
 
   init(json: JSON) {
     projectDescription = json["description"].string ?? ""
     volume = json["volume"].int ?? 0
     project = json["project"].int ?? 0
     assetID = json["asset_d"].int ?? 0
+
     if json["media_type"].string == "text" {
       mediaType = .Text
     } else if json["media_type"].string == "photo" {
@@ -28,6 +31,10 @@ struct Project {
     } else {
       debugPrintln(json["media_type"].string)
     }
+
+    tagIDs = json["tag_ids"].array?.map { $0.int ?? 0 } ?? []
+    var strURL = RWFrameworkConfig.getConfigValueAsString("base_url") + (json["file"].string ?? "")
+    fileURL = NSURL(string: strURL) ?? NSURL()
   }
 }
 
