@@ -13,7 +13,7 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     case TextDrawer
   }
 
-  var cells = [Cell.Artifact, Cell.Audio, Cell.Photo, Cell.Text]
+  var cells = [Cell.Audio, Cell.Photo, Cell.Text]
 
   let CellIdentifier            = "ContributeCellIdentifier"
   let AudioDrawerCellIdentifier = "AudioDrawerCellIdentifier"
@@ -34,7 +34,7 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 125.0
 
-    self.uploadButton.layer.cornerRadius = 2.0
+    self.uploadButton.layer.cornerRadius = 4.0
 
     var rwf = RWFramework.sharedInstance
     rwf.addDelegate(self)
