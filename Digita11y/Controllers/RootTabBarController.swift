@@ -60,6 +60,7 @@ class RootTabBarController: UITabBarController, UITabBarControllerDelegate, RWFr
     let json = JSON(data: data!)
     self.rwData?.speakTags = json["speak"].array?.map { TagGroup(json: $0) } ?? []
     self.rwData?.listenTags = json["listen"].array?.map { TagGroup(json: $0) } ?? []
+    debugPrintln("EXHIBITIONS: \(self.rwData?.exhibitions.count)")
   }
 
   func rwGetProjectsIdTagsFailure(error: NSError?) {
