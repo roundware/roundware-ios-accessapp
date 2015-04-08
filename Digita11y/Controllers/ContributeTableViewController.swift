@@ -1,7 +1,7 @@
 import UIKit
 import RWFramework
 
-class ContributeTableViewController: BaseTableViewController, RWFrameworkProtocol, UITextViewDelegate, UITextFieldDelegate {
+class ContributeTableViewController: BaseTableViewController, RWFrameworkProtocol, UITextViewDelegate {
 
   enum Cell {
     case Artifact
@@ -27,6 +27,7 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
   @IBOutlet weak var uploadButton: UIButton!
 
   var uploadText = ""
+  var haveImage = false
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -38,6 +39,11 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
 
     var rwf = RWFramework.sharedInstance
     rwf.addDelegate(self)
+  }
+
+  override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(animated)
+    self.updateUploadButtonState()
   }
 
   // MARK: - Table view data source
@@ -118,6 +124,8 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
   }
 
   func toggleDrawer(drawer: Cell, parent: Cell) {
+    self.updateUploadButtonState()
+
     self.tableView.beginUpdates()
 
     var removed = false
@@ -152,6 +160,41 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
 
     self.tableView.endUpdates()
   }
+
+  func findAudioDrawerTableViewCell() -> AudioDrawerTableViewCell? {
+    for var i = 0; i < self.tableView.numberOfRowsInSection(0); ++i {
+      var indexPath = NSIndexPath(forRow: i, inSection: 0)
+      if let cell = self.tableView.cellForRowAtIndexPath(indexPath) as? AudioDrawerTableViewCell {
+        return cell
+      }
+    }
+
+    return nil
+  }
+
+  func findPhotoDrawerTableViewCell() -> PhotoDrawerTableViewCell? {
+    for var i = 0; i < self.tableView.numberOfRowsInSection(0); ++i {
+      var indexPath = NSIndexPath(forRow: i, inSection: 0)
+      if let cell = self.tableView.cellForRowAtIndexPath(indexPath) as? PhotoDrawerTableViewCell {
+        return cell
+      }
+    }
+
+    return nil
+  }
+
+  func findTextDrawerTableViewCell() -> TextDrawerTableViewCell? {
+    for var i = 0; i < self.tableView.numberOfRowsInSection(0); ++i {
+      var indexPath = NSIndexPath(forRow: i, inSection: 0)
+      if let cell = self.tableView.cellForRowAtIndexPath(indexPath) as? TextDrawerTableViewCell {
+        return cell
+      }
+    }
+
+    return nil
+  }
+
+  // MARK: - Audio
 
   func updateAudioCell(cell: AudioDrawerTableViewCell, toggleButton: Bool) {
 
@@ -193,6 +236,8 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
         cell.progressLabel.accessibilityLabel = "0 seconds"
       }
     }
+
+    self.updateUploadButtonState()
   }
 
   func recordAudio(button: UIButton) {
@@ -214,44 +259,8 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
       cell.progressLabel.text = "00:00"
       cell.progressLabel.accessibilityLabel = "0 seconds"
     }
-  }
 
-  func cameraButton() {
-    var rwf = RWFramework.sharedInstance
-    rwf.doImage()
-  }
-
-  func findAudioDrawerTableViewCell() -> AudioDrawerTableViewCell? {
-    for var i = 0; i < self.tableView.numberOfRowsInSection(0); ++i {
-      var indexPath = NSIndexPath(forRow: i, inSection: 0)
-      if let cell = self.tableView.cellForRowAtIndexPath(indexPath) as? AudioDrawerTableViewCell {
-        return cell
-      }
-    }
-
-    return nil
-  }
-
-  func findPhotoDrawerTableViewCell() -> PhotoDrawerTableViewCell? {
-    for var i = 0; i < self.tableView.numberOfRowsInSection(0); ++i {
-      var indexPath = NSIndexPath(forRow: i, inSection: 0)
-      if let cell = self.tableView.cellForRowAtIndexPath(indexPath) as? PhotoDrawerTableViewCell {
-        return cell
-      }
-    }
-
-    return nil
-  }
-
-  func findTextDrawerTableViewCell() -> TextDrawerTableViewCell? {
-    for var i = 0; i < self.tableView.numberOfRowsInSection(0); ++i {
-      var indexPath = NSIndexPath(forRow: i, inSection: 0)
-      if let cell = self.tableView.cellForRowAtIndexPath(indexPath) as? TextDrawerTableViewCell {
-        return cell
-      }
-    }
-
-    return nil
+    self.updateUploadButtonState()
   }
 
   func updateAudioPercentage(percentage: Double, maxDuration: NSTimeInterval, peakPower: Float, averagePower: Float) {
@@ -267,6 +276,15 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     }
   }
 
+  // MARK: - Image
+
+  func cameraButton() {
+    var rwf = RWFramework.sharedInstance
+    rwf.doImage()
+  }
+
+  // MARK: - RWFrameworkProtocol
+
   func rwRecordingProgress(percentage: Double, maxDuration: NSTimeInterval, peakPower: Float, averagePower: Float) {
     self.updateAudioPercentage(percentage, maxDuration: maxDuration, peakPower: peakPower, averagePower: averagePower)
   }
@@ -280,6 +298,8 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     cell?.recordButton.accessibilityLabel = "Preview audio"
     cell?.microphoneLevelsView.percent = 0.0
     cell?.recordButton.setImage(UIImage(named: PlayButtonFilename), forState: .Normal)
+
+    self.updateUploadButtonState()
   }
 
   func rwAudioPlayerDidFinishPlaying() {
@@ -290,6 +310,8 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
   }
 
   func rwImagePickerControllerDidFinishPickingMedia(info: [NSObject : AnyObject]) {
+    self.updateUploadButtonState()
+
     for var i = 0; i < self.tableView.numberOfRowsInSection(0); ++i {
       var indexPath = NSIndexPath(forRow: i, inSection: 0)
       if let cell = self.tableView.cellForRowAtIndexPath(indexPath) as? PhotoDrawerTableViewCell {
@@ -306,6 +328,8 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     }
   }
 
+  // MARK: - UITextViewDelegate
+
   func textViewDidChange(textView: UITextView) {
     debugPrintln(textView.text)
     self.uploadText = textView.text
@@ -319,6 +343,27 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     }
 
     return true
+  }
+
+  func textViewDidEndEditing(textView: UITextView) {
+    self.updateUploadButtonState()
+  }
+
+  // MARK: - Upload
+
+  func updateUploadButtonState() {
+    debugPrintln(" UPLOAD BUTTON STATE")
+    var rwf = RWFramework.sharedInstance
+    self.uploadButton.enabled = rwf.hasRecording() || self.haveImage || self.uploadText.isEmpty == false
+
+    var recordingCount = rwf.hasRecording() ? 1 : 0
+    var imageCount = self.haveImage ? 1 : 0
+    if self.uploadText.isEmpty {
+      self.uploadButton.accessibilityHint = "Upload \(recordingCount) audio and \(imageCount) images"
+    } else {
+      self.uploadButton.accessibilityHint = "Upload \(recordingCount) audio, and \(imageCount) images, and text"
+    }
+    debugPrintln(self.uploadButton.accessibilityHint)
   }
 
   @IBAction func uploadAllMedia(sender: AnyObject) {
