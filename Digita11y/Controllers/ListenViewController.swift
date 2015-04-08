@@ -63,6 +63,10 @@ class ListenViewController: BaseViewController, RWFrameworkProtocol {
     self.playButton.enabled = true
   }
 
+  func rwPostStreamsFailure(error: NSError?) {
+    self.playButton.enabled = false
+  }
+
   func rwObserveValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
     if keyPath == "timedMetadata" {
       SVProgressHUD.dismiss()

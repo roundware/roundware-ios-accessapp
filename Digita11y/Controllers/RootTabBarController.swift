@@ -49,7 +49,11 @@ class RootTabBarController: UITabBarController, UITabBarControllerDelegate, RWFr
   }
 
   func rwPostStreamsFailure(error: NSError?) {
-//    debugPrintln(error)
+    let alert = UIAlertController(title: "Stream Error", message: error?.localizedDescription, preferredStyle: .Alert)
+    let ok = UIAlertAction(title: "OK", style: .Default) { action in
+    }
+    alert.addAction(ok)
+    self.presentViewController(alert, animated: true) { }
   }
 
   func rwGetProjectsIdTagsSuccess(data: NSData?) {
