@@ -5,6 +5,7 @@ class BrowseDetailTableViewController: BaseTableViewController {
   let CellIdentifier = "BrowseDetailCellIdentifier"
   var tagID = 0
   var currentTag: Tag?
+  var assets: [Asset] = []
 
   @IBOutlet weak var segmentedControl: UISegmentedControl!
 
@@ -39,6 +40,8 @@ class BrowseDetailTableViewController: BaseTableViewController {
     currentTag = self.rwData?.exhibitions.filter { $0.tagId == self.tagID }.first
     self.navigationItem.title = currentTag?.value
 
+    assets = self.rwData?.assets.filter { contains($0.tagIDs, self.tagID) } ?? []
+
     self.navigationController?.navigationBar.becomeFirstResponder()
   }
 
@@ -49,7 +52,7 @@ class BrowseDetailTableViewController: BaseTableViewController {
   }
 
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      return 10
+      return assets.count
   }
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
