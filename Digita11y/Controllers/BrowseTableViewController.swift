@@ -45,17 +45,14 @@ class BrowseTableViewController: BaseTableViewController, RWFrameworkProtocol {
   // MARK: - Navigation
 
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    super.prepareForSegue(segue, sender: sender)
+
     if segue.identifier == "BrowseDetailSegue" {
       if let to = segue.destinationViewController as? BrowseDetailTableViewController {
         if let cell = sender as? UITableViewCell {
           to.tagID = cell.tag
         }
       }
-    }
-  }
-  override func performSegueWithIdentifier(identifier: String?, sender: AnyObject?) {
-    if identifier == "BrowseDetailSegue" {
-      debugPrintln("\(sender)")
     }
   }
 

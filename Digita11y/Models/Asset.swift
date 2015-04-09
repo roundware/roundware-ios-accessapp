@@ -7,8 +7,8 @@ enum MediaType {
   case Photo
   case Audio
 }
-struct Project {
-  var projectDescription = ""
+struct Asset {
+  var assetDescription = ""
   var volume = 0
   var project = 0
   var assetID = 0
@@ -17,7 +17,7 @@ struct Project {
   var fileURL = NSURL()
 
   init(json: JSON) {
-    projectDescription = json["description"].string ?? ""
+    assetDescription = json["description"].string ?? ""
     volume = json["volume"].int ?? 0
     project = json["project"].int ?? 0
     assetID = json["asset_d"].int ?? 0

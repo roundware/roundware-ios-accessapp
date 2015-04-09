@@ -1,9 +1,10 @@
 import UIKit
 
-class BrowseDetailTableViewController: UITableViewController {
+class BrowseDetailTableViewController: BaseTableViewController {
 
   let CellIdentifier = "BrowseDetailCellIdentifier"
   var tagID = 0
+  var currentTag: Tag?
 
   @IBOutlet weak var segmentedControl: UISegmentedControl!
 
@@ -35,14 +36,10 @@ class BrowseDetailTableViewController: UITableViewController {
     self.navigationController?.view.backgroundColor = UIColor.clearColor()
     self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
 
-    self.navigationItem.title = "Mission Moon"
+    currentTag = self.rwData?.exhibitions.filter { $0.tagId == self.tagID }.first
+    self.navigationItem.title = currentTag?.value
 
     self.navigationController?.navigationBar.becomeFirstResponder()
-  }
-
-  override func viewDidAppear(animated: Bool) {
-    super.viewDidAppear(animated)
-    debugPrintln("TAGID: \(self.tagID)")
   }
 
   // MARK: - Table view data source
