@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7528.3" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7518.3"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -153,6 +153,43 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="artifactImageView" destination="YwJ-8W-k22" id="Xwc-dZ-gJW"/>
+                                    <outlet property="assetLabel" destination="CoT-dJ-026" id="QLi-oG-9Fz"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" restorationIdentifier="BrowseTextCellIdentifier" selectionStyle="none" indentationWidth="10" reuseIdentifier="BrowseTextCellIdentifier" rowHeight="125" id="PCn-Aa-5od" customClass="BrowseTextTableViewCell" customModule="Digita11y" customModuleProvider="target">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" tableViewCell="PCn-Aa-5od" id="28c-eU-iy3">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" text="Telescope M-53 Audio 1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xt2-eg-0vc">
+                                            <rect key="frame" x="18" y="18" width="179" height="20"/>
+                                            <accessibility key="accessibilityConfiguration" hint="Plays audio">
+                                                <accessibilityTraits key="traits" none="YES" button="YES" staticText="YES"/>
+                                            </accessibility>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="999" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SSj-xj-A9G">
+                                            <rect key="frame" x="8" y="38" width="574" height="68"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        </textView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="xt2-eg-0vc" firstAttribute="bottom" secondItem="SSj-xj-A9G" secondAttribute="top" id="a1X-4F-Zgn"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="SSj-xj-A9G" secondAttribute="bottom" constant="10" id="dNm-8q-VND"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="SSj-xj-A9G" secondAttribute="trailing" constant="10" id="g0d-hm-297"/>
+                                        <constraint firstItem="xt2-eg-0vc" firstAttribute="leading" secondItem="28c-eU-iy3" secondAttribute="leadingMargin" constant="10" id="gJa-2Z-Fwt"/>
+                                        <constraint firstItem="xt2-eg-0vc" firstAttribute="top" secondItem="28c-eU-iy3" secondAttribute="topMargin" constant="10" id="oAS-Fs-a3T"/>
+                                        <constraint firstItem="SSj-xj-A9G" firstAttribute="leading" secondItem="28c-eU-iy3" secondAttribute="leadingMargin" id="zqK-V2-tj4"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="descriptionTextView" destination="SSj-xj-A9G" id="aa3-Wo-cpg"/>
+                                    <outlet property="titleLabel" destination="xt2-eg-0vc" id="hlF-MP-HBb"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

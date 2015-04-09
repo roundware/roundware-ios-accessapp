@@ -56,9 +56,18 @@ class BrowseDetailTableViewController: BaseTableViewController {
   }
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as! BrowseDetailTableViewCell
-    cell.artifactImageView.layer.cornerRadius = 32.0
-    cell.artifactImageView.layer.masksToBounds = true
-    return cell
+    let asset = assets[indexPath.row]
+    switch (asset.mediaType) {
+    case .Text:
+      let cell = tableView.dequeueReusableCellWithIdentifier("BrowseTextTableViewCellIdentifier", forIndexPath: indexPath) as! BrowseTextTableViewCell
+      cell.descriptionTextView.text = asset.fileURL.absoluteString
+      return cell
+    default:
+      let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as! BrowseDetailTableViewCell
+      cell.artifactImageView.layer.cornerRadius = 32.0
+      cell.artifactImageView.layer.masksToBounds = true
+      cell.assetLabel.text = assets[indexPath.row].assetDescription
+      return cell
+    }
   }
 }

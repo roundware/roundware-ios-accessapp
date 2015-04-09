@@ -49,6 +49,8 @@
 		4EA392911A9FC2E800308613 /* PhotoDrawerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA3928F1A9FC2E800308613 /* PhotoDrawerTableViewCell.swift */; };
 		4EC5C0A51ACE14E900BA8AA9 /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC5C0A41ACE14E900BA8AA9 /* Stream.swift */; };
 		4EC5C0A61ACE14E900BA8AA9 /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC5C0A41ACE14E900BA8AA9 /* Stream.swift */; };
+		4ED2160E1AD72E7E004FCA82 /* BrowseTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED2160D1AD72E7E004FCA82 /* BrowseTextTableViewCell.swift */; };
+		4ED216101AD730A1004FCA82 /* BrowseTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED2160D1AD72E7E004FCA82 /* BrowseTextTableViewCell.swift */; };
 		4EF024781AA1288600F93604 /* BrowseDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF024771AA1288600F93604 /* BrowseDetailTableViewCell.swift */; };
 		4EF024791AA1288600F93604 /* BrowseDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF024771AA1288600F93604 /* BrowseDetailTableViewCell.swift */; };
 		A258A79619066C709E276516 /* libPods-Digita11y.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A102BA3854E1C1CFF54EDE6C /* libPods-Digita11y.a */; };
@@ -131,6 +133,7 @@
 		4EA3928E1A9FBDBC00308613 /* Digita11y-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Digita11y-Bridging-Header.h"; sourceTree = "<group>"; };
 		4EA3928F1A9FC2E800308613 /* PhotoDrawerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoDrawerTableViewCell.swift; path = Views/PhotoDrawerTableViewCell.swift; sourceTree = "<group>"; };
 		4EC5C0A41ACE14E900BA8AA9 /* Stream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stream.swift; path = Models/Stream.swift; sourceTree = "<group>"; };
+		4ED2160D1AD72E7E004FCA82 /* BrowseTextTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BrowseTextTableViewCell.swift; path = Views/BrowseTextTableViewCell.swift; sourceTree = "<group>"; };
 		4EF024771AA1288600F93604 /* BrowseDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BrowseDetailTableViewCell.swift; path = Views/BrowseDetailTableViewCell.swift; sourceTree = "<group>"; };
 		A102BA3854E1C1CFF54EDE6C /* libPods-Digita11y.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Digita11y.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -255,6 +258,7 @@
 				4E5946741A9BB81B007ED02C /* Main.storyboard */,
 				4E5946791A9BB81B007ED02C /* LaunchScreen.xib */,
 				4E5946951A9BE9A5007ED02C /* BrowseTableViewCell.swift */,
+				4ED2160D1AD72E7E004FCA82 /* BrowseTextTableViewCell.swift */,
 				4EF024771AA1288600F93604 /* BrowseDetailTableViewCell.swift */,
 				4E6C4AC71AB2ADEA00B5FEAC /* AudioDrawerTableViewCell.swift */,
 				4E6D9CB71AAE2A040002D543 /* MicrophoneLevelsView.swift */,
@@ -487,6 +491,7 @@
 				4E59466F1A9BB81B007ED02C /* AppDelegate.swift in Sources */,
 				4EC5C0A51ACE14E900BA8AA9 /* Stream.swift in Sources */,
 				4EA392901A9FC2E800308613 /* PhotoDrawerTableViewCell.swift in Sources */,
+				4ED2160E1AD72E7E004FCA82 /* BrowseTextTableViewCell.swift in Sources */,
 				4E5946911A9BBFB7007ED02C /* BrowseTableViewController.swift in Sources */,
 				4E6D9CB81AAE2A040002D543 /* MicrophoneLevelsView.swift in Sources */,
 				4E7184291AC8E3D600C88A58 /* ListenViewController.swift in Sources */,
@@ -510,6 +515,7 @@
 				4EC5C0A61ACE14E900BA8AA9 /* Stream.swift in Sources */,
 				4E59469A1A9D2095007ED02C /* BrowseDetailTableViewController.swift in Sources */,
 				4E6ACDDE1AAE528400314A9F /* ContributeArtifactTableViewController.swift in Sources */,
+				4ED216101AD730A1004FCA82 /* BrowseTextTableViewCell.swift in Sources */,
 				4E7184271AC7760500C88A58 /* BaseViewController.swift in Sources */,
 				4EA392911A9FC2E800308613 /* PhotoDrawerTableViewCell.swift in Sources */,
 				4E5946871A9BB81B007ED02C /* Digita11yTests.swift in Sources */,
