@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7528.3" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7518.3"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Browse-->
@@ -43,7 +42,7 @@
                                 <connections>
                                     <outlet property="bannerImageView" destination="Fqg-sK-Nzq" id="ch6-bZ-J6g"/>
                                     <outlet property="titleLabel" destination="MD1-wv-z2B" id="0MN-lg-UXe"/>
-                                    <segue destination="0qf-4s-bo6" kind="show" id="nxD-0L-hQt"/>
+                                    <segue destination="0qf-4s-bo6" kind="show" identifier="BrowseDetailSegue" id="nxD-0L-hQt"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -102,15 +101,8 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PGv-BD-lqQ" id="gts-Oz-O37">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" image="missionmoon-64" translatesAutoresizingMaskIntoConstraints="NO" id="YwJ-8W-k22">
-                                            <rect key="frame" x="16" y="18" width="64" height="64"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="64" id="9vZ-vP-4Wy"/>
-                                                <constraint firstAttribute="height" constant="64" id="GZg-yu-npr"/>
-                                            </constraints>
-                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Telescope M-53 Audio 1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CoT-dJ-026">
-                                            <rect key="frame" x="100" y="18" width="179" height="20"/>
+                                            <rect key="frame" x="18" y="18" width="179" height="20"/>
                                             <accessibility key="accessibilityConfiguration" hint="Plays audio">
                                                 <accessibilityTraits key="traits" none="YES" button="YES" staticText="YES"/>
                                             </accessibility>
@@ -118,42 +110,88 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="1000" text="Adler Collection M-353" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7iy-No-B3g">
-                                            <rect key="frame" x="100" y="38" width="119" height="14"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d3n-CE-BjA" userLabel="Play Button">
-                                            <rect key="frame" x="102" y="62" width="12" height="22"/>
+                                            <rect key="frame" x="18" y="43" width="40" height="40"/>
                                             <accessibility key="accessibilityConfiguration">
                                                 <accessibilityTraits key="traits" none="YES"/>
                                                 <bool key="isElement" value="NO"/>
                                             </accessibility>
-                                            <state key="normal" image="play-button">
+                                            <state key="normal" image="audio-play-button">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="scrubber" translatesAutoresizingMaskIntoConstraints="NO" id="IWR-mG-3vq">
-                                            <rect key="frame" x="124" y="71" width="350" height="4"/>
-                                        </imageView>
+                                        <view contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="nnC-cs-kLj" customClass="MicrophoneLevelsView" customModule="Digita11y" customModuleProvider="target">
+                                            <rect key="frame" x="68" y="53" width="514" height="20"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="20" id="W2c-Or-mDA"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="onColor">
+                                                    <color key="value" red="0.98823529409999999" green="0.0" blue="0.39607843139999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="offColor">
+                                                    <color key="value" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="numLevels">
+                                                    <integer key="value" value="40"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="percent">
+                                                    <real key="value" value="0.0"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="CoT-dJ-026" firstAttribute="top" secondItem="gts-Oz-O37" secondAttribute="topMargin" constant="10" id="9NQ-ed-95r"/>
-                                        <constraint firstItem="YwJ-8W-k22" firstAttribute="top" secondItem="gts-Oz-O37" secondAttribute="topMargin" constant="10" id="DYf-WO-uuR"/>
-                                        <constraint firstItem="YwJ-8W-k22" firstAttribute="leading" secondItem="gts-Oz-O37" secondAttribute="leadingMargin" constant="8" id="EFg-8u-8Kr"/>
-                                        <constraint firstItem="7iy-No-B3g" firstAttribute="leading" secondItem="d3n-CE-BjA" secondAttribute="leading" constant="-2" id="JXV-5k-qfN"/>
-                                        <constraint firstItem="IWR-mG-3vq" firstAttribute="leading" secondItem="d3n-CE-BjA" secondAttribute="trailing" constant="10" id="N1k-mW-V5Z"/>
-                                        <constraint firstItem="CoT-dJ-026" firstAttribute="leading" secondItem="YwJ-8W-k22" secondAttribute="trailing" constant="20" id="Qt2-Xb-Wgl"/>
-                                        <constraint firstItem="7iy-No-B3g" firstAttribute="top" secondItem="CoT-dJ-026" secondAttribute="bottom" id="Rfp-Zr-273"/>
-                                        <constraint firstItem="7iy-No-B3g" firstAttribute="leading" secondItem="YwJ-8W-k22" secondAttribute="trailing" constant="20" id="UaO-qc-DPX"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="7iy-No-B3g" secondAttribute="bottom" constant="33" id="WM9-rA-9tF"/>
-                                        <constraint firstItem="IWR-mG-3vq" firstAttribute="centerY" secondItem="d3n-CE-BjA" secondAttribute="centerY" id="c5v-J4-oFc"/>
-                                        <constraint firstItem="d3n-CE-BjA" firstAttribute="top" secondItem="7iy-No-B3g" secondAttribute="bottom" constant="10" id="h2z-2Q-kf5"/>
+                                        <constraint firstItem="d3n-CE-BjA" firstAttribute="leading" secondItem="gts-Oz-O37" secondAttribute="leadingMargin" constant="10" id="EyJ-C0-EDS"/>
+                                        <constraint firstItem="nnC-cs-kLj" firstAttribute="leading" secondItem="d3n-CE-BjA" secondAttribute="trailing" constant="10" id="e3M-4S-19T"/>
+                                        <constraint firstItem="CoT-dJ-026" firstAttribute="leading" secondItem="gts-Oz-O37" secondAttribute="leadingMargin" constant="10" id="fOn-Ob-Wbs"/>
+                                        <constraint firstItem="d3n-CE-BjA" firstAttribute="centerY" secondItem="nnC-cs-kLj" secondAttribute="centerY" id="huf-Od-L3M"/>
+                                        <constraint firstItem="d3n-CE-BjA" firstAttribute="top" secondItem="CoT-dJ-026" secondAttribute="bottom" constant="5" id="kCZ-HG-Aik"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="nnC-cs-kLj" secondAttribute="trailing" constant="10" id="piT-2c-7xX"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="artifactImageView" destination="YwJ-8W-k22" id="Xwc-dZ-gJW"/>
+                                    <outlet property="assetLabel" destination="CoT-dJ-026" id="QLi-oG-9Fz"/>
+                                    <outlet property="micLevelsView" destination="nnC-cs-kLj" id="y7n-Vx-c13"/>
+                                    <outlet property="playButton" destination="d3n-CE-BjA" id="mcj-I5-rva"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" restorationIdentifier="BrowseTextCellIdentifier" selectionStyle="none" indentationWidth="10" reuseIdentifier="BrowseTextCellIdentifier" rowHeight="125" id="PCn-Aa-5od" customClass="BrowseTextTableViewCell" customModule="Digita11y" customModuleProvider="target">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" tableViewCell="PCn-Aa-5od" id="28c-eU-iy3">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" text="Telescope M-53 Audio 1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xt2-eg-0vc">
+                                            <rect key="frame" x="18" y="18" width="179" height="20"/>
+                                            <accessibility key="accessibilityConfiguration" hint="Plays audio">
+                                                <accessibilityTraits key="traits" none="YES" button="YES" staticText="YES"/>
+                                            </accessibility>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="999" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SSj-xj-A9G">
+                                            <rect key="frame" x="8" y="38" width="574" height="68"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        </textView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="xt2-eg-0vc" firstAttribute="bottom" secondItem="SSj-xj-A9G" secondAttribute="top" id="a1X-4F-Zgn"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="SSj-xj-A9G" secondAttribute="bottom" constant="10" id="dNm-8q-VND"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="SSj-xj-A9G" secondAttribute="trailing" constant="10" id="g0d-hm-297"/>
+                                        <constraint firstItem="xt2-eg-0vc" firstAttribute="leading" secondItem="28c-eU-iy3" secondAttribute="leadingMargin" constant="10" id="gJa-2Z-Fwt"/>
+                                        <constraint firstItem="xt2-eg-0vc" firstAttribute="top" secondItem="28c-eU-iy3" secondAttribute="topMargin" constant="10" id="oAS-Fs-a3T"/>
+                                        <constraint firstItem="SSj-xj-A9G" firstAttribute="leading" secondItem="28c-eU-iy3" secondAttribute="leadingMargin" id="zqK-V2-tj4"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="descriptionTextView" destination="SSj-xj-A9G" id="aa3-Wo-cpg"/>
+                                    <outlet property="titleLabel" destination="xt2-eg-0vc" id="hlF-MP-HBb"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -184,9 +222,6 @@
                         <subviews>
                             <imageView clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="500" image="listen-heroshot" translatesAutoresizingMaskIntoConstraints="NO" id="pqQ-hr-w4Q">
                                 <rect key="frame" x="-4" y="149" width="608" height="286"/>
-                                <accessibility key="accessibilityConfiguration">
-                                    <bool key="isElement" value="YES"/>
-                                </accessibility>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AAT-uh-Cyo">
                                 <rect key="frame" x="-4" y="44" width="608" height="105"/>
@@ -289,6 +324,13 @@
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <state key="disabled">
+                                        <color key="titleColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="titleShadowColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="uploadAllMedia:" destination="Mst-m9-Cpj" eventType="touchUpInside" id="TxZ-av-AeL"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -305,6 +347,84 @@
                             </variation>
                         </view>
                         <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AudioDrawerCellIdentifier" rowHeight="114" id="mqH-La-Lmw" customClass="AudioDrawerTableViewCell" customModule="Digita11y" customModuleProvider="target">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mqH-La-Lmw" id="5DC-HU-1Xc">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kAU-0z-JUK">
+                                            <rect key="frame" x="18" y="18" width="40" height="40"/>
+                                            <accessibility key="accessibilityConfiguration" hint=""/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="DMi-8B-mob"/>
+                                                <constraint firstAttribute="width" constant="40" id="vlR-w2-8Ho"/>
+                                            </constraints>
+                                            <state key="normal" image="audio-record-button">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Njv-Ve-die">
+                                            <rect key="frame" x="78" y="18" width="37" height="17"/>
+                                            <accessibility key="accessibilityConfiguration" hint="0 seconds"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <view contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="q9s-MD-diD" customClass="MicrophoneLevelsView" customModule="Digita11y" customModuleProvider="target">
+                                            <rect key="frame" x="78" y="45" width="504" height="20"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="20" id="YbL-al-6pi"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="onColor">
+                                                    <color key="value" red="0.98823529409999999" green="0.0" blue="0.39607843139999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="offColor">
+                                                    <color key="value" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="numLevels">
+                                                    <integer key="value" value="40"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="percent">
+                                                    <real key="value" value="0.0"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="999" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UZD-Ch-a1S">
+                                            <rect key="frame" x="78" y="75" width="502" height="20"/>
+                                            <color key="backgroundColor" red="0.87843137250000003" green="0.16862745100000001" blue="0.37254901959999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <state key="normal" title="Discard">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <state key="disabled">
+                                                <color key="titleColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="titleShadowColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="UZD-Ch-a1S" secondAttribute="bottom" constant="10" id="1lA-EF-1Hr"/>
+                                        <constraint firstItem="UZD-Ch-a1S" firstAttribute="leading" secondItem="Njv-Ve-die" secondAttribute="leading" id="AYX-P8-KiO"/>
+                                        <constraint firstItem="Njv-Ve-die" firstAttribute="top" secondItem="5DC-HU-1Xc" secondAttribute="topMargin" constant="10" id="Oys-Y0-3pL"/>
+                                        <constraint firstItem="kAU-0z-JUK" firstAttribute="top" secondItem="5DC-HU-1Xc" secondAttribute="topMargin" constant="10" id="WOf-I5-j3m"/>
+                                        <constraint firstAttribute="trailing" secondItem="UZD-Ch-a1S" secondAttribute="trailing" constant="20" id="aA6-4o-PAM"/>
+                                        <constraint firstItem="q9s-MD-diD" firstAttribute="bottom" secondItem="UZD-Ch-a1S" secondAttribute="top" constant="-10" id="edp-nT-Nhb"/>
+                                        <constraint firstItem="Njv-Ve-die" firstAttribute="leading" secondItem="kAU-0z-JUK" secondAttribute="trailing" constant="20" id="fGm-0r-fHC"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="q9s-MD-diD" secondAttribute="trailing" constant="10" id="kmk-jL-P8D"/>
+                                        <constraint firstItem="kAU-0z-JUK" firstAttribute="leading" secondItem="5DC-HU-1Xc" secondAttribute="leadingMargin" constant="10" id="no3-W8-LDJ"/>
+                                        <constraint firstItem="q9s-MD-diD" firstAttribute="top" secondItem="Njv-Ve-die" secondAttribute="bottom" constant="10" id="r2n-dp-jIg"/>
+                                        <constraint firstItem="Njv-Ve-die" firstAttribute="leading" secondItem="q9s-MD-diD" secondAttribute="leading" id="tqW-Zg-ibz"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="discardButton" destination="UZD-Ch-a1S" id="eGR-Cs-rbr"/>
+                                    <outlet property="microphoneLevelsView" destination="q9s-MD-diD" id="wSO-dw-sdX"/>
+                                    <outlet property="progressLabel" destination="Njv-Ve-die" id="n4k-w1-fYO"/>
+                                    <outlet property="recordButton" destination="kAU-0z-JUK" id="3PL-yd-PPV"/>
+                                </connections>
+                            </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ArtifactCellIdentifier" rowHeight="144" id="Dpd-Pk-obI" customClass="TextDrawerTableViewCell" customModule="Digita11y" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dpd-Pk-obI" id="s8l-bu-Vo6">
@@ -331,74 +451,6 @@
                                     <segue destination="YIK-7U-NXG" kind="show" id="DEL-Om-jNK"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AudioDrawerCellIdentifier" rowHeight="114" id="mqH-La-Lmw" customClass="AudioDrawerTableViewCell" customModule="Digita11y" customModuleProvider="target">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mqH-La-Lmw" id="5DC-HU-1Xc">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kAU-0z-JUK">
-                                            <rect key="frame" x="100" y="18" width="39" height="39"/>
-                                            <accessibility key="accessibilityConfiguration" hint=""/>
-                                            <state key="normal" image="record-button">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                        </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Njv-Ve-die">
-                                            <rect key="frame" x="159" y="18" width="37" height="17"/>
-                                            <accessibility key="accessibilityConfiguration" hint="0 seconds"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UZD-Ch-a1S">
-                                            <rect key="frame" x="100" y="65" width="490" height="30"/>
-                                            <color key="backgroundColor" red="0.9882352941176471" green="0.0" blue="0.396078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <state key="normal" title="Preview">
-                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                        </button>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q9s-MD-diD" customClass="MicrophoneLevelsView" customModule="Digita11y" customModuleProvider="target">
-                                            <rect key="frame" x="159" y="35" width="431" height="22"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="onColor">
-                                                    <color key="value" red="0.98823529409999999" green="0.0" blue="0.39607843139999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="offColor">
-                                                    <color key="value" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="numLevels">
-                                                    <integer key="value" value="40"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="percent">
-                                                    <real key="value" value="0.0"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                        </view>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="bottomMargin" secondItem="UZD-Ch-a1S" secondAttribute="bottom" constant="10" id="1lA-EF-1Hr"/>
-                                        <constraint firstItem="kAU-0z-JUK" firstAttribute="bottom" secondItem="q9s-MD-diD" secondAttribute="bottom" id="7IE-e5-3K4"/>
-                                        <constraint firstItem="UZD-Ch-a1S" firstAttribute="leading" secondItem="5DC-HU-1Xc" secondAttribute="centerXWithinMargins" multiplier="1/3" id="BFU-2s-JpM"/>
-                                        <constraint firstItem="kAU-0z-JUK" firstAttribute="leading" secondItem="UZD-Ch-a1S" secondAttribute="leading" id="Izc-Ha-drq"/>
-                                        <constraint firstItem="kAU-0z-JUK" firstAttribute="trailing" secondItem="Njv-Ve-die" secondAttribute="leading" constant="-20" id="Kpf-yE-WOj"/>
-                                        <constraint firstItem="Njv-Ve-die" firstAttribute="top" secondItem="kAU-0z-JUK" secondAttribute="top" id="Mf6-dj-u0R"/>
-                                        <constraint firstItem="UZD-Ch-a1S" firstAttribute="trailing" secondItem="q9s-MD-diD" secondAttribute="trailing" id="Mx8-Q5-ETQ"/>
-                                        <constraint firstItem="kAU-0z-JUK" firstAttribute="top" secondItem="5DC-HU-1Xc" secondAttribute="topMargin" constant="10" id="WOf-I5-j3m"/>
-                                        <constraint firstAttribute="trailing" secondItem="UZD-Ch-a1S" secondAttribute="trailing" constant="10" id="aA6-4o-PAM"/>
-                                        <constraint firstItem="UZD-Ch-a1S" firstAttribute="top" secondItem="kAU-0z-JUK" secondAttribute="bottom" constant="8" id="buH-z5-Gj1"/>
-                                        <constraint firstItem="q9s-MD-diD" firstAttribute="top" secondItem="Njv-Ve-die" secondAttribute="bottom" id="r2n-dp-jIg"/>
-                                        <constraint firstItem="Njv-Ve-die" firstAttribute="leading" secondItem="q9s-MD-diD" secondAttribute="leading" id="tqW-Zg-ibz"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="microphoneLevelsView" destination="q9s-MD-diD" id="wSO-dw-sdX"/>
-                                    <outlet property="previewButton" destination="UZD-Ch-a1S" id="7Vq-EV-9Rl"/>
-                                    <outlet property="progressLabel" destination="Njv-Ve-die" id="n4k-w1-fYO"/>
-                                    <outlet property="recordButton" destination="kAU-0z-JUK" id="3PL-yd-PPV"/>
-                                </connections>
-                            </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PhotoDrawerCellIdentifier" rowHeight="144" id="z1R-KJ-YUs" customClass="PhotoDrawerTableViewCell" customModule="Digita11y" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="z1R-KJ-YUs" id="hk0-a8-xzY">
@@ -418,7 +470,7 @@
                                                 <constraint firstAttribute="height" constant="64" id="ZNI-4N-Fgo"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                                         </textView>
                                         <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Dl-t4-MaY">
                                             <rect key="frame" x="28" y="92" width="544" height="33"/>
@@ -457,7 +509,7 @@
                                             <rect key="frame" x="18" y="18" width="564" height="107"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                                         </textView>
                                     </subviews>
                                     <constraints>
@@ -468,7 +520,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="textView" destination="oJK-bN-FR4" id="2VO-PG-iYc"/>
+                                    <outlet property="contributeTextView" destination="oJK-bN-FR4" id="9nG-6E-srM"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -478,6 +530,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Contribute" id="Id6-R3-I0P"/>
+                    <connections>
+                        <outlet property="uploadButton" destination="UWo-p8-9YE" id="OyN-tb-at4"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="On5-Jv-hJH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -497,7 +552,7 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="ContributeArtifactCellIdentifier" textLabel="P36-e5-ssJ" style="IBUITableViewCellStyleDefault" id="Job-nv-L4f">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ContributeArtifactCellIdentifier" textLabel="P36-e5-ssJ" style="IBUITableViewCellStyleDefault" id="Job-nv-L4f">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Job-nv-L4f" id="rxo-c5-aEF">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -615,17 +670,15 @@
         </scene>
     </scenes>
     <resources>
+        <image name="audio-play-button" width="40" height="40"/>
+        <image name="audio-record-button" width="40" height="40"/>
         <image name="browse-cell" width="320" height="125"/>
         <image name="browse-detail" width="640" height="282"/>
         <image name="browse-tab-icon" width="612" height="792"/>
         <image name="contribute-tab-icon" width="612" height="792"/>
         <image name="listen-heroshot" width="320" height="286"/>
         <image name="listen-tab-icon" width="612" height="792"/>
-        <image name="missionmoon-64" width="64" height="64"/>
-        <image name="play-button" width="12" height="15"/>
         <image name="player-button" width="15" height="17"/>
-        <image name="record-button" width="39" height="39"/>
-        <image name="scrubber" width="350" height="4"/>
     </resources>
     <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
 </document>

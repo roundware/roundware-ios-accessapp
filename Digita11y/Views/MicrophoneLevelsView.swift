@@ -22,7 +22,7 @@ class MicrophoneLevelsView: UIView {
     onColor.set()
     for var i = 0; i < self.numLevels; ++i {
       if (i%2 == 0) {
-        if (Float(i/self.numLevels) > self.percent) {
+        if (Float(i)/Float(self.numLevels) >= self.percent) {
           self.offColor.set()
         } else {
           self.onColor.set()

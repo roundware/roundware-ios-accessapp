@@ -1,5 +1,5 @@
 import UIKit
 
 class TextDrawerTableViewCell: UITableViewCell {
-  @IBOutlet weak var textView: SZTextView!
+  @IBOutlet weak var contributeTextView: SZTextView!
 }

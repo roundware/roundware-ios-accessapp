@@ -1,8 +1,11 @@
 import UIKit
 
-class BrowseDetailTableViewController: UITableViewController {
+class BrowseDetailTableViewController: BaseTableViewController {
 
   let CellIdentifier = "BrowseDetailCellIdentifier"
+  var tagID = 0
+  var currentTag: Tag?
+  var assets: [Asset] = []
 
   @IBOutlet weak var segmentedControl: UISegmentedControl!
 
@@ -11,17 +14,17 @@ class BrowseDetailTableViewController: UITableViewController {
 
     self.automaticallyAdjustsScrollViewInsets = false
 
-    tableView.rowHeight = UITableViewAutomaticDimension
-    tableView.estimatedRowHeight = 125.0
+    tableView.rowHeight = 94
+    tableView.estimatedRowHeight = 94
 
     if let v = self.segmentedControl.subviews[0] as? UIView {
-      v.accessibilityLabel = "Filters by artifact"
+      v.accessibilityHint = "Filters by artifact"
     }
     if let v = self.segmentedControl.subviews[1] as? UIView {
-      v.accessibilityLabel = "Filters by contributor"
+      v.accessibilityHint = "Filters by contributor"
     }
     if let v = self.segmentedControl.subviews[2] as? UIView {
-      v.accessibilityLabel = "Filters by medium"
+      v.accessibilityHint = "Filters by medium"
     }
   }
 
@@ -34,7 +37,10 @@ class BrowseDetailTableViewController: UITableViewController {
     self.navigationController?.view.backgroundColor = UIColor.clearColor()
     self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
 
-    self.navigationItem.title = "Mission Moon"
+    currentTag = self.rwData?.exhibitions.filter { $0.tagId == self.tagID }.first
+    self.navigationItem.title = currentTag?.value
+
+    assets = self.rwData?.assets.filter { contains($0.tagIDs, self.tagID) } ?? []
 
     self.navigationController?.navigationBar.becomeFirstResponder()
   }
@@ -46,13 +52,31 @@ class BrowseDetailTableViewController: UITableViewController {
   }
 
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      return 10
+      return assets.count
   }
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as! BrowseDetailTableViewCell
-    cell.artifactImageView.layer.cornerRadius = 32.0
-    cell.artifactImageView.layer.masksToBounds = true
-    return cell
+    let asset = assets[indexPath.row]
+    switch (asset.mediaType) {
+    case .Text:
+      let cell = tableView.dequeueReusableCellWithIdentifier("BrowseTextTableViewCellIdentifier", forIndexPath: indexPath) as! BrowseTextTableViewCell
+      cell.descriptionTextView.text = asset.fileURL.absoluteString
+      return cell
+    case .Audio:
+      let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as! BrowseDetailTableViewCell
+      cell.assetLabel.text = asset.assetDescription.isEmpty ? "Telescope M-53 Audio 1" : asset.assetDescription
+      cell.playButton.addTarget(self, action: "playAudio:", forControlEvents: .TouchUpInside)
+      cell.playButton.tag = indexPath.row
+      return cell
+    default:
+      let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as! BrowseDetailTableViewCell
+      cell.assetLabel.text = asset.assetDescription.isEmpty ? "Telescope M-53 Audio 1" : asset.assetDescription
+      return cell
+    }
+  }
+
+  func playAudio(button: UIButton) {
+    var asset = assets[button.tag]
+    debugPrintln(asset.fileURL.absoluteString)
   }
 }

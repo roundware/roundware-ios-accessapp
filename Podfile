@@ -6,6 +6,7 @@ inhibit_all_warnings!
 target 'Digita11y' do
   pod 'CrashlyticsFramework', '~> 2.2'
   pod 'SZTextView',           '~> 1.1'
+  pod 'SVProgressHUD'
 end
 
 target 'Digita11yTests' do
