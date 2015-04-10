@@ -14,8 +14,8 @@ class BrowseDetailTableViewController: BaseTableViewController {
 
     self.automaticallyAdjustsScrollViewInsets = false
 
-    tableView.rowHeight = UITableViewAutomaticDimension
-    tableView.estimatedRowHeight = 125.0
+    tableView.rowHeight = 94
+    tableView.estimatedRowHeight = 94
 
     if let v = self.segmentedControl.subviews[0] as? UIView {
       v.accessibilityHint = "Filters by artifact"
@@ -62,12 +62,21 @@ class BrowseDetailTableViewController: BaseTableViewController {
       let cell = tableView.dequeueReusableCellWithIdentifier("BrowseTextTableViewCellIdentifier", forIndexPath: indexPath) as! BrowseTextTableViewCell
       cell.descriptionTextView.text = asset.fileURL.absoluteString
       return cell
+    case .Audio:
+      let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as! BrowseDetailTableViewCell
+      cell.assetLabel.text = asset.assetDescription.isEmpty ? "Telescope M-53 Audio 1" : asset.assetDescription
+      cell.playButton.addTarget(self, action: "playAudio:", forControlEvents: .TouchUpInside)
+      cell.playButton.tag = indexPath.row
+      return cell
     default:
       let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as! BrowseDetailTableViewCell
-      cell.artifactImageView.layer.cornerRadius = 32.0
-      cell.artifactImageView.layer.masksToBounds = true
-      cell.assetLabel.text = assets[indexPath.row].assetDescription
+      cell.assetLabel.text = asset.assetDescription.isEmpty ? "Telescope M-53 Audio 1" : asset.assetDescription
       return cell
     }
+  }
+
+  func playAudio(button: UIButton) {
+    var asset = assets[button.tag]
+    debugPrintln(asset.fileURL.absoluteString)
   }
 }
