@@ -56,7 +56,10 @@ class BrowseDetailTableViewController: BaseTableViewController {
   }
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+
     let asset = assets[indexPath.row]
+    let tag = asset.tagIDs.map { self.rwData?.objectForID($0) }.filter { $0 != nil }.first
+
     switch (asset.mediaType) {
     case .Text:
       let cell = tableView.dequeueReusableCellWithIdentifier("BrowseTextTableViewCellIdentifier", forIndexPath: indexPath) as! BrowseTextTableViewCell
@@ -64,13 +67,13 @@ class BrowseDetailTableViewController: BaseTableViewController {
       return cell
     case .Audio:
       let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as! BrowseDetailTableViewCell
-      cell.assetLabel.text = asset.assetDescription.isEmpty ? "Telescope M-53 Audio 1" : asset.assetDescription
+      cell.assetLabel.text = tag??.value ?? "Telescope M-53 Audio 1"
       cell.playButton.addTarget(self, action: "playAudio:", forControlEvents: .TouchUpInside)
       cell.playButton.tag = indexPath.row
       return cell
     default:
       let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as! BrowseDetailTableViewCell
-      cell.assetLabel.text = asset.assetDescription.isEmpty ? "Telescope M-53 Audio 1" : asset.assetDescription
+      cell.assetLabel.text = tag??.value ?? "Telescope M-53 Audio 1"
       return cell
     }
   }

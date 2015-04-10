@@ -12,4 +12,10 @@ class RWData {
       return group.first?.options ?? []
     }
   }
+
+  func objectForID(tagID: Int) -> Tag? {
+    var group:[TagGroup] = listenTags.filter { $0.code == "object" }
+    var tags = group.first?.options.filter { $0.tagId == tagID }
+    return tags?.first
+  }
 }
