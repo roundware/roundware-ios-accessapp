@@ -79,13 +79,25 @@ class BrowseDetailTableViewController: BaseTableViewController {
     }
   }
 
+  func resetPlayButtons() {
+    for var i = 0; i < assets.count; ++i {
+      var a = assets[i]
+      if a.mediaType == .Audio {
+        if let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: i, inSection: 0)) as? BrowseDetailTableViewCell {
+          cell.playButton.setImage(UIImage(named:"browse-play-button"), forState: .Normal)
+        }
+      }
+    }
+  }
+
   func playAudio(button: UIButton) {
+    self.resetPlayButtons()
+
     var asset = assets[button.tag]
     if assetPlayer?.asset.assetID == asset.assetID {
       if let player = assetPlayer?.player {
         if assetPlayer!.isPlaying {
           player.pause()
-          button.setImage(UIImage(named:"browse-play-button"), forState: .Normal)
         } else {
           player.play()
           button.setImage(UIImage(named:"browse-pause-button"), forState: .Normal)
@@ -98,7 +110,6 @@ class BrowseDetailTableViewController: BaseTableViewController {
     } else {
       if let player = assetPlayer?.player {
         player.pause()
-        button.setImage(UIImage(named:"browse-play-button"), forState: .Normal)
       }
       assetPlayer = AssetPlayer(asset: asset)
       assetPlayer!.player?.play()
