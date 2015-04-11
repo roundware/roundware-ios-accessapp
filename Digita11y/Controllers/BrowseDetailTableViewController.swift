@@ -1,4 +1,5 @@
 import UIKit
+import AVFoundation
 
 class BrowseDetailTableViewController: BaseTableViewController {
 
@@ -7,6 +8,8 @@ class BrowseDetailTableViewController: BaseTableViewController {
   var currentTag: Tag?
   var assets: [Asset] = []
   var assetPlayer: AssetPlayer?
+  var timer: NSTimer?
+  var currentAsset: Int = 0
 
   @IBOutlet weak var segmentedControl: UISegmentedControl!
 
@@ -98,22 +101,38 @@ class BrowseDetailTableViewController: BaseTableViewController {
       if let player = assetPlayer?.player {
         if assetPlayer!.isPlaying {
           player.pause()
+          timer?.invalidate()
         } else {
           player.play()
+          currentAsset = button.tag
+          timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target:self, selector:Selector("audioTimer:"), userInfo:nil, repeats:true)
           button.setImage(UIImage(named:"browse-pause-button"), forState: .Normal)
         }
       } else {
         assetPlayer = AssetPlayer(asset: asset)
         assetPlayer!.player?.play()
+        currentAsset = button.tag
+        timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target:self, selector:Selector("audioTimer:"), userInfo:nil, repeats:true)
         button.setImage(UIImage(named:"browse-pause-button"), forState: .Normal)
       }
     } else {
       if let player = assetPlayer?.player {
         player.pause()
+        timer?.invalidate()
       }
       assetPlayer = AssetPlayer(asset: asset)
       assetPlayer!.player?.play()
+      currentAsset = button.tag
+      timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target:self, selector:Selector("audioTimer:"), userInfo:nil, repeats:true)
       button.setImage(UIImage(named:"browse-pause-button"), forState: .Normal)
+    }
+  }
+
+  func audioTimer(timer: NSTimer) {
+    var time = assetPlayer?.player?.currentItem.currentTime()
+    if let time = time {
+      var dt = CMTimeGetSeconds(time)
+      debugPrintln("\(dt)")
     }
   }
 }

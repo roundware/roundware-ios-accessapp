@@ -45,7 +45,7 @@ struct Asset {
   }
 }
 
-class AssetPlayer {
+class AssetPlayer : NSObject {
   var player : AVPlayer?
   var asset: Asset
 
@@ -57,7 +57,10 @@ class AssetPlayer {
 
   init(asset: Asset) {
     self.asset = asset
-    self.player = AVPlayer.playerWithURL(asset.fileURL) as? AVPlayer
+
+    var item = AVPlayerItem(URL: asset.fileURL)
+    player = AVPlayer(playerItem: item)
+    super.init()
   }
 }
 
