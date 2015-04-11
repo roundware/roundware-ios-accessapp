@@ -17,12 +17,14 @@ struct Asset {
   var mediaType = MediaType.None
   var tagIDs: [Int] = []
   var fileURL = NSURL()
+  var audioLength: Float = 0.0
 
   init(json: JSON) {
     assetDescription = json["description"].string ?? ""
     volume = json["volume"].int ?? 0
     project = json["project"].int ?? 0
     assetID = json["asset_id"].int ?? 0
+    audioLength = json["audio_length_in_seconds"].float ?? 0
 
     if json["media_type"].string == "text" {
       mediaType = .Text

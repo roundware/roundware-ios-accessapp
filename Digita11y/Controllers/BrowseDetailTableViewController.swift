@@ -96,7 +96,7 @@ class BrowseDetailTableViewController: BaseTableViewController {
   func playAudio(button: UIButton) {
     self.resetPlayButtons()
 
-    var asset = assets[button.tag]
+    let asset = assets[button.tag]
     if assetPlayer?.asset.assetID == asset.assetID {
       if let player = assetPlayer?.player {
         if assetPlayer!.isPlaying {
@@ -129,10 +129,12 @@ class BrowseDetailTableViewController: BaseTableViewController {
   }
 
   func audioTimer(timer: NSTimer) {
-    var time = assetPlayer?.player?.currentItem.currentTime()
-    if let time = time {
+    if let time = assetPlayer?.player?.currentItem.currentTime(),
+           cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: currentAsset, inSection: 0)) as? BrowseDetailTableViewCell {
       var dt = CMTimeGetSeconds(time)
-      debugPrintln("\(dt)")
+      let asset = assets[currentAsset]
+      var percent = asset.audioLength == 0.0 ? 0.0 : Float(dt)/asset.audioLength
+      cell.timeSlider.value = percent
     }
   }
 }
