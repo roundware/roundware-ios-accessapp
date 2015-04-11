@@ -22,7 +22,7 @@ struct Asset {
     assetDescription = json["description"].string ?? ""
     volume = json["volume"].int ?? 0
     project = json["project"].int ?? 0
-    assetID = json["asset_d"].int ?? 0
+    assetID = json["asset_id"].int ?? 0
 
     if json["media_type"].string == "text" {
       mediaType = .Text
