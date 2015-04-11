@@ -17,10 +17,6 @@ struct Tag {
     value = json["value"].string ?? ""
     tagDescription = json["description"].string ?? ""
   }
-
-  init() {
-  }
-
 }
 
 struct TagGroup {

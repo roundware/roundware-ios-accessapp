@@ -1,4 +1,5 @@
 import Foundation
+import AVFoundation
 import RWFramework
 
 enum MediaType {
@@ -7,6 +8,7 @@ enum MediaType {
   case Photo
   case Audio
 }
+
 struct Asset {
   var assetDescription = ""
   var volume = 0
@@ -33,8 +35,29 @@ struct Asset {
     }
 
     tagIDs = json["tag_ids"].array?.map { $0.int ?? 0 } ?? []
-    var strURL = RWFrameworkConfig.getConfigValueAsString("base_url") + (json["file"].string ?? "")
+    var base = RWFrameworkConfig.getConfigValueAsString("base_url")
+    var path = (json["file"].string ?? "")
+    if base.hasSuffix("/") && path.hasPrefix("/") {
+      path.removeAtIndex(path.startIndex)
+    }
+    var strURL = base + path
     fileURL = NSURL(string: strURL) ?? NSURL()
+  }
+}
+
+class AssetPlayer {
+  var player : AVPlayer?
+  var asset: Asset
+
+  var isPlaying: Bool {
+    get {
+      return self.player?.rate == 1.0
+    }
+  }
+
+  init(asset: Asset) {
+    self.asset = asset
+    self.player = AVPlayer.playerWithURL(asset.fileURL) as? AVPlayer
   }
 }
 

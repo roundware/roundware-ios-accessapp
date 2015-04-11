@@ -6,6 +6,7 @@ class BrowseDetailTableViewController: BaseTableViewController {
   var tagID = 0
   var currentTag: Tag?
   var assets: [Asset] = []
+  var assetPlayer: AssetPlayer?
 
   @IBOutlet weak var segmentedControl: UISegmentedControl!
 
@@ -80,6 +81,23 @@ class BrowseDetailTableViewController: BaseTableViewController {
 
   func playAudio(button: UIButton) {
     var asset = assets[button.tag]
-    debugPrintln(asset.fileURL.absoluteString)
+    if assetPlayer?.asset.assetID == asset.assetID {
+      if let player = assetPlayer?.player {
+        if assetPlayer!.isPlaying {
+          player.pause()
+        } else {
+          player.play()
+        }
+      } else {
+        assetPlayer = AssetPlayer(asset: asset)
+        assetPlayer!.player?.play()
+      }
+    } else {
+      if let player = assetPlayer?.player {
+        player.pause()
+      }
+      assetPlayer = AssetPlayer(asset: asset)
+      assetPlayer!.player?.play()
+    }
   }
 }
