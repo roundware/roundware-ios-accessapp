@@ -13,6 +13,9 @@ class BrowseDetailTableViewController: BaseTableViewController {
 
   @IBOutlet weak var segmentedControl: UISegmentedControl!
 
+  deinit {
+    NSNotificationCenter.defaultCenter().removeObserver(self)
+  }
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -88,8 +91,17 @@ class BrowseDetailTableViewController: BaseTableViewController {
       if a.mediaType == .Audio {
         if let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: i, inSection: 0)) as? BrowseDetailTableViewCell {
           cell.playButton.setImage(UIImage(named:"browse-play-button"), forState: .Normal)
+          cell.timeSlider.value = 0.0
         }
       }
+    }
+  }
+
+  func audioStopped() {
+    // Make sure this fires after the NSTimer fires
+    delay(0.25) {
+      self.resetPlayButtons()
+      self.assetPlayer?.player?.currentItem?.seekToTime(CMTimeMakeWithSeconds(0, 100000000))
     }
   }
 
@@ -106,6 +118,7 @@ class BrowseDetailTableViewController: BaseTableViewController {
           player.play()
           currentAsset = button.tag
           timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target:self, selector:Selector("audioTimer:"), userInfo:nil, repeats:true)
+          NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("audioStopped"), name: AVPlayerItemDidPlayToEndTimeNotification, object: player.currentItem)
           button.setImage(UIImage(named:"browse-pause-button"), forState: .Normal)
         }
       } else {
@@ -113,6 +126,7 @@ class BrowseDetailTableViewController: BaseTableViewController {
         assetPlayer!.player?.play()
         currentAsset = button.tag
         timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target:self, selector:Selector("audioTimer:"), userInfo:nil, repeats:true)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("audioStopped"), name: AVPlayerItemDidPlayToEndTimeNotification, object: assetPlayer!.player?.currentItem)
         button.setImage(UIImage(named:"browse-pause-button"), forState: .Normal)
       }
     } else {
@@ -124,6 +138,7 @@ class BrowseDetailTableViewController: BaseTableViewController {
       assetPlayer!.player?.play()
       currentAsset = button.tag
       timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target:self, selector:Selector("audioTimer:"), userInfo:nil, repeats:true)
+      NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("audioStopped"), name: AVPlayerItemDidPlayToEndTimeNotification, object: assetPlayer!.player?.currentItem)
       button.setImage(UIImage(named:"browse-pause-button"), forState: .Normal)
     }
   }
