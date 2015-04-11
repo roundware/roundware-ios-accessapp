@@ -111,17 +111,17 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d3n-CE-BjA" userLabel="Play Button">
-                                            <rect key="frame" x="18" y="43" width="40" height="40"/>
+                                            <rect key="frame" x="18" y="43" width="19" height="22"/>
                                             <accessibility key="accessibilityConfiguration">
                                                 <accessibilityTraits key="traits" none="YES"/>
                                                 <bool key="isElement" value="NO"/>
                                             </accessibility>
-                                            <state key="normal" image="audio-play-button">
+                                            <state key="normal" image="browse-play-button">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
                                         <view contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="nnC-cs-kLj" customClass="MicrophoneLevelsView" customModule="Digita11y" customModuleProvider="target">
-                                            <rect key="frame" x="68" y="53" width="514" height="20"/>
+                                            <rect key="frame" x="47" y="44" width="535" height="20"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="20" id="W2c-Or-mDA"/>
@@ -670,10 +670,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="audio-play-button" width="40" height="40"/>
         <image name="audio-record-button" width="40" height="40"/>
         <image name="browse-cell" width="320" height="125"/>
         <image name="browse-detail" width="640" height="282"/>
+        <image name="browse-play-button" width="19" height="20"/>
         <image name="browse-tab-icon" width="612" height="792"/>
         <image name="contribute-tab-icon" width="612" height="792"/>
         <image name="listen-heroshot" width="320" height="286"/>

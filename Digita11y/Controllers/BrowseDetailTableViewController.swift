@@ -85,19 +85,24 @@ class BrowseDetailTableViewController: BaseTableViewController {
       if let player = assetPlayer?.player {
         if assetPlayer!.isPlaying {
           player.pause()
+          button.setImage(UIImage(named:"browse-play-button"), forState: .Normal)
         } else {
           player.play()
+          button.setImage(UIImage(named:"browse-pause-button"), forState: .Normal)
         }
       } else {
         assetPlayer = AssetPlayer(asset: asset)
         assetPlayer!.player?.play()
+        button.setImage(UIImage(named:"browse-pause-button"), forState: .Normal)
       }
     } else {
       if let player = assetPlayer?.player {
         player.pause()
+        button.setImage(UIImage(named:"browse-play-button"), forState: .Normal)
       }
       assetPlayer = AssetPlayer(asset: asset)
       assetPlayer!.player?.play()
+      button.setImage(UIImage(named:"browse-pause-button"), forState: .Normal)
     }
   }
 }
