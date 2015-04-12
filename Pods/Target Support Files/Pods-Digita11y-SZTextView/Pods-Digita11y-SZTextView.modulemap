@@ -1,0 +1,6 @@
+framework module SZTextView {
+  umbrella header "Pods-Digita11y-SZTextView-umbrella.h"
+
+  export *
+  module * { export * }
+}
