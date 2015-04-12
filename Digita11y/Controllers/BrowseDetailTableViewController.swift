@@ -21,8 +21,8 @@ class BrowseDetailTableViewController: BaseTableViewController {
 
     self.automaticallyAdjustsScrollViewInsets = false
 
-    tableView.rowHeight = 94
     tableView.estimatedRowHeight = 94
+    tableView.rowHeight = UITableViewAutomaticDimension
 
     if let v = self.segmentedControl.subviews[0] as? UIView {
       v.accessibilityHint = "Filters by artifact"
@@ -52,6 +52,11 @@ class BrowseDetailTableViewController: BaseTableViewController {
     self.navigationController?.navigationBar.becomeFirstResponder()
   }
 
+  override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(animated)
+    tableView.reloadData()
+  }
+
   // MARK: - Table view data source
 
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -63,14 +68,13 @@ class BrowseDetailTableViewController: BaseTableViewController {
   }
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-
     let asset = assets[indexPath.row]
     let tag = asset.tagIDs.map { self.rwData?.objectForID($0) }.filter { $0 != nil }.first
 
     switch (asset.mediaType) {
     case .Text:
       let cell = tableView.dequeueReusableCellWithIdentifier("BrowseTextTableViewCellIdentifier", forIndexPath: indexPath) as! BrowseTextTableViewCell
-      cell.descriptionTextView.text = asset.fileURL.absoluteString
+      cell.assetLabel.text = asset.fileURL.absoluteString
       return cell
     case .Audio:
       let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as! BrowseDetailTableViewCell
