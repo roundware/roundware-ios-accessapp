@@ -1,5 +1,6 @@
 import Foundation
 import AVFoundation
+import Alamofire
 import RWFramework
 
 enum MediaType {
@@ -18,6 +19,7 @@ struct Asset {
   var tagIDs: [Int] = []
   var fileURL = NSURL()
   var audioLength: Float = 0.0
+  var textString = ""
 
   init(json: JSON) {
     assetDescription = json["description"].string ?? ""
@@ -26,17 +28,8 @@ struct Asset {
     assetID = json["asset_id"].int ?? 0
     audioLength = json["audio_length_in_seconds"].float ?? 0
 
-    if json["media_type"].string == "text" {
-      mediaType = .Text
-    } else if json["media_type"].string == "photo" {
-      mediaType = .Photo
-    } else if json["media_type"].string == "audio" {
-      mediaType = .Audio
-    } else {
-      debugPrintln(json["media_type"].string)
-    }
-
     tagIDs = json["tag_ids"].array?.map { $0.int ?? 0 } ?? []
+
     var base = RWFrameworkConfig.getConfigValueAsString("base_url")
     var path = (json["file"].string ?? "")
     if base.hasSuffix("/") && path.hasPrefix("/") {
@@ -44,6 +37,24 @@ struct Asset {
     }
     var strURL = base + path
     fileURL = NSURL(string: strURL) ?? NSURL()
+
+    if json["media_type"].string == "text" {
+      mediaType = .Text
+      if let url = fileURL.absoluteString {
+        Alamofire.request(.GET, url)
+                 .responseString { (_, _, string, _) in
+          if let str = string {
+            self.textString = str
+          }
+        }
+      }
+    } else if json["media_type"].string == "photo" {
+      mediaType = .Photo
+    } else if json["media_type"].string == "audio" {
+      mediaType = .Audio
+    } else {
+      debugPrintln(json["media_type"].string)
+    }
   }
 }
 

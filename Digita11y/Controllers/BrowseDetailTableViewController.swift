@@ -74,7 +74,8 @@ class BrowseDetailTableViewController: BaseTableViewController {
     switch (asset.mediaType) {
     case .Text:
       let cell = tableView.dequeueReusableCellWithIdentifier("BrowseTextTableViewCellIdentifier", forIndexPath: indexPath) as! BrowseTextTableViewCell
-      cell.assetLabel.text = asset.fileURL.absoluteString
+      cell.titleLabel.text = tag??.value ?? "Telescope M-53 Audio 1"
+      cell.assetLabel.text = asset.textString
       return cell
     case .Audio:
       let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as! BrowseDetailTableViewCell
