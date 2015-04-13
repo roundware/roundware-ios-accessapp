@@ -147,13 +147,13 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" text="Telescope M-53 Audio 1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xtC-7o-zcJ">
-                                            <rect key="frame" x="18" y="18" width="564" height="16"/>
+                                            <rect key="frame" x="18" y="18" width="564" height="12"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" image="audio-play-button" translatesAutoresizingMaskIntoConstraints="NO" id="0zT-1V-pjQ">
-                                            <rect key="frame" x="18" y="34" width="64" height="64"/>
+                                            <rect key="frame" x="268" y="34" width="64" height="64"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="64" id="JWH-g0-6Rd"/>
                                                 <constraint firstAttribute="height" constant="64" id="mNC-sp-ZKV"/>
@@ -163,10 +163,10 @@
                                     <constraints>
                                         <constraint firstAttribute="bottomMargin" secondItem="0zT-1V-pjQ" secondAttribute="bottom" id="6RA-z4-S6K"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="xtC-7o-zcJ" secondAttribute="trailing" constant="10" id="D38-JV-Iam"/>
-                                        <constraint firstItem="0zT-1V-pjQ" firstAttribute="leading" secondItem="HLl-gO-8s6" secondAttribute="leadingMargin" constant="10" id="TEH-q8-Yea"/>
                                         <constraint firstItem="xtC-7o-zcJ" firstAttribute="top" secondItem="HLl-gO-8s6" secondAttribute="topMargin" constant="10" id="XfJ-3P-xgL"/>
                                         <constraint firstItem="xtC-7o-zcJ" firstAttribute="leading" secondItem="HLl-gO-8s6" secondAttribute="leadingMargin" constant="10" id="YX6-9Y-msY"/>
-                                        <constraint firstItem="0zT-1V-pjQ" firstAttribute="top" secondItem="xtC-7o-zcJ" secondAttribute="bottom" id="r8L-AR-847"/>
+                                        <constraint firstItem="0zT-1V-pjQ" firstAttribute="top" secondItem="xtC-7o-zcJ" secondAttribute="bottom" constant="4" id="r8L-AR-847"/>
+                                        <constraint firstAttribute="centerX" secondItem="0zT-1V-pjQ" secondAttribute="centerX" id="vHs-bq-uOs"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
