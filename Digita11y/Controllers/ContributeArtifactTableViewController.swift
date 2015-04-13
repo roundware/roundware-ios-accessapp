@@ -3,6 +3,8 @@ import RWFramework
 
 class ContributeArtifactTableViewController: BaseTableViewController, RWFrameworkProtocol {
 
+  var selectedCells: Set<NSIndexPath> = Set<NSIndexPath>()
+
   func objectTags() -> TagGroup? {
     if let speakTags = self.rwData?.speakTags {
       for tag in speakTags {
@@ -35,9 +37,20 @@ class ContributeArtifactTableViewController: BaseTableViewController, RWFramewor
 
     if let tags = self.objectTags() {
       var tag = tags.options[indexPath.row]
-      cell.textLabel?.text = tag.tagDescription
+      cell.textLabel?.text = tag.value
     }
 
     return cell
+  }
+
+  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    let cell = tableView.cellForRowAtIndexPath(indexPath)
+    if selectedCells.contains(indexPath) == true {
+      selectedCells.remove(indexPath)
+      cell?.accessoryType = .None
+    } else {
+      selectedCells.insert(indexPath)
+      cell?.accessoryType = .Checkmark
+    }
   }
 }

@@ -19,6 +19,12 @@ func setupAudio(audioSetup: (granted: Bool, error: NSError?) -> Void) {
     }
   }
 
+  if !avAudioSession.overrideOutputAudioPort(AVAudioSessionPortOverride.None, error:&error) {
+    if let e = error {
+      debugPrintln(e.localizedDescription)
+    }
+  }
+
   if !avAudioSession.setActive(true, error: &error) {
     if let e = error {
       dispatch_async(dispatch_get_main_queue()) {

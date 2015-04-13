@@ -17,11 +17,11 @@ class RootTabBarController: UITabBarController, UITabBarControllerDelegate, RWFr
   }
 
   func rwUpdateStatus(message: String) {
-    debugPrintln(message)
+//    debugPrintln(message)
   }
 
   func rwPostUsersFailure(error: NSError?) {
-    debugPrintln(error)
+//    debugPrintln(error)
   }
 
   func rwPostSessionsSuccess() {
@@ -35,21 +35,25 @@ class RootTabBarController: UITabBarController, UITabBarControllerDelegate, RWFr
       rwf.apiGetAssets(dict, success: { (data) -> Void in
         if (data != nil) {
           let json = JSON(data: data!)
-          debugPrintln(json)
+          self.rwData?.assets = json.array?.map { Asset(json: $0) } ?? []
         }
         }) { (error) -> Void in
-          debugPrintln(error)
+//          debugPrintln(error)
       }
     }
   }
 
   func rwPostStreamsSuccess(data: NSData?) {
     let json = JSON(data: data!)
-    debugPrintln(json)
+    self.rwData?.stream = Stream(json: json)
   }
 
   func rwPostStreamsFailure(error: NSError?) {
-    debugPrintln(error)
+    let alert = UIAlertController(title: "Stream Error", message: error?.localizedDescription, preferredStyle: .Alert)
+    let ok = UIAlertAction(title: "OK", style: .Default) { action in
+    }
+    alert.addAction(ok)
+    self.presentViewController(alert, animated: true) { }
   }
 
   func rwGetProjectsIdTagsSuccess(data: NSData?) {
@@ -59,7 +63,7 @@ class RootTabBarController: UITabBarController, UITabBarControllerDelegate, RWFr
   }
 
   func rwGetProjectsIdTagsFailure(error: NSError?) {
-    debugPrintln(error)
+//    debugPrintln(error)
   }
 
   func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
