@@ -87,6 +87,7 @@ class BrowseDetailTableViewController: BaseTableViewController {
       let cell = tableView.dequeueReusableCellWithIdentifier("BrowsePhotoTableViewCellIdentifier", forIndexPath: indexPath) as! BrowsePhotoTableViewCell
       cell.titleLabel.text = tag??.value ?? "Telescope M-53 Audio 1"
       cell.assetImageView.sd_setImageWithURL(asset.fileURL)
+      cell.tag = indexPath.row
       return cell
     default:
       let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as! BrowseDetailTableViewCell
@@ -106,6 +107,8 @@ class BrowseDetailTableViewController: BaseTableViewController {
       }
     }
   }
+
+  // MARK: - Audio
 
   func audioStopped() {
     // Make sure this fires after the NSTimer fires
@@ -160,6 +163,18 @@ class BrowseDetailTableViewController: BaseTableViewController {
       let asset = assets[currentAsset]
       var percent = asset.audioLength == 0.0 ? 0.0 : Float(dt)/asset.audioLength
       cell.timeSlider.value = percent
+    }
+  }
+
+  // MARK: - Navigation
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    super.prepareForSegue(segue, sender: sender)
+
+    if segue.identifier == "BrowsePhotoSegue" {
+      if let to = segue.destinationViewController as? BrowsePhotoViewController,
+             cell = sender as? BrowsePhotoTableViewCell {
+        to.asset = assets[cell.tag]
+      }
     }
   }
 }

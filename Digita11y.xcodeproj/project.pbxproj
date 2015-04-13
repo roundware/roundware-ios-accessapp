@@ -52,6 +52,8 @@
 		4EC4329E1AD9D1A7002CBC04 /* Delay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC4329C1AD9D1A7002CBC04 /* Delay.swift */; };
 		4EC432A61ADB7A0E002CBC04 /* BrowsePhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC432A51ADB7A0E002CBC04 /* BrowsePhotoTableViewCell.swift */; };
 		4EC432A71ADB7A0E002CBC04 /* BrowsePhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC432A51ADB7A0E002CBC04 /* BrowsePhotoTableViewCell.swift */; };
+		4EC432AB1ADB8219002CBC04 /* BrowsePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC432AA1ADB8219002CBC04 /* BrowsePhotoViewController.swift */; };
+		4EC432AD1ADB844F002CBC04 /* BrowsePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC432AA1ADB8219002CBC04 /* BrowsePhotoViewController.swift */; };
 		4EC5C0A51ACE14E900BA8AA9 /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC5C0A41ACE14E900BA8AA9 /* Stream.swift */; };
 		4EC5C0A61ACE14E900BA8AA9 /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC5C0A41ACE14E900BA8AA9 /* Stream.swift */; };
 		4ED2160E1AD72E7E004FCA82 /* BrowseTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED2160D1AD72E7E004FCA82 /* BrowseTextTableViewCell.swift */; };
@@ -140,6 +142,7 @@
 		4EA3928F1A9FC2E800308613 /* PhotoDrawerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoDrawerTableViewCell.swift; path = Views/PhotoDrawerTableViewCell.swift; sourceTree = "<group>"; };
 		4EC4329C1AD9D1A7002CBC04 /* Delay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Delay.swift; path = Operations/Delay.swift; sourceTree = "<group>"; };
 		4EC432A51ADB7A0E002CBC04 /* BrowsePhotoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BrowsePhotoTableViewCell.swift; path = Views/BrowsePhotoTableViewCell.swift; sourceTree = "<group>"; };
+		4EC432AA1ADB8219002CBC04 /* BrowsePhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BrowsePhotoViewController.swift; path = Controllers/BrowsePhotoViewController.swift; sourceTree = "<group>"; };
 		4EC5C0A41ACE14E900BA8AA9 /* Stream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stream.swift; path = Models/Stream.swift; sourceTree = "<group>"; };
 		4ED2160D1AD72E7E004FCA82 /* BrowseTextTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BrowseTextTableViewCell.swift; path = Views/BrowseTextTableViewCell.swift; sourceTree = "<group>"; };
 		4EF024771AA1288600F93604 /* BrowseDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BrowseDetailTableViewCell.swift; path = Views/BrowseDetailTableViewCell.swift; sourceTree = "<group>"; };
@@ -257,6 +260,7 @@
 				4E7184251AC7760500C88A58 /* BaseViewController.swift */,
 				4E5946901A9BBFB7007ED02C /* BrowseTableViewController.swift */,
 				4E5946981A9D2095007ED02C /* BrowseDetailTableViewController.swift */,
+				4EC432AA1ADB8219002CBC04 /* BrowsePhotoViewController.swift */,
 				4E7184281AC8E3D600C88A58 /* ListenViewController.swift */,
 				4E59469B1A9D4BFA007ED02C /* ContributeTableViewController.swift */,
 				4E6ACDDC1AAE528400314A9F /* ContributeArtifactTableViewController.swift */,
@@ -575,6 +579,7 @@
 				4E5946911A9BBFB7007ED02C /* BrowseTableViewController.swift in Sources */,
 				4E6D9CB81AAE2A040002D543 /* MicrophoneLevelsView.swift in Sources */,
 				4E7184291AC8E3D600C88A58 /* ListenViewController.swift in Sources */,
+				4EC432AB1ADB8219002CBC04 /* BrowsePhotoViewController.swift in Sources */,
 				4E59469C1A9D4BFA007ED02C /* ContributeTableViewController.swift in Sources */,
 				4E71841F1AC76A3700C88A58 /* RWData.swift in Sources */,
 				4E462A381AB7DFA600623B7E /* SetupAudio.swift in Sources */,
@@ -593,6 +598,7 @@
 				4E347D831AC4D4A800F4C810 /* Tag.swift in Sources */,
 				4E7184231AC773B100C88A58 /* RootTabBarController.swift in Sources */,
 				4EF024791AA1288600F93604 /* BrowseDetailTableViewCell.swift in Sources */,
+				4EC432AD1ADB844F002CBC04 /* BrowsePhotoViewController.swift in Sources */,
 				4E71842A1AC8E3D600C88A58 /* ListenViewController.swift in Sources */,
 				4EC5C0A61ACE14E900BA8AA9 /* Stream.swift in Sources */,
 				4E59469A1A9D2095007ED02C /* BrowseDetailTableViewController.swift in Sources */,

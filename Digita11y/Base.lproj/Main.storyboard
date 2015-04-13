@@ -172,6 +172,7 @@
                                 <connections>
                                     <outlet property="assetImageView" destination="0zT-1V-pjQ" id="bk1-6Q-5Dd"/>
                                     <outlet property="titleLabel" destination="xtC-7o-zcJ" id="9xW-pB-uaK"/>
+                                    <segue destination="MCH-SV-Atp" kind="show" identifier="BrowsePhotoSegue" id="M2r-Rs-ms8"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" restorationIdentifier="BrowseTextTableViewCellIdentifier" selectionStyle="none" indentationWidth="10" reuseIdentifier="BrowseTextTableViewCellIdentifier" rowHeight="94" id="SeE-wR-Syh" customClass="BrowseTextTableViewCell" customModule="Digita11y" customModuleProvider="target">
@@ -220,6 +221,39 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MrQ-1v-QeM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2201" y="-320"/>
+        </scene>
+        <!--Browse Photo View Controller-->
+        <scene sceneID="mru-p0-7wc">
+            <objects>
+                <viewController id="MCH-SV-Atp" customClass="BrowsePhotoViewController" customModule="Digita11y" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jtv-ll-5Qw"/>
+                        <viewControllerLayoutGuide type="bottom" id="tYR-9i-JNt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LAo-J8-HUa">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="93o-eJ-giL">
+                                <rect key="frame" x="6" y="64" width="588" height="536"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="tYR-9i-JNt" firstAttribute="top" secondItem="93o-eJ-giL" secondAttribute="bottom" id="1FZ-Ma-wkG"/>
+                            <constraint firstItem="93o-eJ-giL" firstAttribute="leading" secondItem="LAo-J8-HUa" secondAttribute="leadingMargin" constant="-10" id="Mlx-mK-Tre"/>
+                            <constraint firstItem="93o-eJ-giL" firstAttribute="trailing" secondItem="LAo-J8-HUa" secondAttribute="trailingMargin" constant="10" id="O6C-Fz-NP3"/>
+                            <constraint firstItem="93o-eJ-giL" firstAttribute="top" secondItem="jtv-ll-5Qw" secondAttribute="bottom" id="tZ5-Kv-yON"/>
+                        </constraints>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="imageView" destination="93o-eJ-giL" id="46i-B1-jaG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="weT-Lq-qR8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2988" y="-320"/>
         </scene>
         <!--Listen-->
         <scene sceneID="wg7-f3-ORb">
