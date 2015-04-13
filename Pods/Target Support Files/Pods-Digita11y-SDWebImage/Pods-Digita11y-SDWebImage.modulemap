@@ -1,0 +1,6 @@
+framework module SDWebImage {
+  umbrella header "Pods-Digita11y-SDWebImage-umbrella.h"
+
+  export *
+  module * { export * }
+}

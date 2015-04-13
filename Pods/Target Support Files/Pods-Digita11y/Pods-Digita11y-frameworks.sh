@@ -50,12 +50,14 @@ code_sign() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Alamofire.framework'
   install_framework 'CrashlyticsFramework.framework'
+  install_framework 'SDWebImage.framework'
   install_framework 'SVProgressHUD.framework'
   install_framework 'SZTextView.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Alamofire.framework'
   install_framework 'CrashlyticsFramework.framework'
+  install_framework 'SDWebImage.framework'
   install_framework 'SVProgressHUD.framework'
   install_framework 'SZTextView.framework'
 fi

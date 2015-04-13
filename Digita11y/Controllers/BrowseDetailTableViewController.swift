@@ -86,6 +86,7 @@ class BrowseDetailTableViewController: BaseTableViewController {
     case .Photo:
       let cell = tableView.dequeueReusableCellWithIdentifier("BrowsePhotoTableViewCellIdentifier", forIndexPath: indexPath) as! BrowsePhotoTableViewCell
       cell.titleLabel.text = tag??.value ?? "Telescope M-53 Audio 1"
+      cell.assetImageView.sd_setImageWithURL(asset.fileURL)
       return cell
     default:
       let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as! BrowseDetailTableViewCell

@@ -9,6 +9,7 @@ target 'Digita11y' do
   pod 'SZTextView',           '~> 1.1'
   pod 'SVProgressHUD',        '~> 1.1'
   pod 'Alamofire',            '~> 1.2'
+  pod 'SDWebImage',           '~> 3.7'
 end
 
 target 'Digita11yTests' do
@@ -16,4 +17,5 @@ target 'Digita11yTests' do
   pod 'SZTextView',           '~> 1.1'
   pod 'SVProgressHUD',        '~> 1.1'
   pod 'Alamofire',            '~> 1.2'
+  pod 'SDWebImage',           '~> 3.7'
 end
