@@ -24,10 +24,17 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
   let PlayButtonFilename   = "audio-play-button"
   let StopButtonFilename   = "audio-stop-button"
 
+  let PhotoTextTag = 1
+  let UploadTextTag = 2
+
   @IBOutlet weak var uploadButton: UIButton!
 
+  var imagePath = ""
+  var photoText = ""
   var uploadText = ""
   var haveImage = false
+
+  // MARK: - View lifecycle
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -276,14 +283,36 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     }
   }
 
-  // MARK: - Image
+  // MARK: - RWFrameworkProtocol Image
 
   func cameraButton() {
     var rwf = RWFramework.sharedInstance
     rwf.doImage()
   }
 
-  // MARK: - RWFrameworkProtocol
+  func rwImagePickerControllerDidFinishPickingMedia(info: [NSObject : AnyObject], path: String) {
+    debugPrintln(info)
+    self.imagePath = path
+
+    for var i = 0; i < self.tableView.numberOfRowsInSection(0); ++i {
+      var indexPath = NSIndexPath(forRow: i, inSection: 0)
+      if let cell = self.tableView.cellForRowAtIndexPath(indexPath) as? PhotoDrawerTableViewCell {
+        cell.textView.hidden = false
+        cell.photoView.hidden = false
+        self.haveImage = true
+
+        if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
+          cell.photoView.image = image
+        } else if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+          cell.photoView.image = image
+        }
+        self.updateUploadButtonState()
+        return
+      }
+    }
+  }
+
+  // MARK: - RWFrameworkProtocol Audio
 
   func rwRecordingProgress(percentage: Double, maxDuration: NSTimeInterval, peakPower: Float, averagePower: Float) {
     self.updateAudioPercentage(percentage, maxDuration: maxDuration, peakPower: peakPower, averagePower: averagePower)
@@ -309,30 +338,15 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     cell?.recordButton.setImage(UIImage(named: PlayButtonFilename), forState: .Normal)
   }
 
-  func rwImagePickerControllerDidFinishPickingMedia(info: [NSObject : AnyObject]) {
-    self.updateUploadButtonState()
-
-    for var i = 0; i < self.tableView.numberOfRowsInSection(0); ++i {
-      var indexPath = NSIndexPath(forRow: i, inSection: 0)
-      if let cell = self.tableView.cellForRowAtIndexPath(indexPath) as? PhotoDrawerTableViewCell {
-        cell.textView.hidden = false
-        cell.photoView.hidden = false
-
-        if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
-          cell.photoView.image = image
-        } else if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-          cell.photoView.image = image
-        }
-        return
-      }
-    }
-  }
-
   // MARK: - UITextViewDelegate
 
   func textViewDidChange(textView: UITextView) {
     debugPrintln(textView.text)
-    self.uploadText = textView.text
+    if textView.tag == PhotoTextTag {
+      self.photoText = textView.text
+    } else {
+      self.uploadText = textView.text
+    }
   }
 
   func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
@@ -391,6 +405,13 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     }
 
     var rwf = RWFramework.sharedInstance
+
+    if self.imagePath.isEmpty == false && self.photoText.isEmpty == false {
+      rwf.setImageDescription(self.imagePath, description: self.photoText)
+      self.imagePath = ""
+      self.photoText = ""
+    }
+
     if self.uploadText.isEmpty == false {
       rwf.addText(self.uploadText)
       self.uploadText = ""
@@ -398,6 +419,7 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
 
     rwf.addRecording()
     rwf.uploadAllMedia()
+    self.haveImage = false
 
     let alertController = UIAlertController(title: "Thank You", message: "Thank you for your contribution", preferredStyle: .Alert)
     let ok = UIAlertAction(title: "OK", style: .Default) { action in

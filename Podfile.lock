@@ -1,5 +1,4 @@
 PODS:
-  - Alamofire (1.2.0)
   - CrashlyticsFramework (2.2.9)
   - SDWebImage (3.7.2):
     - SDWebImage/Core (= 3.7.2)
@@ -8,14 +7,12 @@ PODS:
   - SZTextView (1.1.10)
 
 DEPENDENCIES:
-  - Alamofire (~> 1.2)
   - CrashlyticsFramework (~> 2.2)
   - SDWebImage (~> 3.7)
   - SVProgressHUD (~> 1.1)
   - SZTextView (~> 1.1)
 
 SPEC CHECKSUMS:
-  Alamofire: d765c5c1713aa64106b0228aaa600a1e6851f68d
   CrashlyticsFramework: 5a6a8d7a0731bc75c63c3bd3d704962d5d8717cc
   SDWebImage: 71b7cdc1d1721d6a82ed62889030225f2c249e29
   SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1

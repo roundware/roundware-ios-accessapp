@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		159B466EA5DD43EE755F06DB /* Pods_Digita11yTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A9861A2C8FCE3930B95A91B /* Pods_Digita11yTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		4E347D821AC4D4A800F4C810 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E347D811AC4D4A800F4C810 /* Tag.swift */; };
 		4E347D831AC4D4A800F4C810 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E347D811AC4D4A800F4C810 /* Tag.swift */; };
 		4E462A381AB7DFA600623B7E /* SetupAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E462A371AB7DFA600623B7E /* SetupAudio.swift */; };
@@ -54,13 +53,16 @@
 		4EC432A71ADB7A0E002CBC04 /* BrowsePhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC432A51ADB7A0E002CBC04 /* BrowsePhotoTableViewCell.swift */; };
 		4EC432AB1ADB8219002CBC04 /* BrowsePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC432AA1ADB8219002CBC04 /* BrowsePhotoViewController.swift */; };
 		4EC432AD1ADB844F002CBC04 /* BrowsePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC432AA1ADB8219002CBC04 /* BrowsePhotoViewController.swift */; };
+		4EC432B31ADB90EF002CBC04 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC432B21ADB90EF002CBC04 /* Alamofire.swift */; };
+		4EC432B41ADB90EF002CBC04 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC432B21ADB90EF002CBC04 /* Alamofire.swift */; };
 		4EC5C0A51ACE14E900BA8AA9 /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC5C0A41ACE14E900BA8AA9 /* Stream.swift */; };
 		4EC5C0A61ACE14E900BA8AA9 /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC5C0A41ACE14E900BA8AA9 /* Stream.swift */; };
 		4ED2160E1AD72E7E004FCA82 /* BrowseTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED2160D1AD72E7E004FCA82 /* BrowseTextTableViewCell.swift */; };
 		4ED216101AD730A1004FCA82 /* BrowseTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED2160D1AD72E7E004FCA82 /* BrowseTextTableViewCell.swift */; };
 		4EF024781AA1288600F93604 /* BrowseDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF024771AA1288600F93604 /* BrowseDetailTableViewCell.swift */; };
 		4EF024791AA1288600F93604 /* BrowseDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF024771AA1288600F93604 /* BrowseDetailTableViewCell.swift */; };
-		B879C6A2EBAA360F5D06744E /* Pods_Digita11y.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71F0DEF621A13653AE45D6DD /* Pods_Digita11y.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		8D2CEB442BA021938505E8E0 /* libPods-Digita11yTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4EC7348B2CECCD23FF50D6E /* libPods-Digita11yTests.a */; };
+		E2CA5FC7CF2020C6FF5F4AF5 /* libPods-Digita11y.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF4EC8ECFFE3A204B9AB3D26 /* libPods-Digita11y.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,7 +112,6 @@
 
 /* Begin PBXFileReference section */
 		0D00D72D58B06AAFC88F3442 /* Pods-Digita11y.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Digita11y.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Digita11y/Pods-Digita11y.debug.xcconfig"; sourceTree = "<group>"; };
-		1A9861A2C8FCE3930B95A91B /* Pods_Digita11yTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Digita11yTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B7449CB3A4A9A0A5971C1B1 /* Pods-Digita11y.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Digita11y.release.xcconfig"; path = "Pods/Target Support Files/Pods-Digita11y/Pods-Digita11y.release.xcconfig"; sourceTree = "<group>"; };
 		4E347D811AC4D4A800F4C810 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tag.swift; path = Models/Tag.swift; sourceTree = "<group>"; };
 		4E462A371AB7DFA600623B7E /* SetupAudio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SetupAudio.swift; path = Operations/SetupAudio.swift; sourceTree = "<group>"; };
@@ -143,12 +144,14 @@
 		4EC4329C1AD9D1A7002CBC04 /* Delay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Delay.swift; path = Operations/Delay.swift; sourceTree = "<group>"; };
 		4EC432A51ADB7A0E002CBC04 /* BrowsePhotoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BrowsePhotoTableViewCell.swift; path = Views/BrowsePhotoTableViewCell.swift; sourceTree = "<group>"; };
 		4EC432AA1ADB8219002CBC04 /* BrowsePhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BrowsePhotoViewController.swift; path = Controllers/BrowsePhotoViewController.swift; sourceTree = "<group>"; };
+		4EC432B21ADB90EF002CBC04 /* Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = External/Alamofire/Source/Alamofire.swift; sourceTree = SOURCE_ROOT; };
 		4EC5C0A41ACE14E900BA8AA9 /* Stream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stream.swift; path = Models/Stream.swift; sourceTree = "<group>"; };
 		4ED2160D1AD72E7E004FCA82 /* BrowseTextTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BrowseTextTableViewCell.swift; path = Views/BrowseTextTableViewCell.swift; sourceTree = "<group>"; };
 		4EF024771AA1288600F93604 /* BrowseDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BrowseDetailTableViewCell.swift; path = Views/BrowseDetailTableViewCell.swift; sourceTree = "<group>"; };
-		71F0DEF621A13653AE45D6DD /* Pods_Digita11y.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Digita11y.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9100EF3930DF39010F581D8C /* Pods-Digita11yTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Digita11yTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Digita11yTests/Pods-Digita11yTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B9DA8D7895CEE3286A469D80 /* Pods-Digita11yTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Digita11yTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Digita11yTests/Pods-Digita11yTests.release.xcconfig"; sourceTree = "<group>"; };
+		BF4EC8ECFFE3A204B9AB3D26 /* libPods-Digita11y.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Digita11y.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4EC7348B2CECCD23FF50D6E /* libPods-Digita11yTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Digita11yTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,7 +160,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E6C4ABE1AB2715500B5FEAC /* RWFramework.framework in Frameworks */,
-				B879C6A2EBAA360F5D06744E /* Pods_Digita11y.framework in Frameworks */,
+				E2CA5FC7CF2020C6FF5F4AF5 /* libPods-Digita11y.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,7 +168,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				159B466EA5DD43EE755F06DB /* Pods_Digita11yTests.framework in Frameworks */,
+				8D2CEB442BA021938505E8E0 /* libPods-Digita11yTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,6 +291,7 @@
 		4E6C4AB41AB2703B00B5FEAC /* External */ = {
 			isa = PBXGroup;
 			children = (
+				4EC432B01ADB90CE002CBC04 /* Alamofire */,
 				4E6C4AC31AB28D8700B5FEAC /* RWFramework.plist */,
 				4E6C4AB51AB2704100B5FEAC /* RWFramework.xcodeproj */,
 			);
@@ -303,11 +307,19 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		4EC432B01ADB90CE002CBC04 /* Alamofire */ = {
+			isa = PBXGroup;
+			children = (
+				4EC432B21ADB90EF002CBC04 /* Alamofire.swift */,
+			);
+			name = Alamofire;
+			sourceTree = "<group>";
+		};
 		5D2900C9F3F2E43C9F1D7A3B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				71F0DEF621A13653AE45D6DD /* Pods_Digita11y.framework */,
-				1A9861A2C8FCE3930B95A91B /* Pods_Digita11yTests.framework */,
+				BF4EC8ECFFE3A204B9AB3D26 /* libPods-Digita11y.a */,
+				C4EC7348B2CECCD23FF50D6E /* libPods-Digita11yTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -337,7 +349,6 @@
 				B1B34116A1B07E17B5705909 /* Copy Pods Resources */,
 				4E6C4AC21AB2715500B5FEAC /* Embed Frameworks */,
 				4E4336BA1AC339B500877523 /* ShellScript */,
-				E6533C732EA82C866E1A3F29 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -357,7 +368,6 @@
 				4E59467C1A9BB81B007ED02C /* Sources */,
 				4E59467D1A9BB81B007ED02C /* Frameworks */,
 				4E59467E1A9BB81B007ED02C /* Resources */,
-				A15E731110B30060B8DDAE0E /* Embed Pods Frameworks */,
 				D00C15D0B4957134C307B6B3 /* Copy Pods Resources */,
 			);
 			buildRules = (
@@ -468,21 +478,6 @@
 			shellPath = /bin/sh;
 			shellScript = "./Pods/CrashlyticsFramework/Crashlytics.framework/run 69056dd4dfd70d4a7ca049983df384d1c090537f 36129f4ec2cfdbc023ea7773a665fa1acf0aaed1248404f7ef45aebccfb0ec57";
 		};
-		A15E731110B30060B8DDAE0E /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Digita11yTests/Pods-Digita11yTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		B1B34116A1B07E17B5705909 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -543,21 +538,6 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		E6533C732EA82C866E1A3F29 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Digita11y/Pods-Digita11y-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -583,6 +563,7 @@
 				4E59469C1A9D4BFA007ED02C /* ContributeTableViewController.swift in Sources */,
 				4E71841F1AC76A3700C88A58 /* RWData.swift in Sources */,
 				4E462A381AB7DFA600623B7E /* SetupAudio.swift in Sources */,
+				4EC432B31ADB90EF002CBC04 /* Alamofire.swift in Sources */,
 				4E7184261AC7760500C88A58 /* BaseViewController.swift in Sources */,
 				4EC4329D1AD9D1A7002CBC04 /* Delay.swift in Sources */,
 				4E5946991A9D2095007ED02C /* BrowseDetailTableViewController.swift in Sources */,
@@ -595,6 +576,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4EC432B41ADB90EF002CBC04 /* Alamofire.swift in Sources */,
 				4E347D831AC4D4A800F4C810 /* Tag.swift in Sources */,
 				4E7184231AC773B100C88A58 /* RootTabBarController.swift in Sources */,
 				4EF024791AA1288600F93604 /* BrowseDetailTableViewCell.swift in Sources */,

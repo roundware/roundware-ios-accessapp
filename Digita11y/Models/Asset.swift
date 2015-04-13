@@ -1,6 +1,5 @@
 import Foundation
 import AVFoundation
-import Alamofire
 import RWFramework
 
 enum MediaType {
@@ -41,8 +40,8 @@ struct Asset {
     if json["media_type"].string == "text" {
       mediaType = .Text
       if let url = fileURL.absoluteString {
-        Alamofire.request(.GET, url)
-                 .responseString { (_, _, string, _) in
+        // This is kinda messed because Alamofire is included directly in the project
+        request(.GET, url).responseString { (_, _, string, _) in
           if let str = string {
             self.textString = str
           }

@@ -235,7 +235,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="93o-eJ-giL">
-                                <rect key="frame" x="6" y="64" width="588" height="536"/>
+                                <rect key="frame" x="6" y="64" width="588" height="487"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -472,32 +472,6 @@
                                     <outlet property="recordButton" destination="kAU-0z-JUK" id="3PL-yd-PPV"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ArtifactCellIdentifier" rowHeight="144" id="Dpd-Pk-obI" customClass="TextDrawerTableViewCell" customModule="Digita11y" customModuleProvider="target">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dpd-Pk-obI" id="s8l-bu-Vo6">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is about an artifact" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7OV-2u-yge">
-                                            <rect key="frame" x="18" y="18" width="152" height="107"/>
-                                            <accessibility key="accessibilityConfiguration" hint=""/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="7OV-2u-yge" firstAttribute="leading" secondItem="s8l-bu-Vo6" secondAttribute="leadingMargin" constant="10" id="CBb-sG-ov1"/>
-                                        <constraint firstItem="7OV-2u-yge" firstAttribute="top" secondItem="s8l-bu-Vo6" secondAttribute="topMargin" constant="10" id="KQT-4X-Est"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="7OV-2u-yge" secondAttribute="bottom" constant="10" id="P1G-ns-kda"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <accessibility key="accessibilityConfiguration" hint="Select artifact to contribute observations for">
-                                    <bool key="isElement" value="YES"/>
-                                </accessibility>
-                                <connections>
-                                    <segue destination="YIK-7U-NXG" kind="show" id="DEL-Om-jNK"/>
-                                </connections>
-                            </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PhotoDrawerCellIdentifier" rowHeight="144" id="z1R-KJ-YUs" customClass="PhotoDrawerTableViewCell" customModule="Digita11y" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="z1R-KJ-YUs" id="hk0-a8-xzY">
@@ -510,7 +484,7 @@
                                                 <constraint firstAttribute="height" constant="64" id="zR8-1x-aYy"/>
                                             </constraints>
                                         </imageView>
-                                        <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="FVc-So-TqY" customClass="SZTextView">
+                                        <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="FVc-So-TqY" customClass="SZTextView">
                                             <rect key="frame" x="92" y="18" width="490" height="64"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
@@ -552,7 +526,7 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FvH-ao-ihK" id="kcV-Wz-cP7">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oJK-bN-FR4" customClass="SZTextView">
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="2" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oJK-bN-FR4" customClass="SZTextView">
                                             <rect key="frame" x="18" y="18" width="564" height="107"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -568,6 +542,32 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="contributeTextView" destination="oJK-bN-FR4" id="9nG-6E-srM"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ArtifactCellIdentifier" rowHeight="144" id="Dpd-Pk-obI" customClass="TextDrawerTableViewCell" customModule="Digita11y" customModuleProvider="target">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dpd-Pk-obI" id="s8l-bu-Vo6">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is about an artifact" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7OV-2u-yge">
+                                            <rect key="frame" x="18" y="18" width="152" height="107"/>
+                                            <accessibility key="accessibilityConfiguration" hint=""/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="7OV-2u-yge" firstAttribute="leading" secondItem="s8l-bu-Vo6" secondAttribute="leadingMargin" constant="10" id="CBb-sG-ov1"/>
+                                        <constraint firstItem="7OV-2u-yge" firstAttribute="top" secondItem="s8l-bu-Vo6" secondAttribute="topMargin" constant="10" id="KQT-4X-Est"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="7OV-2u-yge" secondAttribute="bottom" constant="10" id="P1G-ns-kda"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <accessibility key="accessibilityConfiguration" hint="Select artifact to contribute observations for">
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
+                                <connections>
+                                    <segue destination="YIK-7U-NXG" kind="show" id="DEL-Om-jNK"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

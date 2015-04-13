@@ -1,6 +1,0 @@
-framework module CrashlyticsFramework {
-  umbrella header "Pods-Digita11yTests-CrashlyticsFramework-umbrella.h"
-
-  export *
-  module * { export * }
-}

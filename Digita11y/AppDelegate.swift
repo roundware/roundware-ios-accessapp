@@ -1,5 +1,5 @@
 import UIKit
-import CrashlyticsFramework
+import Crashlytics
 import RWFramework
 
 @UIApplicationMain
