@@ -83,6 +83,10 @@ class BrowseDetailTableViewController: BaseTableViewController {
       cell.playButton.addTarget(self, action: "playAudio:", forControlEvents: .TouchUpInside)
       cell.playButton.tag = indexPath.row
       return cell
+    case .Photo:
+      let cell = tableView.dequeueReusableCellWithIdentifier("BrowsePhotoTableViewCellIdentifier", forIndexPath: indexPath) as! BrowsePhotoTableViewCell
+      cell.titleLabel.text = tag??.value ?? "Telescope M-53 Audio 1"
+      return cell
     default:
       let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as! BrowseDetailTableViewCell
       cell.assetLabel.text = tag??.value ?? "Telescope M-53 Audio 1"

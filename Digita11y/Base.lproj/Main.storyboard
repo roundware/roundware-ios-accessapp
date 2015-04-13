@@ -62,7 +62,7 @@
             <objects>
                 <tableViewController id="0qf-4s-bo6" customClass="BrowseDetailTableViewController" customModule="Digita11y" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="2kb-h7-s81">
-                        <rect key="frame" x="0.0" y="64" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="0BV-E1-QPc">
@@ -139,6 +139,39 @@
                                     <outlet property="assetLabel" destination="CoT-dJ-026" id="QLi-oG-9Fz"/>
                                     <outlet property="playButton" destination="d3n-CE-BjA" id="mcj-I5-rva"/>
                                     <outlet property="timeSlider" destination="9lQ-fA-LZk" id="8YW-Cn-HA0"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="BrowsePhotoTableViewCellIdentifier" selectionStyle="none" indentationWidth="10" reuseIdentifier="BrowsePhotoTableViewCellIdentifier" rowHeight="107" id="u0K-Dd-c6a" customClass="BrowsePhotoTableViewCell" customModule="Digita11y" customModuleProvider="target">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="u0K-Dd-c6a" id="HLl-gO-8s6">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" text="Telescope M-53 Audio 1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xtC-7o-zcJ">
+                                            <rect key="frame" x="18" y="18" width="564" height="16"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" image="audio-play-button" translatesAutoresizingMaskIntoConstraints="NO" id="0zT-1V-pjQ">
+                                            <rect key="frame" x="18" y="34" width="64" height="64"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="64" id="JWH-g0-6Rd"/>
+                                                <constraint firstAttribute="height" constant="64" id="mNC-sp-ZKV"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="0zT-1V-pjQ" secondAttribute="bottom" id="6RA-z4-S6K"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="xtC-7o-zcJ" secondAttribute="trailing" constant="10" id="D38-JV-Iam"/>
+                                        <constraint firstItem="0zT-1V-pjQ" firstAttribute="leading" secondItem="HLl-gO-8s6" secondAttribute="leadingMargin" constant="10" id="TEH-q8-Yea"/>
+                                        <constraint firstItem="xtC-7o-zcJ" firstAttribute="top" secondItem="HLl-gO-8s6" secondAttribute="topMargin" constant="10" id="XfJ-3P-xgL"/>
+                                        <constraint firstItem="xtC-7o-zcJ" firstAttribute="leading" secondItem="HLl-gO-8s6" secondAttribute="leadingMargin" constant="10" id="YX6-9Y-msY"/>
+                                        <constraint firstItem="0zT-1V-pjQ" firstAttribute="top" secondItem="xtC-7o-zcJ" secondAttribute="bottom" id="r8L-AR-847"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="assetImageView" destination="0zT-1V-pjQ" id="bk1-6Q-5Dd"/>
+                                    <outlet property="titleLabel" destination="xtC-7o-zcJ" id="9xW-pB-uaK"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" restorationIdentifier="BrowseTextTableViewCellIdentifier" selectionStyle="none" indentationWidth="10" reuseIdentifier="BrowseTextTableViewCellIdentifier" rowHeight="94" id="SeE-wR-Syh" customClass="BrowseTextTableViewCell" customModule="Digita11y" customModuleProvider="target">
@@ -650,6 +683,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="audio-play-button" width="40" height="40"/>
         <image name="audio-record-button" width="40" height="40"/>
         <image name="browse-cell" width="320" height="125"/>
         <image name="browse-detail" width="640" height="282"/>
