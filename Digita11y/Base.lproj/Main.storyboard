@@ -25,6 +25,9 @@
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mission Moon" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MD1-wv-z2B">
                                             <rect key="frame" x="8" y="96" width="105" height="20"/>
+                                            <accessibility key="accessibilityConfiguration">
+                                                <bool key="isElement" value="NO"/>
+                                            </accessibility>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
@@ -39,6 +42,9 @@
                                         <constraint firstItem="MD1-wv-z2B" firstAttribute="leading" secondItem="UkG-6q-ucY" secondAttribute="leadingMargin" id="VRT-pQ-GCq"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <accessibility key="accessibilityConfiguration">
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
                                 <connections>
                                     <outlet property="bannerImageView" destination="Fqg-sK-Nzq" id="ch6-bZ-J6g"/>
                                     <outlet property="titleLabel" destination="MD1-wv-z2B" id="0MN-lg-UXe"/>
