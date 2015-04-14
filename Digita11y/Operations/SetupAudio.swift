@@ -19,7 +19,8 @@ func setupAudio(audioSetup: (granted: Bool, error: NSError?) -> Void) {
     }
   }
 
-  if !avAudioSession.overrideOutputAudioPort(AVAudioSessionPortOverride.Speaker, error:&error) {
+  let override = isHeadsetPluggedIn() ? AVAudioSessionPortOverride.None : AVAudioSessionPortOverride.Speaker
+  if !avAudioSession.overrideOutputAudioPort(override, error:&error) {
     if let e = error {
       debugPrintln(e.localizedDescription)
     }
@@ -32,4 +33,14 @@ func setupAudio(audioSetup: (granted: Bool, error: NSError?) -> Void) {
       }
     }
   }
+}
+
+func isHeadsetPluggedIn() -> Bool {
+  var route = AVAudioSession.sharedInstance().currentRoute
+  for description in route.outputs {
+    if description.portType == AVAudioSessionPortHeadphones {
+      return true
+    }
+  }
+  return false
 }
