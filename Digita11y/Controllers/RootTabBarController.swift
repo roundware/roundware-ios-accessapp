@@ -1,4 +1,5 @@
 import UIKit
+import Crashlytics
 import RWFramework
 
 class RootTabBarController: UITabBarController, UITabBarControllerDelegate, RWFrameworkProtocol {
@@ -17,11 +18,13 @@ class RootTabBarController: UITabBarController, UITabBarControllerDelegate, RWFr
   }
 
   func rwUpdateStatus(message: String) {
-//    debugPrintln(message)
+    debugPrintln(message)
+    CLSNSLogv(message, getVaList([]))
   }
 
   func rwPostUsersFailure(error: NSError?) {
-//    debugPrintln(error)
+    debugPrintln(error?.localizedDescription)
+    CLSNSLogv(error?.localizedDescription, getVaList([]))
   }
 
   func rwPostSessionsSuccess() {
