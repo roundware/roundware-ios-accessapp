@@ -1,7 +1,8 @@
 import UIKit
 import AVFoundation
+import RWFramework
 
-class BrowseDetailTableViewController: BaseTableViewController {
+class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProtocol {
 
   let CellIdentifier = "BrowseDetailCellIdentifier"
   var tagID = 0
@@ -54,6 +55,8 @@ class BrowseDetailTableViewController: BaseTableViewController {
 
   override func viewDidAppear(animated: Bool) {
     super.viewDidAppear(animated)
+
+    RWFramework.sharedInstance.addDelegate(self)
     tableView.reloadData()
   }
 
@@ -177,6 +180,10 @@ class BrowseDetailTableViewController: BaseTableViewController {
       var percent = asset.audioLength == 0.0 ? 0.0 : Float(dt)/asset.audioLength
       cell.timeProgressView.progress = percent
     }
+  }
+
+  func rwAudioPlayerDidFinishPlaying() {
+    self.resetPlayButtons()
   }
 
   // MARK: - Navigation
