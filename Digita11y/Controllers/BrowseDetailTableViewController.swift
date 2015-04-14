@@ -75,23 +75,27 @@ class BrowseDetailTableViewController: BaseTableViewController {
     case .Text:
       let cell = tableView.dequeueReusableCellWithIdentifier("BrowseTextTableViewCellIdentifier", forIndexPath: indexPath) as! BrowseTextTableViewCell
       cell.titleLabel.text = tag??.value ?? "Telescope M-53 Audio 1"
+      cell.accessibilityLabel = cell.titleLabel.text
       cell.assetLabel.text = asset.textString
       return cell
     case .Audio:
       let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as! BrowseDetailTableViewCell
       cell.assetLabel.text = tag??.value ?? "Telescope M-53 Audio 1"
+      cell.accessibilityLabel = cell.assetLabel.text
       cell.playButton.addTarget(self, action: "playAudio:", forControlEvents: .TouchUpInside)
       cell.playButton.tag = indexPath.row
       return cell
     case .Photo:
       let cell = tableView.dequeueReusableCellWithIdentifier("BrowsePhotoTableViewCellIdentifier", forIndexPath: indexPath) as! BrowsePhotoTableViewCell
       cell.titleLabel.text = tag??.value ?? "Telescope M-53 Audio 1"
+      cell.accessibilityLabel = cell.titleLabel.text
       cell.assetImageView.sd_setImageWithURL(asset.fileURL)
       cell.tag = indexPath.row
       return cell
     default:
       let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as! BrowseDetailTableViewCell
       cell.assetLabel.text = tag??.value ?? "Telescope M-53 Audio 1"
+      cell.accessibilityLabel = cell.assetLabel.text
       return cell
     }
   }
@@ -102,8 +106,17 @@ class BrowseDetailTableViewController: BaseTableViewController {
       if a.mediaType == .Audio {
         if let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: i, inSection: 0)) as? BrowseDetailTableViewCell {
           cell.playButton.setImage(UIImage(named:"browse-play-button"), forState: .Normal)
-          cell.timeSlider.value = 0.0
+          cell.timeProgressView.progress = 0.0
         }
+      }
+    }
+  }
+
+  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    let asset = assets[indexPath.row]
+    if asset.mediaType == MediaType.Audio {
+      if let cell = tableView.cellForRowAtIndexPath(indexPath) as? BrowseDetailTableViewCell {
+        self.playAudio(cell.playButton)
       }
     }
   }
@@ -162,7 +175,7 @@ class BrowseDetailTableViewController: BaseTableViewController {
       var dt = CMTimeGetSeconds(time)
       let asset = assets[currentAsset]
       var percent = asset.audioLength == 0.0 ? 0.0 : Float(dt)/asset.audioLength
-      cell.timeSlider.value = percent
+      cell.timeProgressView.progress = percent
     }
   }
 
