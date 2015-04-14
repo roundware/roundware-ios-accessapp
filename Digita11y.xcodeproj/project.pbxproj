@@ -392,6 +392,11 @@
 					4E5946681A9BB81A007ED02C = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = C2739AV34F;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					4E59467F1A9BB81B007ED02C = {
 						CreatedOnToolsVersion = 6.1.1;
