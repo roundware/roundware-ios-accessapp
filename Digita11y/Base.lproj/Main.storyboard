@@ -68,7 +68,7 @@
             <objects>
                 <tableViewController id="0qf-4s-bo6" customClass="BrowseDetailTableViewController" customModule="Digita11y" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="2kb-h7-s81">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="0BV-E1-QPc">
@@ -243,6 +243,7 @@
                             <outlet property="delegate" destination="0qf-4s-bo6" id="RFD-AQ-xu6"/>
                         </connections>
                     </tableView>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <connections>
                         <outlet property="segmentedControl" destination="B5R-JL-ZZ5" id="Dde-Gw-wg8"/>
                     </connections>
