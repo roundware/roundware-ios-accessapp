@@ -156,6 +156,7 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     self.tableView.beginUpdates()
 
     var removed = false
+    // Step 1: remove tableviewcell
     for (var i = 0; i < self.cells.count; ++i) {
       // Need to check before removing because the cell will dissapear
       if self.cells[i] == drawer {
@@ -164,8 +165,18 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
 
       switch self.cells[i] {
       case .AudioDrawer, .PhotoText, .PhotoDrawer, .TextDrawer:
-        self.cells.removeAtIndex(i)
         self.tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: i, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Top)
+      default:
+        break
+      }
+    }
+
+    // Step 2: update the backing data
+    for (var i = 0; i < self.cells.count; ++i) {
+      switch self.cells[i] {
+      case .AudioDrawer, .PhotoText, .PhotoDrawer, .TextDrawer:
+        self.cells.removeAtIndex(i)
+        i = 0 // start again because removeAtIndex invalidates iterator
       default:
         break
       }
@@ -331,9 +342,11 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     let image = Image(path: path, text: "", image: img)
     self.images.append(image)
 
-
-    toggleDrawer(Cell.PhotoDrawer, parent: Cell.Photo)
+    if let index = find(self.cells, Cell.Photo) {
+      self.cells.insert(Cell.PhotoText, atIndex: index+1)
+    }
     self.updateUploadButtonState()
+    self.tableView.reloadData()
   }
 
   // MARK: - RWFrameworkProtocol Audio
