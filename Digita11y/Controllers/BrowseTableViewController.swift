@@ -36,6 +36,12 @@ class BrowseTableViewController: BaseTableViewController, RWFrameworkProtocol {
       cell.tag = self.rwData?.exhibitions[indexPath.row].tagId ?? 0
       cell.titleLabel.text = self.rwData?.exhibitions[indexPath.row].value
       cell.accessibilityLabel = self.rwData?.exhibitions[indexPath.row].value
+      if let urlString = self.rwData?.exhibitions[indexPath.row].headerImageURL {
+        if urlString.isEmpty == false {
+          debugPrintln(urlString)
+          cell.bannerImageView.sd_setImageWithURL(NSURL(string: urlString))
+        }
+      }
       return cell
     }
 

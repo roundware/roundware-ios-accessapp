@@ -20,7 +20,7 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="g2b-7e-aYd" id="UkG-6q-ucY">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" image="browse-cell" translatesAutoresizingMaskIntoConstraints="NO" id="Fqg-sK-Nzq">
+                                        <imageView userInteractionEnabled="NO" contentMode="left" image="browse-cell" translatesAutoresizingMaskIntoConstraints="NO" id="Fqg-sK-Nzq">
                                             <rect key="frame" x="0.0" y="2" width="600" height="122"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mission Moon" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MD1-wv-z2B">

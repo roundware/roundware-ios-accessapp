@@ -8,6 +8,7 @@ struct Tag {
   var order: Int = 0
   var value: String = ""
   var tagDescription: String = ""
+  var headerImageURL: String = ""
 
   init(json: JSON) {
     tagId = json["tag_id"].int ?? 0
@@ -16,6 +17,9 @@ struct Tag {
     order = json["order"].int ?? 0
     value = json["value"].string ?? ""
     tagDescription = json["description"].string ?? ""
+
+    // FIX: "data" is eventually going to change from a string to a dictionary
+    headerImageURL = json["data"].string ?? ""
   }
 }
 

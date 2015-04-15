@@ -19,7 +19,7 @@ func setupAudio(audioSetup: (granted: Bool, error: NSError?) -> Void) {
     }
   }
 
-  let override = isHeadsetPluggedIn() ? AVAudioSessionPortOverride.None : AVAudioSessionPortOverride.Speaker
+  let override = (TARGET_IPHONE_SIMULATOR == 1 || isHeadsetPluggedIn()) ? AVAudioSessionPortOverride.None : AVAudioSessionPortOverride.Speaker
   if !avAudioSession.overrideOutputAudioPort(override, error:&error) {
     if let e = error {
       debugPrintln(e.localizedDescription)
