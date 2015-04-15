@@ -319,8 +319,7 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
   // MARK: - RWFrameworkProtocol Image
 
   func cameraButton() {
-    var rwf = RWFramework.sharedInstance
-    rwf.doImage()
+    RWFramework.sharedInstance.doImage()
   }
 
   func rwImagePickerControllerDidFinishPickingMedia(info: [NSObject : AnyObject], path: String) {
@@ -331,6 +330,9 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
 
     let image = Image(path: path, text: "", image: img)
     self.images.append(image)
+
+
+    toggleDrawer(Cell.PhotoDrawer, parent: Cell.Photo)
     self.updateUploadButtonState()
   }
 

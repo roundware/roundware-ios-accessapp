@@ -507,18 +507,18 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7C9-AZ-UgW" id="Bhl-tB-ASO">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6jk-KI-ogO">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="6jk-KI-ogO">
                                             <rect key="frame" x="18" y="18" width="64" height="64"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="64" id="iM7-0a-OC4"/>
                                                 <constraint firstAttribute="height" constant="64" id="k6X-vG-M5t"/>
                                             </constraints>
                                         </imageView>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Au1-mt-74t" customClass="SZTextView">
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Au1-mt-74t" customClass="SZTextView">
                                             <rect key="frame" x="102" y="18" width="480" height="107"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                                         </textView>
                                     </subviews>
@@ -529,6 +529,7 @@
                                         <constraint firstAttribute="trailingMargin" secondItem="Au1-mt-74t" secondAttribute="trailing" constant="10" id="TE6-Og-kLT"/>
                                         <constraint firstItem="6jk-KI-ogO" firstAttribute="leading" secondItem="Bhl-tB-ASO" secondAttribute="leadingMargin" constant="10" id="WLg-R8-MfK"/>
                                         <constraint firstItem="Au1-mt-74t" firstAttribute="top" secondItem="6jk-KI-ogO" secondAttribute="top" id="ylK-dX-2aq"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="6jk-KI-ogO" secondAttribute="bottom" constant="53" id="yv2-pP-zMR"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <accessibility key="accessibilityConfiguration" hint="">
@@ -555,9 +556,10 @@
                                         </button>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="5Dl-t4-MaY" secondAttribute="bottom" constant="48" id="4xU-u0-4xQ"/>
+                                        <constraint firstItem="5Dl-t4-MaY" firstAttribute="top" secondItem="hk0-a8-xzY" secondAttribute="topMargin" constant="49" id="DxB-zE-5Pk"/>
                                         <constraint firstItem="5Dl-t4-MaY" firstAttribute="leading" secondItem="hk0-a8-xzY" secondAttribute="leadingMargin" constant="20" id="eyx-pW-Mcq"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="5Dl-t4-MaY" secondAttribute="trailing" constant="20" id="rYK-tY-03Z"/>
-                                        <constraint firstAttribute="centerY" secondItem="5Dl-t4-MaY" secondAttribute="centerY" id="roa-Ho-4h8"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -572,7 +574,7 @@
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="999" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oJK-bN-FR4" customClass="SZTextView">
                                             <rect key="frame" x="18" y="18" width="564" height="107"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                                         </textView>
                                     </subviews>
