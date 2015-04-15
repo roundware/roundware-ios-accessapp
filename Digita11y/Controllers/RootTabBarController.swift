@@ -1,4 +1,5 @@
 import UIKit
+import Crashlytics
 import RWFramework
 
 class RootTabBarController: UITabBarController, UITabBarControllerDelegate, RWFrameworkProtocol {
@@ -17,11 +18,13 @@ class RootTabBarController: UITabBarController, UITabBarControllerDelegate, RWFr
   }
 
   func rwUpdateStatus(message: String) {
-//    debugPrintln(message)
+    debugPrintln(message)
+    CLSNSLogv(message, getVaList([]))
   }
 
   func rwPostUsersFailure(error: NSError?) {
-//    debugPrintln(error)
+    debugPrintln(error?.localizedDescription)
+    CLSNSLogv(error?.localizedDescription, getVaList([]))
   }
 
   func rwPostSessionsSuccess() {
@@ -38,7 +41,8 @@ class RootTabBarController: UITabBarController, UITabBarControllerDelegate, RWFr
           self.rwData?.assets = json.array?.map { Asset(json: $0) } ?? []
         }
         }) { (error) -> Void in
-//          debugPrintln(error)
+          debugPrintln(error.localizedDescription)
+          CLSNSLogv(error.localizedDescription, getVaList([]))
       }
     }
   }
@@ -60,22 +64,17 @@ class RootTabBarController: UITabBarController, UITabBarControllerDelegate, RWFr
     let json = JSON(data: data!)
     self.rwData?.speakTags = json["speak"].array?.map { TagGroup(json: $0) } ?? []
     self.rwData?.listenTags = json["listen"].array?.map { TagGroup(json: $0) } ?? []
-
-    let exhibitions = self.rwData?.exhibitions
-    for var i = 0; i < exhibitions?.count; ++i {
-      let e = exhibitions?[i]
-      debugPrintln("EXHIBITION: \(e?.value)")
-    }
   }
 
   func rwGetProjectsIdTagsFailure(error: NSError?) {
-//    debugPrintln(error)
+    debugPrintln(error?.localizedDescription)
+    CLSNSLogv(error?.localizedDescription, getVaList([]))
   }
 
   func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
     if let vc = viewController as? BaseViewController {
       vc.rwData = self.rwData
-    } else if let vc = viewController as? BaseTableViewController{
+    } else if let vc = viewController as? BaseTableViewController {
       vc.rwData = self.rwData
     } else if let nav = viewController as? UINavigationController {
       if let vc = nav.topViewController as? BaseViewController {

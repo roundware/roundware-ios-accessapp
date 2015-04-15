@@ -10,14 +10,13 @@ struct Tag {
   var tagDescription: String = ""
 
   init(json: JSON) {
-    self.tagId = json["tag_id"].int ?? 0
+    tagId = json["tag_id"].int ?? 0
     shortcode = json["shortcode"].string ?? ""
     localDescription = json["loc_description"].string ?? ""
     order = json["order"].int ?? 0
     value = json["value"].string ?? ""
     tagDescription = json["description"].string ?? ""
   }
-
 }
 
 struct TagGroup {

@@ -11,6 +11,8 @@ class ListenViewController: BaseViewController, RWFrameworkProtocol {
   @IBOutlet weak var playButton: UIButton!
   @IBOutlet weak var segmentedControl: UISegmentedControl!
 
+  // MARK: - View lifecycle
+
   override func viewDidLoad() {
     super.viewDidLoad()
     self.navigationItem.title = "Mission Moon"
@@ -61,6 +63,8 @@ class ListenViewController: BaseViewController, RWFrameworkProtocol {
     }
   }
 
+  // MARK: - RWFrameworkProtocol
+
   func rwPostStreamsSuccess(data: NSData?) {
     self.playButton.enabled = true
   }
@@ -73,5 +77,11 @@ class ListenViewController: BaseViewController, RWFrameworkProtocol {
     if keyPath == "timedMetadata" {
       SVProgressHUD.dismiss()
     }
+  }
+
+  func rwAudioPlayerDidFinishPlaying() {
+    RWFramework.sharedInstance.stop()
+    self.playButton.setImage(UIImage(named: "player-button"), forState: .Normal)
+    self.playButton.accessibilityLabel = "Play button"
   }
 }

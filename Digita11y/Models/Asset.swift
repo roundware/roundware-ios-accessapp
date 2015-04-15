@@ -1,4 +1,5 @@
 import Foundation
+import AVFoundation
 import RWFramework
 
 enum MediaType {
@@ -7,6 +8,7 @@ enum MediaType {
   case Photo
   case Audio
 }
+
 struct Asset {
   var assetDescription = ""
   var volume = 0
@@ -15,15 +17,36 @@ struct Asset {
   var mediaType = MediaType.None
   var tagIDs: [Int] = []
   var fileURL = NSURL()
+  var audioLength: Float = 0.0
+  var textString = ""
 
   init(json: JSON) {
     assetDescription = json["description"].string ?? ""
     volume = json["volume"].int ?? 0
     project = json["project"].int ?? 0
-    assetID = json["asset_d"].int ?? 0
+    assetID = json["asset_id"].int ?? 0
+    audioLength = json["audio_length_in_seconds"].float ?? 0
+
+    tagIDs = json["tag_ids"].array?.map { $0.int ?? 0 } ?? []
+
+    var base = RWFrameworkConfig.getConfigValueAsString("base_url")
+    var path = (json["file"].string ?? "")
+    if base.hasSuffix("/") && path.hasPrefix("/") {
+      path.removeAtIndex(path.startIndex)
+    }
+    var strURL = base + path
+    fileURL = NSURL(string: strURL) ?? NSURL()
 
     if json["media_type"].string == "text" {
       mediaType = .Text
+      if let url = fileURL.absoluteString {
+        // This is kinda messed because Alamofire is included directly in the project
+        request(.GET, url).responseString { (_, _, string, _) in
+          if let str = string {
+            self.textString = str
+          }
+        }
+      }
     } else if json["media_type"].string == "photo" {
       mediaType = .Photo
     } else if json["media_type"].string == "audio" {
@@ -31,10 +54,25 @@ struct Asset {
     } else {
       debugPrintln(json["media_type"].string)
     }
+  }
+}
 
-    tagIDs = json["tag_ids"].array?.map { $0.int ?? 0 } ?? []
-    var strURL = RWFrameworkConfig.getConfigValueAsString("base_url") + (json["file"].string ?? "")
-    fileURL = NSURL(string: strURL) ?? NSURL()
+class AssetPlayer : NSObject {
+  var player : AVPlayer?
+  var asset: Asset
+
+  var isPlaying: Bool {
+    get {
+      return self.player?.rate == 1.0
+    }
+  }
+
+  init(asset: Asset) {
+    self.asset = asset
+
+    var item = AVPlayerItem(URL: asset.fileURL)
+    player = AVPlayer(playerItem: item)
+    super.init()
   }
 }
 

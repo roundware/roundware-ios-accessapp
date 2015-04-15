@@ -35,6 +35,7 @@ class BrowseTableViewController: BaseTableViewController, RWFrameworkProtocol {
     if let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as? BrowseTableViewCell {
       cell.tag = self.rwData?.exhibitions[indexPath.row].tagId ?? 0
       cell.titleLabel.text = self.rwData?.exhibitions[indexPath.row].value
+      cell.accessibilityLabel = self.rwData?.exhibitions[indexPath.row].value
       return cell
     }
 
