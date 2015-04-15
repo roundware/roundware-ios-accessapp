@@ -8,6 +8,7 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     case Audio
     case AudioDrawer
     case Photo
+    case PhotoText
     case PhotoDrawer
     case Text
     case TextDrawer
@@ -17,6 +18,7 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
 
   let CellIdentifier            = "ContributeCellIdentifier"
   let AudioDrawerCellIdentifier = "AudioDrawerCellIdentifier"
+  let PhotoTextCellIdentifier   = "PhotoTextCellIdentifier"
   let PhotoDrawerCellIdentifier = "PhotoDrawerCellIdentifier"
   let TextDrawerCellIdentifier  = "TextDrawerCellIdentifier"
 
@@ -24,15 +26,18 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
   let PlayButtonFilename   = "audio-play-button"
   let StopButtonFilename   = "audio-stop-button"
 
-  let PhotoTextTag = 1
-  let UploadTextTag = 2
+  let UploadTextTag = 999
 
   @IBOutlet weak var uploadButton: UIButton!
 
-  var imagePath = ""
-  var photoText = ""
+  struct Image {
+    var path: String
+    var text: String
+    var image: UIImage?
+  }
+
+  var images: [Image] = []
   var uploadText = ""
-  var haveImage = false
 
   // MARK: - View lifecycle
 
@@ -90,12 +95,27 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
       cell.selectionStyle = .None
       cell.accessibilityHint = "Contribute a photo observation"
       return cell
+    case .PhotoText:
+      var cell = tableView.dequeueReusableCellWithIdentifier(PhotoTextTableViewCell.Identifier, forIndexPath: indexPath) as! PhotoTextTableViewCell
+      var tag = 0
+      for (index, cell) in enumerate(self.cells) {
+        if index == indexPath.row {
+          break
+        }
+        if cell == .PhotoText {
+          ++tag
+        }
+      }
+      cell.artifactTextView.tag = tag
+      cell.artifactTextView.placeholder = "Describe this photo..."
+      cell.artifactTextView.placeholderTextColor = UIColor.lightGrayColor()
+      let image = self.images[tag]
+      cell.artifactTextView.text = image.text
+      cell.artifactTextView.delegate = self
+      cell.artifactImageView.image = image.image
+      return cell
     case .PhotoDrawer:
       var cell = tableView.dequeueReusableCellWithIdentifier(PhotoDrawerCellIdentifier, forIndexPath: indexPath) as! PhotoDrawerTableViewCell
-      cell.textView.placeholder = "Describe this photo..."
-      cell.textView.placeholderTextColor = UIColor.lightGrayColor()
-      cell.textView.returnKeyType = .Done
-      cell.textView.delegate = self
       cell.cameraButton.addTarget(self, action: "cameraButton", forControlEvents: .TouchUpInside)
       return cell
     case .Text:
@@ -136,6 +156,7 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     self.tableView.beginUpdates()
 
     var removed = false
+    // Step 1: remove tableviewcell
     for (var i = 0; i < self.cells.count; ++i) {
       // Need to check before removing because the cell will dissapear
       if self.cells[i] == drawer {
@@ -143,9 +164,19 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
       }
 
       switch self.cells[i] {
-      case Cell.AudioDrawer, Cell.PhotoDrawer, Cell.TextDrawer:
-        self.cells.removeAtIndex(i)
+      case .AudioDrawer, .PhotoText, .PhotoDrawer, .TextDrawer:
         self.tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: i, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Top)
+      default:
+        break
+      }
+    }
+
+    // Step 2: update the backing data
+    for (var i = 0; i < self.cells.count; ++i) {
+      switch self.cells[i] {
+      case .AudioDrawer, .PhotoText, .PhotoDrawer, .TextDrawer:
+        self.cells.removeAtIndex(i)
+        i = 0 // start again because removeAtIndex invalidates iterator
       default:
         break
       }
@@ -159,8 +190,21 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     // Must be that we have to add the drawer
     for (var i = 0; i < self.cells.count; ++i) {
       if self.cells[i] == parent {
-        self.cells.insert(drawer, atIndex: i+1)
-        self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: i+1, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Top)
+
+        if parent == .Photo {
+          var index = i+1
+          for image in self.images {
+            self.cells.insert(Cell.PhotoText, atIndex: index)
+            self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Top)
+            ++index
+          }
+          self.cells.insert(drawer, atIndex: index)
+          self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Top)
+        } else {
+          self.cells.insert(drawer, atIndex: i+1)
+          self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: i+1, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Top)
+        }
+
         break
       }
     }
@@ -286,30 +330,23 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
   // MARK: - RWFrameworkProtocol Image
 
   func cameraButton() {
-    var rwf = RWFramework.sharedInstance
-    rwf.doImage()
+    RWFramework.sharedInstance.doImage()
   }
 
   func rwImagePickerControllerDidFinishPickingMedia(info: [NSObject : AnyObject], path: String) {
-    debugPrintln(info)
-    self.imagePath = path
-
-    for var i = 0; i < self.tableView.numberOfRowsInSection(0); ++i {
-      var indexPath = NSIndexPath(forRow: i, inSection: 0)
-      if let cell = self.tableView.cellForRowAtIndexPath(indexPath) as? PhotoDrawerTableViewCell {
-        cell.textView.hidden = false
-        cell.photoView.hidden = false
-        self.haveImage = true
-
-        if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
-          cell.photoView.image = image
-        } else if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-          cell.photoView.image = image
-        }
-        self.updateUploadButtonState()
-        return
-      }
+    var img = info[UIImagePickerControllerEditedImage] as? UIImage
+    if img == nil {
+      img = info[UIImagePickerControllerOriginalImage] as? UIImage
     }
+
+    let image = Image(path: path, text: "", image: img)
+    self.images.append(image)
+
+    if let index = find(self.cells, Cell.Photo) {
+      self.cells.insert(Cell.PhotoText, atIndex: index+1)
+    }
+    self.updateUploadButtonState()
+    self.tableView.reloadData()
   }
 
   // MARK: - RWFrameworkProtocol Audio
@@ -341,11 +378,12 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
   // MARK: - UITextViewDelegate
 
   func textViewDidChange(textView: UITextView) {
-    debugPrintln(textView.text)
-    if textView.tag == PhotoTextTag {
-      self.photoText = textView.text
-    } else {
+    if textView.tag == UploadTextTag {
       self.uploadText = textView.text
+    } else {
+      var image = self.images[textView.tag]
+      image.text = textView.text
+      self.images[textView.tag] = image
     }
   }
 
@@ -368,10 +406,10 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
   func updateUploadButtonState() {
     debugPrintln(" UPLOAD BUTTON STATE")
     var rwf = RWFramework.sharedInstance
-    self.uploadButton.enabled = rwf.hasRecording() || self.haveImage || self.uploadText.isEmpty == false
+    self.uploadButton.enabled = rwf.hasRecording() || self.images.isEmpty == false || self.uploadText.isEmpty == false
 
     var recordingCount = rwf.hasRecording() ? 1 : 0
-    var imageCount = self.haveImage ? 1 : 0
+    var imageCount = self.images.count
     if self.uploadText.isEmpty {
       self.uploadButton.accessibilityHint = "Upload \(recordingCount) audio and \(imageCount) images"
     } else {
@@ -392,11 +430,6 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     }
 
     if let photo = self.findPhotoDrawerTableViewCell() {
-      photo.textView.text = ""
-      photo.textView.hidden = true
-      photo.photoView.image = nil
-      photo.photoView.hidden = true
-
       toggleDrawer(Cell.PhotoDrawer, parent: Cell.Photo)
     }
 
@@ -406,11 +439,10 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
 
     var rwf = RWFramework.sharedInstance
 
-    if self.imagePath.isEmpty == false && self.photoText.isEmpty == false {
-      rwf.setImageDescription(self.imagePath, description: self.photoText)
-      self.imagePath = ""
-      self.photoText = ""
+    for image in self.images {
+      rwf.setImageDescription(image.path, description: image.text)
     }
+    self.images.removeAll()
 
     if self.uploadText.isEmpty == false {
       rwf.addText(self.uploadText)
@@ -419,7 +451,6 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
 
     rwf.addRecording()
     rwf.uploadAllMedia()
-    self.haveImage = false
 
     let alertController = UIAlertController(title: "Thank You", message: "Thank you for your contribution", preferredStyle: .Alert)
     let ok = UIAlertAction(title: "OK", style: .Default) { action in
