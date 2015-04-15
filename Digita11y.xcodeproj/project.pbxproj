@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E0BB2B81ADEB6C3007E1936 /* PhotoTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0BB2B71ADEB6C3007E1936 /* PhotoTextTableViewCell.swift */; };
 		4E347D821AC4D4A800F4C810 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E347D811AC4D4A800F4C810 /* Tag.swift */; };
 		4E347D831AC4D4A800F4C810 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E347D811AC4D4A800F4C810 /* Tag.swift */; };
 		4E462A381AB7DFA600623B7E /* SetupAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E462A371AB7DFA600623B7E /* SetupAudio.swift */; };
@@ -113,6 +114,7 @@
 /* Begin PBXFileReference section */
 		0D00D72D58B06AAFC88F3442 /* Pods-Digita11y.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Digita11y.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Digita11y/Pods-Digita11y.debug.xcconfig"; sourceTree = "<group>"; };
 		2B7449CB3A4A9A0A5971C1B1 /* Pods-Digita11y.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Digita11y.release.xcconfig"; path = "Pods/Target Support Files/Pods-Digita11y/Pods-Digita11y.release.xcconfig"; sourceTree = "<group>"; };
+		4E0BB2B71ADEB6C3007E1936 /* PhotoTextTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoTextTableViewCell.swift; path = Views/PhotoTextTableViewCell.swift; sourceTree = "<group>"; };
 		4E347D811AC4D4A800F4C810 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tag.swift; path = Models/Tag.swift; sourceTree = "<group>"; };
 		4E462A371AB7DFA600623B7E /* SetupAudio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SetupAudio.swift; path = Operations/SetupAudio.swift; sourceTree = "<group>"; };
 		4E54F87A1AD58D2E007B4EEE /* Asset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Asset.swift; path = Models/Asset.swift; sourceTree = "<group>"; };
@@ -175,6 +177,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4E0BB2BA1ADEC025007E1936 /* Contribute */ = {
+			isa = PBXGroup;
+			children = (
+				4E6C4AC71AB2ADEA00B5FEAC /* AudioDrawerTableViewCell.swift */,
+				4E6D9CB71AAE2A040002D543 /* MicrophoneLevelsView.swift */,
+				4EA3928B1A9FBCAD00308613 /* TextDrawerTableViewCell.swift */,
+				4EA3928F1A9FC2E800308613 /* PhotoDrawerTableViewCell.swift */,
+				4E0BB2B71ADEB6C3007E1936 /* PhotoTextTableViewCell.swift */,
+			);
+			name = Contribute;
+			sourceTree = "<group>";
+		};
+		4E0BB2BB1ADEC03D007E1936 /* Browse */ = {
+			isa = PBXGroup;
+			children = (
+				4E5946951A9BE9A5007ED02C /* BrowseTableViewCell.swift */,
+				4ED2160D1AD72E7E004FCA82 /* BrowseTextTableViewCell.swift */,
+				4EF024771AA1288600F93604 /* BrowseDetailTableViewCell.swift */,
+				4EC432A51ADB7A0E002CBC04 /* BrowsePhotoTableViewCell.swift */,
+			);
+			name = Browse;
+			sourceTree = "<group>";
+		};
 		4E347D7F1AC4D47B00F4C810 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -276,14 +301,8 @@
 			children = (
 				4E5946741A9BB81B007ED02C /* Main.storyboard */,
 				4E5946791A9BB81B007ED02C /* LaunchScreen.xib */,
-				4E5946951A9BE9A5007ED02C /* BrowseTableViewCell.swift */,
-				4ED2160D1AD72E7E004FCA82 /* BrowseTextTableViewCell.swift */,
-				4EF024771AA1288600F93604 /* BrowseDetailTableViewCell.swift */,
-				4EC432A51ADB7A0E002CBC04 /* BrowsePhotoTableViewCell.swift */,
-				4E6C4AC71AB2ADEA00B5FEAC /* AudioDrawerTableViewCell.swift */,
-				4E6D9CB71AAE2A040002D543 /* MicrophoneLevelsView.swift */,
-				4EA3928B1A9FBCAD00308613 /* TextDrawerTableViewCell.swift */,
-				4EA3928F1A9FC2E800308613 /* PhotoDrawerTableViewCell.swift */,
+				4E0BB2BB1ADEC03D007E1936 /* Browse */,
+				4E0BB2BA1ADEC025007E1936 /* Contribute */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -555,6 +574,7 @@
 				4E5946961A9BE9A5007ED02C /* BrowseTableViewCell.swift in Sources */,
 				4EA3928C1A9FBCAD00308613 /* TextDrawerTableViewCell.swift in Sources */,
 				4EF024781AA1288600F93604 /* BrowseDetailTableViewCell.swift in Sources */,
+				4E0BB2B81ADEB6C3007E1936 /* PhotoTextTableViewCell.swift in Sources */,
 				4E6C4AC81AB2ADEA00B5FEAC /* AudioDrawerTableViewCell.swift in Sources */,
 				4E54F87B1AD58D2E007B4EEE /* Asset.swift in Sources */,
 				4E59466F1A9BB81B007ED02C /* AppDelegate.swift in Sources */,

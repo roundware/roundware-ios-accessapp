@@ -502,29 +502,50 @@
                                     <outlet property="recordButton" destination="kAU-0z-JUK" id="3PL-yd-PPV"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="PhotoTextCellIdentifier" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PhotoTextCellIdentifier" rowHeight="144" id="7C9-AZ-UgW" customClass="PhotoTextTableViewCell" customModule="Digita11y" customModuleProvider="target">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7C9-AZ-UgW" id="Bhl-tB-ASO">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6jk-KI-ogO">
+                                            <rect key="frame" x="18" y="18" width="64" height="64"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="64" id="iM7-0a-OC4"/>
+                                                <constraint firstAttribute="height" constant="64" id="k6X-vG-M5t"/>
+                                            </constraints>
+                                        </imageView>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Au1-mt-74t" customClass="SZTextView">
+                                            <rect key="frame" x="102" y="18" width="480" height="107"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                        </textView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Au1-mt-74t" secondAttribute="bottom" constant="10" id="614-Qe-VBD"/>
+                                        <constraint firstItem="6jk-KI-ogO" firstAttribute="top" secondItem="Bhl-tB-ASO" secondAttribute="topMargin" constant="10" id="E7z-Sp-dTG"/>
+                                        <constraint firstItem="Au1-mt-74t" firstAttribute="leading" secondItem="6jk-KI-ogO" secondAttribute="trailing" constant="20" id="Rsh-7L-mVi"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Au1-mt-74t" secondAttribute="trailing" constant="10" id="TE6-Og-kLT"/>
+                                        <constraint firstItem="6jk-KI-ogO" firstAttribute="leading" secondItem="Bhl-tB-ASO" secondAttribute="leadingMargin" constant="10" id="WLg-R8-MfK"/>
+                                        <constraint firstItem="Au1-mt-74t" firstAttribute="top" secondItem="6jk-KI-ogO" secondAttribute="top" id="ylK-dX-2aq"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <accessibility key="accessibilityConfiguration" hint="">
+                                    <bool key="isElement" value="NO"/>
+                                </accessibility>
+                                <connections>
+                                    <outlet property="artifactImageView" destination="6jk-KI-ogO" id="dZV-Et-6oJ"/>
+                                    <outlet property="artifactTextView" destination="Au1-mt-74t" id="FwX-Pu-ejc"/>
+                                </connections>
+                            </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PhotoDrawerCellIdentifier" rowHeight="144" id="z1R-KJ-YUs" customClass="PhotoDrawerTableViewCell" customModule="Digita11y" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="z1R-KJ-YUs" id="hk0-a8-xzY">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="bhs-4L-Y5g">
-                                            <rect key="frame" x="18" y="18" width="64" height="64"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="64" id="f3D-pN-DCW"/>
-                                                <constraint firstAttribute="height" constant="64" id="zR8-1x-aYy"/>
-                                            </constraints>
-                                        </imageView>
-                                        <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="FVc-So-TqY" customClass="SZTextView">
-                                            <rect key="frame" x="92" y="18" width="490" height="64"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="64" id="ZNI-4N-Fgo"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
-                                        </textView>
                                         <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Dl-t4-MaY">
-                                            <rect key="frame" x="28" y="92" width="544" height="33"/>
+                                            <rect key="frame" x="28" y="57" width="544" height="30"/>
                                             <color key="backgroundColor" red="0.98823529409999999" green="0.0" blue="0.39607843139999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <accessibility key="accessibilityConfiguration" hint="Take a photo with the camera"/>
                                             <state key="normal" title="Camera">
@@ -534,21 +555,13 @@
                                         </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="FVc-So-TqY" firstAttribute="leading" secondItem="bhs-4L-Y5g" secondAttribute="trailing" constant="10" id="J0W-NQ-O72"/>
-                                        <constraint firstItem="bhs-4L-Y5g" firstAttribute="top" secondItem="hk0-a8-xzY" secondAttribute="topMargin" constant="10" id="JBE-Dt-Kc4"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="5Dl-t4-MaY" secondAttribute="bottom" constant="10" id="Owp-HO-f7X"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="FVc-So-TqY" secondAttribute="trailing" constant="10" id="bNe-xm-kU9"/>
-                                        <constraint firstItem="bhs-4L-Y5g" firstAttribute="top" secondItem="FVc-So-TqY" secondAttribute="top" id="cU6-U7-tzm"/>
                                         <constraint firstItem="5Dl-t4-MaY" firstAttribute="leading" secondItem="hk0-a8-xzY" secondAttribute="leadingMargin" constant="20" id="eyx-pW-Mcq"/>
-                                        <constraint firstItem="bhs-4L-Y5g" firstAttribute="leading" secondItem="hk0-a8-xzY" secondAttribute="leadingMargin" constant="10" id="oG8-8G-Lv3"/>
-                                        <constraint firstItem="FVc-So-TqY" firstAttribute="bottom" secondItem="5Dl-t4-MaY" secondAttribute="top" constant="-10" id="qqh-nD-zwv"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="5Dl-t4-MaY" secondAttribute="trailing" constant="20" id="rYK-tY-03Z"/>
+                                        <constraint firstAttribute="centerY" secondItem="5Dl-t4-MaY" secondAttribute="centerY" id="roa-Ho-4h8"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="cameraButton" destination="5Dl-t4-MaY" id="gSl-2S-hWZ"/>
-                                    <outlet property="photoView" destination="bhs-4L-Y5g" id="PXu-kp-hNz"/>
-                                    <outlet property="textView" destination="FVc-So-TqY" id="Bth-KH-qcb"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TextDrawerCellIdentifier" rowHeight="144" id="FvH-ao-ihK" customClass="TextDrawerTableViewCell" customModule="Digita11y" customModuleProvider="target">
@@ -556,7 +569,7 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FvH-ao-ihK" id="kcV-Wz-cP7">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="2" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oJK-bN-FR4" customClass="SZTextView">
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="999" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oJK-bN-FR4" customClass="SZTextView">
                                             <rect key="frame" x="18" y="18" width="564" height="107"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
