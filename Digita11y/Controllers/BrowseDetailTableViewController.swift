@@ -70,7 +70,14 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
       let cell = tableView.dequeueReusableCellWithIdentifier(BrowseTextTableViewCell.Identifier, forIndexPath: indexPath) as! BrowseTextTableViewCell
       cell.titleLabel.text = tag??.value ?? "Telescope M-53 Audio 1"
       cell.accessibilityLabel = cell.titleLabel.text
-      cell.assetLabel.text = asset.textString
+      if let url = asset.fileURL.absoluteString {
+        // This is kinda messed because Alamofire is included directly in the project
+        request(.GET, url).responseString { (_, _, string, _) in
+          if let str = string {
+            cell.assetLabel.text = str
+          }
+        }
+      }
       return cell
     case .Audio:
       let cell = tableView.dequeueReusableCellWithIdentifier(BrowseDetailTableViewCell.Identifier, forIndexPath: indexPath) as! BrowseDetailTableViewCell
