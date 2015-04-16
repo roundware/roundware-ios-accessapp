@@ -212,7 +212,9 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
       if let to = segue.destinationViewController as? BrowsePhotoViewController,
              cell = sender as? BrowsePhotoTableViewCell {
         to.asset = assets[cell.tag]
-        to.name = cell.titleLabel.text ?? ""
+        if let name = cell.titleLabel.text {
+          to.name = name
+        }
       }
     }
   }

@@ -14,6 +14,5 @@ class BrowsePhotoViewController : UIViewController {
     imageView.sd_setImageWithURL(asset?.fileURL)
     var description = asset?.assetDescription
     imageView.accessibilityLabel = String("\(name), image, \(description)")
-
   }
 }
