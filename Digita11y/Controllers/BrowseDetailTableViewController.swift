@@ -4,9 +4,7 @@ import RWFramework
 
 class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProtocol {
 
-  let CellIdentifier = "BrowseDetailCellIdentifier"
   var tagID = 0
-  var exhibition: Tag?
   var assets: [Asset] = []
   var assetPlayer: AssetPlayer?
   var timer: NSTimer?
@@ -35,7 +33,7 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
     self.navigationController?.view.backgroundColor = UIColor.clearColor()
     self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
 
-    exhibition = self.rwData?.exhibitions.filter { $0.tagId == self.tagID }.first
+    var exhibition = self.rwData?.exhibitions.filter { $0.tagId == self.tagID }.first
     self.navigationItem.title = exhibition?.value
     if let urlString = exhibition?.headerImageURL {
       headerImageView.sd_setImageWithURL(NSURL(string: urlString), placeholderImage: UIImage(named:"browse-cell"))
@@ -69,13 +67,13 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
 
     switch (asset.mediaType) {
     case .Text:
-      let cell = tableView.dequeueReusableCellWithIdentifier("BrowseTextTableViewCellIdentifier", forIndexPath: indexPath) as! BrowseTextTableViewCell
+      let cell = tableView.dequeueReusableCellWithIdentifier(BrowseTextTableViewCell.Identifier, forIndexPath: indexPath) as! BrowseTextTableViewCell
       cell.titleLabel.text = tag??.value ?? "Telescope M-53 Audio 1"
       cell.accessibilityLabel = cell.titleLabel.text
       cell.assetLabel.text = asset.textString
       return cell
     case .Audio:
-      let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as! BrowseDetailTableViewCell
+      let cell = tableView.dequeueReusableCellWithIdentifier(BrowseDetailTableViewCell.Identifier, forIndexPath: indexPath) as! BrowseDetailTableViewCell
       cell.assetLabel.text = tag??.value ?? "Telescope M-53 Audio 1"
       if let name = cell.assetLabel.text {
         cell.accessibilityLabel = String("\(name), audio")
@@ -84,7 +82,7 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
       cell.playButton.tag = indexPath.row
       return cell
     case .Photo:
-      let cell = tableView.dequeueReusableCellWithIdentifier("BrowsePhotoTableViewCellIdentifier", forIndexPath: indexPath) as! BrowsePhotoTableViewCell
+      let cell = tableView.dequeueReusableCellWithIdentifier(BrowsePhotoTableViewCell.Identifier, forIndexPath: indexPath) as! BrowsePhotoTableViewCell
       var name = tag??.value ?? "Telescope M-53 Audio 1"
       cell.titleLabel.text = name
       cell.accessibilityLabel = String("\(name), image, \(asset.assetDescription)")
@@ -93,7 +91,7 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
       cell.tag = indexPath.row
       return cell
     default:
-      let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as! BrowseDetailTableViewCell
+      let cell = tableView.dequeueReusableCellWithIdentifier(BrowseDetailTableViewCell.Identifier, forIndexPath: indexPath) as! BrowseDetailTableViewCell
       cell.assetLabel.text = tag??.value ?? "Telescope M-53 Audio 1"
       cell.accessibilityLabel = cell.assetLabel.text
       return cell
@@ -201,6 +199,7 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
   }
 
   // MARK: - Navigation
+  
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     super.prepareForSegue(segue, sender: sender)
 

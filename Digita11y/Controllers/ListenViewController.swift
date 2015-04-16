@@ -42,8 +42,7 @@ class ListenViewController: BaseViewController, RWFrameworkProtocol {
     self.playButton.enabled = self.rwData?.stream == nil ? false : true
 
     // The UITabBar likes to steal focus.  So let's delay for a bit then become first responder.
-    let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.5 * Double(NSEC_PER_SEC)))
-    dispatch_after(delayTime, dispatch_get_main_queue()) {
+    delay(0.5) {
       self.playButton.becomeFirstResponder()
     }
   }
