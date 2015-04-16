@@ -90,8 +90,10 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
       return cell
     case .Photo:
       let cell = tableView.dequeueReusableCellWithIdentifier("BrowsePhotoTableViewCellIdentifier", forIndexPath: indexPath) as! BrowsePhotoTableViewCell
-      cell.titleLabel.text = tag??.value ?? "Telescope M-53 Audio 1"
-      cell.accessibilityLabel = cell.titleLabel.text
+      var name = tag??.value ?? "Telescope M-53 Audio 1"
+      cell.titleLabel.text = name
+      cell.accessibilityLabel = String("\(name), image, \(asset.assetDescription)")
+      cell.accessibilityHint = "Fullscreens image"
       cell.assetImageView.sd_setImageWithURL(asset.fileURL)
       cell.tag = indexPath.row
       return cell

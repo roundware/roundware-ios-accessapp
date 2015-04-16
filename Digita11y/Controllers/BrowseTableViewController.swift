@@ -39,7 +39,7 @@ class BrowseTableViewController: BaseTableViewController, RWFrameworkProtocol {
       if let urlString = self.rwData?.exhibitions[indexPath.row].headerImageURL {
         if urlString.isEmpty == false {
           debugPrintln(urlString)
-          cell.bannerImageView.sd_setImageWithURL(NSURL(string: urlString))
+          cell.bannerImageView.sd_setImageWithURL(NSURL(string: urlString), placeholderImage: UIImage(named:"browse-cell"))
         }
       }
       return cell
