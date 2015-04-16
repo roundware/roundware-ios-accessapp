@@ -1,9 +1,17 @@
 import UIKit
+import MessageUI
 import Crashlytics
 import RWFramework
 
-class RootTabBarController: UITabBarController, UITabBarControllerDelegate, RWFrameworkProtocol {
+class RootTabBarController: UITabBarController, UITabBarControllerDelegate, MFMailComposeViewControllerDelegate, RWFrameworkProtocol {
   var rwData: RWData?
+
+  // MARK: - View lifecycle
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("shake"), name: "SHAKESHAKESHAKE", object: nil)
+  }
 
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
@@ -16,6 +24,8 @@ class RootTabBarController: UITabBarController, UITabBarControllerDelegate, RWFr
       }
     }
   }
+
+  // MARK: - RWFrameworkProtocol
 
   func rwUpdateStatus(message: String) {
     debugPrintln(message)
@@ -64,12 +74,15 @@ class RootTabBarController: UITabBarController, UITabBarControllerDelegate, RWFr
     let json = JSON(data: data!)
     self.rwData?.speakTags = json["speak"].array?.map { TagGroup(json: $0) } ?? []
     self.rwData?.listenTags = json["listen"].array?.map { TagGroup(json: $0) } ?? []
+    self.rwData?.browseTags = json["browse"].array?.map { TagGroup(json: $0) } ?? []
   }
 
   func rwGetProjectsIdTagsFailure(error: NSError?) {
     debugPrintln(error?.localizedDescription)
     CLSNSLogv(error?.localizedDescription, getVaList([]))
   }
+
+  // MARK: - UITabBarControllerDelegate
 
   func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
     if let vc = viewController as? BaseViewController {
@@ -83,5 +96,18 @@ class RootTabBarController: UITabBarController, UITabBarControllerDelegate, RWFr
         vc.rwData = self.rwData
       }
     }
+  }
+
+  // MARK: - MFMailComposeViewControllerDelegate
+
+  func shake() {
+    var mc = MFMailComposeViewController()
+    mc.mailComposeDelegate = self
+    mc.setMessageBody(RWFramework.sharedInstance.debugInfo(), isHTML: false)
+    self.presentViewController(mc, animated: true, completion: nil)
+  }
+
+  func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
+    self.dismissViewControllerAnimated(false, completion: nil)
   }
 }

@@ -84,14 +84,19 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
     case .Audio:
       let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as! BrowseDetailTableViewCell
       cell.assetLabel.text = tag??.value ?? "Telescope M-53 Audio 1"
-      cell.accessibilityLabel = cell.assetLabel.text
+      var name = cell.assetLabel.text
+      if let name = cell.assetLabel.text {
+        cell.accessibilityLabel = String("\(name), audio")
+      }
       cell.playButton.addTarget(self, action: "playAudio:", forControlEvents: .TouchUpInside)
       cell.playButton.tag = indexPath.row
       return cell
     case .Photo:
       let cell = tableView.dequeueReusableCellWithIdentifier("BrowsePhotoTableViewCellIdentifier", forIndexPath: indexPath) as! BrowsePhotoTableViewCell
-      cell.titleLabel.text = tag??.value ?? "Telescope M-53 Audio 1"
-      cell.accessibilityLabel = cell.titleLabel.text
+      var name = tag??.value ?? "Telescope M-53 Audio 1"
+      cell.titleLabel.text = name
+      cell.accessibilityLabel = String("\(name), image, \(asset.assetDescription)")
+      cell.accessibilityHint = "Fullscreens image"
       cell.assetImageView.sd_setImageWithURL(asset.fileURL)
       cell.tag = indexPath.row
       return cell
@@ -110,6 +115,10 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
         if let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: i, inSection: 0)) as? BrowseDetailTableViewCell {
           cell.playButton.setImage(UIImage(named:"browse-play-button"), forState: .Normal)
           cell.timeProgressView.progress = 0.0
+          cell.accessibilityHint = "Plays audio"
+          if let name = cell.assetLabel.text {
+            cell.accessibilityLabel = String("\(name), audio")
+          }
         }
       }
     }
@@ -149,6 +158,9 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
           timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target:self, selector:Selector("audioTimer:"), userInfo:nil, repeats:true)
           NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("audioStopped"), name: AVPlayerItemDidPlayToEndTimeNotification, object: player.currentItem)
           button.setImage(UIImage(named:"browse-pause-button"), forState: .Normal)
+          if let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: button.tag, inSection: 0)) as? BrowseDetailTableViewCell {
+            cell.accessibilityHint = "Pauses audio"
+          }
         }
       } else {
         assetPlayer = AssetPlayer(asset: asset)
@@ -157,6 +169,9 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
         timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target:self, selector:Selector("audioTimer:"), userInfo:nil, repeats:true)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("audioStopped"), name: AVPlayerItemDidPlayToEndTimeNotification, object: assetPlayer!.player?.currentItem)
         button.setImage(UIImage(named:"browse-pause-button"), forState: .Normal)
+        if let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: button.tag, inSection: 0)) as? BrowseDetailTableViewCell {
+          cell.accessibilityHint = "Pauses audio"
+        }
       }
     } else {
       if let player = assetPlayer?.player {
@@ -169,6 +184,9 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
       timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target:self, selector:Selector("audioTimer:"), userInfo:nil, repeats:true)
       NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("audioStopped"), name: AVPlayerItemDidPlayToEndTimeNotification, object: assetPlayer!.player?.currentItem)
       button.setImage(UIImage(named:"browse-pause-button"), forState: .Normal)
+      if let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: button.tag, inSection: 0)) as? BrowseDetailTableViewCell {
+        cell.accessibilityHint = "Pauses audio"
+      }
     }
   }
 
@@ -194,6 +212,7 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
       if let to = segue.destinationViewController as? BrowsePhotoViewController,
              cell = sender as? BrowsePhotoTableViewCell {
         to.asset = assets[cell.tag]
+        to.name = cell.titleLabel.text ?? ""
       }
     }
   }

@@ -2,6 +2,14 @@ import UIKit
 import Crashlytics
 import RWFramework
 
+extension UIWindow {
+  public override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent) {
+    if event.type == .Motion && event.subtype == .MotionShake {
+      NSNotificationCenter.defaultCenter().postNotificationName("SHAKESHAKESHAKE", object: nil)
+    }
+  }
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, RWFrameworkProtocol {
 
@@ -23,6 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, RWFrameworkProtocol {
       }
     }
     setupRWFramework()
+
+    application.applicationSupportsShakeToEdit = true
 
     return true
   }

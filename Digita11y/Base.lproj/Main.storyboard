@@ -20,7 +20,7 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="g2b-7e-aYd" id="UkG-6q-ucY">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" image="browse-cell" translatesAutoresizingMaskIntoConstraints="NO" id="Fqg-sK-Nzq">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="browse-cell" translatesAutoresizingMaskIntoConstraints="NO" id="Fqg-sK-Nzq">
                                             <rect key="frame" x="0.0" y="2" width="600" height="122"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mission Moon" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MD1-wv-z2B">
@@ -33,6 +33,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstItem="MD1-wv-z2B" firstAttribute="bottom" secondItem="UkG-6q-ucY" secondAttribute="bottomMargin" id="301-LT-jgw"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="Fqg-sK-Nzq" secondAttribute="trailing" constant="-8" id="54B-9f-ezd"/>
@@ -119,7 +120,7 @@
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d3n-CE-BjA" userLabel="Play Button">
                                             <rect key="frame" x="18" y="43" width="38" height="44"/>
-                                            <accessibility key="accessibilityConfiguration" hint="Plays Audio" label="Play">
+                                            <accessibility key="accessibilityConfiguration" hint="" label="Play Audio">
                                                 <accessibilityTraits key="traits" none="YES"/>
                                                 <bool key="isElement" value="YES"/>
                                             </accessibility>
@@ -266,6 +267,9 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="93o-eJ-giL">
                                 <rect key="frame" x="6" y="64" width="588" height="487"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

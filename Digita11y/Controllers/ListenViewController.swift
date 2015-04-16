@@ -48,6 +48,13 @@ class ListenViewController: BaseViewController, RWFrameworkProtocol {
     }
   }
 
+  override func viewWillDisappear(animated: Bool) {
+    super.viewWillDisappear(animated)
+    SVProgressHUD.dismiss()
+  }
+  
+  // MARK: - Actions
+
   @IBAction func play(sender: AnyObject) {
     var rwf = RWFramework.sharedInstance
     if rwf.isPlaying {
