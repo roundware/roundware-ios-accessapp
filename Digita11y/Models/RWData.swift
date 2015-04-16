@@ -19,4 +19,9 @@ class RWData {
     var tags = group.first?.options.filter { $0.tagId == tagID }
     return tags?.first
   }
+
+  func exhibitionForID(tagID: Int) -> Tag? {
+    var tags = self.exhibitions.filter { $0.tagId == tagID }
+    return tags.first
+  }
 }

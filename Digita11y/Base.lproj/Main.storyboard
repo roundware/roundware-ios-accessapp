@@ -15,13 +15,14 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="BrowseCellIdentifier" rowHeight="125" id="g2b-7e-aYd" customClass="BrowseTableViewCell" customModule="Digita11y" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="BrowseCellIdentifier" rowHeight="125" id="g2b-7e-aYd" customClass="BrowseTableViewCell" customModule="Digita11y" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="g2b-7e-aYd" id="UkG-6q-ucY">
+                                <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="g2b-7e-aYd" id="UkG-6q-ucY">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="browse-cell" translatesAutoresizingMaskIntoConstraints="NO" id="Fqg-sK-Nzq">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="browse-cell" translatesAutoresizingMaskIntoConstraints="NO" id="Fqg-sK-Nzq">
                                             <rect key="frame" x="0.0" y="2" width="600" height="122"/>
+                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mission Moon" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MD1-wv-z2B">
                                             <rect key="frame" x="8" y="96" width="105" height="20"/>
@@ -72,33 +73,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="0BV-E1-QPc">
+                        <view key="tableHeaderView" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" id="0BV-E1-QPc">
                             <rect key="frame" x="0.0" y="64" width="600" height="200"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" image="browse-detail" translatesAutoresizingMaskIntoConstraints="NO" id="3Bb-dJ-bcs">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="160"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" image="browse-detail" translatesAutoresizingMaskIntoConstraints="NO" id="3Bb-dJ-bcs">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
+                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </imageView>
-                                <segmentedControl opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="B5R-JL-ZZ5">
-                                    <rect key="frame" x="10" y="170" width="580" height="21"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="20" id="0m3-G7-iRq"/>
-                                    </constraints>
-                                    <segments>
-                                        <segment title="Medium"/>
-                                        <segment title="Contributor"/>
-                                        <segment title="Artifact"/>
-                                    </segments>
-                                </segmentedControl>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="3Bb-dJ-bcs" firstAttribute="top" secondItem="0BV-E1-QPc" secondAttribute="top" id="BfX-of-Z1J"/>
                                 <constraint firstAttribute="trailing" secondItem="3Bb-dJ-bcs" secondAttribute="trailing" id="G0e-3H-RMp"/>
-                                <constraint firstAttribute="trailing" secondItem="B5R-JL-ZZ5" secondAttribute="trailing" constant="10" id="HjT-LC-YLk"/>
-                                <constraint firstItem="B5R-JL-ZZ5" firstAttribute="top" secondItem="3Bb-dJ-bcs" secondAttribute="bottom" constant="10" id="XaB-uU-OfN"/>
-                                <constraint firstItem="B5R-JL-ZZ5" firstAttribute="leading" secondItem="0BV-E1-QPc" secondAttribute="leading" constant="10" id="bxU-IE-0c3"/>
-                                <constraint firstAttribute="bottom" secondItem="B5R-JL-ZZ5" secondAttribute="bottom" constant="10" id="w1L-2p-KUt"/>
+                                <constraint firstAttribute="bottom" secondItem="3Bb-dJ-bcs" secondAttribute="bottom" id="eXk-OR-wa1"/>
                                 <constraint firstItem="3Bb-dJ-bcs" firstAttribute="leading" secondItem="0BV-E1-QPc" secondAttribute="leading" id="x7z-Ad-kMl"/>
                             </constraints>
                         </view>
@@ -246,7 +234,7 @@
                     </tableView>
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <connections>
-                        <outlet property="segmentedControl" destination="B5R-JL-ZZ5" id="Dde-Gw-wg8"/>
+                        <outlet property="headerImageView" destination="3Bb-dJ-bcs" id="ORP-vs-QaA"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MrQ-1v-QeM" userLabel="First Responder" sceneMemberID="firstResponder"/>

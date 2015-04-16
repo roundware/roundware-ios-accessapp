@@ -6,14 +6,14 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
 
   let CellIdentifier = "BrowseDetailCellIdentifier"
   var tagID = 0
-  var currentTag: Tag?
+  var exhibition: Tag?
   var assets: [Asset] = []
   var assetPlayer: AssetPlayer?
   var timer: NSTimer?
   var currentAsset: Int = 0
 
-  @IBOutlet weak var segmentedControl: UISegmentedControl!
-
+  @IBOutlet weak var headerImageView: UIImageView!
+  
   deinit {
     NSNotificationCenter.defaultCenter().removeObserver(self)
   }
@@ -24,16 +24,6 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
 
     tableView.estimatedRowHeight = 94
     tableView.rowHeight = UITableViewAutomaticDimension
-
-    if let v = self.segmentedControl.subviews[0] as? UIView {
-      v.accessibilityHint = "Filters by artifact"
-    }
-    if let v = self.segmentedControl.subviews[1] as? UIView {
-      v.accessibilityHint = "Filters by contributor"
-    }
-    if let v = self.segmentedControl.subviews[2] as? UIView {
-      v.accessibilityHint = "Filters by medium"
-    }
   }
 
   override func viewWillAppear(animated: Bool) {
@@ -45,8 +35,11 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
     self.navigationController?.view.backgroundColor = UIColor.clearColor()
     self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
 
-    currentTag = self.rwData?.exhibitions.filter { $0.tagId == self.tagID }.first
-    self.navigationItem.title = currentTag?.value
+    exhibition = self.rwData?.exhibitions.filter { $0.tagId == self.tagID }.first
+    self.navigationItem.title = exhibition?.value
+    if let urlString = exhibition?.headerImageURL {
+      headerImageView.sd_setImageWithURL(NSURL(string: urlString), placeholderImage: UIImage(named:"browse-cell"))
+    }
 
     assets = self.rwData?.assets.filter { contains($0.tagIDs, self.tagID) } ?? []
 
