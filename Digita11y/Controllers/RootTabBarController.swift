@@ -74,6 +74,7 @@ class RootTabBarController: UITabBarController, UITabBarControllerDelegate, MFMa
     let json = JSON(data: data!)
     self.rwData?.speakTags = json["speak"].array?.map { TagGroup(json: $0) } ?? []
     self.rwData?.listenTags = json["listen"].array?.map { TagGroup(json: $0) } ?? []
+    self.rwData?.browseTags = json["browse"].array?.map { TagGroup(json: $0) } ?? []
   }
 
   func rwGetProjectsIdTagsFailure(error: NSError?) {
