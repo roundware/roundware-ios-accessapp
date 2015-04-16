@@ -77,7 +77,6 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
     case .Audio:
       let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as! BrowseDetailTableViewCell
       cell.assetLabel.text = tag??.value ?? "Telescope M-53 Audio 1"
-      var name = cell.assetLabel.text
       if let name = cell.assetLabel.text {
         cell.accessibilityLabel = String("\(name), audio")
       }
@@ -190,6 +189,10 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
       let asset = assets[currentAsset]
       var percent = asset.audioLength == 0.0 ? 0.0 : Float(dt)/asset.audioLength
       cell.timeProgressView.progress = percent
+      var percentInt = Int(percent*100.0)
+      if let name = cell.assetLabel.text {
+        cell.accessibilityLabel = String("\(percentInt) percent complete, \(name), audio")
+      }
     }
   }
 
