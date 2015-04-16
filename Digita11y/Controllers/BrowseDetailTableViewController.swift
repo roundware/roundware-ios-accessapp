@@ -22,6 +22,7 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
 
     tableView.estimatedRowHeight = 94
     tableView.rowHeight = UITableViewAutomaticDimension
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("globalAudioStarted:"), name: "RW_STARTED_AUDIO_NOTIFICATION", object: nil)
   }
 
   override func viewWillAppear(animated: Bool) {
@@ -151,6 +152,7 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
           timer?.invalidate()
         } else {
           player.play()
+          NSNotificationCenter.defaultCenter().postNotificationName("RW_STARTED_AUDIO_NOTIFICATION", object: self)
           currentAsset = button.tag
           timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target:self, selector:Selector("audioTimer:"), userInfo:nil, repeats:true)
           NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("audioStopped"), name: AVPlayerItemDidPlayToEndTimeNotification, object: player.currentItem)
@@ -162,6 +164,7 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
       } else {
         assetPlayer = AssetPlayer(asset: asset)
         assetPlayer!.player?.play()
+        NSNotificationCenter.defaultCenter().postNotificationName("RW_STARTED_AUDIO_NOTIFICATION", object: self)
         currentAsset = button.tag
         timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target:self, selector:Selector("audioTimer:"), userInfo:nil, repeats:true)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("audioStopped"), name: AVPlayerItemDidPlayToEndTimeNotification, object: assetPlayer!.player?.currentItem)
@@ -177,6 +180,7 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
       }
       assetPlayer = AssetPlayer(asset: asset)
       assetPlayer!.player?.play()
+      NSNotificationCenter.defaultCenter().postNotificationName("RW_STARTED_AUDIO_NOTIFICATION", object: self)
       currentAsset = button.tag
       timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target:self, selector:Selector("audioTimer:"), userInfo:nil, repeats:true)
       NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("audioStopped"), name: AVPlayerItemDidPlayToEndTimeNotification, object: assetPlayer!.player?.currentItem)
@@ -202,6 +206,16 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
   }
 
   func rwAudioPlayerDidFinishPlaying() {
+    self.resetPlayButtons()
+  }
+
+  func globalAudioStarted(note: NSNotification) {
+    if let sender = note.object as? BrowseDetailTableViewController {
+      if sender == self {
+        return
+      }
+    }
+    self.assetPlayer?.player?.pause()
     self.resetPlayButtons()
   }
 
