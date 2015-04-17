@@ -491,7 +491,7 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
       if let group = self.rwData?.speakTags[i] {
         if let index = self.rwData?.selectedSpeakTags[i] {
           let tag = group.options[index]
-          rwf.setSpeakTagsCurrent(group.code, value: tag.value)
+          rwf.setSpeakTagsCurrent(group.code, value: tag.tagId)
         }
       }
     }
