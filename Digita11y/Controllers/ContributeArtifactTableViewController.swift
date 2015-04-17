@@ -28,9 +28,11 @@ class ContributeArtifactTableViewController: BaseTableViewController, RWFramewor
 
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     let row = self.rwData?.selectedSpeakTags[indexPath.section] ?? 0
-    let oldIndexPath = NSIndexPath(forRow: row, inSection: indexPath.section)
-    let oldCell = tableView.cellForRowAtIndexPath(oldIndexPath)
-    oldCell?.accessoryType = .None
+    if row != -1 {
+      let oldIndexPath = NSIndexPath(forRow: row, inSection: indexPath.section)
+      let oldCell = tableView.cellForRowAtIndexPath(oldIndexPath)
+      oldCell?.accessoryType = .None
+    }
 
     let cell = tableView.cellForRowAtIndexPath(indexPath)
     cell?.accessoryType = .Checkmark

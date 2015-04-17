@@ -19,7 +19,7 @@ class ListenViewController: BaseViewController, RWFrameworkProtocol {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.navigationItem.title = "Mission Moon"
+    self.navigationItem.title = "Listen"
 
     if let v = self.segmentedControl.subviews[0] as? UIView {
       v.accessibilityHint = "Filters by categories"
