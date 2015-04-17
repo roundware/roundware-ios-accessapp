@@ -30,6 +30,7 @@ struct TagGroup {
   var headerText: String = ""
   var name: String = ""
   var options: [Tag] = []
+  var defaultTags: [Int] = []
 
   init(json: JSON) {
     select = json["select"].string ?? ""
@@ -37,6 +38,7 @@ struct TagGroup {
     code = json["code"].string ?? ""
     headerText = json["header_text"].string ?? ""
     name = json["name"].string ?? ""
+    defaultTags = json["defaults"].array?.map { $0.int ?? 0 } ?? []
     options = json["options"].array?.map { Tag(json: $0) } ?? []
   }
 }

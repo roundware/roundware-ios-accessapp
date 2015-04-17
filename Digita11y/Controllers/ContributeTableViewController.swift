@@ -79,7 +79,7 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     switch (type) {
     case .Artifact:
       var cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: ArtifactCellIdentifier)
-      cell.textLabel?.text = "This contribution is about an object:"
+      cell.textLabel?.text = "Choose Tags:"
       cell.detailTextLabel?.text = self.rwData?.selectedSpeakObject()?.value
       cell.accessoryType = .DisclosureIndicator
       cell.accessibilityHint = "Select an object"
@@ -490,8 +490,10 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     for var i = 0; i < self.rwData?.speakTags.count; ++i {
       if let group = self.rwData?.speakTags[i] {
         if let index = self.rwData?.selectedSpeakTags[i] {
-          let tag = group.options[index]
-          rwf.setSpeakTagsCurrent(group.code, value: [tag.tagId])
+          if index != -1 {
+            let tag = group.options[index]
+            rwf.setSpeakTagsCurrent(group.code, value: [tag.tagId])
+          }
         }
       }
     }

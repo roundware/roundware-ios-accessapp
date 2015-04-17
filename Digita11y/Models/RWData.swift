@@ -5,7 +5,7 @@ class RWData {
   var stream: Stream?
   var speakTags: [TagGroup] = [] {
     didSet {
-      selectedSpeakTags = [Int](count: speakTags.count, repeatedValue: 0)
+      selectedSpeakTags = [Int](count: speakTags.count, repeatedValue: -1)
     }
   }
   var listenTags: [TagGroup] = []
@@ -31,7 +31,9 @@ class RWData {
   func selectedSpeakObject() -> Tag? {
     for var i = 0; i < speakTags.count; ++i {
       if speakTags[i].code == "object" {
-        return speakTags[i].options[selectedSpeakTags[i]]
+        if selectedSpeakTags[i] != -1 {
+          return speakTags[i].options[selectedSpeakTags[i]]
+        }
       }
     }
     return nil
