@@ -15,6 +15,10 @@ class ContributeArtifactTableViewController: BaseTableViewController, RWFramewor
     return self.rwData?.speakTags[section].options.count ?? 0
   }
 
+  override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    return self.rwData?.speakTags[section].headerText
+  }
+
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "ContributeArtifactCellIdentifier")
     if let tag = self.rwData?.speakTags[indexPath.section].options[indexPath.row] {
