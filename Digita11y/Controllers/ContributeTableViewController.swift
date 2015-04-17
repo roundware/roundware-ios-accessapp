@@ -60,6 +60,7 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
 
   override func viewDidAppear(animated: Bool) {
     super.viewDidAppear(animated)
+    self.tableView.reloadData()
     self.updateUploadButtonState()
   }
 
@@ -77,8 +78,10 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     let type = self.cells[indexPath.row]
     switch (type) {
     case .Artifact:
-      var cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: ArtifactCellIdentifier)
-      cell.textLabel?.text = "This contribution is about an object"
+      var cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: ArtifactCellIdentifier)
+      cell.textLabel?.text = "This contribution is about an object:"
+      cell.detailTextLabel?.text = self.rwData?.selectedSpeakObject()?.value
+      cell.accessoryType = .DisclosureIndicator
       cell.accessibilityHint = "Select an object"
       return cell
     case .Audio:

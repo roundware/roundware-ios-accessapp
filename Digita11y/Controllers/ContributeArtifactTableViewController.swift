@@ -3,17 +3,6 @@ import RWFramework
 
 class ContributeArtifactTableViewController: BaseTableViewController, RWFrameworkProtocol {
 
-  var selected: [Int] = []
-
-  override func viewWillAppear(animated: Bool) {
-    super.viewWillAppear(animated)
-    selected.removeAll(keepCapacity: true)
-    let count = self.rwData?.speakTags.count
-    for var i = 0; i < count; ++i {
-      selected.append(0)
-    }
-  }
-
   // MARK: - Table view data source
 
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -33,18 +22,19 @@ class ContributeArtifactTableViewController: BaseTableViewController, RWFramewor
     if let tag = self.rwData?.speakTags[indexPath.section].options[indexPath.row] {
       cell.textLabel?.text = tag.value
     }
-    cell.accessoryType = selected[indexPath.section] == indexPath.row ? .Checkmark : .None
+    cell.accessoryType = self.rwData?.selectedSpeakTags[indexPath.section] == indexPath.row ? .Checkmark : .None
     return cell
   }
 
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    let oldIndexPath = NSIndexPath(forRow: selected[indexPath.section], inSection: indexPath.section)
+    let row = self.rwData?.selectedSpeakTags[indexPath.section] ?? 0
+    let oldIndexPath = NSIndexPath(forRow: row, inSection: indexPath.section)
     let oldCell = tableView.cellForRowAtIndexPath(oldIndexPath)
     oldCell?.accessoryType = .None
 
     let cell = tableView.cellForRowAtIndexPath(indexPath)
     cell?.accessoryType = .Checkmark
-    selected[indexPath.section] = indexPath.row
+    self.rwData?.selectedSpeakTags[indexPath.section] = indexPath.row
     cell?.selected = false
   }
 }
