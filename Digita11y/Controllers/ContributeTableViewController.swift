@@ -452,7 +452,6 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     } else {
       self.uploadButton.accessibilityHint = "Upload \(recordingCount) audio, and \(imageCount) images, and text"
     }
-    debugPrintln(self.uploadButton.accessibilityHint)
   }
 
   @IBAction func uploadAllMedia(sender: AnyObject) {
@@ -487,6 +486,16 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     }
 
     rwf.addRecording()
+
+    for var i = 0; i < self.rwData?.speakTags.count; ++i {
+      if let group = self.rwData?.speakTags[i] {
+        if let index = self.rwData?.selectedSpeakTags[i] {
+          let tag = group.options[index]
+          rwf.setSpeakTagsCurrent(group.code, value: tag.value)
+        }
+      }
+    }
+
     rwf.uploadAllMedia()
 
     let alertController = UIAlertController(title: "Thank You", message: "Thank you for your contribution", preferredStyle: .Alert)
