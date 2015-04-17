@@ -501,6 +501,9 @@
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="6jk-KI-ogO">
                                             <rect key="frame" x="18" y="18" width="64" height="64"/>
+                                            <accessibility key="accessibilityConfiguration">
+                                                <bool key="isElement" value="YES"/>
+                                            </accessibility>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="64" id="iM7-0a-OC4"/>
                                                 <constraint firstAttribute="height" constant="64" id="k6X-vG-M5t"/>
@@ -566,6 +569,7 @@
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="999" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oJK-bN-FR4" customClass="SZTextView">
                                             <rect key="frame" x="18" y="18" width="564" height="107"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <accessibility key="accessibilityConfiguration" hint="Your thoughts" label="Text contribution"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                                         </textView>

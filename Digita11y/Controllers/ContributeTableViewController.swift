@@ -113,10 +113,14 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
       cell.artifactTextView.tag = tag
       cell.artifactTextView.placeholder = "Describe this photo..."
       cell.artifactTextView.placeholderTextColor = UIColor.lightGrayColor()
+      let num = tag+1
+      cell.artifactTextView.accessibilityLabel = String("Image \(num) description")
+      cell.artifactTextView.accessibilityHint = "Describe this photo"
       let image = self.images[tag]
       cell.artifactTextView.text = image.text
       cell.artifactTextView.delegate = self
       cell.artifactImageView.image = image.image
+      cell.artifactImageView.accessibilityLabel = String("Image \(num)")
       return cell
     case .PhotoDrawer:
       var cell = tableView.dequeueReusableCellWithIdentifier(PhotoDrawerCellIdentifier, forIndexPath: indexPath) as! PhotoDrawerTableViewCell
