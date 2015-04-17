@@ -152,7 +152,8 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
 
     switch (type) {
     case .Artifact:
-      var vc = ContributeArtifactTableViewController()
+      var vc = ContributeArtifactTableViewController(style: .Grouped)
+      vc.rwData = self.rwData
       self.navigationController?.pushViewController(vc, animated: true)
       break
     case .Audio:
