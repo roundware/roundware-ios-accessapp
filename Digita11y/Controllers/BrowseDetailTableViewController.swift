@@ -4,16 +4,14 @@ import RWFramework
 
 class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProtocol {
 
-  let CellIdentifier = "BrowseDetailCellIdentifier"
   var tagID = 0
-  var currentTag: Tag?
   var assets: [Asset] = []
   var assetPlayer: AssetPlayer?
   var timer: NSTimer?
   var currentAsset: Int = 0
 
-  @IBOutlet weak var segmentedControl: UISegmentedControl!
-
+  @IBOutlet weak var headerImageView: UIImageView!
+  
   deinit {
     NSNotificationCenter.defaultCenter().removeObserver(self)
   }
@@ -24,16 +22,7 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
 
     tableView.estimatedRowHeight = 94
     tableView.rowHeight = UITableViewAutomaticDimension
-
-    if let v = self.segmentedControl.subviews[0] as? UIView {
-      v.accessibilityHint = "Filters by artifact"
-    }
-    if let v = self.segmentedControl.subviews[1] as? UIView {
-      v.accessibilityHint = "Filters by contributor"
-    }
-    if let v = self.segmentedControl.subviews[2] as? UIView {
-      v.accessibilityHint = "Filters by medium"
-    }
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("globalAudioStarted:"), name: "RW_STARTED_AUDIO_NOTIFICATION", object: nil)
   }
 
   override func viewWillAppear(animated: Bool) {
@@ -45,8 +34,11 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
     self.navigationController?.view.backgroundColor = UIColor.clearColor()
     self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
 
-    currentTag = self.rwData?.exhibitions.filter { $0.tagId == self.tagID }.first
-    self.navigationItem.title = currentTag?.value
+    var exhibition = self.rwData?.exhibitions.filter { $0.tagId == self.tagID }.first
+    self.navigationItem.title = exhibition?.value
+    if let urlString = exhibition?.headerImageURL {
+      headerImageView.sd_setImageWithURL(NSURL(string: urlString), placeholderImage: UIImage(named:"browse-cell"))
+    }
 
     assets = self.rwData?.assets.filter { contains($0.tagIDs, self.tagID) } ?? []
 
@@ -76,15 +68,21 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
 
     switch (asset.mediaType) {
     case .Text:
-      let cell = tableView.dequeueReusableCellWithIdentifier("BrowseTextTableViewCellIdentifier", forIndexPath: indexPath) as! BrowseTextTableViewCell
+      let cell = tableView.dequeueReusableCellWithIdentifier(BrowseTextTableViewCell.Identifier, forIndexPath: indexPath) as! BrowseTextTableViewCell
       cell.titleLabel.text = tag??.value ?? "Telescope M-53 Audio 1"
       cell.accessibilityLabel = cell.titleLabel.text
-      cell.assetLabel.text = asset.textString
+      if let url = asset.fileURL.absoluteString {
+        // This is kinda messed because Alamofire is included directly in the project
+        request(.GET, url).responseString { (_, _, string, _) in
+          if let str = string {
+            cell.assetLabel.text = str
+          }
+        }
+      }
       return cell
     case .Audio:
-      let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as! BrowseDetailTableViewCell
+      let cell = tableView.dequeueReusableCellWithIdentifier(BrowseDetailTableViewCell.Identifier, forIndexPath: indexPath) as! BrowseDetailTableViewCell
       cell.assetLabel.text = tag??.value ?? "Telescope M-53 Audio 1"
-      var name = cell.assetLabel.text
       if let name = cell.assetLabel.text {
         cell.accessibilityLabel = String("\(name), audio")
       }
@@ -92,7 +90,7 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
       cell.playButton.tag = indexPath.row
       return cell
     case .Photo:
-      let cell = tableView.dequeueReusableCellWithIdentifier("BrowsePhotoTableViewCellIdentifier", forIndexPath: indexPath) as! BrowsePhotoTableViewCell
+      let cell = tableView.dequeueReusableCellWithIdentifier(BrowsePhotoTableViewCell.Identifier, forIndexPath: indexPath) as! BrowsePhotoTableViewCell
       var name = tag??.value ?? "Telescope M-53 Audio 1"
       cell.titleLabel.text = name
       cell.accessibilityLabel = String("\(name), image, \(asset.assetDescription)")
@@ -101,7 +99,7 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
       cell.tag = indexPath.row
       return cell
     default:
-      let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as! BrowseDetailTableViewCell
+      let cell = tableView.dequeueReusableCellWithIdentifier(BrowseDetailTableViewCell.Identifier, forIndexPath: indexPath) as! BrowseDetailTableViewCell
       cell.assetLabel.text = tag??.value ?? "Telescope M-53 Audio 1"
       cell.accessibilityLabel = cell.assetLabel.text
       return cell
@@ -154,6 +152,7 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
           timer?.invalidate()
         } else {
           player.play()
+          NSNotificationCenter.defaultCenter().postNotificationName("RW_STARTED_AUDIO_NOTIFICATION", object: self)
           currentAsset = button.tag
           timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target:self, selector:Selector("audioTimer:"), userInfo:nil, repeats:true)
           NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("audioStopped"), name: AVPlayerItemDidPlayToEndTimeNotification, object: player.currentItem)
@@ -165,6 +164,7 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
       } else {
         assetPlayer = AssetPlayer(asset: asset)
         assetPlayer!.player?.play()
+        NSNotificationCenter.defaultCenter().postNotificationName("RW_STARTED_AUDIO_NOTIFICATION", object: self)
         currentAsset = button.tag
         timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target:self, selector:Selector("audioTimer:"), userInfo:nil, repeats:true)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("audioStopped"), name: AVPlayerItemDidPlayToEndTimeNotification, object: assetPlayer!.player?.currentItem)
@@ -180,6 +180,7 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
       }
       assetPlayer = AssetPlayer(asset: asset)
       assetPlayer!.player?.play()
+      NSNotificationCenter.defaultCenter().postNotificationName("RW_STARTED_AUDIO_NOTIFICATION", object: self)
       currentAsset = button.tag
       timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target:self, selector:Selector("audioTimer:"), userInfo:nil, repeats:true)
       NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("audioStopped"), name: AVPlayerItemDidPlayToEndTimeNotification, object: assetPlayer!.player?.currentItem)
@@ -197,6 +198,10 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
       let asset = assets[currentAsset]
       var percent = asset.audioLength == 0.0 ? 0.0 : Float(dt)/asset.audioLength
       cell.timeProgressView.progress = percent
+      var percentInt = Int(percent*100.0)
+      if let name = cell.assetLabel.text {
+        cell.accessibilityLabel = String("\(percentInt) percent complete, \(name), audio")
+      }
     }
   }
 
@@ -204,7 +209,18 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
     self.resetPlayButtons()
   }
 
+  func globalAudioStarted(note: NSNotification) {
+    if let sender = note.object as? BrowseDetailTableViewController {
+      if sender == self {
+        return
+      }
+    }
+    self.assetPlayer?.player?.pause()
+    self.resetPlayButtons()
+  }
+
   // MARK: - Navigation
+  
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     super.prepareForSegue(segue, sender: sender)
 
@@ -212,7 +228,9 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
       if let to = segue.destinationViewController as? BrowsePhotoViewController,
              cell = sender as? BrowsePhotoTableViewCell {
         to.asset = assets[cell.tag]
-        to.name = cell.titleLabel.text ?? ""
+        if let name = cell.titleLabel.text {
+          to.name = name
+        }
       }
     }
   }

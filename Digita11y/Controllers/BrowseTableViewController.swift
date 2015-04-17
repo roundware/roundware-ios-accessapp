@@ -3,8 +3,6 @@ import RWFramework
 
 class BrowseTableViewController: BaseTableViewController, RWFrameworkProtocol {
 
-  let CellIdentifier = "BrowseCellIdentifier"
-
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -12,8 +10,7 @@ class BrowseTableViewController: BaseTableViewController, RWFrameworkProtocol {
     tableView.estimatedRowHeight = 125.0
     tableView.tableFooterView = UIView(frame: CGRectZero)
 
-    var rwf = RWFramework.sharedInstance
-    rwf.addDelegate(self)
+    RWFramework.sharedInstance.addDelegate(self)
   }
 
   override func viewWillAppear(animated: Bool) {
@@ -32,15 +29,13 @@ class BrowseTableViewController: BaseTableViewController, RWFrameworkProtocol {
   }
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    if let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as? BrowseTableViewCell {
+    if let cell = tableView.dequeueReusableCellWithIdentifier(BrowseTableViewCell.Identifier, forIndexPath: indexPath) as? BrowseTableViewCell {
       cell.tag = self.rwData?.exhibitions[indexPath.row].tagId ?? 0
-      cell.titleLabel.text = self.rwData?.exhibitions[indexPath.row].value
-      cell.accessibilityLabel = self.rwData?.exhibitions[indexPath.row].value
+      var name = self.rwData?.exhibitions[indexPath.row].value
+      cell.titleLabel.text = name
+      cell.accessibilityLabel = name
       if let urlString = self.rwData?.exhibitions[indexPath.row].headerImageURL {
-        if urlString.isEmpty == false {
-          debugPrintln(urlString)
-          cell.bannerImageView.sd_setImageWithURL(NSURL(string: urlString), placeholderImage: UIImage(named:"browse-cell"))
-        }
+        cell.bannerImageView.sd_setImageWithURL(NSURL(string: urlString), placeholderImage: UIImage(named:"browse-cell"))
       }
       return cell
     }

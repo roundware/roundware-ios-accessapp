@@ -18,7 +18,6 @@ struct Asset {
   var tagIDs: [Int] = []
   var fileURL = NSURL()
   var audioLength: Float = 0.0
-  var textString = ""
 
   init(json: JSON) {
     assetDescription = json["description"].string ?? ""
@@ -39,14 +38,6 @@ struct Asset {
 
     if json["media_type"].string == "text" {
       mediaType = .Text
-      if let url = fileURL.absoluteString {
-        // This is kinda messed because Alamofire is included directly in the project
-        request(.GET, url).responseString { (_, _, string, _) in
-          if let str = string {
-            self.textString = str
-          }
-        }
-      }
     } else if json["media_type"].string == "photo" {
       mediaType = .Photo
     } else if json["media_type"].string == "audio" {

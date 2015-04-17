@@ -14,9 +14,10 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     case TextDrawer
   }
 
-  var cells = [Cell.Audio, Cell.Photo, Cell.Text]
+  var cells = [Cell.Artifact, Cell.Audio, Cell.Photo, Cell.Text]
 
   let CellIdentifier            = "ContributeCellIdentifier"
+  let ArtifactCellIdentifier    = "ArtifactCellIdentifier"
   let AudioDrawerCellIdentifier = "AudioDrawerCellIdentifier"
   let PhotoTextCellIdentifier   = "PhotoTextCellIdentifier"
   let PhotoDrawerCellIdentifier = "PhotoDrawerCellIdentifier"
@@ -41,6 +42,10 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
 
   // MARK: - View lifecycle
 
+  deinit {
+    NSNotificationCenter.defaultCenter().removeObserver(self)
+  }
+
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -49,12 +54,13 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
 
     self.uploadButton.layer.cornerRadius = 4.0
 
-    var rwf = RWFramework.sharedInstance
-    rwf.addDelegate(self)
+    RWFramework.sharedInstance.addDelegate(self)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("globalAudioStarted:"), name: "RW_STARTED_AUDIO_NOTIFICATION", object: nil)
   }
 
   override func viewDidAppear(animated: Bool) {
     super.viewDidAppear(animated)
+    self.tableView.reloadData()
     self.updateUploadButtonState()
   }
 
@@ -72,7 +78,12 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     let type = self.cells[indexPath.row]
     switch (type) {
     case .Artifact:
-      return tableView.dequeueReusableCellWithIdentifier("ArtifactCellIdentifier", forIndexPath: indexPath) as! UITableViewCell
+      var cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: ArtifactCellIdentifier)
+      cell.textLabel?.text = "This contribution is about an object:"
+      cell.detailTextLabel?.text = self.rwData?.selectedSpeakObject()?.value
+      cell.accessoryType = .DisclosureIndicator
+      cell.accessibilityHint = "Select an object"
+      return cell
     case .Audio:
       var cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: CellIdentifier)
       cell.textLabel?.text = "Audio"
@@ -109,10 +120,14 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
       cell.artifactTextView.tag = tag
       cell.artifactTextView.placeholder = "Describe this photo..."
       cell.artifactTextView.placeholderTextColor = UIColor.lightGrayColor()
+      let num = tag+1
+      cell.artifactTextView.accessibilityLabel = String("Image \(num) description")
+      cell.artifactTextView.accessibilityHint = "Describe this photo"
       let image = self.images[tag]
       cell.artifactTextView.text = image.text
       cell.artifactTextView.delegate = self
       cell.artifactImageView.image = image.image
+      cell.artifactImageView.accessibilityLabel = String("Image \(num)")
       return cell
     case .PhotoDrawer:
       var cell = tableView.dequeueReusableCellWithIdentifier(PhotoDrawerCellIdentifier, forIndexPath: indexPath) as! PhotoDrawerTableViewCell
@@ -139,6 +154,11 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     let type = self.cells[indexPath.row]
 
     switch (type) {
+    case .Artifact:
+      var vc = ContributeArtifactTableViewController(style: .Grouped)
+      vc.rwData = self.rwData
+      self.navigationController?.pushViewController(vc, animated: true)
+      break
     case .Audio:
       toggleDrawer(Cell.AudioDrawer, parent: Cell.Audio)
     case .Photo:
@@ -269,6 +289,7 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     } else if rwf.hasRecording() {
       if toggleButton {
         rwf.startPlayback()
+        NSNotificationCenter.defaultCenter().postNotificationName("RW_STARTED_AUDIO_NOTIFICATION", object: self)
         cell.recordButton.accessibilityLabel = "Stop playback"
         cell.recordButton.setImage(UIImage(named: StopButtonFilename), forState: .Normal)
         cell.progressLabel.text = "00:00"
@@ -281,6 +302,7 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     } else {
       if toggleButton {
         rwf.startRecording()
+        NSNotificationCenter.defaultCenter().postNotificationName("RW_STARTED_AUDIO_NOTIFICATION", object: self)
         cell.recordButton.accessibilityLabel = "Stop recording"
         cell.recordButton.setImage(UIImage(named: self.StopButtonFilename), forState: .Normal)
         cell.progressLabel.text = "00:00"
@@ -368,6 +390,21 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     self.updateUploadButtonState()
   }
 
+  func globalAudioStarted(note: NSNotification) {
+    if let sender = note.object as? ContributeTableViewController {
+      if sender == self {
+        return
+      }
+    }
+
+    var rwf = RWFramework.sharedInstance
+    rwf.stopPlayback()
+    rwf.stopRecording()
+    if let cell = self.findAudioDrawerTableViewCell() {
+      self.updateAudioCell(cell, toggleButton: false)
+    }
+  }
+
   func rwAudioPlayerDidFinishPlaying() {
     var cell = self.findAudioDrawerTableViewCell()
     cell?.recordButton.accessibilityLabel = "Preview audio"
@@ -415,7 +452,6 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     } else {
       self.uploadButton.accessibilityHint = "Upload \(recordingCount) audio, and \(imageCount) images, and text"
     }
-    debugPrintln(self.uploadButton.accessibilityHint)
   }
 
   @IBAction func uploadAllMedia(sender: AnyObject) {
@@ -450,6 +486,16 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     }
 
     rwf.addRecording()
+
+    for var i = 0; i < self.rwData?.speakTags.count; ++i {
+      if let group = self.rwData?.speakTags[i] {
+        if let index = self.rwData?.selectedSpeakTags[i] {
+          let tag = group.options[index]
+          rwf.setSpeakTagsCurrent(group.code, value: [tag.tagId])
+        }
+      }
+    }
+
     rwf.uploadAllMedia()
 
     let alertController = UIAlertController(title: "Thank You", message: "Thank you for your contribution", preferredStyle: .Alert)

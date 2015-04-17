@@ -13,6 +13,10 @@ class ListenViewController: BaseViewController, RWFrameworkProtocol {
 
   // MARK: - View lifecycle
 
+  deinit {
+    NSNotificationCenter.defaultCenter().removeObserver(self)
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     self.navigationItem.title = "Mission Moon"
@@ -26,6 +30,8 @@ class ListenViewController: BaseViewController, RWFrameworkProtocol {
     if let v = self.segmentedControl.subviews[2] as? UIView {
       v.accessibilityHint = "Filters by questions"
     }
+
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("globalAudioStarted:"), name: "RW_STARTED_AUDIO_NOTIFICATION", object: nil)
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -36,14 +42,12 @@ class ListenViewController: BaseViewController, RWFrameworkProtocol {
   override func viewDidAppear(animated: Bool) {
     super.viewDidAppear(animated)
 
-    var rwf = RWFramework.sharedInstance
-    rwf.addDelegate(self)
+    RWFramework.sharedInstance.addDelegate(self)
 
     self.playButton.enabled = self.rwData?.stream == nil ? false : true
 
     // The UITabBar likes to steal focus.  So let's delay for a bit then become first responder.
-    let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.5 * Double(NSEC_PER_SEC)))
-    dispatch_after(delayTime, dispatch_get_main_queue()) {
+    delay(0.5) {
       self.playButton.becomeFirstResponder()
     }
   }
@@ -64,6 +68,7 @@ class ListenViewController: BaseViewController, RWFrameworkProtocol {
       SVProgressHUD.dismiss()
     } else {
       rwf.play()
+      NSNotificationCenter.defaultCenter().postNotificationName("RW_STARTED_AUDIO_NOTIFICATION", object: self)
       self.playButton.setImage(UIImage(named: "stop-button"), forState: .Normal)
       self.playButton.accessibilityLabel = "Stop button"
       SVProgressHUD.showWithStatus("Loading Stream")
@@ -90,5 +95,18 @@ class ListenViewController: BaseViewController, RWFrameworkProtocol {
     RWFramework.sharedInstance.stop()
     self.playButton.setImage(UIImage(named: "player-button"), forState: .Normal)
     self.playButton.accessibilityLabel = "Play button"
+  }
+
+  func globalAudioStarted(note: NSNotification) {
+    if let sender = note.object as? ListenViewController {
+      if sender == self {
+        return
+      }
+    }
+
+    RWFramework.sharedInstance.stop()
+    self.playButton.setImage(UIImage(named: "player-button"), forState: .Normal)
+    self.playButton.accessibilityLabel = "Play button"
+    SVProgressHUD.dismiss()
   }
 }

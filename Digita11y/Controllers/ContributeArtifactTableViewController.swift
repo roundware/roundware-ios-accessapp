@@ -3,54 +3,38 @@ import RWFramework
 
 class ContributeArtifactTableViewController: BaseTableViewController, RWFrameworkProtocol {
 
-  var selectedCells: Set<NSIndexPath> = Set<NSIndexPath>()
-
-  func objectTags() -> TagGroup? {
-    if let speakTags = self.rwData?.speakTags {
-      for tag in speakTags {
-        if tag.code == "object" {
-          return tag
-        }
-      }
-    }
-
-    return nil
-  }
-
   // MARK: - Table view data source
 
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-    return 1
+    return self.rwData?.speakTags.count ?? 0
   }
 
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return self.rwData?.speakTags[section].options.count ?? 0
+  }
 
-    if let tags = self.objectTags() {
-      return tags.options.count
-    }
-
-    return 0
+  override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    return self.rwData?.speakTags[section].headerText
   }
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("ContributeArtifactCellIdentifier", forIndexPath: indexPath) as! UITableViewCell
-
-    if let tags = self.objectTags() {
-      var tag = tags.options[indexPath.row]
+    let cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "ContributeArtifactCellIdentifier")
+    if let tag = self.rwData?.speakTags[indexPath.section].options[indexPath.row] {
       cell.textLabel?.text = tag.value
     }
-
+    cell.accessoryType = self.rwData?.selectedSpeakTags[indexPath.section] == indexPath.row ? .Checkmark : .None
     return cell
   }
 
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    let row = self.rwData?.selectedSpeakTags[indexPath.section] ?? 0
+    let oldIndexPath = NSIndexPath(forRow: row, inSection: indexPath.section)
+    let oldCell = tableView.cellForRowAtIndexPath(oldIndexPath)
+    oldCell?.accessoryType = .None
+
     let cell = tableView.cellForRowAtIndexPath(indexPath)
-    if selectedCells.contains(indexPath) == true {
-      selectedCells.remove(indexPath)
-      cell?.accessoryType = .None
-    } else {
-      selectedCells.insert(indexPath)
-      cell?.accessoryType = .Checkmark
-    }
+    cell?.accessoryType = .Checkmark
+    self.rwData?.selectedSpeakTags[indexPath.section] = indexPath.row
+    cell?.selected = false
   }
 }
