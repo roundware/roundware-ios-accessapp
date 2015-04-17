@@ -14,9 +14,10 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     case TextDrawer
   }
 
-  var cells = [Cell.Audio, Cell.Photo, Cell.Text]
+  var cells = [Cell.Artifact, Cell.Audio, Cell.Photo, Cell.Text]
 
   let CellIdentifier            = "ContributeCellIdentifier"
+  let ArtifactCellIdentifier    = "ArtifactCellIdentifier"
   let AudioDrawerCellIdentifier = "AudioDrawerCellIdentifier"
   let PhotoTextCellIdentifier   = "PhotoTextCellIdentifier"
   let PhotoDrawerCellIdentifier = "PhotoDrawerCellIdentifier"
@@ -76,7 +77,10 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     let type = self.cells[indexPath.row]
     switch (type) {
     case .Artifact:
-      return tableView.dequeueReusableCellWithIdentifier("ArtifactCellIdentifier", forIndexPath: indexPath) as! UITableViewCell
+      var cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: ArtifactCellIdentifier)
+      cell.textLabel?.text = "This contribution is about an object"
+      cell.accessibilityHint = "Select an object"
+      return cell
     case .Audio:
       var cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: CellIdentifier)
       cell.textLabel?.text = "Audio"
@@ -147,6 +151,10 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     let type = self.cells[indexPath.row]
 
     switch (type) {
+    case .Artifact:
+      var vc = ContributeArtifactTableViewController()
+      self.navigationController?.pushViewController(vc, animated: true)
+      break
     case .Audio:
       toggleDrawer(Cell.AudioDrawer, parent: Cell.Audio)
     case .Photo:

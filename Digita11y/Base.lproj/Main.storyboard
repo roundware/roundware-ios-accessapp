@@ -372,11 +372,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="d9b-iQ-jZg">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="k4q-iL-EYE">
                             <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -585,32 +580,6 @@
                                     <outlet property="contributeTextView" destination="oJK-bN-FR4" id="9nG-6E-srM"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ArtifactCellIdentifier" rowHeight="144" id="Dpd-Pk-obI" customClass="TextDrawerTableViewCell" customModule="Digita11y" customModuleProvider="target">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dpd-Pk-obI" id="s8l-bu-Vo6">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is about an artifact" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7OV-2u-yge">
-                                            <rect key="frame" x="18" y="18" width="152" height="107"/>
-                                            <accessibility key="accessibilityConfiguration" hint=""/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="7OV-2u-yge" firstAttribute="leading" secondItem="s8l-bu-Vo6" secondAttribute="leadingMargin" constant="10" id="CBb-sG-ov1"/>
-                                        <constraint firstItem="7OV-2u-yge" firstAttribute="top" secondItem="s8l-bu-Vo6" secondAttribute="topMargin" constant="10" id="KQT-4X-Est"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="7OV-2u-yge" secondAttribute="bottom" constant="10" id="P1G-ns-kda"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <accessibility key="accessibilityConfiguration" hint="Select artifact to contribute observations for">
-                                    <bool key="isElement" value="YES"/>
-                                </accessibility>
-                                <connections>
-                                    <segue destination="YIK-7U-NXG" kind="show" id="DEL-Om-jNK"/>
-                                </connections>
-                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="Mst-m9-Cpj" id="dxI-Iz-fSk"/>
@@ -625,44 +594,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="On5-Jv-hJH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1562" y="1163"/>
-        </scene>
-        <!--Contribute Artifact Table View Controller-->
-        <scene sceneID="JbR-P3-gXs">
-            <objects>
-                <tableViewController id="YIK-7U-NXG" customClass="ContributeArtifactTableViewController" customModule="Digita11y" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Pui-4k-2sh">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="CkO-Q0-v1j">
-                            <rect key="frame" x="0.0" y="130" width="600" height="1"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </view>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ContributeArtifactCellIdentifier" textLabel="P36-e5-ssJ" style="IBUITableViewCellStyleDefault" id="Job-nv-L4f">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Job-nv-L4f" id="rxo-c5-aEF">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="P36-e5-ssJ">
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="delegate" destination="YIK-7U-NXG" id="9lo-Og-fWK"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mbM-Mw-vdz" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2281" y="1159"/>
         </scene>
         <!--Root Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
