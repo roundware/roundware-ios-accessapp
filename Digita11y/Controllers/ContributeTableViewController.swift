@@ -422,6 +422,10 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
       image.text = textView.text
       self.images[textView.tag] = image
     }
+
+    // Toggling updates forces the tableview to recalculate cell size
+    self.tableView.beginUpdates()
+    self.tableView.endUpdates()
   }
 
   func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
