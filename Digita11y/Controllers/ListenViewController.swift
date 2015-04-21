@@ -19,6 +19,7 @@ class ListenViewController: BaseViewController, RWFrameworkProtocol {
   override func viewDidLoad() {
     super.viewDidLoad()
     self.navigationItem.title = "Listen"
+    self.navigationItem.setRightBarButtonItem(UIBarButtonItem(title: "Filter", style: .Plain, target: self, action: Selector("filterTapped")), animated: false)
     NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("globalAudioStarted:"), name: "RW_STARTED_AUDIO_NOTIFICATION", object: nil)
   }
   
@@ -61,6 +62,12 @@ class ListenViewController: BaseViewController, RWFrameworkProtocol {
       self.playButton.accessibilityLabel = "Stop button"
       SVProgressHUD.showWithStatus("Loading Stream")
     }
+  }
+
+  func filterTapped() {
+    var vc = ListenTagsTableViewController(style: .Grouped)
+    vc.rwData = self.rwData
+    self.navigationController?.pushViewController(vc, animated: true)
   }
 
   // MARK: - RWFrameworkProtocol

@@ -62,6 +62,8 @@
 		4ED216101AD730A1004FCA82 /* BrowseTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED2160D1AD72E7E004FCA82 /* BrowseTextTableViewCell.swift */; };
 		4EF024781AA1288600F93604 /* BrowseDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF024771AA1288600F93604 /* BrowseDetailTableViewCell.swift */; };
 		4EF024791AA1288600F93604 /* BrowseDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF024771AA1288600F93604 /* BrowseDetailTableViewCell.swift */; };
+		4EF1B8F81AE60613002C619C /* ListenTagsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF1B8F71AE60613002C619C /* ListenTagsTableViewController.swift */; };
+		4EF1B8FA1AE60702002C619C /* ListenTagsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF1B8F71AE60613002C619C /* ListenTagsTableViewController.swift */; };
 		8D2CEB442BA021938505E8E0 /* libPods-Digita11yTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4EC7348B2CECCD23FF50D6E /* libPods-Digita11yTests.a */; };
 		E2CA5FC7CF2020C6FF5F4AF5 /* libPods-Digita11y.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF4EC8ECFFE3A204B9AB3D26 /* libPods-Digita11y.a */; };
 /* End PBXBuildFile section */
@@ -150,6 +152,7 @@
 		4EC5C0A41ACE14E900BA8AA9 /* Stream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stream.swift; path = Models/Stream.swift; sourceTree = "<group>"; };
 		4ED2160D1AD72E7E004FCA82 /* BrowseTextTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BrowseTextTableViewCell.swift; path = Views/BrowseTextTableViewCell.swift; sourceTree = "<group>"; };
 		4EF024771AA1288600F93604 /* BrowseDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BrowseDetailTableViewCell.swift; path = Views/BrowseDetailTableViewCell.swift; sourceTree = "<group>"; };
+		4EF1B8F71AE60613002C619C /* ListenTagsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListenTagsTableViewController.swift; path = Controllers/ListenTagsTableViewController.swift; sourceTree = "<group>"; };
 		9100EF3930DF39010F581D8C /* Pods-Digita11yTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Digita11yTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Digita11yTests/Pods-Digita11yTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B9DA8D7895CEE3286A469D80 /* Pods-Digita11yTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Digita11yTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Digita11yTests/Pods-Digita11yTests.release.xcconfig"; sourceTree = "<group>"; };
 		BF4EC8ECFFE3A204B9AB3D26 /* libPods-Digita11y.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Digita11y.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -290,6 +293,7 @@
 				4E5946981A9D2095007ED02C /* BrowseDetailTableViewController.swift */,
 				4EC432AA1ADB8219002CBC04 /* BrowsePhotoViewController.swift */,
 				4E7184281AC8E3D600C88A58 /* ListenViewController.swift */,
+				4EF1B8F71AE60613002C619C /* ListenTagsTableViewController.swift */,
 				4E59469B1A9D4BFA007ED02C /* ContributeTableViewController.swift */,
 				4E6ACDDC1AAE528400314A9F /* ContributeArtifactTableViewController.swift */,
 			);
@@ -576,6 +580,7 @@
 				4EF024781AA1288600F93604 /* BrowseDetailTableViewCell.swift in Sources */,
 				4E0BB2B81ADEB6C3007E1936 /* PhotoTextTableViewCell.swift in Sources */,
 				4E6C4AC81AB2ADEA00B5FEAC /* AudioDrawerTableViewCell.swift in Sources */,
+				4EF1B8F81AE60613002C619C /* ListenTagsTableViewController.swift in Sources */,
 				4E54F87B1AD58D2E007B4EEE /* Asset.swift in Sources */,
 				4E59466F1A9BB81B007ED02C /* AppDelegate.swift in Sources */,
 				4EC5C0A51ACE14E900BA8AA9 /* Stream.swift in Sources */,
@@ -612,6 +617,7 @@
 				4E6ACDDE1AAE528400314A9F /* ContributeArtifactTableViewController.swift in Sources */,
 				4EC432A71ADB7A0E002CBC04 /* BrowsePhotoTableViewCell.swift in Sources */,
 				4ED216101AD730A1004FCA82 /* BrowseTextTableViewCell.swift in Sources */,
+				4EF1B8FA1AE60702002C619C /* ListenTagsTableViewController.swift in Sources */,
 				4E7184271AC7760500C88A58 /* BaseViewController.swift in Sources */,
 				4EC4329E1AD9D1A7002CBC04 /* Delay.swift in Sources */,
 				4EA392911A9FC2E800308613 /* PhotoDrawerTableViewCell.swift in Sources */,
