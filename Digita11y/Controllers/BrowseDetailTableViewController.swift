@@ -72,10 +72,19 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
       cell.titleLabel.text = tag??.value ?? "Telescope M-53 Audio 1"
       cell.accessibilityLabel = cell.titleLabel.text
       if let url = asset.fileURL.absoluteString {
-        // This is kinda messed because Alamofire is included directly in the project
-        request(.GET, url).responseString { (_, _, string, _) in
-          if let str = string {
-            cell.assetLabel.text = str
+
+        dispatch_async(dispatch_get_main_queue()) {
+          // FIX: This is kinda messed because Alamofire is included directly in the project.
+          // Fix this when use_frameworks has been fixed in Cocoapods
+          request(.GET, url).responseString { (_, _, string, _) in
+            if let str = string {
+              debugPrintln("UPDATE TEXT")
+              cell.assetLabel.text = str
+
+              // Toggling updates forces the tableview to recalculate cell size
+              self.tableView.beginUpdates()
+              self.tableView.endUpdates()
+            }
           }
         }
       }
