@@ -9,7 +9,6 @@ class ListenViewController: BaseViewController, RWFrameworkProtocol {
   @IBOutlet weak var imageView: UIImageView!
   @IBOutlet weak var descriptionTextView: UITextView!
   @IBOutlet weak var playButton: UIButton!
-  @IBOutlet weak var segmentedControl: UISegmentedControl!
 
   // MARK: - View lifecycle
 
@@ -20,17 +19,6 @@ class ListenViewController: BaseViewController, RWFrameworkProtocol {
   override func viewDidLoad() {
     super.viewDidLoad()
     self.navigationItem.title = "Listen"
-
-    if let v = self.segmentedControl.subviews[0] as? UIView {
-      v.accessibilityHint = "Filters by categories"
-    }
-    if let v = self.segmentedControl.subviews[1] as? UIView {
-      v.accessibilityHint = "Filters by contributors"
-    }
-    if let v = self.segmentedControl.subviews[2] as? UIView {
-      v.accessibilityHint = "Filters by questions"
-    }
-
     NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("globalAudioStarted:"), name: "RW_STARTED_AUDIO_NOTIFICATION", object: nil)
   }
   
