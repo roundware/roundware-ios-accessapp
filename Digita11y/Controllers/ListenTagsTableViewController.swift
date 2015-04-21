@@ -3,6 +3,12 @@ import RWFramework
 
 class ListenTagsTableViewController: BaseTableViewController {
 
+  override func viewWillDisappear(animated: Bool) {
+    super.viewWillDisappear(animated)
+    var rwf = RWFramework.sharedInstance
+    rwf.submitListenTags()
+  }
+
   // MARK: - Table view data source
 
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -37,5 +43,23 @@ class ListenTagsTableViewController: BaseTableViewController {
     }
 
     return cell
+  }
+
+  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    if let group = self.rwData?.listenTags[indexPath.section],
+            cell = tableView.cellForRowAtIndexPath(indexPath) {
+      var rwf = RWFramework.sharedInstance
+      if let tags = rwf.getListenTagsCurrent(group.code) as? [Int] {
+        let tag = group.options[indexPath.row]
+        var newTags = tags.filter { $0 == tag.tagId }
+        if count(tags) != count(newTags) {
+          cell.accessoryType = .None
+        } else {
+          cell.accessoryType = .Checkmark
+        }
+        rwf.setListenTagsCurrent(group.code, value: newTags)
+      }
+      cell.selected = false
+    }
   }
 }

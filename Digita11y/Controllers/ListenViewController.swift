@@ -19,7 +19,7 @@ class ListenViewController: BaseViewController, RWFrameworkProtocol {
   override func viewDidLoad() {
     super.viewDidLoad()
     self.navigationItem.title = "Listen"
-    self.navigationItem.setRightBarButtonItem(UIBarButtonItem(title: "Filter", style: .Plain, target: self, action: Selector("filterTapped")), animated: false)
+    self.navigationItem.setRightBarButtonItem(UIBarButtonItem(title: "Channels", style: .Plain, target: self, action: Selector("filterTapped")), animated: false)
     NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("globalAudioStarted:"), name: "RW_STARTED_AUDIO_NOTIFICATION", object: nil)
   }
   
