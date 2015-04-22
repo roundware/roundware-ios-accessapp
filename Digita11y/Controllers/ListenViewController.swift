@@ -26,6 +26,16 @@ class ListenViewController: BaseViewController, RWFrameworkProtocol {
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     self.navigationController?.navigationBar.becomeFirstResponder()
+
+    if let exhibitionIDs = RWFramework.sharedInstance.getListenTagsCurrent("exhibition") as? [Int] {
+      if let exhibitionID = exhibitionIDs.first {
+        let tags = self.rwData?.exhibitions.filter { $0.tagId == exhibitionID }
+        if let tag = tags?.first {
+          self.navigationItem.title = tag.value
+          self.imageView.sd_setImageWithURL(NSURL(string: tag.headerImageURL), placeholderImage: UIImage(named:"listen-heroshot"))
+        }
+      }
+    }
   }
 
   override func viewDidAppear(animated: Bool) {

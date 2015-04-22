@@ -317,25 +317,12 @@
                                     <constraint firstAttribute="centerX" secondItem="zEy-5k-sPV" secondAttribute="centerX" id="bom-6N-SXn"/>
                                 </constraints>
                             </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="We watched the Apollo VIII launch from our home in Ohio.  We were glued to the TV the whole night!" translatesAutoresizingMaskIntoConstraints="NO" id="f6x-QI-zsI">
-                                <rect key="frame" x="26" y="430" width="548" height="80"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="jTw-E1-tkr"/>
-                                </constraints>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="AAT-uh-Cyo" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" constant="-20" id="3cT-Va-yn7"/>
-                            <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="f6x-QI-zsI" secondAttribute="bottom" constant="41" id="7oq-HR-uzX"/>
                             <constraint firstItem="AAT-uh-Cyo" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" constant="-20" id="CrZ-Mv-MPb"/>
-                            <constraint firstItem="f6x-QI-zsI" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" constant="10" id="ZGn-yz-5cZ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="pqQ-hr-w4Q" secondAttribute="trailing" constant="-20" id="aOS-An-2aU"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="f6x-QI-zsI" secondAttribute="trailing" constant="10" id="cCm-L1-diX"/>
                             <constraint firstAttribute="trailingMargin" secondItem="AAT-uh-Cyo" secondAttribute="trailing" constant="-20" id="epW-Vm-JUG"/>
                             <constraint firstItem="pqQ-hr-w4Q" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" constant="-20" id="gDQ-Es-Ovk"/>
                             <constraint firstItem="pqQ-hr-w4Q" firstAttribute="top" secondItem="AAT-uh-Cyo" secondAttribute="bottom" id="uoW-sq-9RO"/>
@@ -343,7 +330,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="Listen" id="pkP-qY-7Zv"/>
                     <connections>
-                        <outlet property="descriptionTextView" destination="f6x-QI-zsI" id="0bk-Vt-ouu"/>
                         <outlet property="imageView" destination="pqQ-hr-w4Q" id="cBs-rt-Pkh"/>
                         <outlet property="playButton" destination="zEy-5k-sPV" id="lIT-M8-QEx"/>
                     </connections>
