@@ -11,6 +11,7 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
   var currentAsset: Int = 0
 
   @IBOutlet weak var headerImageView: UIImageView!
+  @IBOutlet weak var assetRefreshControl: UIRefreshControl!
   
   deinit {
     NSNotificationCenter.defaultCenter().removeObserver(self)
@@ -241,6 +242,14 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
           to.name = name
         }
       }
+    }
+  }
+  
+  @IBAction func refreshAssets(sender: AnyObject) {
+    requestAssets { assets in
+      self.rwData?.assets = assets
+      self.assetRefreshControl.endRefreshing()
+      self.tableView.reloadData()
     }
   }
 }
