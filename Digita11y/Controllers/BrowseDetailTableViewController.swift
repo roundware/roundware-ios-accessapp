@@ -72,18 +72,7 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
       let cell = tableView.dequeueReusableCellWithIdentifier(BrowseTextTableViewCell.Identifier, forIndexPath: indexPath) as! BrowseTextTableViewCell
       cell.titleLabel.text = tag??.value ?? "Telescope M-53 Audio 1"
       cell.accessibilityLabel = cell.titleLabel.text
-      if let text = asset.text {
-        cell.assetLabel.text = text
-      } else if let url = asset.fileURL.absoluteString {
-        requestAssetText(url) { text in
-          self.assets[indexPath.row].text = text
-          cell.assetLabel.text = text
-
-          // Toggling updates forces the tableview to recalculate cell size
-          self.tableView.beginUpdates()
-          self.tableView.endUpdates()
-        }
-      }
+      cell.assetLabel.text = asset.text
       return cell
     case .Audio:
       let cell = tableView.dequeueReusableCellWithIdentifier(BrowseDetailTableViewCell.Identifier, forIndexPath: indexPath) as! BrowseDetailTableViewCell
