@@ -57,6 +57,8 @@ class BrowseTableViewController: BaseTableViewController, RWFrameworkProtocol {
           var rwf = RWFramework.sharedInstance
           rwf.setListenTagsCurrent("exhibition", value: [to.tagID])
           rwf.submitListenTags()
+
+          rwf.setSpeakTagsCurrent("exhibition", value: [to.tagID])
         }
       }
     }
