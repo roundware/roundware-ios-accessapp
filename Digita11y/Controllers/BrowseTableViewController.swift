@@ -53,6 +53,12 @@ class BrowseTableViewController: BaseTableViewController, RWFrameworkProtocol {
       if let to = segue.destinationViewController as? BrowseDetailTableViewController {
         if let cell = sender as? UITableViewCell {
           to.tagID = cell.tag
+
+          var rwf = RWFramework.sharedInstance
+          rwf.setListenTagsCurrent("exhibition", value: [to.tagID])
+          rwf.submitListenTags()
+
+          rwf.setSpeakTagsCurrent("exhibition", value: [to.tagID])
         }
       }
     }

@@ -9,6 +9,8 @@ enum MediaType {
   case Audio
 }
 
+private var TextCache = [String:String]()
+
 struct Asset {
   var assetDescription = ""
   var volume = 0
@@ -18,6 +20,11 @@ struct Asset {
   var tagIDs: [Int] = []
   var fileURL = NSURL()
   var audioLength: Float = 0.0
+  var text: String? {
+    get {
+      return TextCache[fileURL.absoluteString ?? ""]
+    }
+  }
 
   init(json: JSON) {
     assetDescription = json["description"].string ?? ""
@@ -38,6 +45,14 @@ struct Asset {
 
     if json["media_type"].string == "text" {
       mediaType = .Text
+
+      if let url = fileURL.absoluteString {
+        if TextCache[url] == nil {
+          requestAssetText(url) { text in
+            TextCache[url] = text
+          }
+        }
+      }
     } else if json["media_type"].string == "photo" {
       mediaType = .Photo
     } else if json["media_type"].string == "audio" {

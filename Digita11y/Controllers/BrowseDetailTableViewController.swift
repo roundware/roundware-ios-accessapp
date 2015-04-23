@@ -11,6 +11,7 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
   var currentAsset: Int = 0
 
   @IBOutlet weak var headerImageView: UIImageView!
+  @IBOutlet weak var assetRefreshControl: UIRefreshControl!
   
   deinit {
     NSNotificationCenter.defaultCenter().removeObserver(self)
@@ -71,23 +72,7 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
       let cell = tableView.dequeueReusableCellWithIdentifier(BrowseTextTableViewCell.Identifier, forIndexPath: indexPath) as! BrowseTextTableViewCell
       cell.titleLabel.text = tag??.value ?? "Telescope M-53 Audio 1"
       cell.accessibilityLabel = cell.titleLabel.text
-      if let url = asset.fileURL.absoluteString {
-
-        dispatch_async(dispatch_get_main_queue()) {
-          // FIX: This is kinda messed because Alamofire is included directly in the project.
-          // Fix this when use_frameworks has been fixed in Cocoapods
-          request(.GET, url).responseString { (_, _, string, _) in
-            if let str = string {
-              debugPrintln("UPDATE TEXT")
-              cell.assetLabel.text = str
-
-              // Toggling updates forces the tableview to recalculate cell size
-              self.tableView.beginUpdates()
-              self.tableView.endUpdates()
-            }
-          }
-        }
-      }
+      cell.assetLabel.text = asset.text
       return cell
     case .Audio:
       let cell = tableView.dequeueReusableCellWithIdentifier(BrowseDetailTableViewCell.Identifier, forIndexPath: indexPath) as! BrowseDetailTableViewCell
@@ -241,6 +226,14 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
           to.name = name
         }
       }
+    }
+  }
+  
+  @IBAction func refreshAssets(sender: AnyObject) {
+    requestAssets { assets in
+      self.rwData?.assets = assets
+      self.assetRefreshControl.endRefreshing()
+      self.tableView.reloadData()
     }
   }
 }
