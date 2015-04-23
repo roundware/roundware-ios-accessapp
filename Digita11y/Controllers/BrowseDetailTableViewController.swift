@@ -72,21 +72,16 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
       let cell = tableView.dequeueReusableCellWithIdentifier(BrowseTextTableViewCell.Identifier, forIndexPath: indexPath) as! BrowseTextTableViewCell
       cell.titleLabel.text = tag??.value ?? "Telescope M-53 Audio 1"
       cell.accessibilityLabel = cell.titleLabel.text
-      if let url = asset.fileURL.absoluteString {
+      if let text = asset.text {
+        cell.assetLabel.text = text
+      } else if let url = asset.fileURL.absoluteString {
+        requestAssetText(url) { text in
+          self.assets[indexPath.row].text = text
+          cell.assetLabel.text = text
 
-        dispatch_async(dispatch_get_main_queue()) {
-          // FIX: This is kinda messed because Alamofire is included directly in the project.
-          // Fix this when use_frameworks has been fixed in Cocoapods
-          request(.GET, url).responseString { (_, _, string, _) in
-            if let str = string {
-              debugPrintln("UPDATE TEXT")
-              cell.assetLabel.text = str
-
-              // Toggling updates forces the tableview to recalculate cell size
-              self.tableView.beginUpdates()
-              self.tableView.endUpdates()
-            }
-          }
+          // Toggling updates forces the tableview to recalculate cell size
+          self.tableView.beginUpdates()
+          self.tableView.endUpdates()
         }
       }
       return cell

@@ -18,6 +18,7 @@ struct Asset {
   var tagIDs: [Int] = []
   var fileURL = NSURL()
   var audioLength: Float = 0.0
+  var text: String?
 
   init(json: JSON) {
     assetDescription = json["description"].string ?? ""
