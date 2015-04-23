@@ -77,6 +77,7 @@ class ListenViewController: BaseViewController, RWFrameworkProtocol {
   func filterTapped() {
     var vc = ListenTagsTableViewController(style: .Grouped)
     vc.rwData = self.rwData
+    vc.hidesBottomBarWhenPushed = true
     self.navigationController?.pushViewController(vc, animated: true)
   }
 

@@ -163,6 +163,7 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     case .Artifact:
       var vc = ContributeArtifactTableViewController(style: .Grouped)
       vc.rwData = self.rwData
+      vc.hidesBottomBarWhenPushed = true
       self.navigationController?.pushViewController(vc, animated: true)
       break
     case .Audio:
