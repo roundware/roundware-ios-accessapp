@@ -108,6 +108,7 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
       return cell
     case .PhotoText:
       var cell = tableView.dequeueReusableCellWithIdentifier(PhotoTextTableViewCell.Identifier, forIndexPath: indexPath) as! PhotoTextTableViewCell
+
       var tag = 0
       for (index, cell) in enumerate(self.cells) {
         if index == indexPath.row {
@@ -117,6 +118,7 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
           ++tag
         }
       }
+
       cell.artifactTextView.tag = tag
       cell.artifactTextView.placeholder = "Describe this photo..."
       cell.artifactTextView.placeholderTextColor = UIColor.lightGrayColor()
@@ -126,8 +128,12 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
       let image = self.images[tag]
       cell.artifactTextView.text = image.text
       cell.artifactTextView.delegate = self
+
       cell.artifactImageView.image = image.image
       cell.artifactImageView.accessibilityLabel = String("Image \(num)")
+
+      cell.discardButton.tag = tag
+      cell.discardButton.addTarget(self, action: "discardPhoto:", forControlEvents: .TouchUpInside)
       return cell
     case .PhotoDrawer:
       var cell = tableView.dequeueReusableCellWithIdentifier(PhotoDrawerCellIdentifier, forIndexPath: indexPath) as! PhotoDrawerTableViewCell
@@ -355,6 +361,15 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     RWFramework.sharedInstance.doImage()
   }
 
+  func discardPhoto(button: UIButton) {
+    if let index = find(self.cells, Cell.Photo) {
+      self.cells.removeAtIndex(index+button.tag)
+      self.images.removeAtIndex(index+button.tag)
+      self.updateUploadButtonState()
+      self.tableView.reloadData()
+    }
+  }
+
   func rwImagePickerControllerDidFinishPickingMedia(info: [NSObject : AnyObject], path: String) {
     var img = info[UIImagePickerControllerEditedImage] as? UIImage
     if img == nil {
@@ -506,6 +521,7 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
 
     let alertController = UIAlertController(title: "Thank You", message: "Thank you for your contribution", preferredStyle: .Alert)
     let ok = UIAlertAction(title: "OK", style: .Default) { action in
+      self.tableView.reloadData()
       self.navigationController?.tabBarController?.selectedIndex = 0
     }
     alertController.addAction(ok)
