@@ -5,8 +5,7 @@ class ListenTagsTableViewController: BaseTableViewController {
 
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
-    var rwf = RWFramework.sharedInstance
-    rwf.submitListenTags()
+    RWFramework.sharedInstance.submitListenTags()
   }
 
   // MARK: - Table view data source
@@ -29,30 +28,33 @@ class ListenTagsTableViewController: BaseTableViewController {
   }
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "ListenTagsCellIdentifier")
+    var cell = tableView.dequeueReusableCellWithIdentifier("ListenTagsCellIdentifier") as? UITableViewCell
+    if cell == nil {
+      cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "ListenTagsCellIdentifier")
+    }
 
     var rwf = RWFramework.sharedInstance
     let i = indexPath.row + 1
     var count = self.rwData?.listenTags[indexPath.section].options.count ?? 0
     if self.rwData?.listenTags[indexPath.section].code == "channel" {
       if self.rwData?.listenTags[indexPath.section].options.count == indexPath.row {
-        cell.textLabel?.text = "All Channels"
+        cell?.textLabel?.text = "All Channels"
 
         if let tags = rwf.getListenTagsCurrent("channel") as! NSArray? {
-          cell.accessoryType = (tags.count == count) ? .Checkmark : .None
+          cell?.accessoryType = (tags.count == count) ? .Checkmark : .None
         }
       } else if let tag = self.rwData?.listenTags[indexPath.section].options[indexPath.row] {
-        cell.textLabel?.text = tag.value
+        cell?.textLabel?.text = tag.value
 
         if let tags = rwf.getListenTagsCurrent("channel") as! NSArray? {
           if tags.count == count {
-            cell.accessoryType = .None
+            cell?.accessoryType = .None
           } else {
-            cell.accessoryType = .None
+            cell?.accessoryType = .None
             for tagID in tags {
               if let tagID = tagID as? Int {
                 if tagID == tag.tagId {
-                  cell.accessoryType = .Checkmark
+                  cell?.accessoryType = .Checkmark
                   break
                 }
               }
@@ -64,14 +66,14 @@ class ListenTagsTableViewController: BaseTableViewController {
       ++count
 
     } else if let tag = self.rwData?.listenTags[indexPath.section].options[indexPath.row] {
-      cell.textLabel?.text = tag.value
+      cell?.textLabel?.text = tag.value
 
       if let tags = rwf.getAllListenTagsCurrent() as! NSArray? {
-        cell.accessoryType = .None
+        cell?.accessoryType = .None
         for tagID in tags {
           if let tagID = tagID as? Int {
             if tagID == tag.tagId {
-              cell.accessoryType = .Checkmark
+              cell?.accessoryType = .Checkmark
               break
             }
           }
@@ -79,12 +81,12 @@ class ListenTagsTableViewController: BaseTableViewController {
       }
     }
 
-    if let s1 = cell.textLabel?.text {
-      cell.accessibilityLabel = String("\(s1), \(i) of \(count)")
+    if let s1 = cell?.textLabel?.text {
+      cell?.accessibilityLabel = String("\(s1), \(i) of \(count)")
     }
-    cell.accessibilityTraits = UIAccessibilityTraitButton
+    cell?.accessibilityTraits = UIAccessibilityTraitButton
 
-    return cell
+    return cell!
   }
 
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -118,13 +120,8 @@ class ListenTagsTableViewController: BaseTableViewController {
                    cell = tableView.cellForRowAtIndexPath(indexPath) {
       if let tags = rwf.getListenTagsCurrent(group.code) as? [Int] {
         let tag = group.options[indexPath.row]
-        var newTags = tags.filter { $0 == tag.tagId }
-        if count(tags) != count(newTags) {
-          cell.accessoryType = .None
-        } else {
-          cell.accessoryType = .Checkmark
-        }
-        rwf.setListenTagsCurrent(group.code, value: newTags)
+        cell.accessoryType = .Checkmark
+        rwf.setListenTagsCurrent(group.code, value: [tag.tagId])
       }
       cell.selected = false
     }

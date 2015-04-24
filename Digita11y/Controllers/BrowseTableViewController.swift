@@ -50,16 +50,15 @@ class BrowseTableViewController: BaseTableViewController, RWFrameworkProtocol {
     super.prepareForSegue(segue, sender: sender)
 
     if segue.identifier == "BrowseDetailSegue" {
-      if let to = segue.destinationViewController as? BrowseDetailTableViewController {
-        if let cell = sender as? UITableViewCell {
-          to.tagID = cell.tag
+      if let to = segue.destinationViewController as? BrowseDetailTableViewController,
+           cell = sender as? UITableViewCell {
+        to.tagID = cell.tag
 
-          var rwf = RWFramework.sharedInstance
-          rwf.setListenTagsCurrent("exhibition", value: [to.tagID])
-          rwf.submitListenTags()
+        var rwf = RWFramework.sharedInstance
+        rwf.setListenTagsCurrent("exhibition", value: [to.tagID])
+        rwf.submitListenTags()
 
-          rwf.setSpeakTagsCurrent("exhibition", value: [to.tagID])
-        }
+        rwf.setSpeakTagsCurrent("exhibition", value: [to.tagID])
       }
     }
   }
