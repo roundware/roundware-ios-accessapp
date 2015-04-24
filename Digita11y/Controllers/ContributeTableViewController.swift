@@ -376,9 +376,9 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
   }
 
   func discardPhoto(button: UIButton) {
-    if let index = find(self.cells, Cell.Photo) {
+    if let index = find(self.cells, Cell.PhotoText) {
       self.cells.removeAtIndex(index+button.tag)
-      self.images.removeAtIndex(index+button.tag)
+      self.images.removeAtIndex(button.tag)
       self.updateUploadButtonState()
       self.tableView.reloadData()
     }
