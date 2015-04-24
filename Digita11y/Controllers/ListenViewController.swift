@@ -36,6 +36,15 @@ class ListenViewController: BaseViewController, RWFrameworkProtocol {
         }
       }
     }
+
+    // Set play button state in case magic tap turned audio on
+    if RWFramework.sharedInstance.isPlaying {
+      self.playButton.setImage(UIImage(named: "stop-button"), forState: .Normal)
+      self.playButton.accessibilityLabel = "Stop button"
+    } else {
+      self.playButton.setImage(UIImage(named: "player-button"), forState: .Normal)
+      self.playButton.accessibilityLabel = "Play button"
+    }
   }
 
   override func viewDidAppear(animated: Bool) {
@@ -108,6 +117,10 @@ class ListenViewController: BaseViewController, RWFrameworkProtocol {
       if sender == self {
         return
       }
+    }
+
+    if let sender = note.object as? UIApplicationDelegate {
+      return  // Magic tap.  Don't stop audio
     }
 
     RWFramework.sharedInstance.stop()
