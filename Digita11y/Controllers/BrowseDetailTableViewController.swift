@@ -130,6 +130,7 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
   func audioStopped() {
     // Make sure this fires after the NSTimer fires
     delay(0.25) {
+      self.timer?.invalidate()
       self.resetPlayButtons()
       self.assetPlayer?.player?.currentItem?.seekToTime(CMTimeMakeWithSeconds(0, 100000000))
     }
@@ -196,7 +197,7 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
       let asset = assets[currentAsset]
       var percent = asset.audioLength == 0.0 ? 0.0 : Float(dt)/asset.audioLength
       cell.timeProgressView.progress = percent
-      var percentInt = Int(percent*100.0)
+      let percentInt = Int(percent*100.0)
       if let name = cell.assetLabel.text {
         cell.resignFirstResponder()
         cell.accessibilityLabel = String("\(percentInt) percent complete, \(name), audio")
