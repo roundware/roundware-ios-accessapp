@@ -87,6 +87,13 @@ class ListenTagsTableViewController: BaseTableViewController {
 
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
+    let rows = tableView.numberOfRowsInSection(indexPath.section)
+    for var i = 0; i < rows; ++i {
+      if let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: i, inSection: indexPath.section)) {
+        cell.accessoryType = .None
+      }
+    }
+
     var rwf = RWFramework.sharedInstance
 
     if self.rwData?.listenTags[indexPath.section].code == "channel" {
@@ -99,6 +106,7 @@ class ListenTagsTableViewController: BaseTableViewController {
         }
       } else {
         if let cell = tableView.cellForRowAtIndexPath(indexPath), group = self.rwData?.listenTags[indexPath.section] {
+          cell.accessoryType = .Checkmark
           let tag = group.options[indexPath.row]
           rwf.setListenTagsCurrent("channel", value: [tag.tagId])
           cell.selected = false
