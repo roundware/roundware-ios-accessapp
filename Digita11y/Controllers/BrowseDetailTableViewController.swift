@@ -71,8 +71,11 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
     case .Text:
       let cell = tableView.dequeueReusableCellWithIdentifier(BrowseTextTableViewCell.Identifier, forIndexPath: indexPath) as! BrowseTextTableViewCell
       cell.titleLabel.text = tag??.value ?? "Telescope M-53 Audio 1"
-      cell.accessibilityLabel = cell.titleLabel.text
       cell.assetLabel.text = asset.text
+      if let s1 = tag??.value, let s2 = asset.text {
+        cell.accessibilityLabel = String("\(s1), text, \(s2)")
+      }
+
       return cell
     case .Audio:
       let cell = tableView.dequeueReusableCellWithIdentifier(BrowseDetailTableViewCell.Identifier, forIndexPath: indexPath) as! BrowseDetailTableViewCell
