@@ -80,9 +80,22 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     case .Artifact:
       var cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: ArtifactCellIdentifier)
       cell.textLabel?.text = "Choose Tags:"
-      cell.detailTextLabel?.text = self.rwData?.selectedSpeakObject()?.value
       cell.accessoryType = .DisclosureIndicator
       cell.accessibilityHint = "Select an object"
+
+      var str = ""
+      for var i = 0; i < self.rwData?.speakTags.count; ++i {
+        if self.rwData?.selectedSpeakTags[i] != -1 {
+          if let index = self.rwData?.selectedSpeakTags[i] {
+            let tag = self.rwData?.speakTags[i].options[index]
+            if let s1 = tag?.value {
+              str += String("\(s1) ")
+            }
+          }
+        }
+      }
+      cell.detailTextLabel?.text = str
+
       return cell
     case .Audio:
       var cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: CellIdentifier)
