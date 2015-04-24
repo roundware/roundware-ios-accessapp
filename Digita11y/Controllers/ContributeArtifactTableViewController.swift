@@ -29,8 +29,11 @@ class ContributeArtifactTableViewController: BaseTableViewController, RWFramewor
     let cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "ContributeArtifactCellIdentifier")
     let tag = self.speakTags[indexPath.section].options[indexPath.row]
     cell.textLabel?.text = tag.value
-    cell.accessoryType = self.rwData?.selectedSpeakTags[indexPath.section] == indexPath.row ? .Checkmark : .None
+    let i = indexPath.row + 1
+    let count = self.speakTags[indexPath.section].options.count ?? 0
+    cell.accessibilityLabel = String("\(tag.value), \(i) of \(count)")
     cell.accessibilityTraits = UIAccessibilityTraitButton
+    cell.accessoryType = self.rwData?.selectedSpeakTags[indexPath.section] == indexPath.row ? .Checkmark : .None
     return cell
   }
 

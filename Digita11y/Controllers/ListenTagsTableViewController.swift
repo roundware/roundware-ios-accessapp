@@ -27,6 +27,10 @@ class ListenTagsTableViewController: BaseTableViewController {
     let cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "ListenTagsCellIdentifier")
     if let tag = self.rwData?.listenTags[indexPath.section].options[indexPath.row] {
       cell.textLabel?.text = tag.value
+      let i = indexPath.row + 1
+      let count = self.rwData?.listenTags[indexPath.section].options.count ?? 0
+      cell.accessibilityLabel = String("\(tag.value), \(i) of \(count)")
+      cell.accessibilityTraits = UIAccessibilityTraitButton
 
       var rwf = RWFramework.sharedInstance
       if let tags = rwf.getAllListenTagsCurrent() as! NSArray? {
@@ -41,8 +45,6 @@ class ListenTagsTableViewController: BaseTableViewController {
         }
       }
     }
-
-    cell.accessibilityTraits = UIAccessibilityTraitButton
 
     return cell
   }
