@@ -30,6 +30,7 @@ class ContributeArtifactTableViewController: BaseTableViewController, RWFramewor
     let tag = self.speakTags[indexPath.section].options[indexPath.row]
     cell.textLabel?.text = tag.value
     cell.accessoryType = self.rwData?.selectedSpeakTags[indexPath.section] == indexPath.row ? .Checkmark : .None
+    cell.accessibilityTraits = UIAccessibilityTraitButton
     return cell
   }
 

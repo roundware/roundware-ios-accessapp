@@ -42,6 +42,8 @@ class ListenTagsTableViewController: BaseTableViewController {
       }
     }
 
+    cell.accessibilityTraits = UIAccessibilityTraitButton
+
     return cell
   }
 
