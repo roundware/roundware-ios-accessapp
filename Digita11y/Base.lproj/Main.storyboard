@@ -251,7 +251,7 @@
         <!--Browse Photo View Controller-->
         <scene sceneID="mru-p0-7wc">
             <objects>
-                <viewController id="MCH-SV-Atp" customClass="BrowsePhotoViewController" customModule="Digita11y" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="MCH-SV-Atp" customClass="BrowsePhotoViewController" customModule="Digita11y" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jtv-ll-5Qw"/>
                         <viewControllerLayoutGuide type="bottom" id="tYR-9i-JNt"/>

@@ -79,7 +79,9 @@ class ListenTagsTableViewController: BaseTableViewController {
       }
     }
 
-    cell.accessibilityLabel = String("\(cell.textLabel?.text), \(i) of \(count)")
+    if let s1 = cell.textLabel?.text {
+      cell.accessibilityLabel = String("\(s1), \(i) of \(count)")
+    }
     cell.accessibilityTraits = UIAccessibilityTraitButton
 
     return cell
