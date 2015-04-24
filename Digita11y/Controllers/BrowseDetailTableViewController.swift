@@ -241,6 +241,7 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
   @IBAction func refreshAssets(sender: AnyObject) {
     requestAssets { assets in
       self.rwData?.assets = assets
+      self.assets = self.rwData?.assets.filter { contains($0.tagIDs, self.tagID) } ?? []
       self.assetRefreshControl.endRefreshing()
       self.tableView.reloadData()
     }
