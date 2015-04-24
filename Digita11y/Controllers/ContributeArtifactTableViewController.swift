@@ -3,25 +3,36 @@ import RWFramework
 
 class ContributeArtifactTableViewController: BaseTableViewController, RWFrameworkProtocol {
 
+  var speakTags = [TagGroup]()
+
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+
+    self.speakTags = self.rwData?.speakTags.filter { $0.code != "exhibition" } ?? []
+  }
+
   // MARK: - Table view data source
 
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-    return self.rwData?.speakTags.count ?? 0
+    return self.speakTags.count ?? 0
   }
 
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return self.rwData?.speakTags[section].options.count ?? 0
+    return self.speakTags[section].options.count ?? 0
   }
 
   override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    return self.rwData?.speakTags[section].headerText
+    return self.speakTags[section].headerText
   }
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "ContributeArtifactCellIdentifier")
-    if let tag = self.rwData?.speakTags[indexPath.section].options[indexPath.row] {
-      cell.textLabel?.text = tag.value
-    }
+    let tag = self.speakTags[indexPath.section].options[indexPath.row]
+    cell.textLabel?.text = tag.value
+    let i = indexPath.row + 1
+    let count = self.speakTags[indexPath.section].options.count ?? 0
+    cell.accessibilityLabel = String("\(tag.value), \(i) of \(count)")
+    cell.accessibilityTraits = UIAccessibilityTraitButton
     cell.accessoryType = self.rwData?.selectedSpeakTags[indexPath.section] == indexPath.row ? .Checkmark : .None
     return cell
   }

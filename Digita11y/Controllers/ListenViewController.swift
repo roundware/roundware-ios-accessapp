@@ -27,14 +27,22 @@ class ListenViewController: BaseViewController, RWFrameworkProtocol {
     super.viewWillAppear(animated)
     self.navigationController?.navigationBar.becomeFirstResponder()
 
-    if let exhibitionIDs = RWFramework.sharedInstance.getListenTagsCurrent("exhibition") as? [Int] {
-      if let exhibitionID = exhibitionIDs.first {
-        let tags = self.rwData?.exhibitions.filter { $0.tagId == exhibitionID }
-        if let tag = tags?.first {
-          self.navigationItem.title = tag.value
-          self.imageView.sd_setImageWithURL(NSURL(string: tag.headerImageURL), placeholderImage: UIImage(named:"listen-heroshot"))
-        }
+    if let exhibitionIDs = RWFramework.sharedInstance.getListenTagsCurrent("exhibition") as? [Int],
+            exhibitionID = exhibitionIDs.first {
+      let tags = self.rwData?.exhibitions.filter { $0.tagId == exhibitionID }
+      if let tag = tags?.first {
+        self.navigationItem.title = tag.value
+        self.imageView.sd_setImageWithURL(NSURL(string: tag.headerImageURL), placeholderImage: UIImage(named:"listen-heroshot"))
       }
+    }
+
+    // Set play button state in case magic tap turned audio on
+    if RWFramework.sharedInstance.isPlaying {
+      self.playButton.setImage(UIImage(named: "stop-button"), forState: .Normal)
+      self.playButton.accessibilityLabel = "Stop button"
+    } else {
+      self.playButton.setImage(UIImage(named: "player-button"), forState: .Normal)
+      self.playButton.accessibilityLabel = "Play button"
     }
   }
 
@@ -77,6 +85,7 @@ class ListenViewController: BaseViewController, RWFrameworkProtocol {
   func filterTapped() {
     var vc = ListenTagsTableViewController(style: .Grouped)
     vc.rwData = self.rwData
+    vc.hidesBottomBarWhenPushed = true
     self.navigationController?.pushViewController(vc, animated: true)
   }
 
@@ -107,6 +116,10 @@ class ListenViewController: BaseViewController, RWFrameworkProtocol {
       if sender == self {
         return
       }
+    }
+
+    if let sender = note.object as? UIApplicationDelegate {
+      return  // Magic tap.  Don't stop audio
     }
 
     RWFramework.sharedInstance.stop()

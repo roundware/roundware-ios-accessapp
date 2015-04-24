@@ -71,8 +71,11 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
     case .Text:
       let cell = tableView.dequeueReusableCellWithIdentifier(BrowseTextTableViewCell.Identifier, forIndexPath: indexPath) as! BrowseTextTableViewCell
       cell.titleLabel.text = tag??.value ?? "Telescope M-53 Audio 1"
-      cell.accessibilityLabel = cell.titleLabel.text
       cell.assetLabel.text = asset.text
+      if let s1 = tag??.value, let s2 = asset.text {
+        cell.accessibilityLabel = String("\(s1), text, \(s2)")
+      }
+
       return cell
     case .Audio:
       let cell = tableView.dequeueReusableCellWithIdentifier(BrowseDetailTableViewCell.Identifier, forIndexPath: indexPath) as! BrowseDetailTableViewCell
@@ -130,6 +133,7 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
   func audioStopped() {
     // Make sure this fires after the NSTimer fires
     delay(0.25) {
+      self.timer?.invalidate()
       self.resetPlayButtons()
       self.assetPlayer?.player?.currentItem?.seekToTime(CMTimeMakeWithSeconds(0, 100000000))
     }
@@ -137,6 +141,10 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
 
   func playAudio(button: UIButton) {
     self.resetPlayButtons()
+    button.resignFirstResponder()
+    if let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: button.tag, inSection: 0)) {
+      cell.resignFirstResponder()
+    }
 
     let asset = assets[button.tag]
     if assetPlayer?.asset.assetID == asset.assetID {
@@ -192,8 +200,9 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
       let asset = assets[currentAsset]
       var percent = asset.audioLength == 0.0 ? 0.0 : Float(dt)/asset.audioLength
       cell.timeProgressView.progress = percent
-      var percentInt = Int(percent*100.0)
+      let percentInt = Int(percent*100.0)
       if let name = cell.assetLabel.text {
+        cell.resignFirstResponder()
         cell.accessibilityLabel = String("\(percentInt) percent complete, \(name), audio")
       }
     }
@@ -232,6 +241,7 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
   @IBAction func refreshAssets(sender: AnyObject) {
     requestAssets { assets in
       self.rwData?.assets = assets
+      self.assets = self.rwData?.assets.filter { contains($0.tagIDs, self.tagID) } ?? []
       self.assetRefreshControl.endRefreshing()
       self.tableView.reloadData()
     }

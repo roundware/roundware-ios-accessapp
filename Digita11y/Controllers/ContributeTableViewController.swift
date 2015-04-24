@@ -80,9 +80,22 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     case .Artifact:
       var cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: ArtifactCellIdentifier)
       cell.textLabel?.text = "Choose Tags:"
-      cell.detailTextLabel?.text = self.rwData?.selectedSpeakObject()?.value
       cell.accessoryType = .DisclosureIndicator
       cell.accessibilityHint = "Select an object"
+
+      var str = ""
+      for var i = 0; i < self.rwData?.speakTags.count; ++i {
+        if self.rwData?.selectedSpeakTags[i] != -1 {
+          if let index = self.rwData?.selectedSpeakTags[i] {
+            let tag = self.rwData?.speakTags[i].options[index]
+            if let s1 = tag?.value {
+              str += String("\(s1) ")
+            }
+          }
+        }
+      }
+      cell.detailTextLabel?.text = str
+
       return cell
     case .Audio:
       var cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: CellIdentifier)
@@ -108,6 +121,7 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
       return cell
     case .PhotoText:
       var cell = tableView.dequeueReusableCellWithIdentifier(PhotoTextTableViewCell.Identifier, forIndexPath: indexPath) as! PhotoTextTableViewCell
+
       var tag = 0
       for (index, cell) in enumerate(self.cells) {
         if index == indexPath.row {
@@ -117,6 +131,7 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
           ++tag
         }
       }
+
       cell.artifactTextView.tag = tag
       cell.artifactTextView.placeholder = "Describe this photo..."
       cell.artifactTextView.placeholderTextColor = UIColor.lightGrayColor()
@@ -126,8 +141,12 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
       let image = self.images[tag]
       cell.artifactTextView.text = image.text
       cell.artifactTextView.delegate = self
+
       cell.artifactImageView.image = image.image
       cell.artifactImageView.accessibilityLabel = String("Image \(num)")
+
+      cell.discardButton.tag = tag
+      cell.discardButton.addTarget(self, action: "discardPhoto:", forControlEvents: .TouchUpInside)
       return cell
     case .PhotoDrawer:
       var cell = tableView.dequeueReusableCellWithIdentifier(PhotoDrawerCellIdentifier, forIndexPath: indexPath) as! PhotoDrawerTableViewCell
@@ -146,6 +165,7 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
       cell.contributeTextView.placeholderTextColor = UIColor.lightGrayColor()
       cell.contributeTextView.returnKeyType = .Done
       cell.contributeTextView.delegate = self
+      cell.contributeTextView.text = self.uploadText
       return cell
     }
   }
@@ -157,6 +177,7 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     case .Artifact:
       var vc = ContributeArtifactTableViewController(style: .Grouped)
       vc.rwData = self.rwData
+      vc.hidesBottomBarWhenPushed = true
       self.navigationController?.pushViewController(vc, animated: true)
       break
     case .Audio:
@@ -355,6 +376,15 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     RWFramework.sharedInstance.doImage()
   }
 
+  func discardPhoto(button: UIButton) {
+    if let index = find(self.cells, Cell.PhotoText) {
+      self.cells.removeAtIndex(index+button.tag)
+      self.images.removeAtIndex(button.tag)
+      self.updateUploadButtonState()
+      self.tableView.reloadData()
+    }
+  }
+
   func rwImagePickerControllerDidFinishPickingMedia(info: [NSObject : AnyObject], path: String) {
     var img = info[UIImagePickerControllerEditedImage] as? UIImage
     if img == nil {
@@ -506,6 +536,9 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
 
     let alertController = UIAlertController(title: "Thank You", message: "Thank you for your contribution", preferredStyle: .Alert)
     let ok = UIAlertAction(title: "OK", style: .Default) { action in
+      self.cells = [Cell.Artifact, Cell.Audio, Cell.Photo, Cell.Text]
+      self.rwData?.resetSelectedSpeakTags()
+      self.tableView.reloadData()
       self.navigationController?.tabBarController?.selectedIndex = 0
     }
     alertController.addAction(ok)

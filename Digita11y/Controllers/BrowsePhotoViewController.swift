@@ -12,7 +12,8 @@ class BrowsePhotoViewController : UIViewController {
     self.navigationController?.navigationBar.translucent = true
 
     imageView.sd_setImageWithURL(asset?.fileURL)
-    var description = asset?.assetDescription
-    imageView.accessibilityLabel = String("\(name), image, \(description)")
+    if let s1 = asset?.assetDescription {
+      imageView.accessibilityLabel = String("\(self.name), image, \(s1)")
+    }
   }
 }
