@@ -137,6 +137,10 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
 
   func playAudio(button: UIButton) {
     self.resetPlayButtons()
+    button.resignFirstResponder()
+    if let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: button.tag, inSection: 0)) {
+      cell.resignFirstResponder()
+    }
 
     let asset = assets[button.tag]
     if assetPlayer?.asset.assetID == asset.assetID {
@@ -194,6 +198,7 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
       cell.timeProgressView.progress = percent
       var percentInt = Int(percent*100.0)
       if let name = cell.assetLabel.text {
+        cell.resignFirstResponder()
         cell.accessibilityLabel = String("\(percentInt) percent complete, \(name), audio")
       }
     }
