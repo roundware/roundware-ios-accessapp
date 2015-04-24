@@ -21,6 +21,10 @@ class RWData {
 
   var selectedSpeakTags: [Int] = []
 
+  func resetSelectedSpeakTags() {
+    selectedSpeakTags = [Int](count: speakTags.count, repeatedValue: -1)
+  }
+  
   var speakObjects: [Tag] {
     get {
       var group:[TagGroup] = speakTags.filter { $0.code == "object" }

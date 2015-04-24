@@ -165,6 +165,7 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
       cell.contributeTextView.placeholderTextColor = UIColor.lightGrayColor()
       cell.contributeTextView.returnKeyType = .Done
       cell.contributeTextView.delegate = self
+      cell.contributeTextView.text = self.uploadText
       return cell
     }
   }
@@ -535,6 +536,8 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
 
     let alertController = UIAlertController(title: "Thank You", message: "Thank you for your contribution", preferredStyle: .Alert)
     let ok = UIAlertAction(title: "OK", style: .Default) { action in
+      self.cells = [Cell.Artifact, Cell.Audio, Cell.Photo, Cell.Text]
+      self.rwData?.resetSelectedSpeakTags()
       self.tableView.reloadData()
       self.navigationController?.tabBarController?.selectedIndex = 0
     }
