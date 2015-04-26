@@ -3,6 +3,8 @@ import RWFramework
 
 class BrowseTableViewController: BaseTableViewController, RWFrameworkProtocol {
 
+  var exhibitionViewModel: ExhibitionViewModel?
+
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -16,6 +18,8 @@ class BrowseTableViewController: BaseTableViewController, RWFrameworkProtocol {
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     self.navigationController?.navigationBar.setBackgroundImage(nil, forBarMetrics: .Default)
+
+    exhibitionViewModel = ExhibitionViewModel(data: self.rwData!)
   }
 
   // MARK: - Table view data source
@@ -25,18 +29,17 @@ class BrowseTableViewController: BaseTableViewController, RWFrameworkProtocol {
   }
 
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return self.rwData?.exhibitions.count ?? 0
+    return self.exhibitionViewModel?.numberOfExhibitions() ?? 0
   }
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    
     if let cell = tableView.dequeueReusableCellWithIdentifier(BrowseTableViewCell.Identifier, forIndexPath: indexPath) as? BrowseTableViewCell {
-      cell.tag = self.rwData?.exhibitions[indexPath.row].tagId ?? 0
-      var name = self.rwData?.exhibitions[indexPath.row].value
-      cell.titleLabel.text = name
-      cell.accessibilityLabel = name
-      if let urlString = self.rwData?.exhibitions[indexPath.row].headerImageURL {
-        cell.bannerImageView.sd_setImageWithURL(NSURL(string: urlString), placeholderImage: UIImage(named:"browse-cell"))
-      }
+      cell.tag = self.exhibitionViewModel?.IDForIndex(indexPath.row) ?? 0
+      cell.titleLabel.text = self.exhibitionViewModel?.titleForIndex(indexPath.row) ?? ""
+      cell.accessibilityLabel = self.exhibitionViewModel?.accessibilityLabelForIndex(indexPath.row) ?? ""
+      cell.bannerImageView.sd_setImageWithURL(self.exhibitionViewModel?.imageURLForIndex(indexPath.row), placeholderImage: UIImage(named:"browse-cell"))
+
       return cell
     }
 
@@ -67,8 +70,7 @@ class BrowseTableViewController: BaseTableViewController, RWFrameworkProtocol {
 
   func rwGetProjectsIdTagsSuccess(data: NSData?) {
     // Order or operations thing.  RootTabBarController parses exhibitions
-    let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.1 * Double(NSEC_PER_SEC)))
-    dispatch_after(delayTime, dispatch_get_main_queue()) {
+    delay(0.1) {
       self.tableView.reloadData()
     }
   }
