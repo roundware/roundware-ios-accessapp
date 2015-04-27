@@ -328,6 +328,12 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
         cell.recordButton.setImage(UIImage(named: self.StopButtonFilename), forState: .Normal)
         cell.progressLabel.text = "00:00"
         cell.progressLabel.accessibilityLabel = "0 seconds"
+      } else {
+        cell.recordButton.accessibilityLabel = "Record audio"
+        cell.microphoneLevelsView.percent = 0.0
+        cell.recordButton.setImage(UIImage(named: "record-button"), forState: .Normal)
+        cell.progressLabel.text = "00:00"
+        cell.progressLabel.accessibilityLabel = "0 seconds"
       }
     }
 
