@@ -6,12 +6,14 @@ class AssetViewModel {
   let exhibition: Tag?
   let data: RWData
   let assets: [Asset]
+  let browseTags: [TagGroup]
   
   init(exhibitionID: Int, data: RWData) {
     self.exhibitionID = exhibitionID
     self.data = data
     self.assets = data.assets.filter { contains($0.tagIDs, exhibitionID) }
     self.exhibition = data.exhibitions.filter { $0.tagId == exhibitionID }.first
+    self.browseTags = data.browseTags.filter { $0.code != "exhibition" }
   }
 
   // MARK: - Exhibition
@@ -47,24 +49,24 @@ class AssetViewModel {
   // MARK: - Tag Group
 
   func numberOfTagGroups() -> Int {
-    return self.data.browseTags.count
+    return self.browseTags.count
   }
 
   func tagGroupAtIndex(index: Int) -> TagGroup {
-    return self.data.browseTags[index]
+    return self.browseTags[index]
   }
 
   func numberOfTagsForGroup(index: Int) -> Int {
-    return self.data.browseTags[index].options.count
+    return self.browseTags[index].options.count
   }
 
   func titleOfTagGroup(index: Int) -> String {
-    return self.data.browseTags[index].headerText
+    return self.browseTags[index].headerText
   }
 
   // MARK: - Tag
 
   func tagAtIndex(index: Int, forGroup: Int) -> Tag {
-    return self.data.browseTags[forGroup].options[index]
+    return self.browseTags[forGroup].options[index]
   }
 }
