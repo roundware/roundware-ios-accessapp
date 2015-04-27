@@ -4,7 +4,7 @@ import RWFramework
 
 class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProtocol {
 
-  var tagID = 0
+  var exhibitionID = 0
   var assetPlayer: AssetPlayer?
   var timer: NSTimer?
   var currentAsset: Int = 0
@@ -25,6 +25,7 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
     tableView.estimatedRowHeight = 94
     tableView.rowHeight = UITableViewAutomaticDimension
     NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("globalAudioStarted:"), name: "RW_STARTED_AUDIO_NOTIFICATION", object: nil)
+    self.navigationItem.setRightBarButtonItem(UIBarButtonItem(title: "Filter", style: .Plain, target: self, action: Selector("filterTapped")), animated: false)
   }
 
   override func viewWillAppear(animated: Bool) {
@@ -36,13 +37,9 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
     self.navigationController?.view.backgroundColor = UIColor.clearColor()
     self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
 
-    var exhibition = self.rwData?.exhibitions.filter { $0.tagId == self.tagID }.first
-    self.navigationItem.title = exhibition?.value
-    if let urlString = exhibition?.headerImageURL {
-      headerImageView.sd_setImageWithURL(NSURL(string: urlString), placeholderImage: UIImage(named:"browse-cell"))
-    }
-
-    self.assetViewModel = AssetViewModel(exhibitionID: self.tagID, data: self.rwData!)
+    self.assetViewModel = AssetViewModel(exhibitionID: self.exhibitionID, data: self.rwData!)
+    self.navigationItem.title = self.assetViewModel?.titleForExhibition()
+    headerImageView.sd_setImageWithURL(self.assetViewModel?.imageURLForExhibition(), placeholderImage: UIImage(named:"browse-cell"))
 
     self.navigationController?.navigationBar.becomeFirstResponder()
   }
@@ -229,13 +226,23 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
       }
     }
   }
-  
+
+  // MARK: - Actions
+
   @IBAction func refreshAssets(sender: AnyObject) {
     requestAssets { assets in
       self.rwData?.assets = assets
-      self.assetViewModel = AssetViewModel(exhibitionID: self.tagID, data: self.rwData!)
+      self.assetViewModel = AssetViewModel(exhibitionID: self.exhibitionID, data: self.rwData!)
       self.assetRefreshControl.endRefreshing()
       self.tableView.reloadData()
     }
+  }
+
+  func filterTapped() {
+    var vc = BrowseTagsViewController(style: .Grouped)
+    vc.rwData = self.rwData
+    vc.assetViewModel = self.assetViewModel
+    vc.hidesBottomBarWhenPushed = true
+    self.navigationController?.pushViewController(vc, animated: true)
   }
 }
