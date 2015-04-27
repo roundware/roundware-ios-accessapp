@@ -1,6 +1,7 @@
 import UIKit
 
 class BrowseTagsViewController: BaseTableViewController {
+  let CellIdentifier = "BrowseTagsCellIdentifier"
   var assetViewModel: AssetViewModel?
 
   // MARK: - Table view data source
@@ -18,6 +19,14 @@ class BrowseTagsViewController: BaseTableViewController {
   }
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    return UITableViewCell()
+    var cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier) as? UITableViewCell
+    if cell == nil {
+      cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: CellIdentifier)
+    }
+
+    cell?.textLabel?.text = assetViewModel?.titleForTagAtIndex(indexPath.row, forGroup: indexPath.section)
+    cell?.accessibilityLabel = assetViewModel?.accessibiltyLabelTextAtIndex(indexPath.row, forGroup: indexPath.section)
+    cell?.accessibilityTraits = UIAccessibilityTraitButton
+    return cell!
   }
 }

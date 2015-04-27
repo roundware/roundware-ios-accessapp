@@ -69,4 +69,14 @@ class AssetViewModel {
   func tagAtIndex(index: Int, forGroup: Int) -> Tag {
     return self.browseTags[forGroup].options[index]
   }
+
+  func titleForTagAtIndex(index: Int, forGroup: Int) -> String {
+    return self.browseTags[forGroup].options[index].value
+  }
+
+  func accessibiltyLabelTextAtIndex(index: Int, forGroup: Int) -> String {
+    let title = titleForTagAtIndex(index, forGroup: forGroup)
+    let count = self.browseTags[forGroup].options.count
+    return String("\(title), \(index) of \(count)")
+  }
 }
