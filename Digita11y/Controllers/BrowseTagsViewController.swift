@@ -34,7 +34,8 @@ class BrowseTagsViewController: BaseTableViewController {
     deselectAllCellInSection(indexPath.section)
 
     if let cell = tableView.cellForRowAtIndexPath(indexPath) {
-      cell.accessoryType = assetViewModel?.selectTagAtIndex(indexPath.row, forGroup: indexPath.section) ?? .None
+      assetViewModel?.selectTagAtIndex(indexPath.row, forGroup: indexPath.section)
+      cell.accessoryType = .Checkmark
       cell.selected = false
     }
   }
