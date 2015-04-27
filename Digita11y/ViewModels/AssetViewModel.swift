@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 import RWFramework
 
 class AssetViewModel {
@@ -7,6 +8,7 @@ class AssetViewModel {
   let data: RWData
   let assets: [Asset]
   let browseTags: [TagGroup]
+  var selectedBrowseTags = Set<Int>()
   
   init(exhibitionID: Int, data: RWData) {
     self.exhibitionID = exhibitionID
@@ -78,5 +80,16 @@ class AssetViewModel {
     let title = titleForTagAtIndex(index, forGroup: forGroup)
     let count = self.browseTags[forGroup].options.count
     return String("\(title), \(index) of \(count)")
+  }
+
+  func selectTagAtIndex(index: Int, forGroup: Int) -> UITableViewCellAccessoryType {
+    let tag = tagAtIndex(index, forGroup: forGroup)
+    if contains(selectedBrowseTags, tag.tagId) {
+      selectedBrowseTags.remove(tag.tagId)
+      return .None
+    } else {
+      selectedBrowseTags.insert(tag.tagId)
+      return .Checkmark
+    }
   }
 }

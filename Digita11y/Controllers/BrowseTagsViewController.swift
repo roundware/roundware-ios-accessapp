@@ -29,4 +29,24 @@ class BrowseTagsViewController: BaseTableViewController {
     cell?.accessibilityTraits = UIAccessibilityTraitButton
     return cell!
   }
+
+  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    deselectAllCellInSection(indexPath.section)
+
+    if let cell = tableView.cellForRowAtIndexPath(indexPath) {
+      cell.accessoryType = assetViewModel?.selectTagAtIndex(indexPath.row, forGroup: indexPath.section) ?? .None
+      cell.selected = false
+    }
+  }
+
+  // MARK: - Utility
+
+  func deselectAllCellInSection(section: Int) {
+    let rows = tableView.numberOfRowsInSection(section)
+    for var i = 0; i < rows; ++i {
+      if let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: i, inSection: section)) {
+        cell.accessoryType = .None
+      }
+    }
+  }
 }
