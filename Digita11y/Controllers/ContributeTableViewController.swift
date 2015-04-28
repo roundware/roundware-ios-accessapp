@@ -295,7 +295,9 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
 
     if rwf.isRecording() {
       if toggleButton {
-        rwf.stopRecording()
+        delay(0.5) {  // HACK: Let the buffers in the framework flush.
+          rwf.stopRecording()
+        }
       }
       cell.recordButton.accessibilityLabel = "Preview audio"
       cell.microphoneLevelsView.percent = 0.0
