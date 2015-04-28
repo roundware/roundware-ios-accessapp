@@ -21,6 +21,11 @@ struct Tag {
     // FIX: "data" is eventually going to change from a string to a dictionary
     headerImageURL = json["data"].string ?? ""
   }
+
+  init(tagId: Int, value: String) {
+    self.tagId = tagId
+    self.value = value
+  }
 }
 
 struct TagGroup {
@@ -40,5 +45,10 @@ struct TagGroup {
     name = json["name"].string ?? ""
     defaultTags = json["defaults"].array?.map { $0.int ?? 0 } ?? []
     options = json["options"].array?.map { Tag(json: $0) } ?? []
+  }
+
+  init(headerText: String, options: [Tag]) {
+    self.headerText = headerText
+    self.options = options
   }
 }

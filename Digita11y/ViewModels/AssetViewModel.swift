@@ -10,6 +10,10 @@ class AssetViewModel {
   var filteredAssets: [Asset]
   let browseTags: [TagGroup]
   var selectedBrowseTags = Set<Int>()
+
+  let TextTagID = -1001
+  let PhotoTagID = -1002
+  let AudioTagID = -1003
   
   init(exhibitionID: Int, data: RWData) {
     self.exhibitionID = exhibitionID
@@ -17,7 +21,14 @@ class AssetViewModel {
     self.assets = data.assets.filter { contains($0.tagIDs, exhibitionID) }
     self.filteredAssets = self.assets
     self.exhibition = data.exhibitions.filter { $0.tagId == exhibitionID }.first
-    self.browseTags = data.browseTags.filter { $0.code != "exhibition" }
+
+    let options = [Tag(tagId: TextTagID, value: "Text"),
+                   Tag(tagId: PhotoTagID, value: "Photo"),
+                   Tag(tagId: AudioTagID, value: "Audio")]
+    let mediaTagGroup = TagGroup(headerText: "Media Type", options: options)
+    var mutate: [TagGroup] = data.browseTags.filter { $0.code != "exhibition" }
+    mutate.append(mediaTagGroup)
+    self.browseTags = mutate
   }
 
   // MARK: - Exhibition
@@ -92,6 +103,29 @@ class AssetViewModel {
   }
 
   func filterAssetsWithTags() {
-    filteredAssets = assets.filter { self.selectedBrowseTags.intersect($0.tagIDs).isEmpty == false }
+    if self.selectedBrowseTags.contains(TextTagID) {
+      filteredAssets = assets.filter { (asset: Asset) -> Bool in
+        return asset.mediaType == .Text
+      }
+      var tags = selectedBrowseTags
+      tags.remove(TextTagID)
+      filteredAssets = filteredAssets.filter { tags.intersect($0.tagIDs).isEmpty == false }
+    } else if self.selectedBrowseTags.contains(PhotoTagID) {
+      filteredAssets = assets.filter { (asset: Asset) -> Bool in
+        return asset.mediaType == .Photo
+      }
+      var tags = selectedBrowseTags
+      tags.remove(PhotoTagID)
+      filteredAssets = filteredAssets.filter { tags.intersect($0.tagIDs).isEmpty == false }
+    } else if self.selectedBrowseTags.contains(AudioTagID) {
+      filteredAssets = assets.filter { (asset: Asset) -> Bool in
+        return asset.mediaType == .Audio
+      }
+      var tags = selectedBrowseTags
+      tags.remove(AudioTagID)
+      filteredAssets = filteredAssets.filter { tags.intersect($0.tagIDs).isEmpty == false }
+    } else {
+      filteredAssets = assets.filter { self.selectedBrowseTags.intersect($0.tagIDs).isEmpty == false }
+    }
   }
 }
