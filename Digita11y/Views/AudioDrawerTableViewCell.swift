@@ -12,7 +12,7 @@ class AudioDrawerTableViewCell: UITableViewCell {
   @IBOutlet weak var recordButton: UIButton!
   @IBOutlet weak var discardButton: UIButton!
   @IBOutlet weak var progressLabel: UILabel!
-  @IBOutlet weak var microphoneLevelsView: MicrophoneLevelsView!
+  @IBOutlet weak var progressView: UIProgressView!
 
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -22,7 +22,7 @@ class AudioDrawerTableViewCell: UITableViewCell {
 
   func displayPreviewAudio() {
     recordButton.accessibilityLabel = "Preview audio"
-    microphoneLevelsView.percent = 0.0
+    progressView.progress = 0.0
     recordButton.setImage(UIImage(named: PlayButtonFilename), forState: .Normal)
   }
 
@@ -42,20 +42,20 @@ class AudioDrawerTableViewCell: UITableViewCell {
 
   func displayRecordAudio() {
     recordButton.accessibilityLabel = "Record audio"
-    microphoneLevelsView.percent = 0.0
+    progressView.progress = 0.0
     recordButton.setImage(UIImage(named: "record-button"), forState: .Normal)
     progressLabel.text = "00:00"
     progressLabel.accessibilityLabel = "0 seconds"
   }
 
   func updateAudioPercentage(percentage: Double, maxDuration: NSTimeInterval, peakPower: Float, averagePower: Float) {
-    var dt = percentage*maxDuration
+    var dt = maxDuration - (percentage*maxDuration) // countdown
     var sec = Int(dt%60.0)
     var milli = Int(100*(dt - floor(dt)))
     var secStr = sec < 10 ? "0\(sec)" : "\(sec)"
     progressLabel.text = "00:\(secStr)"
     progressLabel.accessibilityLabel = "\(secStr) seconds"
 
-    microphoneLevelsView.percent = (averagePower + 120.0)/120.0
+    progressView.progress = Float(percentage)
   }
 }
