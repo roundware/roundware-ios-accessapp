@@ -7,6 +7,7 @@ class AssetViewModel {
   let exhibition: Tag?
   let data: RWData
   let assets: [Asset]
+  var filteredAssets: [Asset]
   let browseTags: [TagGroup]
   var selectedBrowseTags = Set<Int>()
   
@@ -14,6 +15,7 @@ class AssetViewModel {
     self.exhibitionID = exhibitionID
     self.data = data
     self.assets = data.assets.filter { contains($0.tagIDs, exhibitionID) }
+    self.filteredAssets = self.assets
     self.exhibition = data.exhibitions.filter { $0.tagId == exhibitionID }.first
     self.browseTags = data.browseTags.filter { $0.code != "exhibition" }
   }
@@ -32,15 +34,15 @@ class AssetViewModel {
   // MARK: - Assets
 
   func numberOfAssets() -> Int {
-    return self.assets.count
+    return self.filteredAssets.count
   }
 
   func assetAtIndex(index: Int) -> Asset {
-    return self.assets[index]
+    return self.filteredAssets[index]
   }
 
   func tagForAssetAtIndex(index: Int) -> Tag? {
-    let asset = self.assets[index]
+    let asset = self.filteredAssets[index]
     let tag = asset.tagIDs.map { self.data.objectForID($0) }.filter { $0 != nil }.first
     if let tag = tag {
       return tag
@@ -85,7 +87,11 @@ class AssetViewModel {
   func selectTagAtIndex(index: Int, forGroup: Int) {
     let tag = tagAtIndex(index, forGroup: forGroup)
     let tagIDs = tagGroupAtIndex(forGroup).options.map { $0.tagId }
-    selectedBrowseTags.subtract(tagIDs)
+    selectedBrowseTags.subtractInPlace(tagIDs)
     selectedBrowseTags.insert(tag.tagId)
+  }
+
+  func filterAssetsWithTags() {
+    filteredAssets = assets.filter { self.selectedBrowseTags.intersect($0.tagIDs).isEmpty == false }
   }
 }

@@ -1,8 +1,20 @@
 import UIKit
 
 class BrowseTagsViewController: BaseTableViewController {
+
   let CellIdentifier = "BrowseTagsCellIdentifier"
   var assetViewModel: AssetViewModel?
+  var filterCompleted: ((AssetViewModel?)->())?
+
+  override func viewDidDisappear(animated: Bool) {
+    super.viewDidDisappear(animated)
+
+    self.assetViewModel?.filterAssetsWithTags()
+
+    if let f = filterCompleted {
+      f(self.assetViewModel)
+    }
+  }
 
   // MARK: - Table view data source
 

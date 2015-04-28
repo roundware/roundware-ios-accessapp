@@ -243,6 +243,10 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
     vc.rwData = self.rwData
     vc.assetViewModel = self.assetViewModel
     vc.hidesBottomBarWhenPushed = true
+    vc.filterCompleted = { assetViewModel in
+      self.assetViewModel = assetViewModel
+      self.tableView.reloadData()
+    }
     self.navigationController?.pushViewController(vc, animated: true)
   }
 }
