@@ -477,4 +477,24 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     alertController.addAction(ok)
     self.presentViewController(alertController, animated: true) { }
   }
+
+  // MARK: - Magic tap
+
+  override func accessibilityPerformMagicTap() -> Bool {
+    debugPrintln("MAGIC TAP CONTRIBUTE")
+    var rwf = RWFramework.sharedInstance
+    if rwf.isRecording() {
+      let cell: AudioDrawerTableViewCell? = findTableViewCell()
+      cell?.discardButton.enabled = rwf.hasRecording()
+
+      delay(0.5) {  // HACK: Let the buffers in the framework flush.
+        rwf.stopRecording()
+      }
+      cell?.displayPreviewAudio()
+
+      return true
+    }
+
+    return false
+  }
 }

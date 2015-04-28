@@ -249,4 +249,19 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
     }
     self.navigationController?.pushViewController(vc, animated: true)
   }
+
+  // MARK: - Magic tap
+
+  override func accessibilityPerformMagicTap() -> Bool {
+        debugPrintln("MAGIC TAP BROWSE")
+    if let player = assetPlayer?.player {
+      if assetPlayer!.isPlaying {
+        player.pause()
+        timer?.invalidate()
+        return true
+      }
+    }
+
+    return false
+  }
 }
