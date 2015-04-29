@@ -72,7 +72,7 @@ class AssetViewModel {
   }
 
   func numberOfTagsForGroup(index: Int) -> Int {
-    return self.browseTags[index].options.count
+    return self.browseTags[index].options.count + 1
   }
 
   func titleOfTagGroup(index: Int) -> String {
@@ -82,16 +82,21 @@ class AssetViewModel {
   // MARK: - Tag
 
   func tagAtIndex(index: Int, forGroup: Int) -> Tag {
-    return self.browseTags[forGroup].options[index]
+    if index == 0 {
+      return Tag(tagId: (-1*forGroup)-2000, value: "ALL")
+    } else {
+      return self.browseTags[forGroup].options[index-1]
+    }
   }
 
   func titleForTagAtIndex(index: Int, forGroup: Int) -> String {
-    return self.browseTags[forGroup].options[index].value
+    let tag = tagAtIndex(index, forGroup: forGroup)
+    return tag.value
   }
 
   func accessibiltyLabelTextAtIndex(index: Int, forGroup: Int) -> String {
+    let count = numberOfTagsForGroup(forGroup)
     let title = titleForTagAtIndex(index, forGroup: forGroup)
-    let count = self.browseTags[forGroup].options.count
     return String("\(title), \(index) of \(count)")
   }
 
@@ -109,6 +114,9 @@ class AssetViewModel {
 
   func filterAssetsWithTags() {
 
+    // Filter out "ALL"
+    self.selectedBrowseTags = Set(filter(selectedBrowseTags) { $0 > -2000 })
+    
     if self.selectedBrowseTags.isEmpty {
       filteredAssets = assets
       return

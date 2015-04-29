@@ -91,12 +91,7 @@ class ListenTagsTableViewController: BaseTableViewController {
 
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
-    let rows = tableView.numberOfRowsInSection(indexPath.section)
-    for var i = 0; i < rows; ++i {
-      if let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: i, inSection: indexPath.section)) {
-        cell.accessoryType = .None
-      }
-    }
+    deselectAllCellInSection(indexPath.section)
 
     var rwf = RWFramework.sharedInstance
 
