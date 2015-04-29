@@ -13,8 +13,8 @@ class BrowseTagsViewController: BaseTableViewController {
     self.navigationController?.navigationBar.setBackgroundImage(nil, forBarMetrics: .Default)
   }
 
-  override func viewDidDisappear(animated: Bool) {
-    super.viewDidDisappear(animated)
+  override func viewWillDisappear(animated: Bool) {
+    super.viewWillDisappear(animated)
 
     self.assetViewModel?.filterAssetsWithTags()
 

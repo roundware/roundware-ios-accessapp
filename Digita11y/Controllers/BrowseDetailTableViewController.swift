@@ -10,6 +10,7 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
   var currentAsset: Int = 0
 
   var assetViewModel: AssetViewModel?
+  var filteredAssetViewModel: AssetViewModel?
 
   @IBOutlet weak var headerImageView: UIImageView!
   @IBOutlet weak var assetRefreshControl: UIRefreshControl!
@@ -41,6 +42,10 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
     self.navigationItem.title = self.assetViewModel?.titleForExhibition()
     headerImageView.sd_setImageWithURL(self.assetViewModel?.imageURLForExhibition(), placeholderImage: UIImage(named:"browse-cell"))
 
+    if let vm = self.filteredAssetViewModel {
+      self.assetViewModel = self.filteredAssetViewModel
+    }
+
     self.navigationController?.navigationBar.becomeFirstResponder()
   }
 
@@ -63,38 +68,43 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let asset = self.assetViewModel?.assetAtIndex(indexPath.row)
-    let tag = self.assetViewModel?.tagForAssetAtIndex(indexPath.row)
-    let tagViewModel = TagViewModel(tag: tag!, asset: asset!)
+    let tag = self.assetViewModel?.tagForAssetAtIndex(indexPath.row) ?? Tag(tagId: 0, value: "Telescope M-53 Audio 1")
+    if let asset = asset {
+      let tagViewModel = TagViewModel(tag: tag, asset: asset)
 
-    switch (asset!.mediaType) {
-    case .Text:
-      let cell = tableView.dequeueReusableCellWithIdentifier(BrowseTextTableViewCell.Identifier, forIndexPath: indexPath) as! BrowseTextTableViewCell
-      cell.titleLabel.text = tagViewModel.title()
-      cell.assetLabel.text = tagViewModel.text()
-      cell.accessibilityLabel = tagViewModel.accessibilityLabelText()
-      return cell
-    case .Audio:
-      let cell = tableView.dequeueReusableCellWithIdentifier(BrowseDetailTableViewCell.Identifier, forIndexPath: indexPath) as! BrowseDetailTableViewCell
-      cell.assetLabel.text = tagViewModel.title()
-      cell.accessibilityLabel = tagViewModel.accessibilityLabelText()
-      cell.playButton.addTarget(self, action: "playAudio:", forControlEvents: .TouchUpInside)
-      cell.playButton.tag = indexPath.row
-      return cell
-    case .Photo:
-      let cell = tableView.dequeueReusableCellWithIdentifier(BrowsePhotoTableViewCell.Identifier, forIndexPath: indexPath) as! BrowsePhotoTableViewCell
-      var name = tag?.value ?? "Telescope M-53 Audio 1"
-      cell.titleLabel.text = tagViewModel.title()
-      cell.accessibilityLabel = tagViewModel.accessibilityLabelText()
-      cell.accessibilityHint = "Fullscreens image"
-      cell.assetImageView.sd_setImageWithURL(asset!.fileURL)
-      cell.tag = indexPath.row
-      return cell
-    default:
-      let cell = tableView.dequeueReusableCellWithIdentifier(BrowseDetailTableViewCell.Identifier, forIndexPath: indexPath) as! BrowseDetailTableViewCell
-      cell.assetLabel.text = tagViewModel.title()
-      cell.accessibilityLabel = tagViewModel.accessibilityLabelText()
-      return cell
+      switch (asset.mediaType) {
+      case .Text:
+        let cell = tableView.dequeueReusableCellWithIdentifier(BrowseTextTableViewCell.Identifier, forIndexPath: indexPath) as! BrowseTextTableViewCell
+        cell.titleLabel.text = tagViewModel.title()
+        cell.assetLabel.text = tagViewModel.text()
+        cell.accessibilityLabel = tagViewModel.accessibilityLabelText()
+        return cell
+      case .Audio:
+        let cell = tableView.dequeueReusableCellWithIdentifier(BrowseDetailTableViewCell.Identifier, forIndexPath: indexPath) as! BrowseDetailTableViewCell
+        cell.assetLabel.text = tagViewModel.title()
+        cell.accessibilityLabel = tagViewModel.accessibilityLabelText()
+        cell.playButton.addTarget(self, action: "playAudio:", forControlEvents: .TouchUpInside)
+        cell.playButton.tag = indexPath.row
+        return cell
+      case .Photo:
+        let cell = tableView.dequeueReusableCellWithIdentifier(BrowsePhotoTableViewCell.Identifier, forIndexPath: indexPath) as! BrowsePhotoTableViewCell
+        cell.titleLabel.text = tagViewModel.title()
+        cell.accessibilityLabel = tagViewModel.accessibilityLabelText()
+        cell.accessibilityHint = "Fullscreens image"
+        cell.assetImageView.sd_setImageWithURL(asset.fileURL)
+        cell.tag = indexPath.row
+        return cell
+      default:
+        let cell = tableView.dequeueReusableCellWithIdentifier(BrowseDetailTableViewCell.Identifier, forIndexPath: indexPath) as! BrowseDetailTableViewCell
+        cell.assetLabel.text = tagViewModel.title()
+        cell.accessibilityLabel = tagViewModel.accessibilityLabelText()
+        return cell
+      }
+    } else {
+      debugPrintln("COULDN'T UNWRAP ASSET")
     }
+
+    return UITableViewCell()
   }
 
   func resetPlayButtons() {
@@ -243,9 +253,9 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
     vc.rwData = self.rwData
     vc.assetViewModel = self.assetViewModel
     vc.hidesBottomBarWhenPushed = true
+    self.filteredAssetViewModel = nil
     vc.filterCompleted = { assetViewModel in
-      self.assetViewModel = assetViewModel
-      self.tableView.reloadData()
+      self.filteredAssetViewModel = assetViewModel
     }
     self.navigationController?.pushViewController(vc, animated: true)
   }
