@@ -45,6 +45,7 @@ class BrowseTagsViewController: BaseTableViewController {
 
     cell?.textLabel?.text = assetViewModel?.titleForTagAtIndex(indexPath.row, forGroup: indexPath.section)
     cell?.accessibilityLabel = assetViewModel?.accessibiltyLabelTextAtIndex(indexPath.row, forGroup: indexPath.section)
+    cell?.accessoryType = assetViewModel?.accessoryTypeAtIndex(indexPath.row, forGroup: indexPath.section) ?? .None
     cell?.accessibilityTraits = UIAccessibilityTraitButton
     return cell!
   }

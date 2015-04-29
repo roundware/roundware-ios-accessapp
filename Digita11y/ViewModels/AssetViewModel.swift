@@ -95,6 +95,11 @@ class AssetViewModel {
     return String("\(title), \(index) of \(count)")
   }
 
+  func accessoryTypeAtIndex(index: Int, forGroup: Int) -> UITableViewCellAccessoryType {
+    let tag = tagAtIndex(index, forGroup: forGroup)
+    return selectedBrowseTags.contains(tag.tagId) ? .Checkmark : .None
+  }
+  
   func selectTagAtIndex(index: Int, forGroup: Int) {
     let tag = tagAtIndex(index, forGroup: forGroup)
     let tagIDs = tagGroupAtIndex(forGroup).options.map { $0.tagId }

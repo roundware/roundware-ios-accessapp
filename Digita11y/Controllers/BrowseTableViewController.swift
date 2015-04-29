@@ -68,6 +68,8 @@ class BrowseTableViewController: BaseTableViewController, RWFrameworkProtocol {
 
   // MARK: - RWFrameworkProtocol
 
+  func rwUpdateStatus(message: String) {}
+
   func rwGetProjectsIdTagsSuccess(data: NSData?) {
     // Order or operations thing.  RootTabBarController parses exhibitions
     delay(0.1) {

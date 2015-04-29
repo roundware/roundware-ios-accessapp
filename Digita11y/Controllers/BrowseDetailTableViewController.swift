@@ -274,4 +274,6 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
 
     return false
   }
+
+  func rwUpdateStatus(message: String) {}
 }

@@ -4,6 +4,8 @@ import Crashlytics
 import RWFramework
 
 class RootTabBarController: UITabBarController, UITabBarControllerDelegate, MFMailComposeViewControllerDelegate, RWFrameworkProtocol {
+  static var once: dispatch_once_t = 0
+
   var rwData: RWData?
 
   // MARK: - View lifecycle
@@ -52,11 +54,13 @@ class RootTabBarController: UITabBarController, UITabBarControllerDelegate, MFMa
   }
 
   func rwPostStreamsFailure(error: NSError?) {
-    let alert = UIAlertController(title: "Stream Error", message: error?.localizedDescription, preferredStyle: .Alert)
-    let ok = UIAlertAction(title: "OK", style: .Default) { action in
+    dispatch_once(&RootTabBarController.once) {
+      let alert = UIAlertController(title: "Stream Error", message: error?.localizedDescription, preferredStyle: .Alert)
+      let ok = UIAlertAction(title: "OK", style: .Default) { action in
+      }
+      alert.addAction(ok)
+      self.presentViewController(alert, animated: true) { }
     }
-    alert.addAction(ok)
-    self.presentViewController(alert, animated: true) { }
   }
 
   func rwGetProjectsIdTagsSuccess(data: NSData?) {

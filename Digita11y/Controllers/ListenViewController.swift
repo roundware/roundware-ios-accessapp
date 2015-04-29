@@ -127,4 +127,6 @@ class ListenViewController: BaseViewController, RWFrameworkProtocol {
     self.playButton.accessibilityLabel = "Play button"
     SVProgressHUD.dismiss()
   }
+
+  func rwUpdateStatus(message: String) {}
 }

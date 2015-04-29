@@ -497,4 +497,6 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
 
     return false
   }
+
+  func rwUpdateStatus(message: String) {}
 }
