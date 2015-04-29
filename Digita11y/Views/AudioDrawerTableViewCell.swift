@@ -36,7 +36,7 @@ class AudioDrawerTableViewCell: UITableViewCell {
   func displayStopRecording() {
     recordButton.accessibilityLabel = "Stop recording"
     recordButton.setImage(UIImage(named: self.StopButtonFilename), forState: .Normal)
-    progressLabel.text = "00:00"
+    progressLabel.text = "00:30"
     progressLabel.accessibilityLabel = "0 seconds"
   }
 
@@ -44,7 +44,7 @@ class AudioDrawerTableViewCell: UITableViewCell {
     recordButton.accessibilityLabel = "Record audio"
     progressView.progress = 0.0
     recordButton.setImage(UIImage(named: "record-button"), forState: .Normal)
-    progressLabel.text = "00:00"
+    progressLabel.text = "00:30"
     progressLabel.accessibilityLabel = "0 seconds"
   }
 
