@@ -120,23 +120,23 @@ class AssetViewModel {
       }
       var tags = selectedBrowseTags
       tags.remove(TextTagID)
-      filteredAssets = filteredAssets.filter { tags.intersect($0.tagIDs).isEmpty == false }
+      filteredAssets = filteredAssets.filter { tags.isSubsetOf($0.tagIDs) }
     } else if self.selectedBrowseTags.contains(PhotoTagID) {
       filteredAssets = assets.filter { (asset: Asset) -> Bool in
         return asset.mediaType == .Photo
       }
       var tags = selectedBrowseTags
       tags.remove(PhotoTagID)
-      filteredAssets = filteredAssets.filter { tags.intersect($0.tagIDs).isEmpty == false }
+      filteredAssets = filteredAssets.filter { tags.isSubsetOf($0.tagIDs) }
     } else if self.selectedBrowseTags.contains(AudioTagID) {
       filteredAssets = assets.filter { (asset: Asset) -> Bool in
         return asset.mediaType == .Audio
       }
       var tags = selectedBrowseTags
       tags.remove(AudioTagID)
-      filteredAssets = filteredAssets.filter { tags.intersect($0.tagIDs).isEmpty == false }
+      filteredAssets = filteredAssets.filter { tags.isSubsetOf($0.tagIDs) }
     } else {
-      filteredAssets = assets.filter { self.selectedBrowseTags.intersect($0.tagIDs).isEmpty == false }
+      filteredAssets = assets.filter { self.selectedBrowseTags.isSubsetOf($0.tagIDs) }
     }
   }
 }
