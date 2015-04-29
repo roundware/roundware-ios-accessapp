@@ -6,6 +6,13 @@ class BrowseTagsViewController: BaseTableViewController {
   var assetViewModel: AssetViewModel?
   var filterCompleted: ((AssetViewModel?)->())?
 
+  // MARK: - View lifecycle
+  
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    self.navigationController?.navigationBar.setBackgroundImage(nil, forBarMetrics: .Default)
+  }
+
   override func viewDidDisappear(animated: Bool) {
     super.viewDidDisappear(animated)
 
