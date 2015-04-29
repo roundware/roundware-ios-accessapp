@@ -103,6 +103,12 @@ class AssetViewModel {
   }
 
   func filterAssetsWithTags() {
+
+    if self.selectedBrowseTags.isEmpty {
+      filteredAssets = assets
+      return
+    }
+
     if self.selectedBrowseTags.contains(TextTagID) {
       filteredAssets = assets.filter { (asset: Asset) -> Bool in
         return asset.mediaType == .Text
