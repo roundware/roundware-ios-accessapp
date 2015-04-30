@@ -12,6 +12,8 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
   var assetViewModel: AssetViewModel?
   var filteredAssetViewModel: AssetViewModel?
 
+  var magicTapDidStop = false
+
   @IBOutlet weak var headerImageView: UIImageView!
   @IBOutlet weak var assetRefreshControl: UIRefreshControl!
   
@@ -153,10 +155,8 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
           timer?.invalidate()
         } else {
           player.play()
-          NSNotificationCenter.defaultCenter().postNotificationName("RW_STARTED_AUDIO_NOTIFICATION", object: self)
           currentAsset = button.tag
-          timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target:self, selector:Selector("audioTimer:"), userInfo:nil, repeats:true)
-          NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("audioStopped"), name: AVPlayerItemDidPlayToEndTimeNotification, object: player.currentItem)
+          startTimerWithPlayer(player)
           button.setImage(UIImage(named:"browse-pause-button"), forState: .Normal)
           if let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: button.tag, inSection: 0)) as? BrowseDetailTableViewCell {
             cell.accessibilityHint = "Pauses audio"
@@ -165,10 +165,8 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
       } else {
         assetPlayer = AssetPlayer(asset: asset!)
         assetPlayer!.player?.play()
-        NSNotificationCenter.defaultCenter().postNotificationName("RW_STARTED_AUDIO_NOTIFICATION", object: self)
         currentAsset = button.tag
-        timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target:self, selector:Selector("audioTimer:"), userInfo:nil, repeats:true)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("audioStopped"), name: AVPlayerItemDidPlayToEndTimeNotification, object: assetPlayer!.player?.currentItem)
+        startTimerWithPlayer(assetPlayer!.player!)
         button.setImage(UIImage(named:"browse-pause-button"), forState: .Normal)
         if let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: button.tag, inSection: 0)) as? BrowseDetailTableViewCell {
           cell.accessibilityHint = "Pauses audio"
@@ -181,15 +179,19 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
       }
       assetPlayer = AssetPlayer(asset: asset!)
       assetPlayer!.player?.play()
-      NSNotificationCenter.defaultCenter().postNotificationName("RW_STARTED_AUDIO_NOTIFICATION", object: self)
       currentAsset = button.tag
-      timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target:self, selector:Selector("audioTimer:"), userInfo:nil, repeats:true)
-      NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("audioStopped"), name: AVPlayerItemDidPlayToEndTimeNotification, object: assetPlayer!.player?.currentItem)
+      startTimerWithPlayer(assetPlayer!.player!)
       button.setImage(UIImage(named:"browse-pause-button"), forState: .Normal)
       if let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: button.tag, inSection: 0)) as? BrowseDetailTableViewCell {
         cell.accessibilityHint = "Pauses audio"
       }
     }
+  }
+
+  func startTimerWithPlayer(player: AVPlayer) {
+    NSNotificationCenter.defaultCenter().postNotificationName("RW_STARTED_AUDIO_NOTIFICATION", object: self)
+    timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target:self, selector:Selector("audioTimer:"), userInfo:nil, repeats:true)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("audioStopped"), name: AVPlayerItemDidPlayToEndTimeNotification, object: player.currentItem)
   }
 
   func audioTimer(timer: NSTimer) {
@@ -263,11 +265,21 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
   // MARK: - Magic tap
 
   override func accessibilityPerformMagicTap() -> Bool {
-        debugPrintln("MAGIC TAP BROWSE")
     if let player = assetPlayer?.player {
       if assetPlayer!.isPlaying {
         player.pause()
         timer?.invalidate()
+        resetPlayButtons()
+        magicTapDidStop = true
+        return true
+      } else if magicTapDidStop {
+        player.play()
+        startTimerWithPlayer(player)
+        if let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: currentAsset, inSection: 0)) as? BrowseDetailTableViewCell {
+          cell.accessibilityHint = "Pauses audio"
+          cell.playButton.setImage(UIImage(named:"browse-pause-button"), forState: .Normal)
+        }
+        magicTapDidStop = false
         return true
       }
     }
