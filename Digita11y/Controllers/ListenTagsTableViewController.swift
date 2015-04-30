@@ -34,7 +34,6 @@ class ListenTagsTableViewController: BaseTableViewController {
     }
 
     var rwf = RWFramework.sharedInstance
-    let i = indexPath.row + 1
     var count = self.rwData?.listenTags[indexPath.section].options.count ?? 0
     if self.rwData?.listenTags[indexPath.section].code == "channel" {
       if self.rwData?.listenTags[indexPath.section].options.count == indexPath.row {
@@ -82,6 +81,7 @@ class ListenTagsTableViewController: BaseTableViewController {
     }
 
     if let s1 = cell?.textLabel?.text {
+      let i = indexPath.row + 1
       cell?.accessibilityLabel = String("\(s1), \(i) of \(count)")
     }
     cell?.accessibilityTraits = UIAccessibilityTraitButton

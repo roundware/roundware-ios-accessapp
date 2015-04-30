@@ -97,7 +97,7 @@ class AssetViewModel {
   func accessibiltyLabelTextAtIndex(index: Int, forGroup: Int) -> String {
     let count = numberOfTagsForGroup(forGroup)
     let title = titleForTagAtIndex(index, forGroup: forGroup)
-    return String("\(title), \(index) of \(count)")
+    return String("\(title), \(index+1) of \(count)")
   }
 
   func accessoryTypeAtIndex(index: Int, forGroup: Int) -> UITableViewCellAccessoryType {
