@@ -134,6 +134,7 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
       cell.artifactImageView.accessibilityLabel = String("Image \(num)")
 
       cell.discardButton.tag = tag
+      cell.discardButton.accessibilityLabel = String("Discard image \(num)")
       cell.discardButton.addTarget(self, action: "discardPhoto:", forControlEvents: .TouchUpInside)
       return cell
     case .PhotoDrawer:
