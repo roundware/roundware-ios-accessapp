@@ -22,4 +22,15 @@ class BaseTableViewController: UITableViewController {
       to.rwData = self.rwData
     }
   }
+
+  // MARK: - Utility
+
+  func deselectAllCellInSection(section: Int) {
+    let rows = tableView.numberOfRowsInSection(section)
+    for var i = 0; i < rows; ++i {
+      if let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: i, inSection: section)) {
+        cell.accessoryType = .None
+      }
+    }
+  }
 }

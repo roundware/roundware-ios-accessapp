@@ -18,14 +18,6 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
 
   let CellIdentifier            = "ContributeCellIdentifier"
   let ArtifactCellIdentifier    = "ArtifactCellIdentifier"
-  let AudioDrawerCellIdentifier = "AudioDrawerCellIdentifier"
-  let PhotoTextCellIdentifier   = "PhotoTextCellIdentifier"
-  let PhotoDrawerCellIdentifier = "PhotoDrawerCellIdentifier"
-  let TextDrawerCellIdentifier  = "TextDrawerCellIdentifier"
-
-  let RecordButtonFilename = "audio-record-button"
-  let PlayButtonFilename   = "audio-play-button"
-  let StopButtonFilename   = "audio-stop-button"
 
   let UploadTextTag = 999
 
@@ -105,10 +97,9 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
       cell.accessibilityHint = "Contribute an audio observation"
       return cell
     case .AudioDrawer:
-      var cell =  tableView.dequeueReusableCellWithIdentifier(AudioDrawerCellIdentifier, forIndexPath: indexPath) as! AudioDrawerTableViewCell
+      var cell =  tableView.dequeueReusableCellWithIdentifier(AudioDrawerTableViewCell.Identifier, forIndexPath: indexPath) as! AudioDrawerTableViewCell
       cell.recordButton.tag = indexPath.row
       cell.recordButton.addTarget(self, action: "recordAudio:", forControlEvents: .TouchUpInside)
-      cell.discardButton.layer.cornerRadius = 2.0
       cell.discardButton.addTarget(self, action: "discardAudio", forControlEvents: .TouchUpInside)
       self.updateAudioCell(cell, toggleButton: false)
       return cell
@@ -133,11 +124,8 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
       }
 
       cell.artifactTextView.tag = tag
-      cell.artifactTextView.placeholder = "Describe this photo..."
-      cell.artifactTextView.placeholderTextColor = UIColor.lightGrayColor()
       let num = tag+1
       cell.artifactTextView.accessibilityLabel = String("Image \(num) description")
-      cell.artifactTextView.accessibilityHint = "Describe this photo"
       let image = self.images[tag]
       cell.artifactTextView.text = image.text
       cell.artifactTextView.delegate = self
@@ -149,7 +137,7 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
       cell.discardButton.addTarget(self, action: "discardPhoto:", forControlEvents: .TouchUpInside)
       return cell
     case .PhotoDrawer:
-      var cell = tableView.dequeueReusableCellWithIdentifier(PhotoDrawerCellIdentifier, forIndexPath: indexPath) as! PhotoDrawerTableViewCell
+      var cell = tableView.dequeueReusableCellWithIdentifier(PhotoDrawerTableViewCell.Identifier, forIndexPath: indexPath) as! PhotoDrawerTableViewCell
       cell.cameraButton.addTarget(self, action: "cameraButton", forControlEvents: .TouchUpInside)
       return cell
     case .Text:
@@ -160,10 +148,7 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
       cell.accessibilityHint = "Contribute thoughts on observation"
       return cell
     case .TextDrawer:
-      var cell = tableView.dequeueReusableCellWithIdentifier(TextDrawerCellIdentifier, forIndexPath: indexPath) as! TextDrawerTableViewCell
-      cell.contributeTextView.placeholder = "Write something..."
-      cell.contributeTextView.placeholderTextColor = UIColor.lightGrayColor()
-      cell.contributeTextView.returnKeyType = .Done
+      var cell = tableView.dequeueReusableCellWithIdentifier(TextDrawerTableViewCell.Identifier, forIndexPath: indexPath) as! TextDrawerTableViewCell
       cell.contributeTextView.delegate = self
       cell.contributeTextView.text = self.uploadText
       return cell
@@ -253,32 +238,10 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     self.tableView.endUpdates()
   }
 
-  func findAudioDrawerTableViewCell() -> AudioDrawerTableViewCell? {
+  func findTableViewCell<T>() -> T? {
     for var i = 0; i < self.tableView.numberOfRowsInSection(0); ++i {
       var indexPath = NSIndexPath(forRow: i, inSection: 0)
-      if let cell = self.tableView.cellForRowAtIndexPath(indexPath) as? AudioDrawerTableViewCell {
-        return cell
-      }
-    }
-
-    return nil
-  }
-
-  func findPhotoDrawerTableViewCell() -> PhotoDrawerTableViewCell? {
-    for var i = 0; i < self.tableView.numberOfRowsInSection(0); ++i {
-      var indexPath = NSIndexPath(forRow: i, inSection: 0)
-      if let cell = self.tableView.cellForRowAtIndexPath(indexPath) as? PhotoDrawerTableViewCell {
-        return cell
-      }
-    }
-
-    return nil
-  }
-
-  func findTextDrawerTableViewCell() -> TextDrawerTableViewCell? {
-    for var i = 0; i < self.tableView.numberOfRowsInSection(0); ++i {
-      var indexPath = NSIndexPath(forRow: i, inSection: 0)
-      if let cell = self.tableView.cellForRowAtIndexPath(indexPath) as? TextDrawerTableViewCell {
+      if let cell = self.tableView.cellForRowAtIndexPath(indexPath) as? T {
         return cell
       }
     }
@@ -295,45 +258,31 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
 
     if rwf.isRecording() {
       if toggleButton {
-        rwf.stopRecording()
+        delay(0.5) {  // HACK: Let the buffers in the framework flush.
+          rwf.stopRecording()
+        }
       }
-      cell.recordButton.accessibilityLabel = "Preview audio"
-      cell.microphoneLevelsView.percent = 0.0
-      cell.recordButton.setImage(UIImage(named: PlayButtonFilename), forState: .Normal)
+      cell.displayPreviewAudio()
     } else if rwf.isPlayingBack() {
       if toggleButton {
         rwf.stopPlayback()
       }
-      cell.recordButton.accessibilityLabel = "Preview audio"
-      cell.microphoneLevelsView.percent = 0.0
-      cell.recordButton.setImage(UIImage(named: PlayButtonFilename), forState: .Normal)
+      cell.displayPreviewAudio()
     } else if rwf.hasRecording() {
       if toggleButton {
         rwf.startPlayback()
         NSNotificationCenter.defaultCenter().postNotificationName("RW_STARTED_AUDIO_NOTIFICATION", object: self)
-        cell.recordButton.accessibilityLabel = "Stop playback"
-        cell.recordButton.setImage(UIImage(named: StopButtonFilename), forState: .Normal)
-        cell.progressLabel.text = "00:00"
-        cell.progressLabel.accessibilityLabel = "0 seconds"
+        cell.displayStopPlayback()
       } else {
-        cell.recordButton.accessibilityLabel = "Preview audio"
-        cell.microphoneLevelsView.percent = 0.0
-        cell.recordButton.setImage(UIImage(named: PlayButtonFilename), forState: .Normal)
+        cell.displayPreviewAudio()
       }
     } else {
       if toggleButton {
         rwf.startRecording()
         NSNotificationCenter.defaultCenter().postNotificationName("RW_STARTED_AUDIO_NOTIFICATION", object: self)
-        cell.recordButton.accessibilityLabel = "Stop recording"
-        cell.recordButton.setImage(UIImage(named: self.StopButtonFilename), forState: .Normal)
-        cell.progressLabel.text = "00:00"
-        cell.progressLabel.accessibilityLabel = "0 seconds"
+        cell.displayStopRecording()
       } else {
-        cell.recordButton.accessibilityLabel = "Record audio"
-        cell.microphoneLevelsView.percent = 0.0
-        cell.recordButton.setImage(UIImage(named: "record-button"), forState: .Normal)
-        cell.progressLabel.text = "00:00"
-        cell.progressLabel.accessibilityLabel = "0 seconds"
+        cell.displayRecordAudio()
       }
     }
 
@@ -341,7 +290,7 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
   }
 
   func recordAudio(button: UIButton) {
-    if let cell = self.findAudioDrawerTableViewCell() {
+    if let cell = self.findTableViewCell() as AudioDrawerTableViewCell? {
       self.updateAudioCell(cell, toggleButton: true)
     }
   }
@@ -351,28 +300,17 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     rwf.stopRecording()
     rwf.stopPlayback()
     rwf.deleteRecording()
-    if let cell = self.findAudioDrawerTableViewCell() {
+    if let cell = self.findTableViewCell() as AudioDrawerTableViewCell? {
       cell.discardButton.enabled = false
-      cell.recordButton.accessibilityLabel = "Record audio"
-      cell.microphoneLevelsView.percent = 0.0
-      cell.recordButton.setImage(UIImage(named: RecordButtonFilename), forState: .Normal)
-      cell.progressLabel.text = "00:00"
-      cell.progressLabel.accessibilityLabel = "0 seconds"
+      cell.displayRecordAudio()
     }
 
     self.updateUploadButtonState()
   }
 
   func updateAudioPercentage(percentage: Double, maxDuration: NSTimeInterval, peakPower: Float, averagePower: Float) {
-    if let cell = self.findAudioDrawerTableViewCell() {
-      var dt = percentage*maxDuration
-      var sec = Int(dt%60.0)
-      var milli = Int(100*(dt - floor(dt)))
-      var secStr = sec < 10 ? "0\(sec)" : "\(sec)"
-      cell.progressLabel.text = "00:\(secStr)"
-      cell.progressLabel.accessibilityLabel = "\(secStr) seconds"
-
-      cell.microphoneLevelsView.percent = (averagePower + 120.0)/120.0
+    if let cell = self.findTableViewCell() as AudioDrawerTableViewCell? {
+      cell.updateAudioPercentage(percentage, maxDuration: maxDuration, peakPower: peakPower, averagePower: averagePower)
     }
   }
 
@@ -418,11 +356,8 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
   }
 
   func rwAudioRecorderDidFinishRecording() {
-    var cell = self.findAudioDrawerTableViewCell()
-    cell?.recordButton.accessibilityLabel = "Preview audio"
-    cell?.microphoneLevelsView.percent = 0.0
-    cell?.recordButton.setImage(UIImage(named: PlayButtonFilename), forState: .Normal)
-
+    let cell: AudioDrawerTableViewCell? = self.findTableViewCell()
+    cell?.displayPreviewAudio()
     self.updateUploadButtonState()
   }
 
@@ -436,16 +371,14 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     var rwf = RWFramework.sharedInstance
     rwf.stopPlayback()
     rwf.stopRecording()
-    if let cell = self.findAudioDrawerTableViewCell() {
+    if let cell = self.findTableViewCell() as AudioDrawerTableViewCell? {
       self.updateAudioCell(cell, toggleButton: false)
     }
   }
 
   func rwAudioPlayerDidFinishPlaying() {
-    var cell = self.findAudioDrawerTableViewCell()
-    cell?.recordButton.accessibilityLabel = "Preview audio"
-    cell?.microphoneLevelsView.percent = 0.0
-    cell?.recordButton.setImage(UIImage(named: PlayButtonFilename), forState: .Normal)
+    let cell: AudioDrawerTableViewCell? = self.findTableViewCell()
+    cell?.displayPreviewAudio()
   }
 
   // MARK: - UITextViewDelegate
@@ -481,7 +414,6 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
   // MARK: - Upload
 
   func updateUploadButtonState() {
-    debugPrintln(" UPLOAD BUTTON STATE")
     var rwf = RWFramework.sharedInstance
     self.uploadButton.enabled = rwf.hasRecording() || self.images.isEmpty == false || self.uploadText.isEmpty == false
 
@@ -495,21 +427,16 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
   }
 
   @IBAction func uploadAllMedia(sender: AnyObject) {
-    if let audio = self.findAudioDrawerTableViewCell() {
-      audio.recordButton.accessibilityLabel = "Record audio"
-      audio.microphoneLevelsView.percent = 0.0
-      audio.recordButton.setImage(UIImage(named: "record-button"), forState: .Normal)
-      audio.progressLabel.text = "00:00"
-      audio.progressLabel.accessibilityLabel = "0 seconds"
-
+    if let audio = self.findTableViewCell() as AudioDrawerTableViewCell? {
+      audio.displayRecordAudio()
       toggleDrawer(Cell.AudioDrawer, parent: Cell.Audio)
     }
 
-    if let photo = self.findPhotoDrawerTableViewCell() {
+    if let photo = self.findTableViewCell() as PhotoDrawerTableViewCell? {
       toggleDrawer(Cell.PhotoDrawer, parent: Cell.Photo)
     }
 
-    if let txt = self.findTextDrawerTableViewCell() {
+    if let txt = self.findTableViewCell() as TextDrawerTableViewCell? {
       toggleDrawer(Cell.TextDrawer, parent: Cell.Text)
     }
 
@@ -550,4 +477,26 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     alertController.addAction(ok)
     self.presentViewController(alertController, animated: true) { }
   }
+
+  // MARK: - Magic tap
+
+  override func accessibilityPerformMagicTap() -> Bool {
+    debugPrintln("MAGIC TAP CONTRIBUTE")
+    var rwf = RWFramework.sharedInstance
+    if rwf.isRecording() {
+      let cell: AudioDrawerTableViewCell? = findTableViewCell()
+      cell?.discardButton.enabled = rwf.hasRecording()
+
+      delay(0.5) {  // HACK: Let the buffers in the framework flush.
+        rwf.stopRecording()
+      }
+      cell?.displayPreviewAudio()
+
+      return true
+    }
+
+    return false
+  }
+
+  func rwUpdateStatus(message: String) {}
 }

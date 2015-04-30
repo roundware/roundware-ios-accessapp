@@ -39,7 +39,11 @@
 		4EC432AB1ADB8219002CBC04 /* BrowsePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC432AA1ADB8219002CBC04 /* BrowsePhotoViewController.swift */; };
 		4EC432B31ADB90EF002CBC04 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC432B21ADB90EF002CBC04 /* Alamofire.swift */; };
 		4EC5C0A51ACE14E900BA8AA9 /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC5C0A41ACE14E900BA8AA9 /* Stream.swift */; };
+		4ECBD41E1AEDF22B0021B6D5 /* AssetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECBD41D1AEDF22B0021B6D5 /* AssetViewModel.swift */; };
+		4ECBD4211AEDF9210021B6D5 /* TagViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECBD4201AEDF9210021B6D5 /* TagViewModel.swift */; };
+		4ECBD4231AEEE0190021B6D5 /* BrowseTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECBD4221AEEE0190021B6D5 /* BrowseTagsViewController.swift */; };
 		4ED2160E1AD72E7E004FCA82 /* BrowseTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED2160D1AD72E7E004FCA82 /* BrowseTextTableViewCell.swift */; };
+		4EEEAC591AED970600E100F5 /* ExhibitionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEEAC581AED970600E100F5 /* ExhibitionViewModel.swift */; };
 		4EF024781AA1288600F93604 /* BrowseDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF024771AA1288600F93604 /* BrowseDetailTableViewCell.swift */; };
 		4EF1B8F81AE60613002C619C /* ListenTagsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF1B8F71AE60613002C619C /* ListenTagsTableViewController.swift */; };
 		8D2CEB442BA021938505E8E0 /* libPods-Digita11yTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4EC7348B2CECCD23FF50D6E /* libPods-Digita11yTests.a */; };
@@ -130,7 +134,11 @@
 		4EC432AA1ADB8219002CBC04 /* BrowsePhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BrowsePhotoViewController.swift; path = Controllers/BrowsePhotoViewController.swift; sourceTree = "<group>"; };
 		4EC432B21ADB90EF002CBC04 /* Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = External/Alamofire/Source/Alamofire.swift; sourceTree = SOURCE_ROOT; };
 		4EC5C0A41ACE14E900BA8AA9 /* Stream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stream.swift; path = Models/Stream.swift; sourceTree = "<group>"; };
+		4ECBD41D1AEDF22B0021B6D5 /* AssetViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AssetViewModel.swift; path = ViewModels/AssetViewModel.swift; sourceTree = "<group>"; };
+		4ECBD4201AEDF9210021B6D5 /* TagViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TagViewModel.swift; path = ViewModels/TagViewModel.swift; sourceTree = "<group>"; };
+		4ECBD4221AEEE0190021B6D5 /* BrowseTagsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BrowseTagsViewController.swift; path = Controllers/BrowseTagsViewController.swift; sourceTree = "<group>"; };
 		4ED2160D1AD72E7E004FCA82 /* BrowseTextTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BrowseTextTableViewCell.swift; path = Views/BrowseTextTableViewCell.swift; sourceTree = "<group>"; };
+		4EEEAC581AED970600E100F5 /* ExhibitionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExhibitionViewModel.swift; path = ViewModels/ExhibitionViewModel.swift; sourceTree = "<group>"; };
 		4EF024771AA1288600F93604 /* BrowseDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BrowseDetailTableViewCell.swift; path = Views/BrowseDetailTableViewCell.swift; sourceTree = "<group>"; };
 		4EF1B8F71AE60613002C619C /* ListenTagsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListenTagsTableViewController.swift; path = Controllers/ListenTagsTableViewController.swift; sourceTree = "<group>"; };
 		9100EF3930DF39010F581D8C /* Pods-Digita11yTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Digita11yTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Digita11yTests/Pods-Digita11yTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -183,7 +191,7 @@
 			name = Browse;
 			sourceTree = "<group>";
 		};
-		4E347D7F1AC4D47B00F4C810 /* Model */ = {
+		4E347D7F1AC4D47B00F4C810 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				4E71841E1AC76A3700C88A58 /* RWData.swift */,
@@ -191,7 +199,7 @@
 				4EC5C0A41ACE14E900BA8AA9 /* Stream.swift */,
 				4E54F87A1AD58D2E007B4EEE /* Asset.swift */,
 			);
-			name = Model;
+			name = Models;
 			sourceTree = "<group>";
 		};
 		4E462A351AB7DF8400623B7E /* Operations */ = {
@@ -229,8 +237,9 @@
 			isa = PBXGroup;
 			children = (
 				4E6C4AB41AB2703B00B5FEAC /* External */,
-				4E347D7F1AC4D47B00F4C810 /* Model */,
+				4E347D7F1AC4D47B00F4C810 /* Models */,
 				4E5946941A9BE966007ED02C /* Views */,
+				4EEEAC561AED96CC00E100F5 /* ViewModels */,
 				4E5946931A9BBFBD007ED02C /* Controllers */,
 				4E462A351AB7DF8400623B7E /* Operations */,
 				4E59466E1A9BB81B007ED02C /* AppDelegate.swift */,
@@ -273,6 +282,7 @@
 				4E7184251AC7760500C88A58 /* BaseViewController.swift */,
 				4E5946901A9BBFB7007ED02C /* BrowseTableViewController.swift */,
 				4E5946981A9D2095007ED02C /* BrowseDetailTableViewController.swift */,
+				4ECBD4221AEEE0190021B6D5 /* BrowseTagsViewController.swift */,
 				4EC432AA1ADB8219002CBC04 /* BrowsePhotoViewController.swift */,
 				4E7184281AC8E3D600C88A58 /* ListenViewController.swift */,
 				4EF1B8F71AE60613002C619C /* ListenTagsTableViewController.swift */,
@@ -318,6 +328,16 @@
 				4EC432B21ADB90EF002CBC04 /* Alamofire.swift */,
 			);
 			name = Alamofire;
+			sourceTree = "<group>";
+		};
+		4EEEAC561AED96CC00E100F5 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				4EEEAC581AED970600E100F5 /* ExhibitionViewModel.swift */,
+				4ECBD41D1AEDF22B0021B6D5 /* AssetViewModel.swift */,
+				4ECBD4201AEDF9210021B6D5 /* TagViewModel.swift */,
+			);
+			name = ViewModels;
 			sourceTree = "<group>";
 		};
 		5D2900C9F3F2E43C9F1D7A3B /* Frameworks */ = {
@@ -568,15 +588,19 @@
 				4EC5C0A51ACE14E900BA8AA9 /* Stream.swift in Sources */,
 				4E9DBFAF1AE8743300AA861C /* RequestAssets.swift in Sources */,
 				4EA392901A9FC2E800308613 /* PhotoDrawerTableViewCell.swift in Sources */,
+				4EEEAC591AED970600E100F5 /* ExhibitionViewModel.swift in Sources */,
 				4ED2160E1AD72E7E004FCA82 /* BrowseTextTableViewCell.swift in Sources */,
+				4ECBD41E1AEDF22B0021B6D5 /* AssetViewModel.swift in Sources */,
 				4E5946911A9BBFB7007ED02C /* BrowseTableViewController.swift in Sources */,
 				4E9DBFB21AE876E100AA861C /* RequestAssetText.swift in Sources */,
 				4E6D9CB81AAE2A040002D543 /* MicrophoneLevelsView.swift in Sources */,
 				4E7184291AC8E3D600C88A58 /* ListenViewController.swift in Sources */,
+				4ECBD4211AEDF9210021B6D5 /* TagViewModel.swift in Sources */,
 				4EC432AB1ADB8219002CBC04 /* BrowsePhotoViewController.swift in Sources */,
 				4E59469C1A9D4BFA007ED02C /* ContributeTableViewController.swift in Sources */,
 				4E71841F1AC76A3700C88A58 /* RWData.swift in Sources */,
 				4E462A381AB7DFA600623B7E /* SetupAudio.swift in Sources */,
+				4ECBD4231AEEE0190021B6D5 /* BrowseTagsViewController.swift in Sources */,
 				4EC432B31ADB90EF002CBC04 /* Alamofire.swift in Sources */,
 				4E7184261AC7760500C88A58 /* BaseViewController.swift in Sources */,
 				4EC4329D1AD9D1A7002CBC04 /* Delay.swift in Sources */,

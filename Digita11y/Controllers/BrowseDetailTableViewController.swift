@@ -4,11 +4,15 @@ import RWFramework
 
 class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProtocol {
 
-  var tagID = 0
-  var assets: [Asset] = []
+  var exhibitionID = 0
   var assetPlayer: AssetPlayer?
   var timer: NSTimer?
   var currentAsset: Int = 0
+
+  var assetViewModel: AssetViewModel?
+  var filteredAssetViewModel: AssetViewModel?
+
+  var magicTapDidStop = false
 
   @IBOutlet weak var headerImageView: UIImageView!
   @IBOutlet weak var assetRefreshControl: UIRefreshControl!
@@ -24,6 +28,7 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
     tableView.estimatedRowHeight = 94
     tableView.rowHeight = UITableViewAutomaticDimension
     NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("globalAudioStarted:"), name: "RW_STARTED_AUDIO_NOTIFICATION", object: nil)
+    self.navigationItem.setRightBarButtonItem(UIBarButtonItem(title: "Filter", style: .Plain, target: self, action: Selector("filterTapped")), animated: false)
   }
 
   override func viewWillAppear(animated: Bool) {
@@ -35,13 +40,13 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
     self.navigationController?.view.backgroundColor = UIColor.clearColor()
     self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
 
-    var exhibition = self.rwData?.exhibitions.filter { $0.tagId == self.tagID }.first
-    self.navigationItem.title = exhibition?.value
-    if let urlString = exhibition?.headerImageURL {
-      headerImageView.sd_setImageWithURL(NSURL(string: urlString), placeholderImage: UIImage(named:"browse-cell"))
-    }
+    self.assetViewModel = AssetViewModel(exhibitionID: self.exhibitionID, data: self.rwData!)
+    self.navigationItem.title = self.assetViewModel?.titleForExhibition()
+    headerImageView.sd_setImageWithURL(self.assetViewModel?.imageURLForExhibition(), placeholderImage: UIImage(named:"browse-cell"))
 
-    assets = self.rwData?.assets.filter { contains($0.tagIDs, self.tagID) } ?? []
+    if let vm = self.filteredAssetViewModel {
+      self.assetViewModel = self.filteredAssetViewModel
+    }
 
     self.navigationController?.navigationBar.becomeFirstResponder()
   }
@@ -60,68 +65,64 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
   }
 
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      return assets.count
+      return self.assetViewModel?.numberOfAssets() ?? 0
   }
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let asset = assets[indexPath.row]
-    let tag = asset.tagIDs.map { self.rwData?.objectForID($0) }.filter { $0 != nil }.first
+    let asset = self.assetViewModel?.assetAtIndex(indexPath.row)
+    let tag = self.assetViewModel?.tagForAssetAtIndex(indexPath.row) ?? Tag(tagId: 0, value: "Telescope M-53 Audio 1")
+    if let asset = asset {
+      let tagViewModel = TagViewModel(tag: tag, asset: asset)
 
-    switch (asset.mediaType) {
-    case .Text:
-      let cell = tableView.dequeueReusableCellWithIdentifier(BrowseTextTableViewCell.Identifier, forIndexPath: indexPath) as! BrowseTextTableViewCell
-      cell.titleLabel.text = tag??.value ?? "Telescope M-53 Audio 1"
-      cell.assetLabel.text = asset.text
-      if let s1 = tag??.value, let s2 = asset.text {
-        cell.accessibilityLabel = String("\(s1), text, \(s2)")
+      switch (asset.mediaType) {
+      case .Text:
+        let cell = tableView.dequeueReusableCellWithIdentifier(BrowseTextTableViewCell.Identifier, forIndexPath: indexPath) as! BrowseTextTableViewCell
+        cell.titleLabel.text = tagViewModel.title()
+        cell.assetLabel.text = tagViewModel.text()
+        cell.accessibilityLabel = tagViewModel.accessibilityLabelText()
+        return cell
+      case .Audio:
+        let cell = tableView.dequeueReusableCellWithIdentifier(BrowseDetailTableViewCell.Identifier, forIndexPath: indexPath) as! BrowseDetailTableViewCell
+        cell.assetLabel.text = tagViewModel.title()
+        cell.accessibilityLabel = tagViewModel.accessibilityLabelText()
+        cell.playButton.addTarget(self, action: "playAudio:", forControlEvents: .TouchUpInside)
+        cell.playButton.tag = indexPath.row
+        return cell
+      case .Photo:
+        let cell = tableView.dequeueReusableCellWithIdentifier(BrowsePhotoTableViewCell.Identifier, forIndexPath: indexPath) as! BrowsePhotoTableViewCell
+        cell.titleLabel.text = tagViewModel.title()
+        cell.accessibilityLabel = tagViewModel.accessibilityLabelText()
+        cell.accessibilityHint = "Fullscreens image"
+        cell.assetImageView.sd_setImageWithURL(asset.fileURL)
+        cell.tag = indexPath.row
+        return cell
+      default:
+        let cell = tableView.dequeueReusableCellWithIdentifier(BrowseDetailTableViewCell.Identifier, forIndexPath: indexPath) as! BrowseDetailTableViewCell
+        cell.assetLabel.text = tagViewModel.title()
+        cell.accessibilityLabel = tagViewModel.accessibilityLabelText()
+        return cell
       }
-
-      return cell
-    case .Audio:
-      let cell = tableView.dequeueReusableCellWithIdentifier(BrowseDetailTableViewCell.Identifier, forIndexPath: indexPath) as! BrowseDetailTableViewCell
-      cell.assetLabel.text = tag??.value ?? "Telescope M-53 Audio 1"
-      if let name = cell.assetLabel.text {
-        cell.accessibilityLabel = String("\(name), audio")
-      }
-      cell.playButton.addTarget(self, action: "playAudio:", forControlEvents: .TouchUpInside)
-      cell.playButton.tag = indexPath.row
-      return cell
-    case .Photo:
-      let cell = tableView.dequeueReusableCellWithIdentifier(BrowsePhotoTableViewCell.Identifier, forIndexPath: indexPath) as! BrowsePhotoTableViewCell
-      var name = tag??.value ?? "Telescope M-53 Audio 1"
-      cell.titleLabel.text = name
-      cell.accessibilityLabel = String("\(name), image, \(asset.assetDescription)")
-      cell.accessibilityHint = "Fullscreens image"
-      cell.assetImageView.sd_setImageWithURL(asset.fileURL)
-      cell.tag = indexPath.row
-      return cell
-    default:
-      let cell = tableView.dequeueReusableCellWithIdentifier(BrowseDetailTableViewCell.Identifier, forIndexPath: indexPath) as! BrowseDetailTableViewCell
-      cell.assetLabel.text = tag??.value ?? "Telescope M-53 Audio 1"
-      cell.accessibilityLabel = cell.assetLabel.text
-      return cell
+    } else {
+      debugPrintln("COULDN'T UNWRAP ASSET")
     }
+
+    return UITableViewCell()
   }
 
   func resetPlayButtons() {
-    for var i = 0; i < assets.count; ++i {
-      var a = assets[i]
-      if a.mediaType == .Audio {
+    for var i = 0; i < self.assetViewModel?.numberOfAssets(); ++i {
+      let a = self.assetViewModel?.assetAtIndex(i)
+      if a?.mediaType == .Audio {
         if let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: i, inSection: 0)) as? BrowseDetailTableViewCell {
-          cell.playButton.setImage(UIImage(named:"browse-play-button"), forState: .Normal)
-          cell.timeProgressView.progress = 0.0
-          cell.accessibilityHint = "Plays audio"
-          if let name = cell.assetLabel.text {
-            cell.accessibilityLabel = String("\(name), audio")
-          }
+          cell.resetView()
         }
       }
     }
   }
 
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    let asset = assets[indexPath.row]
-    if asset.mediaType == MediaType.Audio {
+    let asset = self.assetViewModel?.assetAtIndex(indexPath.row)
+    if asset?.mediaType == MediaType.Audio {
       if let cell = tableView.cellForRowAtIndexPath(indexPath) as? BrowseDetailTableViewCell {
         self.playAudio(cell.playButton)
       }
@@ -146,30 +147,26 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
       cell.resignFirstResponder()
     }
 
-    let asset = assets[button.tag]
-    if assetPlayer?.asset.assetID == asset.assetID {
+    let asset = self.assetViewModel?.assetAtIndex(button.tag)
+    if assetPlayer?.asset.assetID == asset!.assetID {
       if let player = assetPlayer?.player {
         if assetPlayer!.isPlaying {
           player.pause()
           timer?.invalidate()
         } else {
           player.play()
-          NSNotificationCenter.defaultCenter().postNotificationName("RW_STARTED_AUDIO_NOTIFICATION", object: self)
           currentAsset = button.tag
-          timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target:self, selector:Selector("audioTimer:"), userInfo:nil, repeats:true)
-          NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("audioStopped"), name: AVPlayerItemDidPlayToEndTimeNotification, object: player.currentItem)
+          startTimerWithPlayer(player)
           button.setImage(UIImage(named:"browse-pause-button"), forState: .Normal)
           if let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: button.tag, inSection: 0)) as? BrowseDetailTableViewCell {
             cell.accessibilityHint = "Pauses audio"
           }
         }
       } else {
-        assetPlayer = AssetPlayer(asset: asset)
+        assetPlayer = AssetPlayer(asset: asset!)
         assetPlayer!.player?.play()
-        NSNotificationCenter.defaultCenter().postNotificationName("RW_STARTED_AUDIO_NOTIFICATION", object: self)
         currentAsset = button.tag
-        timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target:self, selector:Selector("audioTimer:"), userInfo:nil, repeats:true)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("audioStopped"), name: AVPlayerItemDidPlayToEndTimeNotification, object: assetPlayer!.player?.currentItem)
+        startTimerWithPlayer(assetPlayer!.player!)
         button.setImage(UIImage(named:"browse-pause-button"), forState: .Normal)
         if let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: button.tag, inSection: 0)) as? BrowseDetailTableViewCell {
           cell.accessibilityHint = "Pauses audio"
@@ -180,12 +177,10 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
         player.pause()
         timer?.invalidate()
       }
-      assetPlayer = AssetPlayer(asset: asset)
+      assetPlayer = AssetPlayer(asset: asset!)
       assetPlayer!.player?.play()
-      NSNotificationCenter.defaultCenter().postNotificationName("RW_STARTED_AUDIO_NOTIFICATION", object: self)
       currentAsset = button.tag
-      timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target:self, selector:Selector("audioTimer:"), userInfo:nil, repeats:true)
-      NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("audioStopped"), name: AVPlayerItemDidPlayToEndTimeNotification, object: assetPlayer!.player?.currentItem)
+      startTimerWithPlayer(assetPlayer!.player!)
       button.setImage(UIImage(named:"browse-pause-button"), forState: .Normal)
       if let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: button.tag, inSection: 0)) as? BrowseDetailTableViewCell {
         cell.accessibilityHint = "Pauses audio"
@@ -193,12 +188,18 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
     }
   }
 
+  func startTimerWithPlayer(player: AVPlayer) {
+    NSNotificationCenter.defaultCenter().postNotificationName("RW_STARTED_AUDIO_NOTIFICATION", object: self)
+    timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target:self, selector:Selector("audioTimer:"), userInfo:nil, repeats:true)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("audioStopped"), name: AVPlayerItemDidPlayToEndTimeNotification, object: player.currentItem)
+  }
+
   func audioTimer(timer: NSTimer) {
     if let time = assetPlayer?.player?.currentItem.currentTime(),
            cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: currentAsset, inSection: 0)) as? BrowseDetailTableViewCell {
       var dt = CMTimeGetSeconds(time)
-      let asset = assets[currentAsset]
-      var percent = asset.audioLength == 0.0 ? 0.0 : Float(dt)/asset.audioLength
+      let asset = self.assetViewModel?.assetAtIndex(currentAsset)
+      var percent = asset!.audioLength == 0.0 ? 0.0 : Float(dt)/asset!.audioLength
       cell.timeProgressView.progress = percent
       let percentInt = Int(percent*100.0)
       if let name = cell.assetLabel.text {
@@ -230,20 +231,61 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
     if segue.identifier == "BrowsePhotoSegue" {
       if let to = segue.destinationViewController as? BrowsePhotoViewController,
              cell = sender as? BrowsePhotoTableViewCell {
-        to.asset = assets[cell.tag]
+        to.asset = self.assetViewModel?.assetAtIndex(cell.tag)
         if let name = cell.titleLabel.text {
           to.name = name
         }
       }
     }
   }
-  
+
+  // MARK: - Actions
+
   @IBAction func refreshAssets(sender: AnyObject) {
     requestAssets { assets in
       self.rwData?.assets = assets
-      self.assets = self.rwData?.assets.filter { contains($0.tagIDs, self.tagID) } ?? []
+      self.assetViewModel = AssetViewModel(exhibitionID: self.exhibitionID, data: self.rwData!)
       self.assetRefreshControl.endRefreshing()
       self.tableView.reloadData()
     }
   }
+
+  func filterTapped() {
+    var vc = BrowseTagsViewController(style: .Grouped)
+    vc.rwData = self.rwData
+    vc.assetViewModel = self.assetViewModel
+    vc.hidesBottomBarWhenPushed = true
+    self.filteredAssetViewModel = nil
+    vc.filterCompleted = { assetViewModel in
+      self.filteredAssetViewModel = assetViewModel
+    }
+    self.navigationController?.pushViewController(vc, animated: true)
+  }
+
+  // MARK: - Magic tap
+
+  override func accessibilityPerformMagicTap() -> Bool {
+    if let player = assetPlayer?.player {
+      if assetPlayer!.isPlaying {
+        player.pause()
+        timer?.invalidate()
+        resetPlayButtons()
+        magicTapDidStop = true
+        return true
+      } else if magicTapDidStop {
+        player.play()
+        startTimerWithPlayer(player)
+        if let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: currentAsset, inSection: 0)) as? BrowseDetailTableViewCell {
+          cell.accessibilityHint = "Pauses audio"
+          cell.playButton.setImage(UIImage(named:"browse-pause-button"), forState: .Normal)
+        }
+        magicTapDidStop = false
+        return true
+      }
+    }
+
+    return false
+  }
+
+  func rwUpdateStatus(message: String) {}
 }
