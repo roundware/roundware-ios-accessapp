@@ -265,6 +265,7 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
   // MARK: - Magic tap
 
   override func accessibilityPerformMagicTap() -> Bool {
+    debugPrintln("ACCESSIBILITY PERFORM MAGIC TAP - BROWSE DETAIL")
     if let player = assetPlayer?.player {
       if assetPlayer!.isPlaying {
         player.pause()

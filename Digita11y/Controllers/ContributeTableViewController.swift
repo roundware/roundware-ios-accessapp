@@ -482,7 +482,7 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
   // MARK: - Magic tap
 
   override func accessibilityPerformMagicTap() -> Bool {
-    debugPrintln("MAGIC TAP CONTRIBUTE")
+    debugPrintln("ACCESSIBILITY PERFORM MAGIC TAP - CONTRIBUTE")
     var rwf = RWFramework.sharedInstance
     if rwf.isRecording() {
       let cell: AudioDrawerTableViewCell? = findTableViewCell()

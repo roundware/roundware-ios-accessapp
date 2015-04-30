@@ -73,6 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, RWFrameworkProtocol {
   }
 
   override func accessibilityPerformMagicTap() -> Bool {
+    debugPrintln("ACCESSIBILITY PERFORM MAGIC TAP - APP DELEGATE")
     var rwf = RWFramework.sharedInstance
     if rwf.isPlaying {
       rwf.stop()
