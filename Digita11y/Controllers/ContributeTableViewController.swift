@@ -1,7 +1,7 @@
 import UIKit
 import RWFramework
 
-class ContributeTableViewController: BaseTableViewController, RWFrameworkProtocol, UITextViewDelegate {
+class ContributeTableViewController: BaseTableViewController, RWFrameworkProtocol, UITextViewDelegate, MagicTapProtocol {
 
   enum Cell {
     case Artifact
@@ -36,6 +36,7 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
 
   deinit {
     NSNotificationCenter.defaultCenter().removeObserver(self)
+    MagicTapCenter.sharedInstance().deRegisterObserver(self)
   }
 
   override func viewDidLoad() {
@@ -48,6 +49,7 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
 
     RWFramework.sharedInstance.addDelegate(self)
     NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("globalAudioStarted:"), name: "RW_STARTED_AUDIO_NOTIFICATION", object: nil)
+    MagicTapCenter.sharedInstance().registerObserver(self)
   }
 
   override func viewDidAppear(animated: Bool) {
@@ -382,6 +384,8 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     cell?.displayPreviewAudio()
   }
 
+  func rwUpdateStatus(message: String) {}
+
   // MARK: - UITextViewDelegate
 
   func textViewDidChange(textView: UITextView) {
@@ -479,10 +483,17 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
     self.presentViewController(alertController, animated: true) { }
   }
 
-  // MARK: - Magic tap
+  // MARK: - MagicTap
 
-  override func accessibilityPerformMagicTap() -> Bool {
-    debugPrintln("ACCESSIBILITY PERFORM MAGIC TAP - CONTRIBUTE")
+  func magicTapPriority() -> Int32 {
+    return 1
+  }
+
+  func magicTapStart() -> Bool {
+    return false
+  }
+
+  func magicTapPause() -> Bool {
     var rwf = RWFramework.sharedInstance
     if rwf.isRecording() {
       let cell: AudioDrawerTableViewCell? = findTableViewCell()
@@ -494,10 +505,12 @@ class ContributeTableViewController: BaseTableViewController, RWFrameworkProtoco
       cell?.displayPreviewAudio()
 
       return true
+    } else if rwf.isPlayingBack() {
+      rwf.stopPlayback()
+      let cell: AudioDrawerTableViewCell? = findTableViewCell()
+      cell?.displayPreviewAudio()
     }
 
     return false
   }
-
-  func rwUpdateStatus(message: String) {}
 }

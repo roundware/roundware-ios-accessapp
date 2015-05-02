@@ -2,7 +2,7 @@ import UIKit
 import CoreLocation
 import RWFramework
 
-class ListenViewController: BaseViewController, RWFrameworkProtocol {
+class ListenViewController: BaseViewController, RWFrameworkProtocol, MagicTapProtocol {
 
   @IBOutlet weak var exhibitionLabel: UILabel!
   @IBOutlet weak var titleLabel: UILabel!
@@ -14,6 +14,7 @@ class ListenViewController: BaseViewController, RWFrameworkProtocol {
 
   deinit {
     NSNotificationCenter.defaultCenter().removeObserver(self)
+    MagicTapCenter.sharedInstance().deRegisterObserver(self)
   }
   
   override func viewDidLoad() {
@@ -21,6 +22,7 @@ class ListenViewController: BaseViewController, RWFrameworkProtocol {
     self.navigationItem.title = "Listen"
     self.navigationItem.setRightBarButtonItem(UIBarButtonItem(title: "Channels", style: .Plain, target: self, action: Selector("filterTapped")), animated: false)
     NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("globalAudioStarted:"), name: "RW_STARTED_AUDIO_NOTIFICATION", object: nil)
+    MagicTapCenter.sharedInstance().registerObserver(self)
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -129,4 +131,35 @@ class ListenViewController: BaseViewController, RWFrameworkProtocol {
   }
 
   func rwUpdateStatus(message: String) {}
+
+  // MARK: - MagicTap
+
+  func magicTapPriority() -> Int32 {
+    return 3
+  }
+
+  func magicTapStart() -> Bool {
+    var rwf = RWFramework.sharedInstance
+    if rwf.isPlaying == false {
+      rwf.play()
+      self.playButton.setImage(UIImage(named: "stop-button"), forState: .Normal)
+      self.playButton.accessibilityLabel = "Stop button"
+      SVProgressHUD.showWithStatus("Loading Stream")
+      NSNotificationCenter.defaultCenter().postNotificationName("RW_STARTED_AUDIO_NOTIFICATION", object: self)
+      return true
+    }
+
+    return false
+  }
+
+  func magicTapPause() -> Bool {
+    var rwf = RWFramework.sharedInstance
+    if rwf.isPlaying {
+      rwf.stop()
+      self.playButton.setImage(UIImage(named: "player-button"), forState: .Normal)
+      self.playButton.accessibilityLabel = "Play button"
+      return true
+    }
+    return false
+  }
 }
