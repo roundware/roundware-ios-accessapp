@@ -73,14 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, RWFrameworkProtocol {
   }
 
   override func accessibilityPerformMagicTap() -> Bool {
-    var rwf = RWFramework.sharedInstance
-    if rwf.isPlaying {
-      rwf.stop()
-    } else {
-      rwf.play()
-      NSNotificationCenter.defaultCenter().postNotificationName("RW_STARTED_AUDIO_NOTIFICATION", object: self)
-    }
-
-    return true
+    debugPrintln("ACCESSIBILITY PERFORM MAGIC TAP - APP DELEGATE")
+    return MagicTapCenter.sharedInstance().execute()
   }
 }

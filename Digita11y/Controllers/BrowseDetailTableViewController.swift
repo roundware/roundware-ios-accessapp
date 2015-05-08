@@ -2,7 +2,7 @@ import UIKit
 import AVFoundation
 import RWFramework
 
-class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProtocol {
+class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProtocol, MagicTapProtocol {
 
   var exhibitionID = 0
   var assetPlayer: AssetPlayer?
@@ -19,7 +19,9 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
   
   deinit {
     NSNotificationCenter.defaultCenter().removeObserver(self)
+    MagicTapCenter.sharedInstance().deRegisterObserver(self)
   }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -29,6 +31,7 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
     tableView.rowHeight = UITableViewAutomaticDimension
     NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("globalAudioStarted:"), name: "RW_STARTED_AUDIO_NOTIFICATION", object: nil)
     self.navigationItem.setRightBarButtonItem(UIBarButtonItem(title: "Filter", style: .Plain, target: self, action: Selector("filterTapped")), animated: false)
+    MagicTapCenter.sharedInstance().registerObserver(self)
   }
 
   override func viewWillAppear(animated: Bool) {
@@ -223,6 +226,8 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
     self.resetPlayButtons()
   }
 
+  func rwUpdateStatus(message: String) {}
+
   // MARK: - Navigation
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -262,17 +267,15 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
     self.navigationController?.pushViewController(vc, animated: true)
   }
 
-  // MARK: - Magic tap
+  // MARK: - MagicTap
 
-  override func accessibilityPerformMagicTap() -> Bool {
-    if let player = assetPlayer?.player {
-      if assetPlayer!.isPlaying {
-        player.pause()
-        timer?.invalidate()
-        resetPlayButtons()
-        magicTapDidStop = true
-        return true
-      } else if magicTapDidStop {
+  func magicTapPriority() -> Int32 {
+    return 2
+  }
+
+  func magicTapStart() -> Bool {
+    if let assetPlayer = assetPlayer, player = assetPlayer.player {
+      if assetPlayer.isPlaying == false && magicTapDidStop {
         player.play()
         startTimerWithPlayer(player)
         if let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: currentAsset, inSection: 0)) as? BrowseDetailTableViewCell {
@@ -287,5 +290,17 @@ class BrowseDetailTableViewController: BaseTableViewController, RWFrameworkProto
     return false
   }
 
-  func rwUpdateStatus(message: String) {}
+  func magicTapPause() -> Bool {
+    if let assetPlayer = assetPlayer, player = assetPlayer.player {
+      if assetPlayer.isPlaying {
+        player.pause()
+        timer?.invalidate()
+        resetPlayButtons()
+        magicTapDidStop = true
+        return true
+      }
+    }
+
+    return false
+  }
 }

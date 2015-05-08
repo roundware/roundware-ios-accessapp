@@ -4,3 +4,5 @@
 #import "../Pods/Headers/Public/SZTextView/SZTextView.h"
 #import <SVProgressHud/SVProgressHud.h>
 #import <SDWebImage/UIImageView+WebCache.h>
+
+#import "MagicTapCenter.h"
