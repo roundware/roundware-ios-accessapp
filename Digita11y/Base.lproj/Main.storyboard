@@ -177,8 +177,7 @@
                                         <exclude reference="bGj-Sg-OoH"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular" misplaced="YES">
-                                    <rect key="frame" x="150" y="726" width="300" height="54"/>
+                                <variation key="heightClass=regular">
                                     <mask key="constraints">
                                         <include reference="1yE-Q1-8AV"/>
                                         <include reference="bGj-Sg-OoH"/>
