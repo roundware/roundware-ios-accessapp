@@ -1,0 +1,24 @@
+PODS:
+  - Crashlytics (3.7.0):
+    - Fabric (~> 1.6.3)
+  - Fabric (1.6.6)
+  - RWFramework (0.1.0):
+    - SwiftyJSON
+  - SwiftyJSON (2.3.2)
+
+DEPENDENCIES:
+  - Crashlytics
+  - Fabric
+  - RWFramework (from `../RWFramework`)
+
+EXTERNAL SOURCES:
+  RWFramework:
+    :path: "../RWFramework"
+
+SPEC CHECKSUMS:
+  Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
+  Fabric: 1abc1e59f11fa39ede6f690ef7309d8563e3ec59
+  RWFramework: ae99b0f8d5ebca244ac76f163837daf4453478eb
+  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
+
+COCOAPODS: 0.39.0
