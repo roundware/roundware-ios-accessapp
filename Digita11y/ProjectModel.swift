@@ -8,12 +8,14 @@
 
 import Foundation
 
-//model
 class Project {
     var name: String
     var id: String
     
-    // MARK: Initialization
+    static var sharedInstance = Project(name: "", id: "")
+    static let availableProjects = Project.initFromPlist()
+    
+// MARK: Initialization
     
     init?(name: String, id: String) {
         self.name = name
@@ -23,7 +25,13 @@ class Project {
         }
     }
     
-    // MARK: Class methods
+// MARK: Initialization
+
+    func initFromServer() {
+        
+    }
+    
+// MARK: Class methods
     
     class func initFromPlist() -> [Project] {
         print("running init")
@@ -49,5 +57,3 @@ class Project {
     }
 }
 
-let sharedProjects = Project.initFromPlist()
-var currentProject: Project? = nil

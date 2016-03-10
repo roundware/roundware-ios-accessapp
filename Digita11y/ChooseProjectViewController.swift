@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RWFramework
+
 class ChooseProjectViewController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet weak var ProjectsScrollView: UIScrollView!
@@ -14,12 +16,18 @@ class ChooseProjectViewController: UIViewController, UIScrollViewDelegate {
     @IBAction func selectedThis(sender: UIButton) {
         let projectName = sender.titleLabel?.text
         let project = projects[projects.indexOf({$0.name == projectName})!]
-        print("Selected project: \(project.name)")
-        currentProject = project
-        self.performSegueWithIdentifier("ProjectSegue", sender: nil)
+        //TODO end of new project selected
+    
+        let rwf = RWFramework.sharedInstance
+        rwf.setProjectId(project.id)
+        rwf.start()
+        Project.sharedInstance = project
+        self.performSegueWithIdentifier("ProjectSegue", sender: nil)        
     }
 
-    let projects        = sharedProjects
+    let projects        = Project.availableProjects
+    
+    //TODO set as properties on UIButtonBorder class
     let buttonHeight    = 54 //     button.intrinsicContentSize()
     let buttonWidth     = 306 //     button.intrinsicContentSize()
     let buttonMarginX   = 0
@@ -28,9 +36,9 @@ class ChooseProjectViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         super.view.addBackground("bg-blue.png")
+        
+        // populate buttons in a scrollview
         ProjectsScrollView.delegate = self
-        // populate buttons
-
         for index in 0..<projects.count {
             let project = projects[index]
             let frame = CGRect(x: buttonMarginX, y: index * (buttonMarginY + buttonHeight), width: buttonWidth, height: buttonHeight )
@@ -53,10 +61,9 @@ class ChooseProjectViewController: UIViewController, UIScrollViewDelegate {
         let newContentOffsetX = (ProjectsScrollView.contentSize.width/2) - (ProjectsScrollView.bounds.size.width/2)
         ProjectsScrollView.contentOffset = CGPointMake(newContentOffsetX, 0)
         
-        //TODO debug for multipel runs
+        //debug for multiple runs
         //print(ProjectsScrollView.contentSize.width)
         //print(ProjectsScrollView.bounds.size.width)
-        
     }
     
     override func viewWillAppear(animated: Bool) {

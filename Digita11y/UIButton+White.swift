@@ -9,14 +9,14 @@
 import Foundation
 import UIKit
 
-@IBDesignable class UIButtonBorder: UIButton {
+@IBDesignable class UIButtonWhite: UIButton {
     
     //this init fires usually called, when storyboards UI objects created:
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.setupViews()
     }
-
+    
     //during developing IB fires this init to create object
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,10 +28,6 @@ import UIKit
         super.prepareForInterfaceBuilder()
         self.setupViews()
     }
-
-    override func intrinsicContentSize() -> CGSize {
-        return CGSizeMake(306, 54)
-    }
     
     override class func requiresConstraintBasedLayout() -> Bool {
         return true
@@ -39,24 +35,24 @@ import UIKit
     
     override func setTitle(title: String?, forState state: UIControlState) {
         super.setTitle(title, forState: state)
-        self.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         self.setType()
+    }
+  
+    //include insets in intrinsic content size
+    override func intrinsicContentSize() -> CGSize {
+        let s = super.intrinsicContentSize()
+        return CGSizeMake(s.width + self.titleEdgeInsets.left + self.titleEdgeInsets.right,
+            s.height + self.titleEdgeInsets.top + self.titleEdgeInsets.bottom);
     }
     
     func setType(){
         self.titleLabel!.font = UIFont(name: "AvenirNext-Medium", size: 24.0)
         self.titleLabel!.textAlignment = .Center
     }
-    
-    func setupViews() {
-        //borders
-        self.layer.borderColor = UIColor.whiteColor().CGColor
-        self.layer.borderWidth = 1.0
-        self.layer.cornerRadius = 0
-        self.layer.masksToBounds = false
-        
-        self.backgroundColor = UIColor.DarkSkyBlueColor()
 
+    func setupViews() {
+        self.backgroundColor = UIColor.whiteColor()
+        self.titleEdgeInsets = UIEdgeInsetsMake(2, 20, 2, 20)
         self.setType()
     }
 }

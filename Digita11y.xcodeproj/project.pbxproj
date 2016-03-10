@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		8A0C48011C7E85E100B11A25 /* UIButton+Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0C48001C7E85E100B11A25 /* UIButton+Border.swift */; };
 		8A6598971C877399009A29C8 /* Digita11yTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6598961C877399009A29C8 /* Digita11yTests.swift */; };
+		8A7F7B0F1C9108C800A20278 /* ProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A7F7B0E1C9108C800A20278 /* ProgressView.xib */; };
+		8A7F7B111C9108DB00A20278 /* TagView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A7F7B101C9108DB00A20278 /* TagView.xib */; };
 		8AA4911E1C84C2C000422274 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA4911D1C84C2C000422274 /* WelcomeViewController.swift */; };
 		8AA491201C84C32700422274 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA4911F1C84C32600422274 /* LocationViewController.swift */; };
 		8AA491221C84C33D00422274 /* ChooseExhibitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA491211C84C33D00422274 /* ChooseExhibitViewController.swift */; };
@@ -24,6 +26,11 @@
 		8AA85E681C7CF12D0086AA6B /* ChooseProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA85E671C7CF12D0086AA6B /* ChooseProjectViewController.swift */; };
 		8AA85E6B1C7CF12D0086AA6B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8AA85E691C7CF12D0086AA6B /* Main.storyboard */; };
 		8AA85E701C7CF12D0086AA6B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8AA85E6E1C7CF12D0086AA6B /* LaunchScreen.storyboard */; };
+		8AB65BC81C90CD73005D112B /* UILabel+SubHeadline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AB65BC71C90CD73005D112B /* UILabel+SubHeadline.swift */; };
+		8AB65BCA1C90CECD005D112B /* UIButton+White.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AB65BC91C90CECD005D112B /* UIButton+White.swift */; };
+		8AB65BCC1C90D923005D112B /* RWFramework.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8AB65BCB1C90D923005D112B /* RWFramework.plist */; };
+		8AB65BD41C90DCD8005D112B /* Digita11yUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AB65BD31C90DCD8005D112B /* Digita11yUITests.swift */; };
+		8AB65BDC1C90EF40005D112B /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AB65BDB1C90EF40005D112B /* LocationManager.swift */; };
 		8ADED7B51C7F773400BBB65C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8ADED7B41C7F773400BBB65C /* Assets.xcassets */; };
 		8ADED7B71C7F7F5200BBB65C /* UIViewAddBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADED7B61C7F7F5200BBB65C /* UIViewAddBackground.swift */; };
 		BE82BC92E80BBB4CA0B8A713 /* Pods_Digita11y.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 622AAACFCD81D342B9F20D78 /* Pods_Digita11y.framework */; };
@@ -31,6 +38,13 @@
 
 /* Begin PBXContainerItemProxy section */
 		8A6598991C877399009A29C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8AA85E5A1C7CF12D0086AA6B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8AA85E611C7CF12D0086AA6B;
+			remoteInfo = Digita11y;
+		};
+		8AB65BD61C90DCD8005D112B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8AA85E5A1C7CF12D0086AA6B /* Project object */;
 			proxyType = 1;
@@ -47,6 +61,8 @@
 		8A6598941C877398009A29C8 /* Digita11yTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Digita11yTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A6598961C877399009A29C8 /* Digita11yTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Digita11yTests.swift; sourceTree = "<group>"; };
 		8A6598981C877399009A29C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8A7F7B0E1C9108C800A20278 /* ProgressView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProgressView.xib; sourceTree = "<group>"; };
+		8A7F7B101C9108DB00A20278 /* TagView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagView.xib; sourceTree = "<group>"; };
 		8AA4911D1C84C2C000422274 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		8AA4911F1C84C32600422274 /* LocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		8AA491211C84C33D00422274 /* ChooseExhibitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseExhibitViewController.swift; sourceTree = "<group>"; };
@@ -64,6 +80,13 @@
 		8AA85E6A1C7CF12D0086AA6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8AA85E6F1C7CF12D0086AA6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8AA85E711C7CF12D0086AA6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8AB65BC71C90CD73005D112B /* UILabel+SubHeadline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+SubHeadline.swift"; sourceTree = "<group>"; };
+		8AB65BC91C90CECD005D112B /* UIButton+White.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+White.swift"; sourceTree = "<group>"; };
+		8AB65BCB1C90D923005D112B /* RWFramework.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RWFramework.plist; sourceTree = "<group>"; };
+		8AB65BD11C90DCD8005D112B /* Digita11yUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Digita11yUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8AB65BD31C90DCD8005D112B /* Digita11yUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Digita11yUITests.swift; sourceTree = "<group>"; };
+		8AB65BD51C90DCD8005D112B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8AB65BDB1C90EF40005D112B /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		8ADED7B41C7F773400BBB65C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8ADED7B61C7F7F5200BBB65C /* UIViewAddBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewAddBackground.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -81,6 +104,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE82BC92E80BBB4CA0B8A713 /* Pods_Digita11y.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8AB65BCE1C90DCD8005D112B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,7 +144,10 @@
 			isa = PBXGroup;
 			children = (
 				8A0C48001C7E85E100B11A25 /* UIButton+Border.swift */,
+				8AB65BC91C90CECD005D112B /* UIButton+White.swift */,
 				8AA4912B1C84C66E00422274 /* UILabel+Headline.swift */,
+				8AB65BDB1C90EF40005D112B /* LocationManager.swift */,
+				8AB65BC71C90CD73005D112B /* UILabel+SubHeadline.swift */,
 				8AA4912D1C84C68600422274 /* UILabel+Body.swift */,
 				8AA491311C84C94800422274 /* UIColor+Digita11y.swift */,
 				8ADED7B61C7F7F5200BBB65C /* UIViewAddBackground.swift */,
@@ -136,6 +169,7 @@
 			children = (
 				8AA85E641C7CF12D0086AA6B /* Digita11y */,
 				8A6598951C877399009A29C8 /* Digita11yTests */,
+				8AB65BD21C90DCD8005D112B /* Digita11yUITests */,
 				8AA85E631C7CF12D0086AA6B /* Products */,
 				C8C4A559F9278AAC4FDB8C39 /* Pods */,
 				D9348D313BC9C2576BAD64D6 /* Frameworks */,
@@ -147,6 +181,7 @@
 			children = (
 				8AA85E621C7CF12D0086AA6B /* Digita11y.app */,
 				8A6598941C877398009A29C8 /* Digita11yTests.xctest */,
+				8AB65BD11C90DCD8005D112B /* Digita11yUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -159,17 +194,29 @@
 				8AA491371C84D26C00422274 /* Models */,
 				8AA491231C84C36900422274 /* Controllers */,
 				8AA491241C84C37700422274 /* Categories */,
-				8AA85E691C7CF12D0086AA6B /* Main.storyboard */,
-				8AA85E6E1C7CF12D0086AA6B /* LaunchScreen.storyboard */,
 				8ADED7B41C7F773400BBB65C /* Assets.xcassets */,
+				8AB65BCB1C90D923005D112B /* RWFramework.plist */,
 				8AA85E711C7CF12D0086AA6B /* Info.plist */,
 			);
 			path = Digita11y;
 			sourceTree = "<group>";
 		};
+		8AB65BD21C90DCD8005D112B /* Digita11yUITests */ = {
+			isa = PBXGroup;
+			children = (
+				8AB65BD31C90DCD8005D112B /* Digita11yUITests.swift */,
+				8AB65BD51C90DCD8005D112B /* Info.plist */,
+			);
+			path = Digita11yUITests;
+			sourceTree = "<group>";
+		};
 		8AC0C40F1C888C1D00D4847E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8AA85E691C7CF12D0086AA6B /* Main.storyboard */,
+				8A7F7B0E1C9108C800A20278 /* ProgressView.xib */,
+				8A7F7B101C9108DB00A20278 /* TagView.xib */,
+				8AA85E6E1C7CF12D0086AA6B /* LaunchScreen.storyboard */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -233,6 +280,24 @@
 			productReference = 8AA85E621C7CF12D0086AA6B /* Digita11y.app */;
 			productType = "com.apple.product-type.application";
 		};
+		8AB65BD01C90DCD8005D112B /* Digita11yUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8AB65BD81C90DCD8005D112B /* Build configuration list for PBXNativeTarget "Digita11yUITests" */;
+			buildPhases = (
+				8AB65BCD1C90DCD8005D112B /* Sources */,
+				8AB65BCE1C90DCD8005D112B /* Frameworks */,
+				8AB65BCF1C90DCD8005D112B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8AB65BD71C90DCD8005D112B /* PBXTargetDependency */,
+			);
+			name = Digita11yUITests;
+			productName = Digita11yUITests;
+			productReference = 8AB65BD11C90DCD8005D112B /* Digita11yUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -249,6 +314,10 @@
 					};
 					8AA85E611C7CF12D0086AA6B = {
 						CreatedOnToolsVersion = 7.2.1;
+					};
+					8AB65BD01C90DCD8005D112B = {
+						CreatedOnToolsVersion = 7.2.1;
+						TestTargetID = 8AA85E611C7CF12D0086AA6B;
 					};
 				};
 			};
@@ -267,6 +336,7 @@
 			targets = (
 				8AA85E611C7CF12D0086AA6B /* Digita11y */,
 				8A6598931C877398009A29C8 /* Digita11yTests */,
+				8AB65BD01C90DCD8005D112B /* Digita11yUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -284,8 +354,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				8AA85E701C7CF12D0086AA6B /* LaunchScreen.storyboard in Resources */,
+				8A7F7B111C9108DB00A20278 /* TagView.xib in Resources */,
 				8ADED7B51C7F773400BBB65C /* Assets.xcassets in Resources */,
+				8A7F7B0F1C9108C800A20278 /* ProgressView.xib in Resources */,
+				8AB65BCC1C90D923005D112B /* RWFramework.plist in Resources */,
 				8AA85E6B1C7CF12D0086AA6B /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8AB65BCF1C90DCD8005D112B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,12 +446,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				8AA85E681C7CF12D0086AA6B /* ChooseProjectViewController.swift in Sources */,
+				8AB65BC81C90CD73005D112B /* UILabel+SubHeadline.swift in Sources */,
 				8AA491321C84C94800422274 /* UIColor+Digita11y.swift in Sources */,
 				8AA491281C84C3A300422274 /* ContributeViewController.swift in Sources */,
 				8AA491261C84C39900422274 /* TagsViewController.swift in Sources */,
 				8AA4912C1C84C66E00422274 /* UILabel+Headline.swift in Sources */,
 				8AA4912E1C84C68600422274 /* UILabel+Body.swift in Sources */,
 				8AA491221C84C33D00422274 /* ChooseExhibitViewController.swift in Sources */,
+				8AB65BDC1C90EF40005D112B /* LocationManager.swift in Sources */,
+				8AB65BCA1C90CECD005D112B /* UIButton+White.swift in Sources */,
 				8AA4911E1C84C2C000422274 /* WelcomeViewController.swift in Sources */,
 				8AA4912A1C84C3BE00422274 /* ThanksViewController.swift in Sources */,
 				8AA491361C84D26700422274 /* ExhibitModel.swift in Sources */,
@@ -383,6 +466,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8AB65BCD1C90DCD8005D112B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8AB65BD41C90DCD8005D112B /* Digita11yUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -390,6 +481,11 @@
 			isa = PBXTargetDependency;
 			target = 8AA85E611C7CF12D0086AA6B /* Digita11y */;
 			targetProxy = 8A6598991C877399009A29C8 /* PBXContainerItemProxy */;
+		};
+		8AB65BD71C90DCD8005D112B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8AA85E611C7CF12D0086AA6B /* Digita11y */;
+			targetProxy = 8AB65BD61C90DCD8005D112B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -553,6 +649,31 @@
 			};
 			name = Release;
 		};
+		8AB65BD91C90DCD8005D112B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = Digita11yUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.roundware.Digita11yUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Digita11y;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		8AB65BDA1C90DCD8005D112B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = Digita11yUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.roundware.Digita11yUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Digita11y;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -579,6 +700,15 @@
 			buildConfigurations = (
 				8AA85E751C7CF12D0086AA6B /* Debug */,
 				8AA85E761C7CF12D0086AA6B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8AB65BD81C90DCD8005D112B /* Build configuration list for PBXNativeTarget "Digita11yUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8AB65BD91C90DCD8005D112B /* Debug */,
+				8AB65BDA1C90DCD8005D112B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
