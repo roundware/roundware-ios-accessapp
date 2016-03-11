@@ -29,9 +29,7 @@ import UIKit
         self.setupViews()
     }
     
-    override class func requiresConstraintBasedLayout() -> Bool {
-        return true
-    }
+
     
     override func setTitle(title: String?, forState state: UIControlState) {
         super.setTitle(title, forState: state)
@@ -44,6 +42,10 @@ import UIKit
         return CGSizeMake(s.width + self.titleEdgeInsets.left + self.titleEdgeInsets.right,
             s.height + self.titleEdgeInsets.top + self.titleEdgeInsets.bottom);
     }
+    
+//    override class func requiresConstraintBasedLayout() -> Bool {
+//        return true
+//    }
     
     func setType(){
         self.titleLabel!.font = UIFont(name: "AvenirNext-Medium", size: 24.0)

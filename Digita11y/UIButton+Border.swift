@@ -11,6 +11,11 @@ import UIKit
 
 @IBDesignable class UIButtonBorder: UIButton {
     
+    let buttonHeight :  CGFloat = 54.0
+    let buttonWidth :   CGFloat = 306.0
+    let buttonMarginX : CGFloat = 0.0
+    let buttonMarginY : CGFloat = 21.0
+    
     //this init fires usually called, when storyboards UI objects created:
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -30,7 +35,7 @@ import UIKit
     }
 
     override func intrinsicContentSize() -> CGSize {
-        return CGSizeMake(306, 54)
+        return CGSizeMake(buttonWidth, buttonHeight)
     }
     
     override class func requiresConstraintBasedLayout() -> Bool {
