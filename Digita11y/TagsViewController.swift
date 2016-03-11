@@ -24,9 +24,16 @@ class TagsViewController: UIViewController {
     }
     
     @IBAction func selectParentTag(sender: AnyObject) {
+        //TODO add/remove children
     }
     
     @IBAction func selectTag(sender: AnyObject) {
+        //TODO expand options, collapse others
+    }
+    
+    @IBAction func contribute(sender: AnyObject) {
+        //TODO pause playback
+        self.performSegueWithIdentifier("ContributeSegue", sender: sender)
     }
     
     @IBAction func seeImageForTag(sender: AnyObject) {
@@ -38,6 +45,7 @@ class TagsViewController: UIViewController {
     }
 
     @IBAction func prepareForTagsUnwind(segue: UIStoryboardSegue) {
+        //TODO reset after coming back from contribute
     }
     
     // MARK: Views
