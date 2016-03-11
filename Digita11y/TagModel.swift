@@ -1,5 +1,5 @@
 //
-//  ExhibitModel.swift
+//  TagModel.swift
 //  Digita11y
 //
 //  Created by Christopher Reed on 2/29/16.
@@ -7,3 +7,7 @@
 //
 
 import Foundation
+struct Tag{
+    let id: Int
+    let title: String
+}

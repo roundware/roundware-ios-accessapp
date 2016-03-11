@@ -118,10 +118,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" restorationIdentifier="WelcomeStack" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="cAW-TA-Z1n">
-                                <rect key="frame" x="93" y="60" width="5198256" height="133"/>
+                                <rect key="frame" x="93" y="60" width="6073" height="205"/>
                                 <subviews>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" misplaced="YES" restorationIdentifier="WelcomeCastle" image="castle" translatesAutoresizingMaskIntoConstraints="NO" id="8Gn-9F-5B8">
-                                        <rect key="frame" x="0.0" y="0.0" width="3898409" height="133"/>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" restorationIdentifier="WelcomeCastle" image="castle" translatesAutoresizingMaskIntoConstraints="NO" id="8Gn-9F-5B8">
+                                        <rect key="frame" x="2970" y="0.0" width="133" height="133"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="133" id="DFG-EQ-Ur0"/>
                                         </constraints>
@@ -136,8 +136,8 @@
                                             </mask>
                                         </variation>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" restorationIdentifier="WelcomeTitle" text="Welcome to Museum XYZ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1JY-P8-634" customClass="UILabelHeadline" customModule="Digita11y" customModuleProvider="target">
-                                        <rect key="frame" x="3898429" y="56" width="199" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" restorationIdentifier="WelcomeTitle" text="Welcome to Museum XYZ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1JY-P8-634" customClass="UILabelHeadline" customModule="Digita11y" customModuleProvider="target">
+                                        <rect key="frame" x="2937" y="133" width="199" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="3Gw-vX-TNb"/>
                                         </constraints>
@@ -155,12 +155,12 @@
                                             </mask>
                                         </variation>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" restorationIdentifier="WelcomeText" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ssu-Sz-qmD" customClass="UILabelBody" customModule="Digita11y" customModuleProvider="target">
-                                        <rect key="frame" x="3898648" y="67" width="1299549" height="0.0"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" restorationIdentifier="WelcomeText" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ssu-Sz-qmD" customClass="UILabelBody" customModule="Digita11y" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="154" width="6073" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="300" id="I7F-JH-OK6"/>
                                         </constraints>
-                                        <mutableString key="text">Keytar retro gentrify, leggings 90's chillwave Bushwick Tumblr synth selvage paleo narwhal Thundercats. Selfies craft beer raw denim organic Vice Portland keffiyeh McSweeney's, photo booth crucifix Pinterest irony 8-bit mixtape. Master cleanse twee plaid next level scenester McSweeney's pour-over, Godard Austin synth. Keffiyeh lomo dreamcatcher Blue Bottle, mustache tofu chia Tumblr four loko messenger bag typewriter sartorial master cleanse salvia paleo. Marfa fixie normcore selvage put a bird on it, VHS skateboard mustache Brooklyn heirloom retro cronut Intelligentsia. Fashion axe asymmetrical wolf, VHS cold-pressed American Apparel distillery roof party Thundercats McSweeney's banh mi Wes Anderson sustainable. Mumblecore taxidermy banh mi authentic retro Williamsburg.</mutableString>
+                                        <string key="text">Keytar retro gentrify, leggings 90's chillwave Bushwick Tumblr synth selvage paleo narwhal Thundercats. Selfies craft beer raw denim organic Vice Portland keffiyeh McSweeney's, photo booth crucifix Pinterest irony 8-bit mixtape. Master cleanse twee plaid next level scenester McSweeney's pour-over, Godard Austin synth. Keffiyeh lomo dreamcatcher Blue Bottle, mustache tofu chia Tumblr four loko messenger bag typewriter sartorial master cleanse salvia paleo. Marfa fixie normcore selvage put a bird on it, VHS skateboard mustache Brooklyn heirloom retro cronut Intelligentsia. Fashion axe asymmetrical wolf, VHS cold-pressed American Apparel distillery roof party Thundercats McSweeney's banh mi Wes Anderson sustainable. Mumblecore taxidermy banh mi authentic retro Williamsburg.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="default">
@@ -174,8 +174,8 @@
                                             </mask>
                                         </variation>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" restorationIdentifier="WelcomeBegin" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q4z-dT-tJR" customClass="UIButtonWhite" customModule="Digita11y" customModuleProvider="target">
-                                        <rect key="frame" x="5198217" y="52" width="39" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" restorationIdentifier="WelcomeBegin" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q4z-dT-tJR" customClass="UIButtonWhite" customModule="Digita11y" customModuleProvider="target">
+                                        <rect key="frame" x="3017" y="175" width="39" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="300" id="UTc-dE-mjb"/>
                                             <constraint firstAttribute="height" constant="54" id="mf8-T5-5Ga"/>
@@ -248,10 +248,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" restorationIdentifier="LocationStack" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="SB0-8a-WG8">
-                                <rect key="frame" x="125" y="60" width="8060" height="119"/>
+                                <rect key="frame" x="125" y="60" width="456" height="211"/>
                                 <subviews>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" ambiguous="YES" image="geo" translatesAutoresizingMaskIntoConstraints="NO" id="lA7-RF-twv">
-                                        <rect key="frame" x="0.0" y="0.0" width="84" height="119"/>
+                                        <rect key="frame" x="186" y="0.0" width="84" height="119"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="130" id="O4U-Yh-fHr"/>
                                         </constraints>
@@ -266,8 +266,8 @@
                                             </mask>
                                         </variation>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Unlock cool location features to get these amazing features" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="66e-qr-9Kz" customClass="UILabelHeadline" customModule="Digita11y" customModuleProvider="target">
-                                        <rect key="frame" x="124" y="49" width="3948" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Unlock cool location features to get these amazing features" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="66e-qr-9Kz" customClass="UILabelHeadline" customModule="Digita11y" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="119" width="456" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="310" id="a9w-jS-whs"/>
                                             <constraint firstAttribute="height" constant="200" id="oT5-ga-hJ0"/>
@@ -288,8 +288,8 @@
                                             </mask>
                                         </variation>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kwg-RJ-D5h" customClass="UILabelSubHeadline" customModule="Digita11y" customModuleProvider="target">
-                                        <rect key="frame" x="4112" y="39" width="3948" height="41"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kwg-RJ-D5h" customClass="UILabelSubHeadline" customModule="Digita11y" customModuleProvider="target">
+                                        <rect key="frame" x="120" y="140" width="216" height="41"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="70" id="Ayq-QB-AwM"/>
                                             <constraint firstAttribute="width" constant="310" id="lGN-UH-JJp"/>
@@ -312,11 +312,11 @@ geo-located comments, etc</string>
                                             </mask>
                                         </variation>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="kKb-tc-wYy">
-                                        <rect key="frame" x="67" y="463" width="210" height="176"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="kKb-tc-wYy">
+                                        <rect key="frame" x="165" y="181" width="126" height="30"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="LocationNoButton" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rx9-7v-6Tc" customClass="UIButtonWhite" customModule="Digita11y" customModuleProvider="target">
-                                                <rect key="frame" x="20" y="20" width="170" height="54"/>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" restorationIdentifier="LocationNoButton" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rx9-7v-6Tc" customClass="UIButtonWhite" customModule="Digita11y" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="74" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="170" id="bz9-OX-N0C"/>
                                                     <constraint firstAttribute="height" constant="54" id="qMr-vH-6cC"/>
@@ -338,8 +338,8 @@ geo-located comments, etc</string>
                                                     <action selector="next:" destination="NXU-ss-h4i" eventType="touchUpInside" id="pti-vU-g5o"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="LocationNextButton" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4xu-JA-aCw" customClass="UIButtonWhite" customModule="Digita11y" customModuleProvider="target">
-                                                <rect key="frame" x="55" y="102" width="100" height="54"/>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" restorationIdentifier="LocationNextButton" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4xu-JA-aCw" customClass="UIButtonWhite" customModule="Digita11y" customModuleProvider="target">
+                                                <rect key="frame" x="94" y="0.0" width="32" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="100" id="892-Ga-LG6"/>
                                                     <constraint firstAttribute="height" constant="54" id="H37-bg-Zw0"/>
@@ -351,8 +351,7 @@ geo-located comments, etc</string>
                                                         <exclude reference="H37-bg-Zw0"/>
                                                     </mask>
                                                 </variation>
-                                                <variation key="heightClass=regular" misplaced="YES">
-                                                    <rect key="frame" x="190" y="0.0" width="100" height="54"/>
+                                                <variation key="heightClass=regular">
                                                     <mask key="constraints">
                                                         <include reference="892-Ga-LG6"/>
                                                         <include reference="H37-bg-Zw0"/>
@@ -363,9 +362,6 @@ geo-located comments, etc</string>
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="27" y="565" width="290" height="54"/>
-                                        </variation>
                                     </stackView>
                                 </subviews>
                             </stackView>
@@ -424,8 +420,7 @@ geo-located comments, etc</string>
                                         <exclude reference="8O3-dE-I5d"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular" misplaced="YES">
-                                    <rect key="frame" x="16" y="211" width="343" height="436"/>
+                                <variation key="heightClass=regular">
                                     <mask key="constraints">
                                         <include reference="8O3-dE-I5d"/>
                                     </mask>
@@ -444,8 +439,7 @@ geo-located comments, etc</string>
                                         <exclude reference="er3-bR-lpm"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular" misplaced="YES">
-                                    <rect key="frame" x="50" y="60" width="275" height="21"/>
+                                <variation key="heightClass=regular">
                                     <mask key="constraints">
                                         <include reference="er3-bR-lpm"/>
                                     </mask>
@@ -552,8 +546,7 @@ geo-located comments, etc</string>
                                                 <exclude reference="h5H-fu-fZx"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="3" width="174" height="30"/>
+                                        <variation key="heightClass=regular">
                                             <mask key="constraints">
                                                 <include reference="h5H-fu-fZx"/>
                                             </mask>
@@ -564,14 +557,13 @@ geo-located comments, etc</string>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="174" id="s9J-KZ-NYH"/>
                                         </constraints>
-                                        <state key="normal" title="Kitchen"/>
+                                        <state key="normal" title="Dining"/>
                                         <variation key="default">
                                             <mask key="constraints">
                                                 <exclude reference="s9J-KZ-NYH"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="182" y="3" width="174" height="30"/>
+                                        <variation key="heightClass=regular">
                                             <mask key="constraints">
                                                 <include reference="s9J-KZ-NYH"/>
                                             </mask>
@@ -588,8 +580,7 @@ geo-located comments, etc</string>
                                                 <exclude reference="BYK-So-gwv"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="369" y="3" width="174" height="30"/>
+                                        <variation key="heightClass=regular">
                                             <mask key="constraints">
                                                 <include reference="BYK-So-gwv"/>
                                             </mask>
@@ -630,8 +621,7 @@ geo-located comments, etc</string>
                                         <exclude reference="toC-ht-QNX"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular" misplaced="YES">
-                                    <rect key="frame" x="16" y="86" width="359" height="36"/>
+                                <variation key="heightClass=regular">
                                     <mask key="subviews">
                                         <include reference="PG6-wu-yvl"/>
                                         <include reference="z1n-zg-ffE"/>
@@ -647,49 +637,6 @@ geo-located comments, etc</string>
                                         <include reference="6gw-Uy-SGS"/>
                                         <include reference="q6C-ez-V05"/>
                                         <include reference="toC-ht-QNX"/>
-                                    </mask>
-                                </variation>
-                            </scrollView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="DescendantTagSelector" translatesAutoresizingMaskIntoConstraints="NO" id="rKl-Pw-ZiV" userLabel="DescendantTagSelector">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="Play" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m0J-mk-d5z">
-                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                        <state key="normal" title="Play">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="playTag:" destination="FnB-gZ-PAk" eventType="touchUpInside" id="JiQ-F4-316"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="m0J-mk-d5z" secondAttribute="trailing" constant="156" id="1ru-Wy-0jj"/>
-                                    <constraint firstAttribute="bottom" secondItem="m0J-mk-d5z" secondAttribute="bottom" constant="-53" id="96U-IE-EKG"/>
-                                    <constraint firstItem="m0J-mk-d5z" firstAttribute="centerX" secondItem="rKl-Pw-ZiV" secondAttribute="centerX" id="SdF-TH-FR2"/>
-                                    <constraint firstItem="m0J-mk-d5z" firstAttribute="top" secondItem="rKl-Pw-ZiV" secondAttribute="top" constant="257" id="n9B-zj-L8K"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="subviews">
-                                        <exclude reference="m0J-mk-d5z"/>
-                                    </mask>
-                                    <mask key="constraints">
-                                        <exclude reference="1ru-Wy-0jj"/>
-                                        <exclude reference="96U-IE-EKG"/>
-                                        <exclude reference="SdF-TH-FR2"/>
-                                        <exclude reference="n9B-zj-L8K"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=regular" misplaced="YES">
-                                    <rect key="frame" x="16" y="172" width="343" height="307"/>
-                                    <mask key="subviews">
-                                        <include reference="m0J-mk-d5z"/>
-                                    </mask>
-                                    <mask key="constraints">
-                                        <include reference="1ru-Wy-0jj"/>
-                                        <include reference="96U-IE-EKG"/>
-                                        <include reference="SdF-TH-FR2"/>
-                                        <include reference="n9B-zj-L8K"/>
                                     </mask>
                                 </variation>
                             </scrollView>
@@ -854,6 +801,48 @@ geo-located comments, etc</string>
                                     </mask>
                                 </variation>
                             </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="DescendantTagSelector" translatesAutoresizingMaskIntoConstraints="NO" id="rKl-Pw-ZiV" userLabel="DescendantTagSelector">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="Play" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m0J-mk-d5z">
+                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                        <state key="normal" title="Play">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="playTag:" destination="FnB-gZ-PAk" eventType="touchUpInside" id="JiQ-F4-316"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="m0J-mk-d5z" secondAttribute="trailing" constant="156" id="1ru-Wy-0jj"/>
+                                    <constraint firstAttribute="bottom" secondItem="m0J-mk-d5z" secondAttribute="bottom" constant="-53" id="96U-IE-EKG"/>
+                                    <constraint firstItem="m0J-mk-d5z" firstAttribute="centerX" secondItem="rKl-Pw-ZiV" secondAttribute="centerX" id="SdF-TH-FR2"/>
+                                    <constraint firstItem="m0J-mk-d5z" firstAttribute="top" secondItem="rKl-Pw-ZiV" secondAttribute="top" constant="257" id="n9B-zj-L8K"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="m0J-mk-d5z"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <exclude reference="1ru-Wy-0jj"/>
+                                        <exclude reference="96U-IE-EKG"/>
+                                        <exclude reference="SdF-TH-FR2"/>
+                                        <exclude reference="n9B-zj-L8K"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular">
+                                    <mask key="subviews">
+                                        <include reference="m0J-mk-d5z"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <include reference="1ru-Wy-0jj"/>
+                                        <include reference="96U-IE-EKG"/>
+                                        <include reference="SdF-TH-FR2"/>
+                                        <include reference="n9B-zj-L8K"/>
+                                    </mask>
+                                </variation>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="0.29019609089999998" green="0.5647059083" blue="0.88627451660000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -881,9 +870,9 @@ geo-located comments, etc</string>
                             <mask key="subviews">
                                 <exclude reference="eEs-a4-fIK"/>
                                 <exclude reference="I72-EQ-iJH"/>
-                                <exclude reference="rKl-Pw-ZiV"/>
                                 <exclude reference="dTs-5d-qoa"/>
                                 <exclude reference="nOd-xk-R6c"/>
+                                <exclude reference="rKl-Pw-ZiV"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="rgh-ie-BZs"/>
@@ -909,9 +898,9 @@ geo-located comments, etc</string>
                             <mask key="subviews">
                                 <include reference="eEs-a4-fIK"/>
                                 <include reference="I72-EQ-iJH"/>
-                                <include reference="rKl-Pw-ZiV"/>
                                 <include reference="dTs-5d-qoa"/>
                                 <include reference="nOd-xk-R6c"/>
+                                <include reference="rKl-Pw-ZiV"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="rgh-ie-BZs"/>
@@ -938,7 +927,6 @@ geo-located comments, etc</string>
                         <segue destination="80e-wb-9Zi" kind="show" identifier="ContributeSegue" id="Nyt-oP-Po0"/>
                         <segue destination="tA3-Ku-PWB" kind="presentation" identifier="ReadSegue" id="W90-rJ-ttY"/>
                         <segue destination="s7j-Qm-VDd" kind="presentation" identifier="GallerySegue" id="BOr-iF-dy0"/>
-                        <segue destination="SiT-Xu-QDS" kind="presentation" id="DIY-X6-Wse"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X00-lr-frm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -957,6 +945,12 @@ geo-located comments, etc</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="ContributeAsk" text="How would you like to contribute to XYZ?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bjg-3s-y6Y" customClass="UILabelHeadline" customModule="Digita11y" customModuleProvider="target">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="ql7-lQ-oi3">
                                 <rect key="frame" x="0.0" y="0.0" width="200" height="110"/>
                                 <subviews>
@@ -989,47 +983,28 @@ geo-located comments, etc</string>
                                     </mask>
                                 </variation>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" restorationIdentifier="TagStack" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="gW7-cT-aIz" userLabel="TagStack">
-                                <rect key="frame" x="0.0" y="0.0" width="110" height="200"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="4bW-Da-aWi" customClass="UIButtonWhite" customModule="Digita11y" customModuleProvider="target">
-                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                        <state key="normal" title="Record ambient sounds that the site hears"/>
-                                    </button>
-                                </subviews>
-                                <variation key="heightClass=regular" misplaced="YES">
-                                    <rect key="frame" x="20" y="49" width="339" height="417"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="ContributeScroll" translatesAutoresizingMaskIntoConstraints="NO" id="bSR-Dv-uNZ">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="heightClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="16" y="121" width="343" height="417"/>
                                 </variation>
-                            </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="ContributeAsk" text="How would you like to contribute to XYZ?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bjg-3s-y6Y" customClass="UILabelHeadline" customModule="Digita11y" customModuleProvider="target">
-                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular" misplaced="YES">
-                                    <rect key="frame" x="16" y="20" width="343" height="21"/>
-                                </variation>
-                            </label>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="0.29019609089999998" green="0.5647059083" blue="0.88627451660000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="gW7-cT-aIz" firstAttribute="trailing" secondItem="bjg-3s-y6Y" secondAttribute="trailing" id="4F0-Lt-8YS"/>
                             <constraint firstAttribute="trailingMargin" secondItem="bjg-3s-y6Y" secondAttribute="trailing" id="9sC-hp-jJy"/>
                             <constraint firstAttribute="bottom" secondItem="ql7-lQ-oi3" secondAttribute="bottom" constant="20" symbolic="YES" id="ABR-vs-PaB"/>
-                            <constraint firstItem="ql7-lQ-oi3" firstAttribute="top" secondItem="gW7-cT-aIz" secondAttribute="bottom" constant="8" symbolic="YES" id="EIo-z1-uEb"/>
                             <constraint firstItem="bjg-3s-y6Y" firstAttribute="top" secondItem="zlM-hb-Bvb" secondAttribute="bottom" id="FHb-mE-GeV"/>
-                            <constraint firstItem="gW7-cT-aIz" firstAttribute="top" secondItem="bjg-3s-y6Y" secondAttribute="bottom" constant="8" symbolic="YES" id="VjT-fS-Qth"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ql7-lQ-oi3" secondAttribute="trailing" id="Yb1-mQ-wr4"/>
-                            <constraint firstItem="gW7-cT-aIz" firstAttribute="leading" secondItem="KPc-37-Fgd" secondAttribute="leadingMargin" constant="4" id="Z75-uc-ffa"/>
                             <constraint firstItem="ql7-lQ-oi3" firstAttribute="leading" secondItem="bjg-3s-y6Y" secondAttribute="leading" id="czg-8v-fsB"/>
                             <constraint firstItem="bjg-3s-y6Y" firstAttribute="leading" secondItem="KPc-37-Fgd" secondAttribute="leadingMargin" id="kvB-9G-yRE"/>
                             <constraint firstItem="bjg-3s-y6Y" firstAttribute="centerX" secondItem="KPc-37-Fgd" secondAttribute="centerX" id="lef-je-xaK"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="ql7-lQ-oi3"/>
-                                <exclude reference="gW7-cT-aIz"/>
                                 <exclude reference="bjg-3s-y6Y"/>
+                                <exclude reference="ql7-lQ-oi3"/>
+                                <exclude reference="bSR-Dv-uNZ"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="9sC-hp-jJy"/>
@@ -1037,19 +1012,15 @@ geo-located comments, etc</string>
                                 <exclude reference="kvB-9G-yRE"/>
                                 <exclude reference="lef-je-xaK"/>
                                 <exclude reference="ABR-vs-PaB"/>
-                                <exclude reference="EIo-z1-uEb"/>
                                 <exclude reference="Yb1-mQ-wr4"/>
                                 <exclude reference="czg-8v-fsB"/>
-                                <exclude reference="4F0-Lt-8YS"/>
-                                <exclude reference="VjT-fS-Qth"/>
-                                <exclude reference="Z75-uc-ffa"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular">
                             <mask key="subviews">
-                                <include reference="ql7-lQ-oi3"/>
-                                <include reference="gW7-cT-aIz"/>
                                 <include reference="bjg-3s-y6Y"/>
+                                <include reference="ql7-lQ-oi3"/>
+                                <include reference="bSR-Dv-uNZ"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="9sC-hp-jJy"/>
@@ -1057,17 +1028,14 @@ geo-located comments, etc</string>
                                 <include reference="kvB-9G-yRE"/>
                                 <include reference="lef-je-xaK"/>
                                 <include reference="ABR-vs-PaB"/>
-                                <include reference="EIo-z1-uEb"/>
                                 <include reference="Yb1-mQ-wr4"/>
                                 <include reference="czg-8v-fsB"/>
-                                <include reference="4F0-Lt-8YS"/>
-                                <include reference="VjT-fS-Qth"/>
-                                <include reference="Z75-uc-ffa"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
                         <outlet property="ContributeAsk" destination="bjg-3s-y6Y" id="r0L-Qr-k9N"/>
+                        <outlet property="ContributeScroll" destination="bSR-Dv-uNZ" id="HD7-o1-Jgw"/>
                         <segue destination="RP1-T4-HhY" kind="show" identifier="Thanks" id="1H3-Tk-bfZ"/>
                     </connections>
                 </viewController>
@@ -1095,19 +1063,16 @@ geo-located comments, etc</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular" misplaced="YES">
-                                    <rect key="frame" x="16" y="173" width="343" height="21"/>
-                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="While you’re on a roll would you care to contribute another one for:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rat-u2-dCv" customClass="UILabelBody" customModule="Digita11y" customModuleProvider="target">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular" misplaced="YES">
-                                    <rect key="frame" x="16" y="202" width="343" height="41"/>
-                                </variation>
                             </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="ThanksScroll" translatesAutoresizingMaskIntoConstraints="NO" id="6Fd-r1-7wb">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dOb-Mo-7nE" customClass="UIButtonWhite" customModule="Digita11y" customModuleProvider="target">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <constraints>
@@ -1119,66 +1084,59 @@ geo-located comments, etc</string>
                                         <exclude reference="cCs-IY-nXr"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular" misplaced="YES">
-                                    <rect key="frame" x="16" y="597" width="74" height="50"/>
+                                <variation key="heightClass=regular">
                                     <mask key="constraints">
                                         <include reference="cCs-IY-nXr"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <action selector="GoToTagsView:" destination="RP1-T4-HhY" eventType="touchDragInside" id="xef-Q4-9np"/>
+                                    <segue destination="DRC-bj-ok4" kind="unwind" unwindAction="prepareForTagsUnwind:" id="Bsn-hn-AP8"/>
+                                </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" restorationIdentifier="ThanksTags" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="pmD-kH-mTI" userLabel="ThanksTags">
-                                <rect key="frame" x="0.0" y="0.0" width="110" height="200"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nwn-io-NGW" customClass="UIButtonWhite" customModule="Digita11y" customModuleProvider="target">
-                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                        <state key="normal" title="Another tag"/>
-                                    </button>
-                                </subviews>
-                                <variation key="heightClass=regular" misplaced="YES">
-                                    <rect key="frame" x="16" y="251" width="339" height="268"/>
-                                </variation>
-                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.49411764740000003" green="0.82745099070000006" blue="0.1294117719" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="emy-G4-ovM" firstAttribute="top" secondItem="ryG-i5-DZN" secondAttribute="bottom" constant="20" id="3cO-gO-X8L"/>
-                            <constraint firstItem="dOb-Mo-7nE" firstAttribute="leading" secondItem="pmD-kH-mTI" secondAttribute="leading" id="7xu-8r-ThQ"/>
-                            <constraint firstItem="dOb-Mo-7nE" firstAttribute="top" secondItem="pmD-kH-mTI" secondAttribute="bottom" constant="8" id="H3A-Yg-q50"/>
-                            <constraint firstItem="pmD-kH-mTI" firstAttribute="top" secondItem="Rat-u2-dCv" secondAttribute="bottom" constant="8" symbolic="YES" id="ICY-Dk-Qk5"/>
+                            <constraint firstItem="6Fd-r1-7wb" firstAttribute="top" secondItem="w66-eV-wfq" secondAttribute="top" constant="321" id="BMR-5p-bMz"/>
+                            <constraint firstItem="6Fd-r1-7wb" firstAttribute="leading" secondItem="dOb-Mo-7nE" secondAttribute="leading" id="HtZ-lB-Gpb"/>
                             <constraint firstItem="ryG-i5-DZN" firstAttribute="top" secondItem="jSn-ju-ihQ" secondAttribute="bottom" constant="8" symbolic="YES" id="Ip3-hI-n2e"/>
                             <constraint firstItem="Rat-u2-dCv" firstAttribute="leading" secondItem="w66-eV-wfq" secondAttribute="leadingMargin" id="KDn-w6-ish"/>
                             <constraint firstAttribute="trailingMargin" secondItem="emy-G4-ovM" secondAttribute="trailing" id="QYq-N0-91z"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Rat-u2-dCv" secondAttribute="trailing" id="Sqa-iS-ZP6"/>
+                            <constraint firstItem="6Fd-r1-7wb" firstAttribute="leading" secondItem="Rat-u2-dCv" secondAttribute="leading" id="WMT-WY-yBf"/>
+                            <constraint firstItem="6Fd-r1-7wb" firstAttribute="top" secondItem="Rat-u2-dCv" secondAttribute="bottom" constant="8" symbolic="YES" id="ZaS-sH-DD8"/>
                             <constraint firstAttribute="bottom" secondItem="dOb-Mo-7nE" secondAttribute="bottom" constant="20" symbolic="YES" id="cck-aR-d5P"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ryG-i5-DZN" secondAttribute="trailing" constant="4" id="cuC-Q1-pBH"/>
                             <constraint firstItem="emy-G4-ovM" firstAttribute="leading" secondItem="w66-eV-wfq" secondAttribute="leadingMargin" id="d24-qV-4YM"/>
-                            <constraint firstItem="pmD-kH-mTI" firstAttribute="trailing" secondItem="ryG-i5-DZN" secondAttribute="trailing" id="fl9-UA-6Db"/>
+                            <constraint firstItem="dOb-Mo-7nE" firstAttribute="top" secondItem="6Fd-r1-7wb" secondAttribute="bottom" constant="8" symbolic="YES" id="fJa-Bc-zBi"/>
                             <constraint firstItem="Rat-u2-dCv" firstAttribute="top" secondItem="emy-G4-ovM" secondAttribute="bottom" constant="8" id="lwp-Tw-A9b"/>
-                            <constraint firstItem="pmD-kH-mTI" firstAttribute="leading" secondItem="Rat-u2-dCv" secondAttribute="leading" id="tRD-UD-GLD"/>
+                            <constraint firstItem="6Fd-r1-7wb" firstAttribute="trailing" secondItem="ryG-i5-DZN" secondAttribute="trailing" id="zTu-ez-hF6"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="ryG-i5-DZN"/>
                                 <exclude reference="emy-G4-ovM"/>
                                 <exclude reference="Rat-u2-dCv"/>
+                                <exclude reference="6Fd-r1-7wb"/>
                                 <exclude reference="dOb-Mo-7nE"/>
-                                <exclude reference="pmD-kH-mTI"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="Ip3-hI-n2e"/>
                                 <exclude reference="cuC-Q1-pBH"/>
-                                <exclude reference="7xu-8r-ThQ"/>
-                                <exclude reference="H3A-Yg-q50"/>
                                 <exclude reference="cck-aR-d5P"/>
+                                <exclude reference="fJa-Bc-zBi"/>
                                 <exclude reference="KDn-w6-ish"/>
                                 <exclude reference="Sqa-iS-ZP6"/>
                                 <exclude reference="lwp-Tw-A9b"/>
                                 <exclude reference="3cO-gO-X8L"/>
                                 <exclude reference="QYq-N0-91z"/>
                                 <exclude reference="d24-qV-4YM"/>
-                                <exclude reference="ICY-Dk-Qk5"/>
-                                <exclude reference="fl9-UA-6Db"/>
-                                <exclude reference="tRD-UD-GLD"/>
+                                <exclude reference="BMR-5p-bMz"/>
+                                <exclude reference="HtZ-lB-Gpb"/>
+                                <exclude reference="WMT-WY-yBf"/>
+                                <exclude reference="ZaS-sH-DD8"/>
+                                <exclude reference="zTu-ez-hF6"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular">
@@ -1186,29 +1144,34 @@ geo-located comments, etc</string>
                                 <include reference="ryG-i5-DZN"/>
                                 <include reference="emy-G4-ovM"/>
                                 <include reference="Rat-u2-dCv"/>
+                                <include reference="6Fd-r1-7wb"/>
                                 <include reference="dOb-Mo-7nE"/>
-                                <include reference="pmD-kH-mTI"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="Ip3-hI-n2e"/>
                                 <include reference="cuC-Q1-pBH"/>
-                                <include reference="7xu-8r-ThQ"/>
-                                <include reference="H3A-Yg-q50"/>
                                 <include reference="cck-aR-d5P"/>
+                                <include reference="fJa-Bc-zBi"/>
                                 <include reference="KDn-w6-ish"/>
                                 <include reference="Sqa-iS-ZP6"/>
                                 <include reference="lwp-Tw-A9b"/>
                                 <include reference="3cO-gO-X8L"/>
                                 <include reference="QYq-N0-91z"/>
                                 <include reference="d24-qV-4YM"/>
-                                <include reference="ICY-Dk-Qk5"/>
-                                <include reference="fl9-UA-6Db"/>
-                                <include reference="tRD-UD-GLD"/>
+                                <include reference="BMR-5p-bMz"/>
+                                <include reference="HtZ-lB-Gpb"/>
+                                <include reference="WMT-WY-yBf"/>
+                                <include reference="ZaS-sH-DD8"/>
+                                <include reference="zTu-ez-hF6"/>
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="ThanksScroll" destination="6Fd-r1-7wb" id="thp-yq-Cpc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SU9-lC-Ivl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="DRC-bj-ok4" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2352.5" y="-449.625"/>
         </scene>
@@ -1248,31 +1211,13 @@ geo-located comments, etc</string>
             </objects>
             <point key="canvasLocation" x="829" y="-1240.5"/>
         </scene>
-        <!--Tip-->
-        <scene sceneID="3Ra-nn-NyN">
-            <objects>
-                <viewController id="SiT-Xu-QDS" userLabel="Tip" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="WNu-ax-ddE"/>
-                        <viewControllerLayoutGuide type="bottom" id="p6p-1d-o5K"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="aLp-sv-Cka">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vpQ-5E-Tb0" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1359.5" y="-1240.875"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="6y9-RH-cbY">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DmJ-mn-9SY" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                    <navigationBar key="navigationBar" alpha="0.80000000000000004" contentMode="scaleToFill" id="4Gc-wy-kGH">
+                    <navigationBar key="navigationBar" alpha="0.0" contentMode="scaleToFill" id="4Gc-wy-kGH">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.29019609093666077" green="0.56470590829849243" blue="0.88627451658248901" alpha="1" colorSpace="calibratedRGB"/>

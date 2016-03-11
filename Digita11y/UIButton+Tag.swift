@@ -1,15 +1,16 @@
 //
-//  UIButton+Border.swift
+//  UIButton+Tag.swift
 //  Digita11y
 //
-//  Created by Christopher Reed on 2/24/16.
+//  Created by Christopher Reed on 3/10/16.
 //  Copyright © 2016 Roundware. All rights reserved.
 //
 
 import Foundation
+
 import UIKit
 
-@IBDesignable class UIButtonWhite: UIButton {
+@IBDesignable class UIButtonTag: UIButton {
     
     //this init fires usually called, when storyboards UI objects created:
     required init?(coder aDecoder: NSCoder) {
@@ -31,9 +32,10 @@ import UIKit
     
     override func setTitle(title: String?, forState state: UIControlState) {
         super.setTitle(title, forState: state)
+        self.setTitleColor(UIColor.blackColor(), forState: .Normal)
         self.setType()
     }
-  
+    
     //include insets in intrinsic content size
     override func intrinsicContentSize() -> CGSize {
         let s = super.intrinsicContentSize()
@@ -41,15 +43,16 @@ import UIKit
             s.height + self.titleEdgeInsets.top + self.titleEdgeInsets.bottom);
     }
     
-//    override class func requiresConstraintBasedLayout() -> Bool {
-//        return true
-//    }
+    //    override class func requiresConstraintBasedLayout() -> Bool {
+    //        return true
+    //    }
     
     func setType(){
-        self.titleLabel!.font = UIFont(name: "AvenirNext-Medium", size: 24.0)
+        self.titleLabel!.font = UIFont(name: "AvenirNext-Medium", size: 17.0)
         self.titleLabel!.textAlignment = .Center
-    }
 
+    }
+    
     func setupViews() {
         self.backgroundColor = UIColor.whiteColor()
         self.titleEdgeInsets = UIEdgeInsetsMake(2, 20, 2, 20)

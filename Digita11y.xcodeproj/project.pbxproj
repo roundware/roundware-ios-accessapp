@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8A0C48011C7E85E100B11A25 /* UIButton+Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0C48001C7E85E100B11A25 /* UIButton+Border.swift */; };
 		8A6598971C877399009A29C8 /* Digita11yTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6598961C877399009A29C8 /* Digita11yTests.swift */; };
+		8A6AB1291C9257FC0074083C /* UIButton+Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6AB1281C9257FC0074083C /* UIButton+Tag.swift */; };
 		8A7F7B0F1C9108C800A20278 /* ProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A7F7B0E1C9108C800A20278 /* ProgressView.xib */; };
 		8A7F7B111C9108DB00A20278 /* TagView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A7F7B101C9108DB00A20278 /* TagView.xib */; };
 		8AA4911E1C84C2C000422274 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA4911D1C84C2C000422274 /* WelcomeViewController.swift */; };
@@ -21,7 +22,7 @@
 		8AA4912E1C84C68600422274 /* UILabel+Body.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA4912D1C84C68600422274 /* UILabel+Body.swift */; };
 		8AA491321C84C94800422274 /* UIColor+Digita11y.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA491311C84C94800422274 /* UIColor+Digita11y.swift */; };
 		8AA491341C84D25800422274 /* ProjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA491331C84D25800422274 /* ProjectModel.swift */; };
-		8AA491361C84D26700422274 /* ExhibitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA491351C84D26700422274 /* ExhibitModel.swift */; };
+		8AA491361C84D26700422274 /* TagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA491351C84D26700422274 /* TagModel.swift */; };
 		8AA85E661C7CF12D0086AA6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA85E651C7CF12D0086AA6B /* AppDelegate.swift */; };
 		8AA85E681C7CF12D0086AA6B /* ChooseProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA85E671C7CF12D0086AA6B /* ChooseProjectViewController.swift */; };
 		8AA85E6B1C7CF12D0086AA6B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8AA85E691C7CF12D0086AA6B /* Main.storyboard */; };
@@ -61,6 +62,7 @@
 		8A6598941C877398009A29C8 /* Digita11yTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Digita11yTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A6598961C877399009A29C8 /* Digita11yTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Digita11yTests.swift; sourceTree = "<group>"; };
 		8A6598981C877399009A29C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8A6AB1281C9257FC0074083C /* UIButton+Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Tag.swift"; sourceTree = "<group>"; };
 		8A7F7B0E1C9108C800A20278 /* ProgressView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProgressView.xib; sourceTree = "<group>"; };
 		8A7F7B101C9108DB00A20278 /* TagView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagView.xib; sourceTree = "<group>"; };
 		8AA4911D1C84C2C000422274 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
@@ -73,7 +75,7 @@
 		8AA4912D1C84C68600422274 /* UILabel+Body.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Body.swift"; sourceTree = "<group>"; };
 		8AA491311C84C94800422274 /* UIColor+Digita11y.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Digita11y.swift"; sourceTree = "<group>"; };
 		8AA491331C84D25800422274 /* ProjectModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectModel.swift; sourceTree = "<group>"; };
-		8AA491351C84D26700422274 /* ExhibitModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExhibitModel.swift; sourceTree = "<group>"; };
+		8AA491351C84D26700422274 /* TagModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagModel.swift; sourceTree = "<group>"; };
 		8AA85E621C7CF12D0086AA6B /* Digita11y.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Digita11y.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AA85E651C7CF12D0086AA6B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8AA85E671C7CF12D0086AA6B /* ChooseProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseProjectViewController.swift; sourceTree = "<group>"; };
@@ -145,8 +147,8 @@
 			children = (
 				8A0C48001C7E85E100B11A25 /* UIButton+Border.swift */,
 				8AB65BC91C90CECD005D112B /* UIButton+White.swift */,
+				8A6AB1281C9257FC0074083C /* UIButton+Tag.swift */,
 				8AA4912B1C84C66E00422274 /* UILabel+Headline.swift */,
-				8AB65BDB1C90EF40005D112B /* LocationManager.swift */,
 				8AB65BC71C90CD73005D112B /* UILabel+SubHeadline.swift */,
 				8AA4912D1C84C68600422274 /* UILabel+Body.swift */,
 				8AA491311C84C94800422274 /* UIColor+Digita11y.swift */,
@@ -159,7 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				8AA491331C84D25800422274 /* ProjectModel.swift */,
-				8AA491351C84D26700422274 /* ExhibitModel.swift */,
+				8AA491351C84D26700422274 /* TagModel.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -190,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				8AA85E651C7CF12D0086AA6B /* AppDelegate.swift */,
+				8AB65BDB1C90EF40005D112B /* LocationManager.swift */,
 				8AC0C40F1C888C1D00D4847E /* Views */,
 				8AA491371C84D26C00422274 /* Models */,
 				8AA491231C84C36900422274 /* Controllers */,
@@ -455,9 +458,10 @@
 				8AA491221C84C33D00422274 /* ChooseExhibitViewController.swift in Sources */,
 				8AB65BDC1C90EF40005D112B /* LocationManager.swift in Sources */,
 				8AB65BCA1C90CECD005D112B /* UIButton+White.swift in Sources */,
+				8A6AB1291C9257FC0074083C /* UIButton+Tag.swift in Sources */,
 				8AA4911E1C84C2C000422274 /* WelcomeViewController.swift in Sources */,
 				8AA4912A1C84C3BE00422274 /* ThanksViewController.swift in Sources */,
-				8AA491361C84D26700422274 /* ExhibitModel.swift in Sources */,
+				8AA491361C84D26700422274 /* TagModel.swift in Sources */,
 				8AA491341C84D25800422274 /* ProjectModel.swift in Sources */,
 				8A0C48011C7E85E100B11A25 /* UIButton+Border.swift in Sources */,
 				8AA491201C84C32700422274 /* LocationViewController.swift in Sources */,

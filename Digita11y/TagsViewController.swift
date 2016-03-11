@@ -12,14 +12,51 @@ import RWFramework
 import SwiftyJSON
 
 class TagsViewController: UIViewController {
+    // MARK: Actions and Outlets
+
     @IBAction func playTag(sender: AnyObject) {
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        super.view.addBackground("bg-comment.png")
+    @IBAction func nextTag(sender: AnyObject) {
+    }
+    
+    @IBAction func previousTag(sender: AnyObject) {
+    }
+    
+    @IBAction func selectParentTag(sender: AnyObject) {
+    }
+    
+    @IBAction func selectTag(sender: AnyObject) {
+    }
+    
+    @IBAction func seeImageForTag(sender: AnyObject) {
+        //TODO launch gallery subview/modal
+    }
+    
+    @IBAction func seeTextForTag(sender: AnyObject) {
+        //TODO launch text subview/modal
     }
 
+    @IBAction func prepareForTagsUnwind(segue: UIStoryboardSegue) {
+    }
+    
+    // MARK: Views
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        super.view.addBackground("bg-comment.png")        
+        //TODO tags
+        //TODO populate parent tags
+        //TODO if first time show tip modal subview
+    }
+    
+
+    override func viewDidLayoutSubviews(){
+        super.viewDidLayoutSubviews()
+        //TODO progress
+        //TODO volume
+        
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -28,48 +65,29 @@ class TagsViewController: UIViewController {
 }
 
 
+// MARK: Extension
 
 extension TagsViewController: RWFrameworkProtocol {
-
-    func rwUpdateStatus(message: String) {
-//        self.statusTextView.text = self.statusTextView.text + "\r\n" + message
-//        self.statusTextView.scrollRangeToVisible(NSMakeRange(self.statusTextView.text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding), 0))
-    }
-
-    func rwUpdateApplicationIconBadgeNumber(count: Int) {
-        UIApplication.sharedApplication().applicationIconBadgeNumber = count
-    }
 
     func rwGetProjectsIdSuccess(data: NSData?) {
         let rwf = RWFramework.sharedInstance
         rwf.requestWhenInUseAuthorizationForLocation()
 
-        // You can now access the project data
         if let projectData = RWFrameworkConfig.getConfigDataFromGroup(RWFrameworkConfig.ConfigGroup.Project) as? NSDictionary {
             print(projectData)
 
 
             // Get all assets for the project, can filter by adding other keys to dict as documented for GET api/2/assets/
-            let project_id = projectData["project_id"] as! NSNumber
-            let dict: [String:String] = ["project_id": project_id.stringValue]
-            rwf.apiGetAssets(dict, success: { (data) -> Void in
-                if (data != nil) {
-                    _ = JSON(data: data!)
-                    //                    println(d)
-                }
-                }) { (error) -> Void in
-                    print(error)
-            }
-
-            //            // Get specific asset info
-            //            rwf.apiGetAssetsId("99", success: { (data) -> Void in
-            //                if (data != nil) {
-            //                    let d = JSON(data: data!)
-            ////                    println(d)
-            //                }
-            //            }) { (error) -> Void in
-            //                println(error)
-            //            }
+//            let project_id = projectData["project_id"] as! NSNumber
+//            let dict: [String:String] = ["project_id": project_id.stringValue]
+//            rwf.apiGetAssets(dict, success: { (data) -> Void in
+//                if (data != nil) {
+//                    _ = JSON(data: data!)
+//                    //                    println(d)
+//                }
+//                }) { (error) -> Void in
+//                    print(error)
+//            }
         }
     }
 

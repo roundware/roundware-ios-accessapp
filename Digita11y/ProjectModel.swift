@@ -7,16 +7,18 @@
 //
 
 import Foundation
+import RWFramework
 
 class Project {
-    var name: String
-    var id: String
-    var welcome: String
-    
     static var sharedInstance = Project(name: "", id: "", welcome: "")
     static let availableProjects = Project.initFromPlist()
     
 // MARK: Initialization
+    
+    var name: String
+    var id: String
+    var welcome: String
+    //let tags: [Tag]
     
     init?(name: String, id: String, welcome: String) {
         self.name = name
@@ -26,8 +28,10 @@ class Project {
             return nil
         }
     }
+
+    func getTags(){
+    }
     
-// MARK: Initialization
 
     func initFromServer() {
         
