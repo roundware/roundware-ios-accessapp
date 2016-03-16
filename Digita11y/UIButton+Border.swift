@@ -8,13 +8,14 @@
 
 import Foundation
 import UIKit
+import QuartzCore
 
 @IBDesignable class UIButtonBorder: UIButton {
     
-    let buttonHeight :  CGFloat = 54.0
-    let buttonWidth :   CGFloat = 306.0
-    let buttonMarginX : CGFloat = 0.0
-    let buttonMarginY : CGFloat = 21.0
+    let buttonHeight :  CGFloat = 50.0
+    let buttonWidth :   CGFloat = 298.0
+    let buttonMarginX : CGFloat = 1.0
+    let buttonMarginY : CGFloat = 20.0
     
     //this init fires usually called, when storyboards UI objects created:
     required init?(coder aDecoder: NSCoder) {

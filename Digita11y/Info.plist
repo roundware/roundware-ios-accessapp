@@ -2,6 +2,21 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>localhost</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSTemporaryExceptionMinimumTLSVersion</key>
+				<string>TLSv1.1</string>
+			</dict>
+		</dict>
+	</dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -36,6 +51,43 @@
 	</dict>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>We use your location to suggest and tag media.</string>
+	<key>Projects</key>
+	<array>
+		<dict>
+			<key>id</key>
+			<string>1</string>
+			<key>name</key>
+			<string>Smithsonian Museum</string>
+			<key>url</key>
+			<string>https://devapi.digita11y.org/</string>
+			<key>welcome</key>
+			<string>Keytar retro gentrify, leggings 90&apos;s chillwave Bushwick Tumblr synth selvage paleo narwhal Thundercats. Selfies craft beer raw denim organic Vice Portland keffiyeh McSweeney&apos;s, photo booth crucifix Pinterest irony 8-bit mixtape. Master cleanse twee plaid next level scenester McSweeney&apos;s pour-over, Godard Austin synth. Keffiyeh lomo dreamcatcher Blue Bottle, mustache tofu chia Tumblr four loko messenger bag typewriter sartorial master cleanse salvia paleo. Marfa fixie normcore selvage put a bird on it, VHS skateboard mustache Brooklyn heirloom retro cronut Intelligentsia. Fashion axe asymmetrical wolf, VHS cold-pressed American Apparel distillery roof party Thundercats McSweeney&apos;s banh mi Wes Anderson sustainable. Mumblecore taxidermy banh mi authentic retro Williamsburg.</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>2</string>
+			<key>name</key>
+			<string>Peabody Essex Museum</string>
+			<key>url</key>
+			<string>https://devapi.digita11y.org/</string>
+			<key>welcome</key>
+			<string>Keytar retro gentrify, leggings 90&apos;s chillwave Bushwick Tumblr synth selvage paleo narwhal Thundercats. Selfies craft beer raw denim organic Vice Portland keffiyeh McSweeney&apos;s, photo booth crucifix Pinterest irony 8-bit mixtape. Master cleanse twee plaid next level scenester McSweeney&apos;s pour-over, Godard Austin synth. Keffiyeh lomo dreamcatcher Blue Bottle, mustache tofu chia Tumblr four loko messenger bag typewriter sartorial master cleanse salvia paleo. Marfa fixie normcore selvage put a bird on it, VHS skateboard mustache Brooklyn heirloom retro cronut Intelligentsia. Fashion axe asymmetrical wolf, VHS cold-pressed American Apparel distillery roof party Thundercats McSweeney&apos;s banh mi Wes Anderson sustainable. Mumblecore taxidermy banh mi authentic retro Williamsburg.</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>3</string>
+			<key>name</key>
+			<string>Baltimore Museum of Art</string>
+			<key>url</key>
+			<string>https://devapi.digita11y.org/</string>
+			<key>welcome</key>
+			<string>Keytar retro gentrify, leggings 90&apos;s chillwave Bushwick Tumblr synth selvage paleo narwhal Thundercats. Selfies craft beer raw denim organic Vice Portland keffiyeh McSweeney&apos;s, photo booth crucifix Pinterest irony 8-bit mixtape. Master cleanse twee plaid next level scenester McSweeney&apos;s pour-over, Godard Austin synth. Keffiyeh lomo dreamcatcher Blue Bottle, mustache tofu chia Tumblr four loko messenger bag typewriter sartorial master cleanse salvia paleo. Marfa fixie normcore selvage put a bird on it, VHS skateboard mustache Brooklyn heirloom retro cronut Intelligentsia. Fashion axe asymmetrical wolf, VHS cold-pressed American Apparel distillery roof party Thundercats McSweeney&apos;s banh mi Wes Anderson sustainable. Mumblecore taxidermy banh mi authentic retro Williamsburg.</string>
+		</dict>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -47,41 +99,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>Projects</key>
-	<array>
-		<dict>
-			<key>name</key>
-			<string>Smithsonian Museum</string>
-			<key>id</key>
-			<string>1</string>
-			<key>url</key>
-			<string>https://devapi.digita11y.org/</string>
-			<key>welcome</key>
-			<string>Keytar retro gentrify, leggings 90&apos;s chillwave Bushwick Tumblr synth selvage paleo narwhal Thundercats. Selfies craft beer raw denim organic Vice Portland keffiyeh McSweeney&apos;s, photo booth crucifix Pinterest irony 8-bit mixtape. Master cleanse twee plaid next level scenester McSweeney&apos;s pour-over, Godard Austin synth. Keffiyeh lomo dreamcatcher Blue Bottle, mustache tofu chia Tumblr four loko messenger bag typewriter sartorial master cleanse salvia paleo. Marfa fixie normcore selvage put a bird on it, VHS skateboard mustache Brooklyn heirloom retro cronut Intelligentsia. Fashion axe asymmetrical wolf, VHS cold-pressed American Apparel distillery roof party Thundercats McSweeney&apos;s banh mi Wes Anderson sustainable. Mumblecore taxidermy banh mi authentic retro Williamsburg.</string>
-		</dict>
-		<dict>
-			<key>name</key>
-			<string>Peabody Essex Museum</string>
-			<key>id</key>
-			<string>2</string>
-			<key>url</key>
-			<string>https://devapi.digita11y.org/</string>
-			<key>welcome</key>
-			<string>Keytar retro gentrify, leggings 90&apos;s chillwave Bushwick Tumblr synth selvage paleo narwhal Thundercats. Selfies craft beer raw denim organic Vice Portland keffiyeh McSweeney&apos;s, photo booth crucifix Pinterest irony 8-bit mixtape. Master cleanse twee plaid next level scenester McSweeney&apos;s pour-over, Godard Austin synth. Keffiyeh lomo dreamcatcher Blue Bottle, mustache tofu chia Tumblr four loko messenger bag typewriter sartorial master cleanse salvia paleo. Marfa fixie normcore selvage put a bird on it, VHS skateboard mustache Brooklyn heirloom retro cronut Intelligentsia. Fashion axe asymmetrical wolf, VHS cold-pressed American Apparel distillery roof party Thundercats McSweeney&apos;s banh mi Wes Anderson sustainable. Mumblecore taxidermy banh mi authentic retro Williamsburg.</string>
-		</dict>
-		<dict>
-			<key>name</key>
-			<string>Baltimore Museum of Art</string>
-			<key>id</key>
-			<string>3</string>
-			<key>url</key>
-			<string>https://devapi.digita11y.org/</string>
-			<key>welcome</key>
-			<string>Keytar retro gentrify, leggings 90&apos;s chillwave Bushwick Tumblr synth selvage paleo narwhal Thundercats. Selfies craft beer raw denim organic Vice Portland keffiyeh McSweeney&apos;s, photo booth crucifix Pinterest irony 8-bit mixtape. Master cleanse twee plaid next level scenester McSweeney&apos;s pour-over, Godard Austin synth. Keffiyeh lomo dreamcatcher Blue Bottle, mustache tofu chia Tumblr four loko messenger bag typewriter sartorial master cleanse salvia paleo. Marfa fixie normcore selvage put a bird on it, VHS skateboard mustache Brooklyn heirloom retro cronut Intelligentsia. Fashion axe asymmetrical wolf, VHS cold-pressed American Apparel distillery roof party Thundercats McSweeney&apos;s banh mi Wes Anderson sustainable. Mumblecore taxidermy banh mi authentic retro Williamsburg.</string>
-		</dict>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>

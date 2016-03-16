@@ -8,24 +8,22 @@
 
 import UIKit
 import CoreLocation
-class LocationViewController: UIViewController {
+import RWFramework
+class LocationViewController: BaseViewController, RWFrameworkProtocol {
+    
     // MARK: Actions and Outlets
-
-    @IBAction func getLocationPermission(sender: AnyObject) {
-        //TODO set location ask text
-        let locationManager: CLLocationManager = CLLocationManager()
-        //var lastRecordedLocation: CLLocation = CLLocation()
-        locationManager.requestWhenInUseAuthorization()
-        self.performSegueWithIdentifier("ExhibitSegue", sender: nil)
-    }
     
     @IBAction func next(sender: AnyObject) {
+        let rwf = RWFramework.sharedInstance
+        if !rwf.requestWhenInUseAuthorizationForLocation() || CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse {
+            self.performSegueWithIdentifier("ExhibitSegue", sender: nil)
+        }
+    }
+
+    @IBAction func noThanks(sender: AnyObject) {
         //No Thanks
         self.performSegueWithIdentifier("ExhibitSegue", sender: nil)
     }
-
-    
-
     
     // MARK: View
     
@@ -34,9 +32,11 @@ class LocationViewController: UIViewController {
         super.viewDidLoad()
         super.view.addBackground("bg-green.png")
     }
+    
+    // MARK: RWFramework Protocol
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func rwLocationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus)
+    {
+        self.performSegueWithIdentifier("ExhibitSegue", sender: nil)
     }
 }

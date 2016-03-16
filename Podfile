@@ -4,6 +4,7 @@ use_frameworks!
 
 target 'Digita11y', :exclusive => true do
   pod 'RWFramework', :path => '../RWFramework'
+  pod 'Alamofire'
   pod 'Fabric'
   pod 'Crashlytics'
 end

@@ -16,6 +16,11 @@ Register any new devices
 fastlane ios test
 ```
 Runs all the tests
+### ios load
+```
+fastlane ios load
+```
+Build and load to my device
 ### ios crashlytics
 ```
 fastlane ios crashlytics

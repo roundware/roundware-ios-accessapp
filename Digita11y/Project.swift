@@ -9,37 +9,27 @@
 import Foundation
 import RWFramework
 
-class Project {
-    static var sharedInstance = Project(name: "", id: "", welcome: "")
-    static let availableProjects = Project.initFromPlist()
+struct Project {
     
 // MARK: Initialization
     
     var name: String
-    var id: String
+    var id: Int
     var welcome: String
     //let tags: [Tag]
     
-    init?(name: String, id: String, welcome: String) {
+    init?(name: String, id: Int, welcome: String) {
         self.name = name
         self.id = id
         self.welcome = welcome
-        if name.isEmpty || id.isEmpty || welcome.isEmpty{
+        if name.isEmpty || welcome.isEmpty{
             return nil
         }
     }
-
-    func getTags(){
-    }
     
-
-    func initFromServer() {
-        
-    }
+// MARK: Static methods
     
-// MARK: Class methods
-    
-    class func initFromPlist() -> [Project] {
+    static func initFromPlist() -> [Project] {
         print("running init")
 
         let path = NSBundle.mainBundle().pathForResource("Info", ofType: "plist")
@@ -50,9 +40,10 @@ class Project {
             return []
         }
         
-        for project in projectsDictArray as! [[String:String]] {
+        for project in projectsDictArray as! [[String:AnyObject]] {
             if let id = project["id"], name = project["name"], welcome = project["welcome"] {
-                if let thisProject = Project.init(name: name, id: id, welcome:welcome){
+                let idInt : Int? = Int(id as! String)
+                if let thisProject = Project.init(name: name as! String, id: idInt!, welcome:welcome as! String){
                     projectsArray.append(thisProject)
                 }
             }
@@ -61,4 +52,3 @@ class Project {
         return projectsArray
     }
 }
-

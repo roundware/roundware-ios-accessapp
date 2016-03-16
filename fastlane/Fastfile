@@ -3,7 +3,7 @@
 
 # This is the minimum version number required.
 # Update this, if you use features of a newer version
-fastlane_version "1.63.0"
+fastlane_version "1.66.0"
 
 default_platform :ios
 
@@ -39,7 +39,7 @@ platform :ios do |options|
       )
       register_devices( devices_file: './fastlane/devices.txt')
     end
-    match(type: "development", force_for_new_devices: true)
+    match(type: "development")
     gym(
       scheme: "Digita11y"
     )

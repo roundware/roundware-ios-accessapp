@@ -1,0 +1,63 @@
+//
+//  RootNavigationViewController.swift
+//  Digita11y
+//
+//  Created by Christopher Reed on 3/12/16.
+//  Copyright © 2016 Roundware. All rights reserved.
+//
+
+import Foundation
+import UIKit
+import RWFramework
+import Crashlytics
+import SwiftyJSON
+import CoreLocation
+
+
+class RootNavigationViewController: UINavigationController, UINavigationControllerDelegate, RWFrameworkProtocol {
+    static var once: dispatch_once_t = 0
+
+    var rwData: RWData?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        //TODO set correct appearance
+        //TODO attach delegate for endpoint switcher (and make view)
+        super.viewWillAppear(animated)
+        if let vc = self.topViewController as? BaseViewController{
+            vc.rwData = self.rwData
+        }
+    }
+    
+    // MARK: - RWFrameworkProtocol
+    
+    func rwUpdateStatus(message: String) {
+        debugPrint(message)
+        CLSNSLogv(message, getVaList([]))
+    }
+    
+    func rwPostUsersFailure(error: NSError?) {
+        debugPrint(error?.localizedDescription)
+        CLSNSLogv((error?.localizedDescription)!, getVaList([]))
+    }
+
+//    func rwPostSessionsSuccess() {
+//    }
+
+    func rwGetProjectsIdTagsSuccess(data: NSData?) {
+        let json = JSON(data: data!)
+//        TODO update for UIGroups
+        self.rwData?.speakTags = json["speak"].array?.map { TagGroup(json: $0) } ?? []
+        self.rwData?.listenTags = json["listen"].array?.map { TagGroup(json: $0) } ?? []
+    }
+    
+    func rwGetProjectsIdTagsFailure(error: NSError?) {
+        debugPrint(error?.localizedDescription)
+        CLSNSLogv((error?.localizedDescription)!, getVaList([]))
+    }
+
+}

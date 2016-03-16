@@ -8,88 +8,58 @@
 
 import UIKit
 import RWFramework
-class ChooseProjectViewController: UIViewController, UIScrollViewDelegate {
+class ChooseProjectViewController: BaseViewController, UIScrollViewDelegate {
+    var viewModel: ChooseProjectViewModel!
 
     // MARK: Actions and Outlets
     @IBAction func selectedThis(sender: UIButton) {
-        //set selected projectName
         let projectName = sender.titleLabel?.text
-        //select project from available projects
-        let project = projects[projects.indexOf({$0.name == projectName})!]
-        //set our singleton
-        //NOTE not using dependcy injection because it's ugly with storyboards
-        Project.sharedInstance = project
-        //start framework
-        let rwf = RWFramework.sharedInstance
-        rwf.setProjectId(project.id)
-        //TODO set project info in our model
-        self.performSegueWithIdentifier("ProjectSegue", sender: project)
-        //NOTE not using dependcy injection because it's
+        self.viewModel.selectByTitle(projectName!)
+        self.performSegueWithIdentifier("ProjectSegue", sender: sender)
     }
     
     @IBOutlet weak var ProjectsScrollView: UIScrollView!
 
     // MARK: View
-
-    let projects        = Project.availableProjects
     
-
     override func viewDidLoad() {
-        //TODO check network
-        
         super.viewDidLoad()
         super.view.addBackground("bg-blue.png")
-        
-        // populate buttons in a scrollview
-        ProjectsScrollView.delegate = self
-        var button  = UIButtonBorder(type: UIButtonType.System)
-        let scroll = ProjectsScrollView
-        let total = CGFloat(projects.count)
-        
-        for index in 0..<projects.count {
-            let project = projects[index]
-            button  = UIButtonBorder(type: UIButtonType.System)
-            let indexFloat = CGFloat(index)
-            let frame = CGRect(
-                x: button.buttonMarginX,
-                y: indexFloat * (button.buttonMarginY + button.buttonHeight),
-                width: button.buttonWidth,
-                height: button.buttonHeight )
-            button.frame = frame
-            
-            //set title
-            button.setTitle(project.name, forState: .Normal)
-            
-            //set action
-            button.addTarget(self,
-                action: "selectedThis:",
-                forControlEvents: UIControlEvents.TouchUpInside)
-            scroll.addSubview(button)
-        }
-        scroll.contentSize.width = button.buttonWidth + CGFloat(2)
-        scroll.contentSize.height = (button.buttonHeight + button.buttonMarginY) * total
-    }
-    
-    override func viewDidLayoutSubviews(){
-        super.viewDidLayoutSubviews()
-        let scroll = ProjectsScrollView
-        let newContentOffsetX = (scroll.contentSize.width/2) - (scroll.bounds.size.width/2)
-        scroll.contentOffset = CGPointMake(newContentOffsetX, 0)
     }
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        //hide nav bar on this page
         self.navigationController!.setNavigationBarHidden(true, animated: true)
-        super.viewWillAppear(animated);
+        
+        self.viewModel = ChooseProjectViewModel(data: self.rwData!)
+        
+        let scroll = ProjectsScrollView
+        scroll.delegate = self
+        let total = self.viewModel.numberOfProjects()
+        let buttons = self.createButtonsForScroll(total, scroll: scroll)
+        
+        //set titles and actions
+        for (index, button) in buttons.enumerate(){
+            button.setTitle(viewModel.titleForIndex(index), forState: .Normal)
+            button.addTarget(self,
+                action: "selectedThis:",
+                forControlEvents: UIControlEvents.TouchUpInside)
+        }
     }
     
     override func viewWillDisappear(animated: Bool) {
+        //show nav bar everywhere else
         self.navigationController!.setNavigationBarHidden(false, animated: true)
         super.viewWillAppear(animated);
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewDidLayoutSubviews(){
+        super.viewDidLayoutSubviews()
+        //correct offset for scrollview
+        let scroll = ProjectsScrollView
+        let newContentOffsetX = (scroll.contentSize.width/2) - (scroll.bounds.size.width/2)
+        scroll.contentOffset = CGPointMake(newContentOffsetX, 0)
     }
 
 }
