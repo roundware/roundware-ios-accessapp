@@ -40,9 +40,7 @@ platform :ios do |options|
       register_devices( devices_file: './fastlane/devices.txt')
     end
     match(type: "development")
-    gym(
-      scheme: "Digita11y"
-    )
+    gym(scheme: "Digita11y", use_legacy_build_api: true)
     install_on_device(
       device_id: ENV["TEST_DEVICE"],
       ipa: "./Digita11y.ipa"
@@ -56,7 +54,7 @@ platform :ios do |options|
     notification(subtitle: "Changelog prompt ready", message: "Please add your notes for testers...")
     changelog = prompt(text: "Enter the change log: ",
                        multi_line_end_keyword: "END")
-    gym(scheme: "Digita11y") 
+    gym(scheme: "Digita11y", use_legacy_build_api: true)
     crashlytics(crashlytics_path: "./Pods/Crashlytics/iOS/Crashlytics.framework",
                     notes: changelog,
                     groups: "Digita11yTech")

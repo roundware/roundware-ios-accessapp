@@ -1,9 +1,4 @@
 git_url "git@gitlab.seeread.info:seeread-info/certificates.git"
-
-type "development" # The default type, can be: appstore, adhoc or development
-
+type "development" 
 app_identifier "org.roundware.Digita11y" 
-username "developers@seeread.info" # Your Apple Developer Portal username
-
-# For all available options run `match --help`
-# Remove the # in the beginning of the line to enable the other options
+username "developers@seeread.info"
