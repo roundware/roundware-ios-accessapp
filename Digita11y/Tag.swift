@@ -1,30 +1,25 @@
 import Foundation
-import RWFramework
 import SwiftyJSON
 
 struct Tag {
-    var tagId: Int = 0
-    var shortcode: String = ""
-    var localDescription: String = ""
-    var order: Int = 0
+    var id: Int = 0
+    var relationships: [String:AnyObject?]
     var value: String = ""
-    var tagDescription: String = ""
-    var headerImageURL: String = ""
+    var description: String = ""
+    var data: String = ""
+    var tagCategory: Int = 0
     
     init(json: JSON) {
-        tagId = json["tag_id"].int ?? 0
-        shortcode = json["shortcode"].string ?? ""
-        localDescription = json["loc_description"].string ?? ""
-        order = json["order"].int ?? 0
+        id = json["id"].int ?? 0
+        relationships = json["relationships"].dictionaryObject ?? [:]
         value = json["value"].string ?? ""
-        tagDescription = json["description"].string ?? ""
-        
-        // FIX: "data" is eventually going to change from a string to a dictionary
-        headerImageURL = json["data"].string ?? ""
+        description = json["description"].string ?? ""
+        data = json["data"].string ?? ""
+        tagCategory = json["tagCategory"].int ?? 0
     }
     
-    init(tagId: Int, value: String) {
-        self.tagId = tagId
-        self.value = value
-    }
+//    init(tagId: Int, value: String) {
+//        self.id = tagId
+//        self.value = value
+//    }
 }

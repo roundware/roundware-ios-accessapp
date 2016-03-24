@@ -17,10 +17,10 @@ class WelcomeViewController: BaseViewController, UINavigationControllerDelegate,
     @IBAction func next(sender: UIButton) {
 
         if (CLLocationManager.authorizationStatus() == .NotDetermined) {
-            debugPrint("not determined")
+//            debugPrint("not determined")
             self.performSegueWithIdentifier("LocationSegue", sender: nil)
         } else {
-            debugPrint(CLLocationManager.authorizationStatus())
+//            debugPrint(CLLocationManager.authorizationStatus())
             self.performSegueWithIdentifier("SkipToExhibitSegue", sender: nil)
         }
     }
@@ -31,13 +31,13 @@ class WelcomeViewController: BaseViewController, UINavigationControllerDelegate,
     // MARK: View
     override func viewWillAppear(animated: Bool) {
         self.viewModel = WelcomeViewModel(data: self.rwData!)
-        WelcomeLabelHeadline.text = "Welcome to the \(self.viewModel.project.name)!"
-        WelcomeLabelBody.text = self.viewModel.project.welcome
+        WelcomeLabelHeadline.text = self.viewModel.title
+        WelcomeLabelBody.text = self.viewModel.body
         super.viewWillAppear(animated)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         super.view.addBackground("bg-blue.png")
-    }
+    }    
 }

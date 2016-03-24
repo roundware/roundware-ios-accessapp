@@ -14,8 +14,9 @@
 		8A00CF551C98990C0011C5D9 /* ContributeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A00CF541C98990C0011C5D9 /* ContributeViewModel.swift */; };
 		8A00CF571C98AAC80011C5D9 /* SetupAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A00CF561C98AAC80011C5D9 /* SetupAudio.swift */; };
 		8A0C48011C7E85E100B11A25 /* UIButton+Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0C48001C7E85E100B11A25 /* UIButton+Border.swift */; };
+		8A2C98971CA36D4600DC281A /* UIItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2C98961CA36D4600DC281A /* UIItem.swift */; };
+		8A2C98991CA36D5200DC281A /* UIGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2C98981CA36D5200DC281A /* UIGroup.swift */; };
 		8A4BA3241C93978200D5DDC6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A4BA3231C93978200D5DDC6 /* MapKit.framework */; };
-		8A4BA3281C93DC8F00D5DDC6 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A4BA3271C93DC8F00D5DDC6 /* LocationManager.swift */; };
 		8A4BA32A1C93DDEB00D5DDC6 /* RootNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A4BA3291C93DDEB00D5DDC6 /* RootNavigationViewController.swift */; };
 		8A4BA32C1C93EB5E00D5DDC6 /* PlayPauseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A4BA32B1C93EB5E00D5DDC6 /* PlayPauseButton.swift */; };
 		8A4BA32E1C93FF4500D5DDC6 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A4BA32D1C93FF4500D5DDC6 /* MapViewController.swift */; };
@@ -82,8 +83,9 @@
 		8A00CF541C98990C0011C5D9 /* ContributeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContributeViewModel.swift; sourceTree = "<group>"; };
 		8A00CF561C98AAC80011C5D9 /* SetupAudio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupAudio.swift; sourceTree = "<group>"; };
 		8A0C48001C7E85E100B11A25 /* UIButton+Border.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Border.swift"; sourceTree = "<group>"; };
+		8A2C98961CA36D4600DC281A /* UIItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIItem.swift; sourceTree = "<group>"; };
+		8A2C98981CA36D5200DC281A /* UIGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIGroup.swift; sourceTree = "<group>"; };
 		8A4BA3231C93978200D5DDC6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		8A4BA3271C93DC8F00D5DDC6 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		8A4BA3291C93DDEB00D5DDC6 /* RootNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootNavigationViewController.swift; sourceTree = "<group>"; };
 		8A4BA32B1C93EB5E00D5DDC6 /* PlayPauseButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayPauseButton.swift; sourceTree = "<group>"; };
 		8A4BA32D1C93FF4500D5DDC6 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -201,6 +203,8 @@
 			children = (
 				8ABADE3D1C986E8D00660907 /* RWData.swift */,
 				8ABADE4C1C98732300660907 /* Tag.swift */,
+				8A2C98961CA36D4600DC281A /* UIItem.swift */,
+				8A2C98981CA36D5200DC281A /* UIGroup.swift */,
 				8AA491331C84D25800422274 /* Project.swift */,
 				8ABADE451C9870EE00660907 /* TagGroup.swift */,
 				8ABADE411C986EB900660907 /* Stream.swift */,
@@ -235,13 +239,12 @@
 			isa = PBXGroup;
 			children = (
 				8AA85E651C7CF12D0086AA6B /* AppDelegate.swift */,
-				8A4BA3271C93DC8F00D5DDC6 /* LocationManager.swift */,
-				8AC0C40F1C888C1D00D4847E /* Views */,
-				8AA491371C84D26C00422274 /* Models */,
-				8AA491231C84C36900422274 /* Controllers */,
-				8ABADE521C98764A00660907 /* View Models */,
-				8AA491241C84C37700422274 /* Categories */,
 				8ABADE4B1C98725600660907 /* Operations */,
+				8AA491371C84D26C00422274 /* Models */,
+				8ABADE521C98764A00660907 /* View Models */,
+				8AA491231C84C36900422274 /* Controllers */,
+				8AC0C40F1C888C1D00D4847E /* Views */,
+				8AA491241C84C37700422274 /* Categories */,
 				8ADED7B41C7F773400BBB65C /* Assets.xcassets */,
 				8AB65BCB1C90D923005D112B /* RWFramework.plist */,
 				8AA85E711C7CF12D0086AA6B /* Info.plist */,
@@ -532,6 +535,7 @@
 				8AA491281C84C3A300422274 /* ContributeViewController.swift in Sources */,
 				8A00CF511C9897140011C5D9 /* ChooseExhibitViewModel.swift in Sources */,
 				8A4BA32A1C93DDEB00D5DDC6 /* RootNavigationViewController.swift in Sources */,
+				8A2C98991CA36D5200DC281A /* UIGroup.swift in Sources */,
 				8AA491261C84C39900422274 /* TagsViewController.swift in Sources */,
 				8A00CF531C9899000011C5D9 /* TagsViewModel.swift in Sources */,
 				8A00CF4D1C9883960011C5D9 /* WelcomeViewModel.swift in Sources */,
@@ -540,6 +544,7 @@
 				8AA4912E1C84C68600422274 /* UILabel+Body.swift in Sources */,
 				8AA491221C84C33D00422274 /* ChooseExhibitViewController.swift in Sources */,
 				8ABADE3E1C986E8D00660907 /* RWData.swift in Sources */,
+				8A2C98971CA36D4600DC281A /* UIItem.swift in Sources */,
 				8AB65BCA1C90CECD005D112B /* UIButton+White.swift in Sources */,
 				8A6AB1291C9257FC0074083C /* UIButton+Tag.swift in Sources */,
 				8A00CF551C98990C0011C5D9 /* ContributeViewModel.swift in Sources */,
@@ -557,7 +562,6 @@
 				8ABADE4D1C98732300660907 /* Tag.swift in Sources */,
 				8ADED7B71C7F7F5200BBB65C /* UIViewAddBackground.swift in Sources */,
 				8ABADE511C98764400660907 /* ChooseProjectViewModel.swift in Sources */,
-				8A4BA3281C93DC8F00D5DDC6 /* LocationManager.swift in Sources */,
 				8AA85E661C7CF12D0086AA6B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

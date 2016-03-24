@@ -19,7 +19,7 @@ class ChooseExhibitController: BaseViewController, UIScrollViewDelegate {
     @IBOutlet weak var ExhibitScroll: UIScrollView!
 
     @IBAction func selectedThis(sender: UIButton) {
-        //TODO set child tags and send as dependency
+        self.viewModel.selectedTitle(sender.titleLabel!.text!)
         self.performSegueWithIdentifier("TagsSegue", sender: nil)
     }
     
@@ -33,21 +33,25 @@ class ChooseExhibitController: BaseViewController, UIScrollViewDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.viewModel = ChooseExhibitViewModel(data: self.rwData!)
-        dump(self.viewModel.exhibitions)
         
-        // setup scrollview
-        ExhibitHeadline.text = "Welcome to the \(self.viewModel.project.name)! \n Hear some... choose one of the following."
+        self.viewModel = ChooseExhibitViewModel(data: self.rwData!)
+        ExhibitHeadline.text = self.viewModel.title
+        let total = self.viewModel.numberOfItems()
+
+        //scroll
         let scroll = ExhibitScroll
         scroll.delegate = self
-        let total = self.viewModel.numberOfExhibits()
         let buttons = self.createButtonsForScroll(total, scroll: scroll)
-        
+
+        //stack
+//        let stack = ExhibitStack
+//        let buttons = self.createButtonsForStack(total, stack: stack)
+
         //set titles and actions
         for (index, button) in buttons.enumerate(){
             button.setTitle(viewModel.titleForIndex(index), forState: .Normal)
             button.addTarget(self,
-                action: "selectedThis:",
+                action: #selector(ChooseExhibitController.selectedThis(_:)),
                 forControlEvents: UIControlEvents.TouchUpInside)
         }
 
@@ -56,7 +60,7 @@ class ChooseExhibitController: BaseViewController, UIScrollViewDelegate {
     override func viewDidLayoutSubviews(){
         super.viewDidLayoutSubviews()
         
-        // set scroll view
+        //scroll
         let scroll = ExhibitScroll
         let newContentOffsetX = (scroll.contentSize.width/2) - (scroll.bounds.size.width/2)
         scroll.contentOffset = CGPointMake(newContentOffsetX, 0)

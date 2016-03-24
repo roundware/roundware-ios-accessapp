@@ -45,19 +45,26 @@ class RootNavigationViewController: UINavigationController, UINavigationControll
         CLSNSLogv((error?.localizedDescription)!, getVaList([]))
     }
 
-//    func rwPostSessionsSuccess() {
-//    }
 
     func rwGetProjectsIdTagsSuccess(data: NSData?) {
         let json = JSON(data: data!)
 //        TODO update for UIGroups
-        self.rwData?.speakTags = json["speak"].array?.map { TagGroup(json: $0) } ?? []
-        self.rwData?.listenTags = json["listen"].array?.map { TagGroup(json: $0) } ?? []
+        self.rwData?.tags = json["tags"].array?.map { Tag(json: $0) } ?? []
+//        self.rwData?.speakTags = json["speak"].array?.map { TagGroup(json: $0) } ?? []
+//        self.rwData?.listenTags = json["listen"].array?.map { TagGroup(json: $0) } ?? []
     }
     
     func rwGetProjectsIdTagsFailure(error: NSError?) {
         debugPrint(error?.localizedDescription)
         CLSNSLogv((error?.localizedDescription)!, getVaList([]))
     }
-
+    func rwGetProjectsIdUIGroupsSuccess(data: NSData?) {
+        let json = JSON(data: data!)
+        self.rwData?.uiGroups = json["ui_groups"].array?.map { UIGroup(json: $0) } ?? []
+         self.rwData?.setUIGroupsToTagIds()
+    }
+    func rwGetProjectsIdUIGroupsFailure(error: NSError?) {
+        debugPrint(error?.localizedDescription)
+        CLSNSLogv((error?.localizedDescription)!, getVaList([]))
+    }
 }

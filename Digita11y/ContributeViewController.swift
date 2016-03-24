@@ -71,7 +71,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, RWFram
         self.viewModel = ContributeViewModel(data: self.rwData!)
         
         //Scroll view for subviews of tags
-        ContributeAsk.text = "How would you like to contribute to \(self.viewModel.tag.tagDescription)!"
+//        ContributeAsk.text = "How would you like to contribute to \(self.viewModel.tag.tagDescription)!"
         
         //Scroll view for subviews of tags
         let scroll = ContributeScroll
@@ -84,7 +84,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, RWFram
         
         //set titles and actions
         for (index, button) in buttons.enumerate(){
-            button.setTitle(viewModel.titleForIndex(index), forState: .Normal)
+//            button.setTitle(viewModel.titleForIndex(index), forState: .Normal)
             button.addTarget(self,
                 action: "selectedThis:",
                 forControlEvents: UIControlEvents.TouchUpInside)

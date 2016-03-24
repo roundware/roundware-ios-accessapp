@@ -35,6 +35,7 @@ class LocationViewController: BaseViewController, RWFrameworkProtocol {
     
     // MARK: RWFramework Protocol
 
+    //TODO not quite working, might need to do with CLLocation manage delegate...
     func rwLocationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus)
     {
         self.performSegueWithIdentifier("ExhibitSegue", sender: nil)

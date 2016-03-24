@@ -34,6 +34,7 @@ class ChooseProjectViewController: BaseViewController, UIScrollViewDelegate {
         
         self.viewModel = ChooseProjectViewModel(data: self.rwData!)
         
+        //set scroll view for options
         let scroll = ProjectsScrollView
         scroll.delegate = self
         let total = self.viewModel.numberOfProjects()
