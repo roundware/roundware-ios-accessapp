@@ -9,7 +9,6 @@
 import UIKit
 //import AVFoundation
 import RWFramework
-import AKPickerView_Swift
 import SwiftyJSON
 
 //TODO audio player delegate?
