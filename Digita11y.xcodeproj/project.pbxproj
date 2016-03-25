@@ -14,8 +14,15 @@
 		8A00CF551C98990C0011C5D9 /* ContributeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A00CF541C98990C0011C5D9 /* ContributeViewModel.swift */; };
 		8A00CF571C98AAC80011C5D9 /* SetupAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A00CF561C98AAC80011C5D9 /* SetupAudio.swift */; };
 		8A0C48011C7E85E100B11A25 /* UIButton+Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0C48001C7E85E100B11A25 /* UIButton+Border.swift */; };
+		8A2C20061CA4B094002A9245 /* AKPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2C20051CA4B094002A9245 /* AKPickerView.swift */; };
+		8A2C20081CA4CBC8002A9245 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2C20071CA4CBC8002A9245 /* GalleryViewController.swift */; };
+		8A2C200A1CA4CBE0002A9245 /* ReadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2C20091CA4CBE0002A9245 /* ReadViewController.swift */; };
+		8A2C200C1CA4CBF7002A9245 /* ReadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2C200B1CA4CBF7002A9245 /* ReadViewModel.swift */; };
+		8A2C200E1CA4CC02002A9245 /* GalleryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2C200D1CA4CC02002A9245 /* GalleryViewModel.swift */; };
 		8A2C98971CA36D4600DC281A /* UIItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2C98961CA36D4600DC281A /* UIItem.swift */; };
 		8A2C98991CA36D5200DC281A /* UIGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2C98981CA36D5200DC281A /* UIGroup.swift */; };
+		8A404AF01CA4344C009E3E3B /* TagView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A404AEE1CA4344C009E3E3B /* TagView.xib */; };
+		8A404AF21CA43501009E3E3B /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A404AF11CA43501009E3E3B /* TagView.swift */; };
 		8A4BA3241C93978200D5DDC6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A4BA3231C93978200D5DDC6 /* MapKit.framework */; };
 		8A4BA32A1C93DDEB00D5DDC6 /* RootNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A4BA3291C93DDEB00D5DDC6 /* RootNavigationViewController.swift */; };
 		8A4BA32C1C93EB5E00D5DDC6 /* PlayPauseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A4BA32B1C93EB5E00D5DDC6 /* PlayPauseButton.swift */; };
@@ -83,8 +90,15 @@
 		8A00CF541C98990C0011C5D9 /* ContributeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContributeViewModel.swift; sourceTree = "<group>"; };
 		8A00CF561C98AAC80011C5D9 /* SetupAudio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupAudio.swift; sourceTree = "<group>"; };
 		8A0C48001C7E85E100B11A25 /* UIButton+Border.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Border.swift"; sourceTree = "<group>"; };
+		8A2C20051CA4B094002A9245 /* AKPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKPickerView.swift; sourceTree = "<group>"; };
+		8A2C20071CA4CBC8002A9245 /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
+		8A2C20091CA4CBE0002A9245 /* ReadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadViewController.swift; sourceTree = "<group>"; };
+		8A2C200B1CA4CBF7002A9245 /* ReadViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadViewModel.swift; sourceTree = "<group>"; };
+		8A2C200D1CA4CC02002A9245 /* GalleryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewModel.swift; sourceTree = "<group>"; };
 		8A2C98961CA36D4600DC281A /* UIItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIItem.swift; sourceTree = "<group>"; };
 		8A2C98981CA36D5200DC281A /* UIGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIGroup.swift; sourceTree = "<group>"; };
+		8A404AEE1CA4344C009E3E3B /* TagView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagView.xib; sourceTree = "<group>"; };
+		8A404AF11CA43501009E3E3B /* TagView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
 		8A4BA3231C93978200D5DDC6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		8A4BA3291C93DDEB00D5DDC6 /* RootNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootNavigationViewController.swift; sourceTree = "<group>"; };
 		8A4BA32B1C93EB5E00D5DDC6 /* PlayPauseButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayPauseButton.swift; sourceTree = "<group>"; };
@@ -174,6 +188,8 @@
 				8AA4911F1C84C32600422274 /* LocationViewController.swift */,
 				8AA491211C84C33D00422274 /* ChooseExhibitViewController.swift */,
 				8AA491251C84C39900422274 /* TagsViewController.swift */,
+				8A2C20071CA4CBC8002A9245 /* GalleryViewController.swift */,
+				8A2C20091CA4CBE0002A9245 /* ReadViewController.swift */,
 				8A4BA32D1C93FF4500D5DDC6 /* MapViewController.swift */,
 				8AA491271C84C3A300422274 /* ContributeViewController.swift */,
 				8AA491291C84C3BE00422274 /* ThanksViewController.swift */,
@@ -185,6 +201,7 @@
 		8AA491241C84C37700422274 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				8A2C20051CA4B094002A9245 /* AKPickerView.swift */,
 				8A4BA32B1C93EB5E00D5DDC6 /* PlayPauseButton.swift */,
 				8A0C48001C7E85E100B11A25 /* UIButton+Border.swift */,
 				8AB65BC91C90CECD005D112B /* UIButton+White.swift */,
@@ -278,6 +295,8 @@
 				8A00CF4C1C9883960011C5D9 /* WelcomeViewModel.swift */,
 				8A00CF501C9897140011C5D9 /* ChooseExhibitViewModel.swift */,
 				8A00CF521C9899000011C5D9 /* TagsViewModel.swift */,
+				8A2C200B1CA4CBF7002A9245 /* ReadViewModel.swift */,
+				8A2C200D1CA4CC02002A9245 /* GalleryViewModel.swift */,
 				8A00CF541C98990C0011C5D9 /* ContributeViewModel.swift */,
 				8ABADE531C987C5300660907 /* ThanksViewModel.swift */,
 				8A00CF4E1C988AC00011C5D9 /* BaseViewModel.swift */,
@@ -289,6 +308,8 @@
 			isa = PBXGroup;
 			children = (
 				8AA85E691C7CF12D0086AA6B /* Main.storyboard */,
+				8A404AEE1CA4344C009E3E3B /* TagView.xib */,
+				8A404AF11CA43501009E3E3B /* TagView.swift */,
 				8AA85E6E1C7CF12D0086AA6B /* LaunchScreen.storyboard */,
 			);
 			name = Views;
@@ -436,6 +457,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8AA85E701C7CF12D0086AA6B /* LaunchScreen.storyboard in Resources */,
+				8A404AF01CA4344C009E3E3B /* TagView.xib in Resources */,
 				8ADED7B51C7F773400BBB65C /* Assets.xcassets in Resources */,
 				8AB65BCC1C90D923005D112B /* RWFramework.plist in Resources */,
 				8AA85E6B1C7CF12D0086AA6B /* Main.storyboard in Resources */,
@@ -525,21 +547,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A2C200C1CA4CBF7002A9245 /* ReadViewModel.swift in Sources */,
 				8AA85E681C7CF12D0086AA6B /* ChooseProjectViewController.swift in Sources */,
 				8AB65BC81C90CD73005D112B /* UILabel+SubHeadline.swift in Sources */,
 				8AA491321C84C94800422274 /* UIColor+Digita11y.swift in Sources */,
 				8ABADE421C986EB900660907 /* Stream.swift in Sources */,
 				8ABADE541C987C5300660907 /* ThanksViewModel.swift in Sources */,
+				8A2C20061CA4B094002A9245 /* AKPickerView.swift in Sources */,
 				8A00CF571C98AAC80011C5D9 /* SetupAudio.swift in Sources */,
 				8ABADE481C9871D200660907 /* BaseViewController.swift in Sources */,
 				8AA491281C84C3A300422274 /* ContributeViewController.swift in Sources */,
 				8A00CF511C9897140011C5D9 /* ChooseExhibitViewModel.swift in Sources */,
+				8A2C200A1CA4CBE0002A9245 /* ReadViewController.swift in Sources */,
 				8A4BA32A1C93DDEB00D5DDC6 /* RootNavigationViewController.swift in Sources */,
 				8A2C98991CA36D5200DC281A /* UIGroup.swift in Sources */,
 				8AA491261C84C39900422274 /* TagsViewController.swift in Sources */,
 				8A00CF531C9899000011C5D9 /* TagsViewModel.swift in Sources */,
 				8A00CF4D1C9883960011C5D9 /* WelcomeViewModel.swift in Sources */,
 				8AA4912C1C84C66E00422274 /* UILabel+Headline.swift in Sources */,
+				8A2C20081CA4CBC8002A9245 /* GalleryViewController.swift in Sources */,
 				8ABADE461C9870EE00660907 /* TagGroup.swift in Sources */,
 				8AA4912E1C84C68600422274 /* UILabel+Body.swift in Sources */,
 				8AA491221C84C33D00422274 /* ChooseExhibitViewController.swift in Sources */,
@@ -550,6 +576,7 @@
 				8A00CF551C98990C0011C5D9 /* ContributeViewModel.swift in Sources */,
 				8ABADE441C986ECF00660907 /* Asset.swift in Sources */,
 				8A4BA32E1C93FF4500D5DDC6 /* MapViewController.swift in Sources */,
+				8A2C200E1CA4CC02002A9245 /* GalleryViewModel.swift in Sources */,
 				8AA4911E1C84C2C000422274 /* WelcomeViewController.swift in Sources */,
 				8AA4912A1C84C3BE00422274 /* ThanksViewController.swift in Sources */,
 				8ABADE4F1C98743600660907 /* RequestAssetText.swift in Sources */,
@@ -557,6 +584,7 @@
 				8A00CF4F1C988AC00011C5D9 /* BaseViewModel.swift in Sources */,
 				8A0C48011C7E85E100B11A25 /* UIButton+Border.swift in Sources */,
 				8A4BA32C1C93EB5E00D5DDC6 /* PlayPauseButton.swift in Sources */,
+				8A404AF21CA43501009E3E3B /* TagView.swift in Sources */,
 				8ABADE4A1C98725000660907 /* RequestAssets.swift in Sources */,
 				8AA491201C84C32700422274 /* LocationViewController.swift in Sources */,
 				8ABADE4D1C98732300660907 /* Tag.swift in Sources */,

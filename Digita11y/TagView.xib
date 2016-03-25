@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TagView" customModule="Digita11y" customModuleProvider="target">
+            <connections>
+                <outlet property="audioImage" destination="n0c-Fs-qmN" id="rA8-KW-yka"/>
+                <outlet property="cameraButton" destination="on6-1g-kvA" id="5vK-g4-Ecd"/>
+                <outlet property="tagProgress" destination="9rZ-wA-hjy" id="RNU-Qe-h6U"/>
+                <outlet property="tagTitle" destination="eW2-6p-iDo" id="W5T-6F-leB"/>
+                <outlet property="textButton" destination="ETJ-vD-KP7" id="tge-Vd-BoO"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="YjI-6z-iHZ">
+            <rect key="frame" x="0.0" y="0.0" width="290" height="80"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a2u-iX-Xkc" userLabel="Line">
+                    <rect key="frame" x="150" y="0.0" width="1" height="80"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="1" id="t6C-Xq-eEJ"/>
+                    </constraints>
+                </view>
+                <view clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wjd-cm-8mq" userLabel="Tag Wrap">
+                    <rect key="frame" x="0.0" y="30" width="156" height="50"/>
+                    <subviews>
+                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" misplaced="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="9rZ-wA-hjy">
+                            <rect key="frame" x="0.0" y="0.0" width="156" height="50"/>
+                            <color key="tintColor" red="0.30196078430000001" green="0.73725490199999999" blue="0.44705882349999998" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="9Yo-0S-VJX"/>
+                            </constraints>
+                            <color key="trackTintColor" red="0.25882352939999997" green="0.65098039220000004" blue="0.57254901960000004" alpha="1" colorSpace="calibratedRGB"/>
+                        </progressView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="speaker" translatesAutoresizingMaskIntoConstraints="NO" id="n0c-Fs-qmN">
+                            <rect key="frame" x="124" y="14" width="24" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="24" id="owS-35-Hcf"/>
+                                <constraint firstAttribute="height" constant="21" id="u3v-8m-s4z"/>
+                            </constraints>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eW2-6p-iDo">
+                            <rect key="frame" x="0.0" y="0.0" width="156" height="50"/>
+                            <accessibility key="accessibilityConfiguration" hint="Cue this asset"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="cjC-nv-juw"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
+                            <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
+                            <state key="normal" title="The Maids">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="" value="NO"/>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="eW2-6p-iDo" firstAttribute="top" secondItem="Wjd-cm-8mq" secondAttribute="top" id="Edj-Np-sfQ"/>
+                        <constraint firstAttribute="bottom" secondItem="n0c-Fs-qmN" secondAttribute="bottom" constant="15" id="FCN-5W-Prn"/>
+                        <constraint firstItem="n0c-Fs-qmN" firstAttribute="top" secondItem="Wjd-cm-8mq" secondAttribute="top" constant="14" id="HfA-vf-Jmg"/>
+                        <constraint firstAttribute="height" constant="50" id="IP9-TB-v8S"/>
+                        <constraint firstAttribute="trailing" secondItem="n0c-Fs-qmN" secondAttribute="trailing" constant="8" id="JNg-WS-bcG"/>
+                        <constraint firstAttribute="bottom" secondItem="9rZ-wA-hjy" secondAttribute="bottom" id="LgI-Rb-lQ7"/>
+                        <constraint firstAttribute="trailing" secondItem="9rZ-wA-hjy" secondAttribute="trailing" id="SoL-ou-wY3"/>
+                        <constraint firstItem="eW2-6p-iDo" firstAttribute="leading" secondItem="Wjd-cm-8mq" secondAttribute="leading" id="Vhf-F1-q8N"/>
+                        <constraint firstAttribute="trailing" secondItem="eW2-6p-iDo" secondAttribute="trailing" id="fPE-qV-Uyz"/>
+                        <constraint firstItem="9rZ-wA-hjy" firstAttribute="leading" secondItem="Wjd-cm-8mq" secondAttribute="leading" id="gz5-zM-4tR"/>
+                        <constraint firstAttribute="bottom" secondItem="eW2-6p-iDo" secondAttribute="bottom" id="oc1-W6-PWp"/>
+                        <constraint firstItem="9rZ-wA-hjy" firstAttribute="top" secondItem="Wjd-cm-8mq" secondAttribute="top" id="yCh-KW-LDH"/>
+                    </constraints>
+                </view>
+                <stackView opaque="NO" contentMode="scaleAspectFit" misplaced="YES" distribution="equalSpacing" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="gi0-XN-4ZE" userLabel="Actions">
+                    <rect key="frame" x="176" y="38" width="78" height="35"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ETJ-vD-KP7">
+                            <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
+                            <accessibility key="accessibilityConfiguration" label="Contribute text"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="35" id="bAU-vg-F76"/>
+                                <constraint firstAttribute="width" constant="35" id="z0R-pn-jtv"/>
+                            </constraints>
+                            <state key="normal" backgroundImage="text-small"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="on6-1g-kvA">
+                            <rect key="frame" x="43" y="0.0" width="35" height="35"/>
+                            <accessibility key="accessibilityConfiguration" label="Contribute images"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="35" id="0dU-dL-vUC"/>
+                                <constraint firstAttribute="width" constant="35" id="Iuh-Qv-W59"/>
+                            </constraints>
+                            <state key="normal" backgroundImage="camera-small"/>
+                        </button>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="gi0-XN-4ZE" secondAttribute="bottom" constant="7" id="4Ya-Uq-BSb"/>
+                <constraint firstItem="Wjd-cm-8mq" firstAttribute="top" secondItem="YjI-6z-iHZ" secondAttribute="top" constant="30" id="Hdf-9K-uGe"/>
+                <constraint firstAttribute="bottom" secondItem="Wjd-cm-8mq" secondAttribute="bottom" id="SrH-2h-wFE"/>
+                <constraint firstItem="a2u-iX-Xkc" firstAttribute="top" secondItem="YjI-6z-iHZ" secondAttribute="top" id="f0e-Su-6Gk"/>
+                <constraint firstItem="a2u-iX-Xkc" firstAttribute="leading" secondItem="YjI-6z-iHZ" secondAttribute="leading" constant="150" id="j8M-Qi-bRU"/>
+                <constraint firstAttribute="bottom" secondItem="a2u-iX-Xkc" secondAttribute="bottom" id="jgF-y9-gRr"/>
+                <constraint firstItem="gi0-XN-4ZE" firstAttribute="leading" secondItem="Wjd-cm-8mq" secondAttribute="trailing" constant="20" id="m2Y-9E-CZf"/>
+                <constraint firstItem="Wjd-cm-8mq" firstAttribute="leading" secondItem="YjI-6z-iHZ" secondAttribute="leading" id="mOd-PM-5DM"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gi0-XN-4ZE" secondAttribute="trailing" id="tiA-D8-FGd"/>
+                <constraint firstItem="gi0-XN-4ZE" firstAttribute="top" secondItem="YjI-6z-iHZ" secondAttribute="top" constant="38" id="uS4-Vt-GgE"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="subviews">
+                    <exclude reference="a2u-iX-Xkc"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="185" y="191"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="camera-small" width="35" height="35"/>
+        <image name="speaker" width="25" height="21"/>
+        <image name="text-small" width="35" height="35"/>
+    </resources>
+</document>

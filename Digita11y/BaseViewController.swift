@@ -9,6 +9,8 @@ class BaseViewController: UIViewController {
         }
     }
     
+    
+    //TODO not quite there
     func createButtonsForStack(total: Int, stack: UIStackView) -> [UIButton]{
         var button  = UIButtonBorder(type: UIButtonType.System)
         var buttons : [UIButton] = []

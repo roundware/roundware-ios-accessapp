@@ -11,13 +11,24 @@ class RWData {
     // MARK: - UIGroup
     
     var uiGroups: [UIGroup] = []
-    var currentUIGroupIndex: Int = 0
-    
+        
     // MARK: - UIItem
     
-    var currentUIItems: [UIItem] = []
+    func getRelevantUIItems(uiGroup: UIGroup) -> [UIItem] {
+        if uiGroup.index > 0,
+        let previousUIGroup = uiGroups.filter({$0.uiMode == uiGroup.uiMode && $0.index == uiGroup.index - 1}).first,
+        let previousSelectedUIItem = previousUIGroup.selectedUIItem {
+            return uiGroup.uiItems.filter({ $0.parent == previousSelectedUIItem.id})
+        } else {
+            return uiGroup.uiItems
+        }
+    }
 
-    func getTagsForUIItems(uiItems: [UIItem]) -> [Tag]? {
+    
+    // MARK: - Tags
+    var tags: [Tag] = []
+    
+    func getTagsForUIItems(uiItems: [UIItem]) -> [Tag] {
         let tagIds = uiItems.map { $0.tagId }
         return tags.filter({ tagIds.contains($0.id) })
     }
@@ -31,31 +42,32 @@ class RWData {
         }
     }
     
-    func getSelectedTagForUIGroup(uiGroup: UIGroup) -> Tag? {
-        if let indexes = uiGroupsToTagIds[uiGroup.uiMode],
-            let tagId = indexes[uiGroup.index],
-            let tag = tags.filter({$0.id == tagId}).first{
-            return tag
-        } else {
-            return nil
-        }
-    }
-    
-    func setSelectedTagForUIGroup(uiGroup: UIGroup, tagId: Int?) {
-        uiGroupsToTagIds[uiGroup.uiMode]![uiGroup.index] = tagId
-    }
-    
-    // MARK: - Tags
-    var tags: [Tag] = []
-    
-    func setUIGroupsToTagIds(){
-        for uiGroup in uiGroups {
-            uiGroupsToTagIds[uiGroup.uiMode] = [uiGroup.index : nil]
-        }
-        dump(uiGroupsToTagIds)
-    }
-    
-    var uiGroupsToTagIds = [String:[Int:Int?]]() //= [ : [ : ]]
+        
+        
+        
+
+
+//    func getSelectedTagForUIGroup(uiGroup: UIGroup) -> Tag? {
+//        if let indexes = uiGroupsToTagIds[uiGroup.uiMode],
+//            let tagId = indexes[uiGroup.index],
+//            let tag = tags.filter({$0.id == tagId}).first{
+//            return tag
+//        } else {
+//            return nil
+//        }
+//    }
+//
+//    func setSelectedTagForUIGroup(uiGroup: UIGroup, tagId: Int?) {
+//        uiGroupsToTagIds[uiGroup.uiMode]![uiGroup.index] = tagId
+//    }
+
+//    var uiGroupsToTagIds = [String:[Int:Int?]]() //= [ : [ : ]]
+//    func initUIGroupsToTagIds(){
+//        for uiGroup in uiGroups {
+//            uiGroupsToTagIds[uiGroup.uiMode] = [uiGroup.index : nil]
+//        }
+//        dump(uiGroupsToTagIds)
+//    }
     
 //    var listenTags: [Tag] = []
     

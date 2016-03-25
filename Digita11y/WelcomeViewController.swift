@@ -8,10 +8,9 @@
 
 import UIKit
 import CoreLocation
-class WelcomeViewController: BaseViewController, UINavigationControllerDelegate, CLLocationManagerDelegate {
+class WelcomeViewController: BaseViewController, CLLocationManagerDelegate {
     var viewModel: WelcomeViewModel!
-    var viewControllerToInsertBelow : UIViewController?
-
+    
     
     // MARK: Actions and Outlets
     @IBAction func next(sender: UIButton) {
@@ -27,6 +26,7 @@ class WelcomeViewController: BaseViewController, UINavigationControllerDelegate,
     
     @IBOutlet weak var WelcomeLabelBody: UILabelBody!
     @IBOutlet weak var WelcomeLabelHeadline: UILabelHeadline!
+    
     
     // MARK: View
     override func viewWillAppear(animated: Bool) {

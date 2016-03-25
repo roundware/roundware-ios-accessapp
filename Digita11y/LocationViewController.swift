@@ -11,8 +11,8 @@ import CoreLocation
 import RWFramework
 class LocationViewController: BaseViewController, RWFrameworkProtocol {
     
-    // MARK: Actions and Outlets
     
+    // MARK: Actions and Outlets
     @IBAction func next(sender: AnyObject) {
         let rwf = RWFramework.sharedInstance
         if !rwf.requestWhenInUseAuthorizationForLocation() || CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse {
@@ -25,8 +25,8 @@ class LocationViewController: BaseViewController, RWFrameworkProtocol {
         self.performSegueWithIdentifier("ExhibitSegue", sender: nil)
     }
     
-    // MARK: View
     
+    // MARK: View
     override func viewDidLoad() {
         //TODO skip this view controller if permission available
         super.viewDidLoad()
@@ -34,7 +34,6 @@ class LocationViewController: BaseViewController, RWFrameworkProtocol {
     }
     
     // MARK: RWFramework Protocol
-
     //TODO not quite working, might need to do with CLLocation manage delegate...
     func rwLocationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus)
     {

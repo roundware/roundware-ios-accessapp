@@ -34,7 +34,11 @@ class Digita11yUITests: XCTestCase {
         let app = XCUIApplication()
         app.buttons["Smithsonian Museum"].tap()
         app.buttons["Begin"].tap()
-        app.buttons["Next"].tap()
+//        if location
+//        app.buttons["Next"].tap()
+        
+        app.buttons["Ropes Mansion"].tap()
+        let kitchenStaticText = app.collectionViews.staticTexts["Kitchen"]
         
     }
     

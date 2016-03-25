@@ -14,7 +14,6 @@ class ChooseExhibitController: BaseViewController, UIScrollViewDelegate {
     var viewModel: ChooseExhibitViewModel!
 
     // MARK: Actions and Outlets
-
     @IBOutlet weak var ExhibitHeadline: UILabelHeadline!
     @IBOutlet weak var ExhibitScroll: UIScrollView!
 
@@ -25,7 +24,6 @@ class ChooseExhibitController: BaseViewController, UIScrollViewDelegate {
     
     
     // MARK: View
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         super.view.addBackground("bg-blue.png")
@@ -65,6 +63,4 @@ class ChooseExhibitController: BaseViewController, UIScrollViewDelegate {
         let newContentOffsetX = (scroll.contentSize.width/2) - (scroll.bounds.size.width/2)
         scroll.contentOffset = CGPointMake(newContentOffsetX, 0)
     }
-
-
 }

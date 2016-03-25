@@ -6,6 +6,7 @@ class ContributeViewModel: BaseViewModel  {
     
     init(data: RWData) {
         self.data = data
+
 //        self.tag = data.selectedSpeakTag!
 //        self.tags = data.speakObjects
     }

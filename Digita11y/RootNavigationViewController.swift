@@ -61,7 +61,6 @@ class RootNavigationViewController: UINavigationController, UINavigationControll
     func rwGetProjectsIdUIGroupsSuccess(data: NSData?) {
         let json = JSON(data: data!)
         self.rwData?.uiGroups = json["ui_groups"].array?.map { UIGroup(json: $0) } ?? []
-         self.rwData?.setUIGroupsToTagIds()
     }
     func rwGetProjectsIdUIGroupsFailure(error: NSError?) {
         debugPrint(error?.localizedDescription)

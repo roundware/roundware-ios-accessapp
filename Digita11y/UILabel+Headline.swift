@@ -23,7 +23,7 @@ import UIKit
     }
     
     func setupViews() {
-        self.font = UIFont(name: "AvenirNext-Medium", size: 34.0)
+        self.font = UIFont(name: "AvenirNext-Medium", size: 30.0)
         self.numberOfLines = 0
         self.lineBreakMode = NSLineBreakMode.ByWordWrapping
         self.textColor = UIColor.whiteColor()
