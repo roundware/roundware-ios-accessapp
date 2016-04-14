@@ -52,6 +52,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate, RWFrameworkProtocol {
     func applicationWillTerminate(application: UIApplication) {
         CLSNSLogv("APPLICATION WILL TERMINATE", getVaList([]))
     }
-
 }
-

@@ -43,6 +43,11 @@ class RootNavigationViewController: UINavigationController, UINavigationControll
         debugPrint(error?.localizedDescription)
         CLSNSLogv((error?.localizedDescription)!, getVaList([]))
     }
+    
+    func rwPostSessionsFailure(error: NSError?){
+        debugPrint(error?.localizedDescription)
+        CLSNSLogv((error?.localizedDescription)!, getVaList([]))
+    }
 
     func rwGetProjectsIdTagsSuccess(data: NSData?) {
         let json = JSON(data: data!)
@@ -60,6 +65,18 @@ class RootNavigationViewController: UINavigationController, UINavigationControll
     }
     
     func rwGetProjectsIdUIGroupsFailure(error: NSError?) {
+        debugPrint(error?.localizedDescription)
+        CLSNSLogv((error?.localizedDescription)!, getVaList([]))
+    }
+    
+    func rwGetAssetsSuccess(data: NSData?) {
+        let json = JSON(data: data!)
+        debugPrint("assets json received")
+        self.rwData?.assets = json.array?.map { Asset(json: $0) } ?? []
+        dump(self.rwData?.assets)
+    }
+    
+    func rwGetAssetsFailure(error: NSError?) {
         debugPrint(error?.localizedDescription)
         CLSNSLogv((error?.localizedDescription)!, getVaList([]))
     }

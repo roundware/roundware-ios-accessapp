@@ -17,7 +17,7 @@ struct Tag {
         data = json["data"].string ?? ""
         tagCategory = json["tagCategory"].int ?? 0
     }
-    
+        
 //    init(tagId: Int, value: String) {
 //        self.id = tagId
 //        self.value = value

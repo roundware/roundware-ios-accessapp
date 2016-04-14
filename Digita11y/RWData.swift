@@ -23,10 +23,6 @@ class RWData {
             return uiGroup.uiItems
         }
     }
-
-    
-    // MARK: - Tags
-    var tags: [Tag] = []
     
     func getTagsForUIItems(uiItems: [UIItem]) -> [Tag] {
         let tagIds = uiItems.map { $0.tagId }
@@ -42,10 +38,13 @@ class RWData {
         }
     }
     
-        
-        
-        
+    // MARK: - Tags
+    var tags: [Tag] = []
+    
+    
 
+    // MARK: - Assets
+    var assets: [Asset] = []
 
 //    func getSelectedTagForUIGroup(uiGroup: UIGroup) -> Tag? {
 //        if let indexes = uiGroupsToTagIds[uiGroup.uiMode],
@@ -117,13 +116,10 @@ class RWData {
 //        var tags = self.exhibitions.filter { $0.tagId == tagID }
 //        return tags.first
 //    }
-    
-    
-    // MARK: - More
-    
+
+
     var stream: Stream?
-    var assets: [Asset] = []
-//    
+//
 //    
 //    func objectForID(tagID: Int) -> Tag? {
 //        var group:[TagGroup] = browseTags.filter { $0.code == "object" }

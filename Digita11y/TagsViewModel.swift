@@ -82,7 +82,6 @@ class TagsViewModel: BaseViewModel  {
     
     func selectedItemIndex(index:Int) {
         self.selectedItemTag = self.itemTags[index]
-
     }
     
     func selectedItemTitle(title:String) {

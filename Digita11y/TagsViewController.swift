@@ -71,14 +71,18 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
     @IBAction func selectAsset(sender: UIButton) {
         let index = sender.tag
         let tagView = items[index]
-        //TODO if already  selected, deselect
-//        dump(tagView)
         tagView.selected = !tagView.selected
-        self.viewModel.selectedItemIndex(index)
-        let others = items.filter({$0 !== tagView})
-//        dump(others)
-        others.forEach({$0.selected = false })
-        //TODO send message to stream, expand options, collapse others
+        if (tagView.selected){
+            //deselect others TODO check filter for selected
+            let others = items.filter({$0 !== tagView})
+            others.forEach({$0.selected = false })
+            //set selection in viewmodel for state
+            self.viewModel.selectedItemIndex(index)
+            //send message to stream
+            let rwf = RWFramework.sharedInstance
+            rwf.submitTags(String(self.viewModel.selectedItemTag!.id))
+            //TODO expand asset options for this tag 
+        }
     }
     
     @IBAction func seeGalleryForAsset(sender: UIButton) {
@@ -218,6 +222,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
                 let rwf = RWFramework.sharedInstance
                 rwf.addDelegate(self)
                 rwf.play()
+                self.playPauseButton.drawButton(true)
             }
         }
     }
@@ -276,12 +281,21 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 
     
     // MARK: RWFramework Protocol
+    
+    func rwUpdateStatus(message: String) {
+        print("update status")
+        print(message)
+    }
+
+    
     func rwGetStreamsIdCurrentSuccess(data: NSData?) {
-        _ = JSON(data: data!)
-        debugPrint(data)
+        print("current success")
+        dump(data)
     }
 
     func rwPostStreamsSuccess(data: NSData?) {
+        print("stream success")
+        dump(data)
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             self.playPauseButton.enabled = true
             self.nextButton.enabled = true
@@ -289,31 +303,60 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
             //TODO enable
         })
     }
+    
+    func rwPostStreamsError(error: NSError?) {
+        print("stream error")
+        debugPrint(error?.localizedDescription)
+        CLSNSLogv((error?.localizedDescription)!, getVaList([]))
+    }
 
+    func rwPatchStreamsIdSuccess(data: NSData?){
+        print("patch stream success")
+        dump(data)
+
+    }
+    
+    func rwPatchStreamsIdFailure(error: NSError?){
+        print("patch stream error")
+        debugPrint(error?.localizedDescription)
+        CLSNSLogv((error?.localizedDescription)!, getVaList([]))
+    }
+    
     func rwPostStreamsIdHeartbeatSuccess(data: NSData?) {
+        debugPrint("heartbeat success")
+        dump(data)
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            debugPrint("heartbeat")
         })
     }
     
     func rwPostStreamsIdNextSuccess(data: NSData?) {
         debugPrint("next success")
+        dump(data)
     }
 
-    func rwPlayingBackProgress(percentage: Double, duration: NSTimeInterval, peakPower: Float, averagePower: Float) {
-        debugPrint(Float(percentage))
-        playbackProgress.setProgress(Float(percentage), animated: true)
-        let seconds = duration % 60
-        let minutes = (duration / 60) % 60
-        let time = String(format: "%02d:%02d", minutes, seconds)
-        elapsedTimeLabel.text = time
+    func rwGetAssetsSuccess(data: NSData?){
+        print("get assets success")
+        dump(data)
     }
 
-    func rwAudioPlayerDidFinishPlaying() {
-        let rwf = RWFramework.sharedInstance
-        playPauseButton.drawButton(false)
-        debugPrint("stopped playing")
-//        speakProgress.setProgress(0, animated: false)
+    func rwGetAssetsFailure(error: NSError?){
+        print("get assets error")
+        debugPrint(error?.localizedDescription)
+        CLSNSLogv((error?.localizedDescription)!, getVaList([]))
     }
+    
+    func rwGetAssetsIdSuccess(data: NSData?){
+        print("get asset id success")
+        dump(data)
+    }
+
+    func rwGetAssetsIdFailure(error: NSError?){
+        print("get asset id error")
+        debugPrint(error?.localizedDescription)
+        CLSNSLogv((error?.localizedDescription)!, getVaList([]))
+    }
+    
+//    func rwObserveValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+//  }
 
 }

@@ -124,6 +124,12 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, RWFram
 //        rwf.setImageDescription(path, description: "Hello, This is an image!")
 //    }
 //    
+    
+    
+    /// Sent when the framework determines that recording is possible (via config)
+//    func rwReadyToRecord()
+    
+
 //    func rwRecordingProgress(percentage: Double, maxDuration: NSTimeInterval, peakPower: Float, averagePower: Float) {
 //        //        speakProgress.setProgress(Float(percentage), animated: true)
 //    }
@@ -134,5 +140,27 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, RWFram
     //        speakRecordButton.setTitle(rwf.isRecording() ? "Stop" : "Record", forState: UIControlState.Normal)
     //        speakProgress.setProgress(0, animated: false)
     //    }
+    
+    
+    
+    //    func rwPlayingBackProgress(percentage: Double, duration: NSTimeInterval, peakPower: Float, averagePower: Float) {
+    //        debugPrint("playback progress")
+    //
+    //        debugPrint(Float(percentage))
+    //        playbackProgress.setProgress(Float(percentage), animated: true)
+    //        let seconds = duration % 60
+    //        let minutes = (duration / 60) % 60
+    //        let time = String(format: "%02d:%02d", minutes, seconds)
+    //        elapsedTimeLabel.text = time
+    //    }
+    
+//    func rwAudioPlayerDidFinishPlaying() {
+//        let rwf = RWFramework.sharedInstance
+//        playPauseButton.drawButton(false)
+//        debugPrint("stopped playing")
+//        //        speakProgress.setProgress(0, animated: false)
+//    }
+    
+
 
 }

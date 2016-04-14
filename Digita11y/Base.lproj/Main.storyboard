@@ -32,8 +32,7 @@
                                         <exclude reference="4aE-8e-Ve0"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular" misplaced="YES">
-                                    <rect key="frame" x="10" y="124" width="300" height="140"/>
+                                <variation key="heightClass=regular">
                                     <mask key="constraints">
                                         <include reference="4aE-8e-Ve0"/>
                                     </mask>
@@ -51,8 +50,7 @@
                                         <exclude reference="n0l-2m-YrS"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular" misplaced="YES">
-                                    <rect key="frame" x="10" y="324" width="300" height="224"/>
+                                <variation key="heightClass=regular">
                                     <mask key="constraints">
                                         <include reference="2gi-qL-cyN"/>
                                         <include reference="n0l-2m-YrS"/>
@@ -280,7 +278,8 @@
                                                 <exclude reference="oT5-ga-hJ0"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular">
+                                        <variation key="heightClass=regular" misplaced="YES">
+                                            <rect key="frame" x="33" y="206" width="222" height="21"/>
                                             <mask key="constraints">
                                                 <include reference="a9w-jS-whs"/>
                                                 <include reference="oT5-ga-hJ0"/>
@@ -302,7 +301,8 @@
                                                 <exclude reference="lGN-UH-JJp"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular">
+                                        <variation key="heightClass=regular" misplaced="YES">
+                                            <rect key="frame" x="16" y="313" width="256" height="70"/>
                                             <mask key="constraints">
                                                 <include reference="Ayq-QB-AwM"/>
                                                 <include reference="lGN-UH-JJp"/>
@@ -421,8 +421,7 @@
                                         <exclude reference="er3-bR-lpm"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular" misplaced="YES">
-                                    <rect key="frame" x="23" y="60" width="275" height="21"/>
+                                <variation key="heightClass=regular">
                                     <mask key="constraints">
                                         <include reference="er3-bR-lpm"/>
                                     </mask>
@@ -438,8 +437,7 @@
                                         <exclude reference="8O3-dE-I5d"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular" misplaced="YES">
-                                    <rect key="frame" x="16" y="141" width="288" height="407"/>
+                                <variation key="heightClass=regular">
                                     <mask key="constraints">
                                         <include reference="8O3-dE-I5d"/>
                                     </mask>
@@ -639,15 +637,9 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <variation key="heightClass=regular" misplaced="YES">
-                                    <rect key="frame" x="16" y="523" width="288" height="68"/>
-                                </variation>
                             </stackView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wmp-MJ-emO" userLabel="Items Scroll View">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="heightClass=regular" misplaced="YES">
-                                    <rect key="frame" x="16" y="138" width="288" height="344"/>
-                                </variation>
                             </scrollView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="hgv-wM-mnd" userLabel="Progress">
                                 <rect key="frame" x="-7" y="-11" width="305" height="65"/>
@@ -683,9 +675,6 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <variation key="heightClass=regular" misplaced="YES">
-                                    <rect key="frame" x="16" y="490" width="288" height="25"/>
-                                </variation>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.29019609089999998" green="0.5647059083" blue="0.88627451660000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -806,15 +795,9 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="0.0" width="288" height="41"/>
-                                        </variation>
                                     </label>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" restorationIdentifier="ContributeScroll" translatesAutoresizingMaskIntoConstraints="NO" id="bSR-Dv-uNZ">
                                         <rect key="frame" x="315" y="0.0" width="280" height="192"/>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="41" width="288" height="386"/>
-                                        </variation>
                                     </scrollView>
                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="ql7-lQ-oi3">
                                         <rect key="frame" x="595" y="0.0" width="350" height="192"/>
@@ -1078,9 +1061,6 @@ This improvement upon the original usage was introduced by no less a man than St
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular" misplaced="YES">
-                                    <rect key="frame" x="16" y="152" width="288" height="244"/>
-                                </variation>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -1246,12 +1226,12 @@ This improvement upon the original usage was introduced by no less a man than St
                                 <exclude reference="okj-Yu-HWv"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="zCy-VE-grR"/>
+                                <exclude reference="Hth-zS-Dn6"/>
+                                <exclude reference="q5I-Sb-UlP"/>
                                 <exclude reference="GBP-PD-n97"/>
                                 <exclude reference="Noj-gw-9aV"/>
                                 <exclude reference="ecm-4U-NUU"/>
-                                <exclude reference="Hth-zS-Dn6"/>
-                                <exclude reference="q5I-Sb-UlP"/>
-                                <exclude reference="zCy-VE-grR"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular">
@@ -1260,12 +1240,12 @@ This improvement upon the original usage was introduced by no less a man than St
                                 <include reference="okj-Yu-HWv"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="zCy-VE-grR"/>
+                                <include reference="Hth-zS-Dn6"/>
+                                <include reference="q5I-Sb-UlP"/>
                                 <include reference="GBP-PD-n97"/>
                                 <include reference="Noj-gw-9aV"/>
                                 <include reference="ecm-4U-NUU"/>
-                                <include reference="Hth-zS-Dn6"/>
-                                <include reference="q5I-Sb-UlP"/>
-                                <include reference="zCy-VE-grR"/>
                             </mask>
                         </variation>
                     </view>

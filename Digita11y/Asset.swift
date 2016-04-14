@@ -28,20 +28,21 @@ struct Asset {
     }
     
     init(json: JSON) {
+        debugPrint("initing asset")
+        dump(json)
         assetDescription = json["description"].string ?? ""
         volume = json["volume"].int ?? 0
         project = json["project"].int ?? 0
         assetID = json["asset_id"].int ?? 0
         audioLength = json["audio_length_in_seconds"].float ?? 0
-        
         tagIDs = json["tag_ids"].array?.map { $0.int ?? 0 } ?? []
         
-        var base = RWFrameworkConfig.getConfigValueAsString("base_url")
+        let base = RWFrameworkConfig.getConfigValueAsString("base_url")
         var path = (json["file"].string ?? "")
         if base.hasSuffix("/") && path.hasPrefix("/") {
             path.removeAtIndex(path.startIndex)
         }
-        var strURL = base + path
+        let strURL = base + path
         fileURL = NSURL(string: strURL) ?? NSURL()
         
         if json["media_type"].string == "text" {
@@ -51,6 +52,8 @@ struct Asset {
             if TextCache[url] == nil {
                 requestAssetText(url) { text in
                     TextCache[url] = text
+                    print("text cached")
+                    dump(text)
                 }
             }
         } else if json["media_type"].string == "photo" {
@@ -63,28 +66,7 @@ struct Asset {
     }
 }
 
-class AssetPlayer : NSObject {
-    var player : AVPlayer?
-    var asset: Asset
-    
-    var isPlaying: Bool {
-        get {
-            return self.player?.rate == 1.0
-        }
-    }
-    
-    init(asset: Asset) {
-        self.asset = asset
-        
-        var item = AVPlayerItem(URL: asset.fileURL)
-        player = AVPlayer(playerItem: item)
-        super.init()
-    }
-}
-
 //{
-//  "description" : "",
-//  "volume" : 1,
 //  "audio_length_in_seconds" : null,
 //  "file" : "\/rwmedia\/20150312-164018-190.txt",
 //  "project" : 2,
@@ -104,4 +86,24 @@ class AssetPlayer : NSObject {
 //  "loc_description" : [
 //
 //  ]
+//}
+
+
+//TODO trash this
+//class AssetPlayer : NSObject {
+//    var player : AVPlayer?
+//    var asset: Asset
+//
+//    var isPlaying: Bool {
+//        get {
+//            return self.player?.rate == 1.0
+//        }
+//    }
+//
+//    init(asset: Asset) {
+//        self.asset = asset
+//        var item = AVPlayerItem(URL: asset.fileURL)
+//        player = AVPlayer(playerItem: item)
+//        super.init()
+//    }
 //}

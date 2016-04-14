@@ -225,10 +225,10 @@
 				8ABADE4C1C98732300660907 /* Tag.swift */,
 				8A2C98961CA36D4600DC281A /* UIItem.swift */,
 				8A2C98981CA36D5200DC281A /* UIGroup.swift */,
+				8ABADE431C986ECF00660907 /* Asset.swift */,
 				8AA491331C84D25800422274 /* Project.swift */,
 				8ABADE451C9870EE00660907 /* TagGroup.swift */,
 				8ABADE411C986EB900660907 /* Stream.swift */,
-				8ABADE431C986ECF00660907 /* Asset.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
