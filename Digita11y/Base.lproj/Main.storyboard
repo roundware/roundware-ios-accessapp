@@ -4,7 +4,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -1079,6 +1078,9 @@ This improvement upon the original usage was introduced by no less a man than St
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular" misplaced="YES">
+                                    <rect key="frame" x="16" y="152" width="288" height="244"/>
+                                </variation>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -1099,14 +1101,14 @@ This improvement upon the original usage was introduced by no less a man than St
                                 <exclude reference="Thl-oq-mNc"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="5Hx-rr-MyU"/>
-                                <exclude reference="Ryd-vJ-IFJ"/>
-                                <exclude reference="YTa-K7-UHa"/>
+                                <exclude reference="DvQ-Vp-aDm"/>
+                                <exclude reference="i9G-uP-n8S"/>
                                 <exclude reference="akD-It-aeJ"/>
                                 <exclude reference="si5-sI-I84"/>
                                 <exclude reference="uKt-bU-nX3"/>
-                                <exclude reference="DvQ-Vp-aDm"/>
-                                <exclude reference="i9G-uP-n8S"/>
+                                <exclude reference="5Hx-rr-MyU"/>
+                                <exclude reference="Ryd-vJ-IFJ"/>
+                                <exclude reference="YTa-K7-UHa"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular">
@@ -1116,14 +1118,14 @@ This improvement upon the original usage was introduced by no less a man than St
                                 <include reference="Thl-oq-mNc"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="5Hx-rr-MyU"/>
-                                <include reference="Ryd-vJ-IFJ"/>
-                                <include reference="YTa-K7-UHa"/>
+                                <include reference="DvQ-Vp-aDm"/>
+                                <include reference="i9G-uP-n8S"/>
                                 <include reference="akD-It-aeJ"/>
                                 <include reference="si5-sI-I84"/>
                                 <include reference="uKt-bU-nX3"/>
-                                <include reference="DvQ-Vp-aDm"/>
-                                <include reference="i9G-uP-n8S"/>
+                                <include reference="5Hx-rr-MyU"/>
+                                <include reference="Ryd-vJ-IFJ"/>
+                                <include reference="YTa-K7-UHa"/>
                             </mask>
                         </variation>
                     </view>
@@ -1142,6 +1144,7 @@ This improvement upon the original usage was introduced by no less a man than St
                         <viewControllerLayoutGuide type="bottom" id="Ee1-7x-PyB"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="B6e-un-DeB">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ROX-Lh-qkj">
@@ -1226,19 +1229,6 @@ This improvement upon the original usage was introduced by no less a man than St
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="okj-Yu-HWv">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="okj-Yu-HWv" secondAttribute="height" multiplier="40:37" id="y1t-pl-Igx"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="y1t-pl-Igx"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=regular">
-                                    <mask key="constraints">
-                                        <include reference="y1t-pl-Igx"/>
-                                    </mask>
-                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -1246,8 +1236,9 @@ This improvement upon the original usage was introduced by no less a man than St
                             <constraint firstAttribute="trailingMargin" secondItem="okj-Yu-HWv" secondAttribute="trailing" constant="-20" id="GBP-PD-n97"/>
                             <constraint firstItem="LzH-bJ-5FG" firstAttribute="top" secondItem="Mse-cA-K5z" secondAttribute="bottom" id="Hth-zS-Dn6"/>
                             <constraint firstItem="okj-Yu-HWv" firstAttribute="leading" secondItem="SFW-Kv-Ahv" secondAttribute="leadingMargin" constant="-20" id="Noj-gw-9aV"/>
-                            <constraint firstItem="okj-Yu-HWv" firstAttribute="top" secondItem="LzH-bJ-5FG" secondAttribute="bottom" constant="13" id="ecm-4U-NUU"/>
+                            <constraint firstItem="okj-Yu-HWv" firstAttribute="top" secondItem="LzH-bJ-5FG" secondAttribute="bottom" constant="20" id="ecm-4U-NUU"/>
                             <constraint firstItem="LzH-bJ-5FG" firstAttribute="trailing" secondItem="SFW-Kv-Ahv" secondAttribute="trailingMargin" id="q5I-Sb-UlP"/>
+                            <constraint firstItem="1YT-x2-nb4" firstAttribute="top" secondItem="okj-Yu-HWv" secondAttribute="bottom" constant="20" id="zCy-VE-grR"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
@@ -1260,6 +1251,7 @@ This improvement upon the original usage was introduced by no less a man than St
                                 <exclude reference="ecm-4U-NUU"/>
                                 <exclude reference="Hth-zS-Dn6"/>
                                 <exclude reference="q5I-Sb-UlP"/>
+                                <exclude reference="zCy-VE-grR"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular">
@@ -1273,6 +1265,7 @@ This improvement upon the original usage was introduced by no less a man than St
                                 <include reference="ecm-4U-NUU"/>
                                 <include reference="Hth-zS-Dn6"/>
                                 <include reference="q5I-Sb-UlP"/>
+                                <include reference="zCy-VE-grR"/>
                             </mask>
                         </variation>
                     </view>

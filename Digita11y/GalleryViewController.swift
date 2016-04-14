@@ -39,6 +39,8 @@ class GalleryViewController: BaseViewController, UIPageViewControllerDataSource 
         pageViewController = pageController
         addChildViewController(pageViewController!)
         pageContainer.addSubview(pageViewController!.view)
+        pageViewController!.view.frame = pageContainer.bounds
+        
         pageViewController!.didMoveToParentViewController(self)
     }
     
