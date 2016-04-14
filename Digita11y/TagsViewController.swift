@@ -9,6 +9,7 @@
 import UIKit
 //import AVFoundation
 import RWFramework
+import Crashlytics
 import SwiftyJSON
 
 //TODO audio player delegate?
@@ -17,7 +18,6 @@ import SwiftyJSON
 class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewDataSource, AKPickerViewDelegate {
     var viewModel: TagsViewModel!
     var items : [TagView] = []
-
 
     // MARK: Outlets
     @IBOutlet weak var parentTagPickerView: AKPickerView!
@@ -30,6 +30,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
     @IBOutlet weak var previousButton: UIButton!
     @IBOutlet weak var speedButton: UIButton!
     @IBOutlet weak var elapsedTimeLabel: UILabel!
+    @IBOutlet weak var playbackProgress: UIProgressView!
     @IBOutlet weak var totalTimeLabel: UILabel!
     
     // MARK: Main Action
@@ -38,19 +39,25 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
     }
     
     @IBAction func toggleStream(sender: AnyObject) {
-        //TODO
+        let rwf = RWFramework.sharedInstance
+        rwf.isPlaying ? rwf.stop() : rwf.play()
+        self.playPauseButton.drawButton(rwf.isPlaying)
+//        listenPlayButton.setTitle(rwf.isPlaying ? "Stop" : "Play", forState: UIControlState.Normal)
     }
     
     @IBAction func nextTag(sender: AnyObject) {
-        //TODO
+        RWFramework.sharedInstance.next()
     }
     
     @IBAction func previousTag(sender: AnyObject) {
-        //TODO
+        
     }
     
     @IBAction func contribute(sender: AnyObject) {
-        //TODO pause playback?
+        let rwf = RWFramework.sharedInstance
+        if(rwf.isPlaying){
+            rwf.stop()
+        }
         self.performSegueWithIdentifier("ContributeSegue", sender: sender)
     }
     
@@ -107,13 +114,11 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 
     
     // MARK: Views
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         //TODO instantiate  and start rwf
         super.view.addBackground("bg-comment.png")
     }
-    
     
     func resetRoomItems(){
         //TODO call from stream finish/start
@@ -124,15 +129,14 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
         let scroll = itemsScrollView
         //hide old assets
         for (index, item) in scroll.subviews.enumerate(){
-//            UIView.animateWithDuration(duration, delay: Double(index) * delay, options: UIViewAnimationOptions.CurveEaseIn, animations: {
             UIView.animateWithDuration(duration, delay: Double(index) * delay, usingSpringWithDamping: springDamping, initialSpringVelocity: springVelocity, options: [], animations: {
-
                 item.alpha = 0
                 item.center.y -= 30
             }, completion: { finished in
                 item.removeFromSuperview()
             })
         }
+        //show new assets
         let total = self.viewModel.numberOfItems()
         scroll.delegate = self
         let itemWidth = 300
@@ -195,8 +199,27 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
         self.parentTagPickerView.maskDisabled = true
         self.parentTagPickerView.font = UIFont(name: "AvenirNext-Medium", size: 30)!
         self.parentTagPickerView.highlightedFont = UIFont(name: "AvenirNext-Medium", size: 30)!
+        
+        //TODO if first selection, else restore...
         self.parentTagPickerView.reloadData()
         self.parentTagPickerView.selectItem(0)
+        
+        //TODO double check for location...
+        
+        //start stream
+        setupAudio() { granted, error in
+            if granted == false {
+                debugPrint("Unable to setup audio: \(error)")
+                if let error = error {
+                    CLSNSLogv("Unable to setup audio: \(error)", getVaList([error]))
+                }
+            } else {
+                debugPrint("setup audio win")
+                let rwf = RWFramework.sharedInstance
+                rwf.addDelegate(self)
+                rwf.play()
+            }
+        }
     }
     
     override func viewDidLayoutSubviews(){
@@ -210,20 +233,11 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
         super.didReceiveMemoryWarning()
     }
     
-    
-    
-    
-    
     // MARK: Gallery Modal
     
     // MARK: Map Modal
     
     // MARK: Text Modal
-    
-    
-
-    
-    
     
     // MARK: - AKPickerViewDataSource
     
@@ -262,7 +276,6 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 
     
     // MARK: RWFramework Protocol
-
     func rwGetStreamsIdCurrentSuccess(data: NSData?) {
         _ = JSON(data: data!)
         debugPrint(data)
@@ -277,24 +290,30 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
         })
     }
 
-//    func rwPostStreamsIdHeartbeatSuccess(data: NSData?) {
-//        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//            UIView.animateWithDuration(0.5, animations: { () -> Void in
-//                self.heartbeatButton.alpha = 0.0
-//                }, completion: { (Bool) -> Void in
-//                    self.heartbeatButton.alpha = 1.0
-//            })
-//        })
-//    }
-
-    func rwPlayingBackProgress(percentage: Double, duration: NSTimeInterval, peakPower: Float, averagePower: Float) {
-//        speakProgress.setProgress(Float(percentage), animated: true)
+    func rwPostStreamsIdHeartbeatSuccess(data: NSData?) {
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            debugPrint("heartbeat")
+        })
+    }
+    
+    func rwPostStreamsIdNextSuccess(data: NSData?) {
+        debugPrint("next success")
     }
 
+    func rwPlayingBackProgress(percentage: Double, duration: NSTimeInterval, peakPower: Float, averagePower: Float) {
+        debugPrint(Float(percentage))
+        playbackProgress.setProgress(Float(percentage), animated: true)
+        let seconds = duration % 60
+        let minutes = (duration / 60) % 60
+        let time = String(format: "%02d:%02d", minutes, seconds)
+        elapsedTimeLabel.text = time
+    }
 
     func rwAudioPlayerDidFinishPlaying() {
         let rwf = RWFramework.sharedInstance
-//        speakPlayButton.setTitle(rwf.isPlayingBack() ? "Stop" : "Play", forState: UIControlState.Normal)
+        playPauseButton.drawButton(false)
+        debugPrint("stopped playing")
 //        speakProgress.setProgress(0, animated: false)
     }
+
 }

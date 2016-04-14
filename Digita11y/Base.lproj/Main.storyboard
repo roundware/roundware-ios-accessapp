@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -147,8 +148,7 @@
                                                 <exclude reference="3Gw-vX-TNb"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="53" y="133" width="183" height="100"/>
+                                        <variation key="heightClass=regular">
                                             <mask key="constraints">
                                                 <include reference="3Gw-vX-TNb"/>
                                             </mask>
@@ -281,8 +281,7 @@
                                                 <exclude reference="oT5-ga-hJ0"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="176" width="288" height="82"/>
+                                        <variation key="heightClass=regular">
                                             <mask key="constraints">
                                                 <include reference="a9w-jS-whs"/>
                                                 <include reference="oT5-ga-hJ0"/>
@@ -304,8 +303,7 @@
                                                 <exclude reference="lGN-UH-JJp"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="13" y="314" width="262" height="99"/>
+                                        <variation key="heightClass=regular">
                                             <mask key="constraints">
                                                 <include reference="Ayq-QB-AwM"/>
                                                 <include reference="lGN-UH-JJp"/>
@@ -593,28 +591,6 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="hgv-wM-mnd" userLabel="Progress">
-                                <rect key="frame" x="-7" y="-11" width="305" height="65"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="StartTime" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L0T-v5-bl1">
-                                        <rect key="frame" x="20" y="20" width="48" height="25"/>
-                                        <accessibility key="accessibilityConfiguration" hint="elapsed"/>
-                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="EndTime" text="00:30" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PVB-qE-AIn">
-                                        <rect key="frame" x="237" y="20" width="48" height="25"/>
-                                        <accessibility key="accessibilityConfiguration" hint="total"/>
-                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <variation key="heightClass=regular" misplaced="YES">
-                                    <rect key="frame" x="16" y="490" width="288" height="25"/>
-                                </variation>
-                            </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="JzA-bL-0dw">
                                 <rect key="frame" x="48" y="-20" width="248" height="123"/>
                                 <subviews>
@@ -625,9 +601,6 @@
                                         <state key="normal" title="Speed 1x">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="0.0" width="61" height="68"/>
-                                        </variation>
                                         <connections>
                                             <action selector="cycleSpeed:" destination="FnB-gZ-PAk" eventType="touchUpInside" id="fBk-Uf-Cb3"/>
                                         </connections>
@@ -636,9 +609,6 @@
                                         <rect key="frame" x="20" y="46" width="24" height="32"/>
                                         <accessibility key="accessibilityConfiguration" label="Previous asset"/>
                                         <state key="normal" image="previous"/>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="78" y="0.0" width="24" height="68"/>
-                                        </variation>
                                         <connections>
                                             <action selector="previousTag:" destination="FnB-gZ-PAk" eventType="touchUpInside" id="Qzl-wq-IZo"/>
                                         </connections>
@@ -649,9 +619,6 @@
                                         <state key="normal">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="115" y="0.0" width="68" height="68"/>
-                                        </variation>
                                         <connections>
                                             <action selector="toggleStream:" destination="FnB-gZ-PAk" eventType="touchUpInside" id="TBs-XL-QR3"/>
                                         </connections>
@@ -660,9 +627,6 @@
                                         <rect key="frame" x="133" y="51" width="24" height="32"/>
                                         <accessibility key="accessibilityConfiguration" label="Next asset"/>
                                         <state key="normal" image="next"/>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="197" y="0.0" width="24" height="68"/>
-                                        </variation>
                                         <connections>
                                             <action selector="nextTag:" destination="FnB-gZ-PAk" eventType="touchUpInside" id="eid-dr-xbJ"/>
                                         </connections>
@@ -671,9 +635,6 @@
                                         <rect key="frame" x="190" y="42" width="38" height="39"/>
                                         <accessibility key="accessibilityConfiguration" label="Contribute"/>
                                         <state key="normal" image="comment-small"/>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="248" y="0.0" width="40" height="68"/>
-                                        </variation>
                                         <connections>
                                             <action selector="contribute:" destination="FnB-gZ-PAk" eventType="touchUpInside" id="RVj-1n-Q3Y"/>
                                         </connections>
@@ -689,6 +650,44 @@
                                     <rect key="frame" x="16" y="138" width="288" height="344"/>
                                 </variation>
                             </scrollView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="hgv-wM-mnd" userLabel="Progress">
+                                <rect key="frame" x="-7" y="-11" width="305" height="65"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="StartTime" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L0T-v5-bl1">
+                                        <rect key="frame" x="20" y="20" width="48" height="25"/>
+                                        <accessibility key="accessibilityConfiguration" hint="elapsed"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Y1i-ka-M4t">
+                                        <rect key="frame" x="0.0" y="-2" width="150" height="2"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="150" id="4tC-5i-rs4"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="4tC-5i-rs4"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="heightClass=regular">
+                                            <mask key="constraints">
+                                                <include reference="4tC-5i-rs4"/>
+                                            </mask>
+                                        </variation>
+                                    </progressView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="EndTime" text="00:30" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PVB-qE-AIn">
+                                        <rect key="frame" x="237" y="20" width="48" height="25"/>
+                                        <accessibility key="accessibilityConfiguration" hint="total"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <variation key="heightClass=regular" misplaced="YES">
+                                    <rect key="frame" x="16" y="490" width="288" height="25"/>
+                                </variation>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.29019609089999998" green="0.5647059083" blue="0.88627451660000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -716,9 +715,9 @@
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="C7b-85-kju"/>
-                                <exclude reference="hgv-wM-mnd"/>
                                 <exclude reference="JzA-bL-0dw"/>
                                 <exclude reference="wmp-MJ-emO"/>
+                                <exclude reference="hgv-wM-mnd"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="t3x-2d-rvF"/>
@@ -742,9 +741,9 @@
                         <variation key="heightClass=regular">
                             <mask key="subviews">
                                 <include reference="C7b-85-kju"/>
-                                <include reference="hgv-wM-mnd"/>
                                 <include reference="JzA-bL-0dw"/>
                                 <include reference="wmp-MJ-emO"/>
+                                <include reference="hgv-wM-mnd"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="t3x-2d-rvF"/>
@@ -1057,22 +1056,55 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LM8-RD-71l">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <accessibility key="accessibilityConfiguration" label="Close"/>
                                 <state key="normal" image="close"/>
                                 <connections>
                                     <segue destination="RJ6-gK-N6w" kind="unwind" unwindAction="prepareForTagsDismiss:" id="k7m-rL-dGM"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Describe the site from where you are standing.  What details do you notice?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nK2-hg-0C2">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular">
+                                    <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="17"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="Body" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Thl-oq-mNc" customClass="UILabelBody" customModule="Digita11y" customModuleProvider="target">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <string key="text">The monkey-rope is found in all whalers; but it was only in the Pequod that the monkey and his holder were ever tied together. 
+
+This improvement upon the original usage was introduced by no less a man than Stubb, in order to afford the imperilled harpooneer the strongest possible guarantee for the faithfulness and vigilance of his monkey-rope holder.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="nK2-hg-0C2" firstAttribute="leading" secondItem="5DR-ti-8xB" secondAttribute="leadingMargin" id="5Hx-rr-MyU"/>
                             <constraint firstItem="LM8-RD-71l" firstAttribute="trailing" secondItem="5DR-ti-8xB" secondAttribute="trailingMargin" id="DvQ-Vp-aDm"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="nK2-hg-0C2" secondAttribute="trailing" id="Ryd-vJ-IFJ"/>
+                            <constraint firstItem="nK2-hg-0C2" firstAttribute="top" secondItem="LM8-RD-71l" secondAttribute="bottom" constant="20" id="YTa-K7-UHa"/>
+                            <constraint firstItem="Thl-oq-mNc" firstAttribute="trailing" secondItem="5DR-ti-8xB" secondAttribute="trailingMargin" id="akD-It-aeJ"/>
                             <constraint firstItem="LM8-RD-71l" firstAttribute="top" secondItem="5fH-J2-KFN" secondAttribute="bottom" id="i9G-uP-n8S"/>
+                            <constraint firstItem="Thl-oq-mNc" firstAttribute="leading" secondItem="5DR-ti-8xB" secondAttribute="leadingMargin" id="si5-sI-I84"/>
+                            <constraint firstItem="Thl-oq-mNc" firstAttribute="top" secondItem="nK2-hg-0C2" secondAttribute="bottom" constant="20" id="uKt-bU-nX3"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="LM8-RD-71l"/>
+                                <exclude reference="nK2-hg-0C2"/>
+                                <exclude reference="Thl-oq-mNc"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="5Hx-rr-MyU"/>
+                                <exclude reference="Ryd-vJ-IFJ"/>
+                                <exclude reference="YTa-K7-UHa"/>
+                                <exclude reference="akD-It-aeJ"/>
+                                <exclude reference="si5-sI-I84"/>
+                                <exclude reference="uKt-bU-nX3"/>
                                 <exclude reference="DvQ-Vp-aDm"/>
                                 <exclude reference="i9G-uP-n8S"/>
                             </mask>
@@ -1080,8 +1112,16 @@
                         <variation key="heightClass=regular">
                             <mask key="subviews">
                                 <include reference="LM8-RD-71l"/>
+                                <include reference="nK2-hg-0C2"/>
+                                <include reference="Thl-oq-mNc"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="5Hx-rr-MyU"/>
+                                <include reference="Ryd-vJ-IFJ"/>
+                                <include reference="YTa-K7-UHa"/>
+                                <include reference="akD-It-aeJ"/>
+                                <include reference="si5-sI-I84"/>
+                                <include reference="uKt-bU-nX3"/>
                                 <include reference="DvQ-Vp-aDm"/>
                                 <include reference="i9G-uP-n8S"/>
                             </mask>
@@ -1091,12 +1131,83 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qQ4-ub-uH4" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="RJ6-gK-N6w" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="773" y="-1915.5"/>
+            <point key="canvasLocation" x="391" y="-1946.25"/>
+        </scene>
+        <!--Page Item Controller-->
+        <scene sceneID="wmK-hf-AdG">
+            <objects>
+                <viewController storyboardIdentifier="ItemController" id="xI5-wN-te2" customClass="PageItemController" customModule="Digita11y" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1dO-Jb-mD0"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ee1-7x-PyB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="B6e-un-DeB">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ROX-Lh-qkj">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="320" id="PMQ-1X-0If"/>
+                                    <constraint firstAttribute="width" constant="320" id="eVF-qo-GeP"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="PMQ-1X-0If"/>
+                                        <exclude reference="eVF-qo-GeP"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="PMQ-1X-0If"/>
+                                        <include reference="eVF-qo-GeP"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ROX-Lh-qkj" firstAttribute="centerX" secondItem="B6e-un-DeB" secondAttribute="centerX" id="V91-2D-JrW"/>
+                            <constraint firstItem="ROX-Lh-qkj" firstAttribute="centerY" secondItem="B6e-un-DeB" secondAttribute="centerY" id="kfE-Wg-mGn"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="ROX-Lh-qkj"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="V91-2D-JrW"/>
+                                <exclude reference="kfE-Wg-mGn"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular">
+                            <mask key="subviews">
+                                <include reference="ROX-Lh-qkj"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="V91-2D-JrW"/>
+                                <include reference="kfE-Wg-mGn"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="contentImageView" destination="ROX-Lh-qkj" id="o19-Ep-szK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iPQ-ig-Nvj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1500" y="-2143.5"/>
+        </scene>
+        <!--Page View Controller-->
+        <scene sceneID="1Qu-Ni-cyc">
+            <objects>
+                <pageViewController storyboardIdentifier="PageController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="Blv-FL-avJ" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="inY-IV-Lca" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1093" y="-1806.75"/>
         </scene>
         <!--Gallery-->
         <scene sceneID="51S-Jx-ai1">
             <objects>
-                <viewController restorationIdentifier="Gallery" storyboardIdentifier="Gallery" id="s7j-Qm-VDd" userLabel="Gallery" customClass="GalleryViewController" sceneMemberID="viewController">
+                <viewController restorationIdentifier="Gallery" storyboardIdentifier="Gallery" id="s7j-Qm-VDd" userLabel="Gallery" customClass="GalleryViewController" customModule="Digita11y" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Mse-cA-K5z"/>
                         <viewControllerLayoutGuide type="bottom" id="1YT-x2-nb4"/>
@@ -1113,17 +1224,40 @@
                                     <segue destination="Moy-uy-HcG" kind="unwind" unwindAction="prepareForTagsDismiss:" id="gId-uY-nyB"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="okj-Yu-HWv">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="okj-Yu-HWv" secondAttribute="height" multiplier="40:37" id="y1t-pl-Igx"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="y1t-pl-Igx"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="y1t-pl-Igx"/>
+                                    </mask>
+                                </variation>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="okj-Yu-HWv" secondAttribute="trailing" constant="-20" id="GBP-PD-n97"/>
                             <constraint firstItem="LzH-bJ-5FG" firstAttribute="top" secondItem="Mse-cA-K5z" secondAttribute="bottom" id="Hth-zS-Dn6"/>
+                            <constraint firstItem="okj-Yu-HWv" firstAttribute="leading" secondItem="SFW-Kv-Ahv" secondAttribute="leadingMargin" constant="-20" id="Noj-gw-9aV"/>
+                            <constraint firstItem="okj-Yu-HWv" firstAttribute="top" secondItem="LzH-bJ-5FG" secondAttribute="bottom" constant="13" id="ecm-4U-NUU"/>
                             <constraint firstItem="LzH-bJ-5FG" firstAttribute="trailing" secondItem="SFW-Kv-Ahv" secondAttribute="trailingMargin" id="q5I-Sb-UlP"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="LzH-bJ-5FG"/>
+                                <exclude reference="okj-Yu-HWv"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="GBP-PD-n97"/>
+                                <exclude reference="Noj-gw-9aV"/>
+                                <exclude reference="ecm-4U-NUU"/>
                                 <exclude reference="Hth-zS-Dn6"/>
                                 <exclude reference="q5I-Sb-UlP"/>
                             </mask>
@@ -1131,23 +1265,30 @@
                         <variation key="heightClass=regular">
                             <mask key="subviews">
                                 <include reference="LzH-bJ-5FG"/>
+                                <include reference="okj-Yu-HWv"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="GBP-PD-n97"/>
+                                <include reference="Noj-gw-9aV"/>
+                                <include reference="ecm-4U-NUU"/>
                                 <include reference="Hth-zS-Dn6"/>
                                 <include reference="q5I-Sb-UlP"/>
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="pageContainer" destination="okj-Yu-HWv" id="pEm-8g-QAp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WeU-w5-n82" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Moy-uy-HcG" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="829" y="-1240.5"/>
+            <point key="canvasLocation" x="729" y="-1432.5"/>
         </scene>
         <!--Map View-->
         <scene sceneID="gc3-XU-oF7">
             <objects>
-                <viewController title="Map View" id="ezH-kl-5yA" customClass="MapViewController" sceneMemberID="viewController">
+                <viewController title="Map View" id="ezH-kl-5yA" customClass="MapViewController" customModule="Digita11y" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MfP-Fr-dZz"/>
                         <viewControllerLayoutGuide type="bottom" id="FEA-LV-XGJ"/>
@@ -1156,6 +1297,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HCm-Xa-0Ta" customClass="ImageScrollView" customModule="ImageScrollView">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n63-Qv-uSh">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <accessibility key="accessibilityConfiguration" label="Close map"/>
@@ -1169,27 +1313,44 @@
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="n63-Qv-uSh" firstAttribute="top" secondItem="MfP-Fr-dZz" secondAttribute="bottom" id="8to-HR-GDd"/>
+                            <constraint firstItem="HCm-Xa-0Ta" firstAttribute="leading" secondItem="PeG-VN-9qa" secondAttribute="leading" id="94V-xg-q39"/>
+                            <constraint firstItem="HCm-Xa-0Ta" firstAttribute="bottom" secondItem="FEA-LV-XGJ" secondAttribute="top" id="9tC-Pb-AQX"/>
+                            <constraint firstItem="HCm-Xa-0Ta" firstAttribute="top" secondItem="PeG-VN-9qa" secondAttribute="top" id="E2y-UX-RUA"/>
+                            <constraint firstAttribute="trailing" secondItem="HCm-Xa-0Ta" secondAttribute="trailing" id="HNj-5S-YiB"/>
                             <constraint firstItem="n63-Qv-uSh" firstAttribute="trailing" secondItem="PeG-VN-9qa" secondAttribute="trailingMargin" id="kvX-Vp-Zih"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
+                                <exclude reference="HCm-Xa-0Ta"/>
                                 <exclude reference="n63-Qv-uSh"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="8to-HR-GDd"/>
                                 <exclude reference="kvX-Vp-Zih"/>
+                                <exclude reference="94V-xg-q39"/>
+                                <exclude reference="9tC-Pb-AQX"/>
+                                <exclude reference="E2y-UX-RUA"/>
+                                <exclude reference="HNj-5S-YiB"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular">
                             <mask key="subviews">
+                                <include reference="HCm-Xa-0Ta"/>
                                 <include reference="n63-Qv-uSh"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="8to-HR-GDd"/>
                                 <include reference="kvX-Vp-Zih"/>
+                                <include reference="94V-xg-q39"/>
+                                <include reference="9tC-Pb-AQX"/>
+                                <include reference="E2y-UX-RUA"/>
+                                <include reference="HNj-5S-YiB"/>
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="imageScrollView" destination="HCm-Xa-0Ta" id="aPN-5L-bvF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dxv-Pk-KBL" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="BKy-xw-1gm" userLabel="Exit" sceneMemberID="exit"/>

@@ -47,7 +47,7 @@ class TagsViewModel: BaseViewModel  {
         let uiGroupIndex = 1
         let uiGroupMode = "listen"
         
-        //TODO error hadnle
+        //TODO error handle
         self.roomUIGroup = (data.uiGroups.filter{ $0.index == uiGroupIndex &&
             $0.uiMode == uiGroupMode }.first)!
         self.itemsUIGroup = (data.uiGroups.filter{ $0.index == uiGroupIndex + 1 &&

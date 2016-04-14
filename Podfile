@@ -7,4 +7,5 @@ target 'Digita11y', :exclusive => true do
   pod 'Alamofire'
   pod 'Fabric'
   pod 'Crashlytics'
+  pod 'ImageScrollView'
 end
