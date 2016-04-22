@@ -85,11 +85,15 @@ import UIKit
     let springDamping = CGFloat(0.5)
     let springVelocity = CGFloat(0.5)
     
+    //TODO toggle button selected state
+    //TODO toggle visibility progress view
+    //TODO default button background
     func select(){
-        
-        [ self.cameraButton, self.textButton, self.audioImage].forEach{
+
+        [ self.cameraButton, self.textButton, self.audioImage, self.tagProgress].forEach{
             $0.hidden = false
         }
+        self.tagTitle.backgroundColor = UIColor.clearColor()
         
         UIView.animateWithDuration(duration, delay: delay, usingSpringWithDamping: springDamping, initialSpringVelocity: springVelocity, options: [], animations:
             {
@@ -99,6 +103,7 @@ import UIKit
                 }
                 self.tagTitle.contentEdgeInsets.right += 20
                 self.tagTitle.superview!.layoutIfNeeded()
+                
             }, completion: { finished in
         })
     }
@@ -117,10 +122,11 @@ import UIKit
                 self.tagProgress.progress = 0
 
         }, completion: { finished in
-            self.textButton.hidden = true
-            self.cameraButton.hidden = true
-            self.audioImage.hidden = true
-  
+            [ self.cameraButton, self.textButton, self.audioImage, self.tagProgress].forEach{
+                $0.hidden = true
+            }
+            self.tagTitle.backgroundColor = UIColor.GreenishTeal85Color()
+
         })
     }
 }
