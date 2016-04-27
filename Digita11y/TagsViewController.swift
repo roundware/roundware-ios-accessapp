@@ -125,12 +125,13 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
     }
     
     // MARK: Asset Actions
+    //TODO really select item
     @IBAction func selectAsset(sender: UIButton) {
         debugPrint("selected tag at index \(String(sender.tag))")
         selectAssetAtIndex(sender.tag)
     }
     
-    //really select tag at index
+    //TODO really select item at index
     @IBAction func selectAssetAtIndex(index: Int) {
         let tagView = tagViews[index]
         tagView.selected = !tagView.selected
@@ -139,12 +140,30 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
             let others = tagViews.filter({$0 !== tagView})
             others.forEach({$0.selected = false })
             //set selection in viewmodel for state
+            debugPrint("selectedItemIndex set to \(index) ")
             self.viewModel.selectedItemIndex = index
             //start playing if not playing
             let rwf = RWFramework.sharedInstance
             if(!rwf.isPlaying){
                 startPlaying()
             }
+            
+            let seconds = tagView.totalLength % 60
+            let minutes = (tagView.totalLength / 60) % 60
+            debugPrint("tagView totalLength \(tagView.totalLength)")
+            dump(tagView)
+
+            debugPrint("seconds \(seconds)")
+            debugPrint("minutes \(minutes)")
+            let time = String(format: "%02d:%02d", Int(minutes), Int(seconds))
+            debugPrint("time \(time)")
+
+            totalTimeLabel.text = time
+            totalTimeLabel.accessibilityLabel = "\(minutes) minutes and \(seconds) seconds total for this tag"
+            elapsedTimeLabel.text = "00:00"
+            elapsedTimeLabel.accessibilityLabel = "estimated time elapsed for tag playback"
+    
+            //        progressView.progress = Float(percentage)
         } else {
             self.viewModel.selectedItemIndex = nil
         }
@@ -180,7 +199,6 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
     @IBOutlet weak var previousButton: UIButton!
     @IBOutlet weak var speedButton: UIButton!
     @IBOutlet weak var elapsedTimeLabel: UILabel!
-    @IBOutlet weak var playbackProgress: UIProgressView!
     @IBOutlet weak var totalTimeLabel: UILabel!
     
     // MARK: Views
@@ -282,6 +300,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
             debugPrint("audio assets for tag \(tagView.id!)")
             dump(audioAssets)
             let totalLength = audioAssets.map({$0.audioLength}).reduce(0, combine: +)
+            debugPrint("total length is \(totalLength)")
             let arrayOfAssetIds = audioAssets.map({ String($0.assetID)})
             tagView.arrayOfAssetIds = arrayOfAssetIds
             tagView.totalLength = totalLength
@@ -435,9 +454,8 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
             if waitingToStart{
                 waitingToStart = false
                 SVProgressHUD.dismiss()
-                let rwf = RWFramework.sharedInstance
-                
                 //push tags as selected
+                let rwf = RWFramework.sharedInstance
                 var tagsToSubmit : [String] = []
                 if let roomTag = self.viewModel.selectedRoomTag {
                     tagsToSubmit.append(String(roomTag.id))
@@ -474,7 +492,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
             //ok we have our values
             //let see what asset we are on
             guard let assetID = queryItems["asset"] else{
-                debugPrint("no asset id found")
+                debugPrint("no assetID set")
                 dump(queryItems)
                 return
             }
@@ -482,6 +500,10 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
             debugPrint("assetID is \(assetID)")
             if let assetTagView = tagViews.filter({ $0.arrayOfAssetIds.contains( assetID )}).first {
                 if let index = self.viewModel.selectedItemIndex{
+                    debugPrint("selectedItemIndex is \(index) and the tag id is \(self.tagViews[index].id)")
+                    debugPrint("that tag has assets")
+                    dump(self.viewModel.data.getAssetsForTagIdOfMediaType(self.tagViews[index].id!, mediaType: MediaType.Audio))
+
                     //TODO should really have a check on the index
                     if tagViews[index] == assetTagView {
                         debugPrint("belongs to our current tagview")
@@ -490,34 +512,35 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
                             if assetTagView.arrayOfAssetIds.count > 0 {
                                 let percentage = (Float(assetTagView.arrayOfAssetIds.count) - Float(remaining)!) / Float(assetTagView.arrayOfAssetIds.count)
                                 assetTagView.tagProgress.setProgress(percentage, animated: true)
+                                
+                                let seconds = (assetTagView.totalLength * percentage) % 60
+                                let minutes = ((assetTagView.totalLength * percentage) / 60) % 60
+                                let time = String(format: "%02d:%02d", Int(minutes), Int(seconds))
+                                elapsedTimeLabel.text = time
+                                elapsedTimeLabel.accessibilityLabel = "about \(minutes) minutes and \(seconds) seconds elapsed for this tag"
                             } else {
                                 debugPrint("0 assets in tagview")
                             }
 
+                            //complete
+                            if let complete = queryItems["complete"]  {
+                                if Int(remaining)! == 0 {
+                                    assetTagView.selected = false
+                                    self.viewModel.selectedItemIndex = nil
+                                    elapsedTimeLabel.text = "00:00"
+                                    elapsedTimeLabel.accessibilityLabel = "estimated time elapsed for tag playback"
+                                }
+                            }
                         }
-                        //complete
-                        if let complete = queryItems["complete"]  {
-                            assetTagView.selected = false
-                            self.viewModel.selectedItemIndex = nil
-                        }
-                        //let's make sure it's tag is selected
                     } else {
                         debugPrint("its a new tagview")
                     }
                 }
-                
             }
-            
-
-
         }
-        //TODO set progress
-//        let progressView.setProgress(Float(percentage), animated: true)
+        //TODO set countdown?
+        //TODO set progressview
 
-        
-
-        //TODO set asset
-        //TODO set asset progress
     }
 
     func rwAudioPlayerDidFinishPlaying() {

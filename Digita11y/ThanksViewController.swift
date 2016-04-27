@@ -42,7 +42,7 @@ class ThanksViewController: BaseViewController, UIScrollViewDelegate {
         let total = self.viewModel.tags.count
         let buttons = self.createButtonsForScroll(total, scroll: scroll)
         
-        //set titles and actions
+        //Set titles and actions
         for (index, button) in buttons.enumerate(){
             let tag = self.viewModel.tags[index]
             button.setTitle(tag.value, forState: .Normal)
