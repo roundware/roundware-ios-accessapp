@@ -16,6 +16,9 @@ struct UIItem {
     var tagId: Int = 0
     var active: Bool = true
     var id: Int = 0
+    //TODO same as active?
+    var contributed: Bool = false
+
     
     init(json: JSON) {
         index = json["index"].int ?? 0

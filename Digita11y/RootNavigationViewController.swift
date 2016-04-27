@@ -21,6 +21,11 @@ class RootNavigationViewController: UINavigationController, UINavigationControll
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        self.navigationBar.shadowImage = UIImage()
+        self.navigationBar.tintColor = UIColor.whiteColor()
+        self.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "AvenirNext-Bold", size: 20)!, NSForegroundColorAttributeName: UIColor.whiteColor()]
+        self.navigationBar.translucent = true
     }
     
     override func viewWillAppear(animated: Bool) {

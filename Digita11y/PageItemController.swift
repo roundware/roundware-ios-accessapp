@@ -7,9 +7,9 @@ class PageItemController: UIViewController {
     // MARK: - Variables
     var itemIndex: Int = 0
     var imageName: String = "" {
-        
         didSet {
-            
+            //TODO grab image
+            //TODO set image alt
             if let imageView = contentImageView {
                 imageView.image = UIImage(named: imageName)
             }

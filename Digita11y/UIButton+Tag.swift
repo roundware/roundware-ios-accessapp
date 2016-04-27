@@ -11,6 +11,10 @@ import Foundation
 import UIKit
 
 @IBDesignable class UIButtonTag: UIButton {
+    let buttonHeight :  CGFloat = 80.0
+    let buttonWidth :   CGFloat = 299.0
+    let buttonMarginX : CGFloat = 0
+    let buttonMarginY : CGFloat = 20.0
     
     //this init fires usually called, when storyboards UI objects created:
     required init?(coder aDecoder: NSCoder) {

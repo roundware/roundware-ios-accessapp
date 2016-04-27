@@ -6,6 +6,7 @@ PODS:
   - ImageScrollView (1.1)
   - RWFramework (0.1.0):
     - SwiftyJSON
+  - SVProgressHUD (2.0.3)
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
@@ -14,6 +15,7 @@ DEPENDENCIES:
   - Fabric
   - ImageScrollView
   - RWFramework (from `../RWFramework`)
+  - SVProgressHUD
 
 EXTERNAL SOURCES:
   RWFramework:
@@ -25,6 +27,7 @@ SPEC CHECKSUMS:
   Fabric: 1abc1e59f11fa39ede6f690ef7309d8563e3ec59
   ImageScrollView: 2c9adef18c5b6bd9a499c9babaf4cd7b6df703eb
   RWFramework: ae99b0f8d5ebca244ac76f163837daf4453478eb
+  SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
 COCOAPODS: 0.39.0

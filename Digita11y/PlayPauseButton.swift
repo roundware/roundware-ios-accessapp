@@ -58,10 +58,10 @@ import UIKit
     override func drawRect(rect: CGRect) {
         super.drawRect(rect)
         self.setTitleColor(UIColor.clearColor(), forState: .Normal)
-        drawButton(false)
+        showButtonIsPlaying(false)
     }
     
-    func drawButton(playing: Bool) {
+    func showButtonIsPlaying(playing: Bool) {
 //        let fillColor = UIColor(red: 0.000, green: 0.000, blue: 0.000, alpha: 0.100)
 //        let fillColor2 = UIColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 1.000)
 //        let strokeColor = UIColor(red: 0.225, green: 0.225, blue: 0.225, alpha: 1.000)

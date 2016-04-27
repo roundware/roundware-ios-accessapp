@@ -7,50 +7,109 @@
 //
 
 import UIKit
-//import AVFoundation
 import RWFramework
 import Crashlytics
 import SwiftyJSON
-
-//TODO audio player delegate?
+import CoreLocation
+import SVProgressHUD
+import AVFoundation
 
 //https://github.com/Akkyie/AKPickerView-Swift
 class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewDataSource, AKPickerViewDelegate {
     var viewModel: TagsViewModel!
-    var items : [TagView] = []
+    var tagViews : [TagView] = []
+    var waitingToStart: Bool = false
 
-    // MARK: Outlets
-    @IBOutlet weak var parentTagPickerView: AKPickerView!
-    @IBOutlet weak var itemsScrollView: UIScrollView!
-    @IBOutlet weak var exhibitionLabel: UILabelHeadline!
-    @IBOutlet weak var mapButton: UIButton!
-    @IBOutlet weak var playPauseButton: PlayPauseButton!
-    @IBOutlet weak var contributeButton: UIButton!
-    @IBOutlet weak var nextButton: UIButton!
-    @IBOutlet weak var previousButton: UIButton!
-    @IBOutlet weak var speedButton: UIButton!
-    @IBOutlet weak var elapsedTimeLabel: UILabel!
-    @IBOutlet weak var playbackProgress: UIProgressView!
-    @IBOutlet weak var totalTimeLabel: UILabel!
+    // MARK: Actions and Outlets
     
-    // MARK: Main Action
     @IBAction func cycleSpeed(sender: AnyObject) {
-        //TODO
+        //TODO cycle speed
+        debugPrint("cycle speed")
     }
     
     @IBAction func toggleStream(sender: AnyObject) {
         let rwf = RWFramework.sharedInstance
-        rwf.isPlaying ? rwf.stop() : rwf.play()
-        self.playPauseButton.drawButton(rwf.isPlaying)
-//        listenPlayButton.setTitle(rwf.isPlaying ? "Stop" : "Play", forState: UIControlState.Normal)
+        if (rwf.isPlaying) {
+            rwf.stop()
+            self.playPauseButton.showButtonIsPlaying(false)
+
+        } else {
+            startPlaying()
+        }
     }
     
+    func startPlaying() -> Bool {
+        //TODO check if location available
+        if (CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse) {
+            let rwf = RWFramework.sharedInstance
+            rwf.play()
+            SVProgressHUD.showWithStatus("Loading Stream")
+            self.playPauseButton.showButtonIsPlaying(true)
+            waitingToStart = true
+            return true
+        } else {
+            var alertController = UIAlertController (title: "Title", message: "Enable location detection for streaming", preferredStyle: .Alert)
+            
+            var settingsAction = UIAlertAction(title: "Settings", style: .Default) { (_) -> Void in
+                let settingsUrl = NSURL(string: UIApplicationOpenSettingsURLString)
+                if let url = settingsUrl {
+                    UIApplication.sharedApplication().openURL(url)
+                }
+            }
+            
+            var cancelAction = UIAlertAction(title: "Cancel", style: .Default, handler: nil)
+            alertController.addAction(settingsAction)
+            alertController.addAction(cancelAction)
+            
+            presentViewController(alertController, animated: true, completion: nil)
+            return false
+        }
+    }
+    
+    //really next asset
     @IBAction func nextTag(sender: AnyObject) {
-        RWFramework.sharedInstance.next()
+        debugPrint("next asset really")
+        let rwf = RWFramework.sharedInstance
+        if (rwf.isPlaying) {
+            //set to first item if none is selected
+            guard let index = self.viewModel.selectedItemIndex else {
+                selectAssetAtIndex(0)
+                return
+            }
+            
+            //switch to next asset if available
+            if(index < tagViews.count &&
+                tagViews[index].currentAssetIndex + 1 < tagViews[index].arrayOfAssetIds.count){
+                rwf.next()
+                return
+            }
+
+            //switch to next item if available
+            var nextIndex = index + 1
+            if(self.viewModel.itemTags.count - 1 >= nextIndex){
+                selectAssetAtIndex(nextIndex)
+
+            } else {
+                //switch to next room if available
+                guard let roomIndex = self.viewModel.selectedRoomIndex else {
+                    return
+                }
+                nextIndex = roomIndex + 1
+                if(self.viewModel.roomTags.count - 1 >= nextIndex){
+                    self.parentTagPickerView.selectItem(nextIndex)
+                } else {
+                    //TODO notification if next room finished
+                }
+
+            }
+        }
     }
     
     @IBAction func previousTag(sender: AnyObject) {
-        
+        //TODO will restart current asset or
+        //move to previous asset
+        debugPrint("previous tag")
+
     }
     
     @IBAction func contribute(sender: AnyObject) {
@@ -62,138 +121,76 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
     }
     
     @IBAction func seeMap(sender: AnyObject) {
-        //TODO might be subview?
         self.performSegueWithIdentifier("MapSegue", sender: sender)
-        //TODO reset after coming back from contribute
     }
     
     // MARK: Asset Actions
     @IBAction func selectAsset(sender: UIButton) {
-        let index = sender.tag
-        let tagView = items[index]
+        debugPrint("selected tag at index \(String(sender.tag))")
+        selectAssetAtIndex(sender.tag)
+    }
+    
+    //really select tag at index
+    @IBAction func selectAssetAtIndex(index: Int) {
+        let tagView = tagViews[index]
         tagView.selected = !tagView.selected
         if (tagView.selected){
-            //deselect others TODO check filter for selected
-            let others = items.filter({$0 !== tagView})
+            //deselect others
+            let others = tagViews.filter({$0 !== tagView})
             others.forEach({$0.selected = false })
             //set selection in viewmodel for state
-            self.viewModel.selectedItemIndex(index)
-            //send message to stream
+            self.viewModel.selectedItemIndex = index
+            //start playing if not playing
             let rwf = RWFramework.sharedInstance
-            rwf.submitTags(String(self.viewModel.selectedItemTag!.id))
-            //TODO expand asset options for this tag 
+            if(!rwf.isPlaying){
+                startPlaying()
+            }
+        } else {
+            self.viewModel.selectedItemIndex = nil
         }
+
     }
-    
+
+
+    //item must be set already and stored in rwdata
     @IBAction func seeGalleryForAsset(sender: UIButton) {
-        //TODO set item
         self.performSegueWithIdentifier("GallerySegue", sender: sender)
-        //TODO launch gallery subview/modal
     }
     
+    //item must be set already and stored in rwdata
     @IBAction func seeTextForAsset(sender: UIButton) {
-        //TODO might be subview?
         self.performSegueWithIdentifier("ReadSegue", sender: sender)
-        //TODO launch text subview/modal
     }
-    
-//    @IBAction func openModal(sender: AnyObject) {
-//    }
-//    
-//    @IBAction func closeModal(sender: AnyObject) {
-//        //TODO expand options, collapse others
-//    }
-//    
-//    @IBAction func pageAsset(sender: AnyObject) {
-//        //TODO expand options, collapse others
-//    }
-    
+
     // MARK: Segue Actions
+    //back from modals
+    @IBAction func prepareForTagsDimiss(segue: UIStoryboardSegue) {
+        //TODO reset after coming back from contribute
+    }
+    //back from contribute
     @IBAction func prepareForTagsUnwind(segue: UIStoryboardSegue) {
         //TODO reset after coming back from contribute
     }
-    @IBAction func prepareForTagsDismiss(segue: UIStoryboardSegue) {
-        //TODO reset after coming back from contribute
-    }
 
+    @IBOutlet weak var parentTagPickerView: AKPickerView!
+    @IBOutlet weak var itemsScrollView: UIScrollView!
+    @IBOutlet weak var playPauseButton: PlayPauseButton!
+    @IBOutlet weak var contributeButton: UIButton!
+    @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var previousButton: UIButton!
+    @IBOutlet weak var speedButton: UIButton!
+    @IBOutlet weak var elapsedTimeLabel: UILabel!
+    @IBOutlet weak var playbackProgress: UIProgressView!
+    @IBOutlet weak var totalTimeLabel: UILabel!
     
     // MARK: Views
     override func viewDidLoad() {
         super.viewDidLoad()
-        //TODO instantiate  and start rwf
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
         super.view.addBackground("bg-comment.png")
-    }
-    
-    func resetRoomItems(){
-        //TODO call from stream finish/start
-        let duration = 0.5
-        let delay = 0.1
-        let springDamping = CGFloat(0.5)
-        let springVelocity = CGFloat(0.5)
-        let scroll = itemsScrollView
-        //hide old assets
-        for (index, item) in scroll.subviews.enumerate(){
-            UIView.animateWithDuration(duration, delay: Double(index) * delay, usingSpringWithDamping: springDamping, initialSpringVelocity: springVelocity, options: [], animations: {
-                item.alpha = 0
-                item.center.y -= 30
-            }, completion: { finished in
-                item.removeFromSuperview()
-            })
-        }
-        //show new assets
-        let total = self.viewModel.numberOfItems()
-        scroll.delegate = self
-        let itemWidth = 300
-        dump(itemWidth)
-        let itemHeight = 80
-        scroll.contentSize.width = CGFloat(itemWidth)
-        scroll.contentSize.height = CGFloat(itemHeight * total)
-        items = []
-        for index in 0..<total {
-            let item = TagView()
-            let frame = CGRect(
-                x: 0,
-                y: index * itemHeight,
-                width: Int(itemWidth),
-                height: itemHeight)
-            item.frame = frame
-            item.setTag(self.viewModel.itemTags[index])
-            
-            item.textButton.addTarget(self,
-                                      action: #selector(TagsViewController.seeTextForAsset(_:)),
-                                      forControlEvents: UIControlEvents.TouchUpInside)
-            item.textButton.tag = index
-            item.cameraButton.addTarget(self,
-                                        action: #selector(TagsViewController.seeGalleryForAsset(_:)),
-                                        forControlEvents: UIControlEvents.TouchUpInside)
-            item.cameraButton.tag = index
-            item.tagTitle.addTarget(self,
-                                    action: #selector(TagsViewController.selectAsset(_:)),
-                                    forControlEvents: UIControlEvents.TouchUpInside)
-            item.tagTitle.tag = index
-            
-            //might be unnecessary
-            items.append(item)
-            
-            item.alpha = 0
-            item.center.y -= 30
-                
-            scroll.addSubview(item)
-            UIView.animateWithDuration(duration, delay: Double(index) * delay, usingSpringWithDamping: springDamping, initialSpringVelocity: springVelocity, options: [], animations: {
-                item.alpha = 1
-                item.center.y += 30
-                }, completion: { finished in
-            })
-            //UIView.transitionWithView(self.view, duration: 0.5, options: UIViewAnimationOptions.TransitionNone,
-            //animations: {self.view.addSubview(effectView)}, completion: nil)
-        }
-    }
-    
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
         self.viewModel = TagsViewModel(data: self.rwData!)
-        exhibitionLabel.text = self.viewModel.title
+        
+        self.navigationItem.title = self.viewModel.title
 
         //set room pickerview
         self.parentTagPickerView.delegate = self
@@ -203,28 +200,113 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
         self.parentTagPickerView.maskDisabled = true
         self.parentTagPickerView.font = UIFont(name: "AvenirNext-Medium", size: 30)!
         self.parentTagPickerView.highlightedFont = UIFont(name: "AvenirNext-Medium", size: 30)!
-        
-        //TODO if first selection, else restore...
         self.parentTagPickerView.reloadData()
         self.parentTagPickerView.selectItem(0)
         
         //TODO double check for location...
+        let rwf = RWFramework.sharedInstance
+        rwf.addDelegate(self)
+        self.playPauseButton.showButtonIsPlaying(false)
         
-        //start stream
-        setupAudio() { granted, error in
-            if granted == false {
-                debugPrint("Unable to setup audio: \(error)")
-                if let error = error {
-                    CLSNSLogv("Unable to setup audio: \(error)", getVaList([error]))
-                }
-            } else {
-                debugPrint("setup audio win")
-                let rwf = RWFramework.sharedInstance
-                rwf.addDelegate(self)
-                rwf.play()
-                self.playPauseButton.drawButton(true)
-            }
+        let button: UIButton = UIButton(type:UIButtonType.Custom)
+        //set image for button
+        button.setImage(UIImage(named: "map.png"), forState: UIControlState.Normal)
+        //add function for button
+        button.addTarget(self, action: "seeMap", forControlEvents: UIControlEvents.TouchUpInside)
+        //set frame
+        button.frame = CGRectMake(0, 0, 50, 50)
+        
+        let barButton = UIBarButtonItem(customView: button)
+        //assign button to navigationbar
+        self.navigationItem.rightBarButtonItem = barButton
+    }
+    
+    func resetRoomItems(){
+        //TODO check if old assets are same as new assets
+        let duration = 0.5
+        let delay = 0.1
+        let springDamping = CGFloat(0.5)
+        let springVelocity = CGFloat(0.5)
+        let scroll = itemsScrollView
+        
+        //hide old assets
+        for (index, item) in scroll.subviews.enumerate(){
+            UIView.animateWithDuration(duration, delay: Double(index) * delay, usingSpringWithDamping: springDamping, initialSpringVelocity: springVelocity, options: [], animations: {
+                item.alpha = 0
+                item.center.y -= 30
+            }, completion: { finished in
+                item.removeFromSuperview()
+            })
         }
+        
+        //show new assets
+        let total = self.viewModel.itemTags.count
+        scroll.delegate = self
+        let itemWidth = 300
+        let itemHeight = 80
+        scroll.contentSize.width = CGFloat(itemWidth)
+        scroll.contentSize.height = CGFloat(itemHeight * total)
+        
+        tagViews = []
+        for index in 0..<total {
+            let tagView = TagView()
+            let tag = self.viewModel.itemTags[index]
+            let images = self.viewModel.data.getAssetsForTagIdOfMediaType(tag.id, mediaType: MediaType.Photo)
+            let texts = self.viewModel.data.getAssetsForTagIdOfMediaType(tag.id, mediaType: MediaType.Text)
+
+            tagView.hasImages = images.count > 0
+            debugPrint("tagview index \(index) has \(images.count) images")
+            
+            tagView.hasTexts = texts.count > 0
+            tagView.setTag(tag, index: index)
+            
+            //TODO should really go into setTag and use delegate...
+            tagView.tagTitle.addTarget(self,
+                               action: #selector(selectAsset),
+                               forControlEvents: UIControlEvents.TouchUpInside)
+            tagView.tagTitle.tag = index
+            if(tagView.hasTexts){
+                tagView.textButton.addTarget(self,
+                                     action: #selector(seeTextForAsset(_:)),
+                                     forControlEvents: UIControlEvents.TouchUpInside)
+                tagView.textButton.tag = tag.id
+            }
+            if(tagView.hasImages){
+                tagView.cameraButton.addTarget(self,
+                                       action: #selector(seeGalleryForAsset(_:)),
+                                       forControlEvents: UIControlEvents.TouchUpInside)
+                tagView.cameraButton.tag = tag.id
+            }
+
+            let audioAssets : [Asset] = self.viewModel.data.getAssetsForTagIdOfMediaType(tagView.id!, mediaType: MediaType.Audio)
+            debugPrint("audio assets for tag \(tagView.id!)")
+            dump(audioAssets)
+            let totalLength = audioAssets.map({$0.audioLength}).reduce(0, combine: +)
+            let arrayOfAssetIds = audioAssets.map({ String($0.assetID)})
+            tagView.arrayOfAssetIds = arrayOfAssetIds
+            tagView.totalLength = totalLength
+
+            let frame = CGRect(
+                x: 0,
+                y: index * itemHeight,
+                width: Int(itemWidth),
+                height: itemHeight)
+            tagView.frame = frame
+            tagView.alpha = 0
+            tagView.center.y -= 30
+            scroll.addSubview(tagView)
+            UIView.animateWithDuration(duration, delay: Double(index) * delay, usingSpringWithDamping: springDamping, initialSpringVelocity: springVelocity, options: [], animations: {
+                tagView.alpha = 1
+                tagView.center.y += 30
+                }, completion: { finished in
+            })
+            tagViews.append(tagView)
+        }
+    }
+    
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
     }
     
     override func viewDidLayoutSubviews(){
@@ -238,16 +320,12 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
         super.didReceiveMemoryWarning()
     }
     
-    // MARK: Gallery Modal
     
-    // MARK: Map Modal
-    
-    // MARK: Text Modal
     
     // MARK: - AKPickerViewDataSource
     
     func numberOfItemsInPickerView(pickerView: AKPickerView) -> Int {
-        return self.viewModel.numberOfRooms()
+        return self.viewModel.roomTags.count
     }
     
     func pickerView(pickerView: AKPickerView, titleForItem item: Int) -> String {
@@ -264,29 +342,29 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
         return CGSizeMake(20, 20)
     }
 
-    //used in picker
     func scrollViewDidScroll(scrollView: UIScrollView) {
         // println("\(scrollView.contentOffset.x)")
     }
-
+    
+    
     
     // MARK: - AKPickerViewDelegate
     
     func pickerView(pickerView: AKPickerView, didSelectItem item: Int) {
-        self.viewModel.selectedRoomIndex(item)
-        //TODO callback http://artsy.github.io/blog/2015/09/24/mvvm-in-swift/
-        //or protocol https://www.natashatherobot.com/updated-protocol-oriented-mvvm-in-swift-2-0/
-        resetRoomItems()
+        debugPrint("selected room with index \(item)")
+        if( self.viewModel.selectedRoomIndex != item){
+            self.viewModel.selectedRoomIndex = item
+            resetRoomItems()
+        }
     }
-
+    
+    
     
     // MARK: RWFramework Protocol
-    
     func rwUpdateStatus(message: String) {
         print("update status")
         print(message)
     }
-
     
     func rwGetStreamsIdCurrentSuccess(data: NSData?) {
         print("current success")
@@ -305,28 +383,26 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
     }
     
     func rwPostStreamsError(error: NSError?) {
-        print("stream error")
         debugPrint(error?.localizedDescription)
         CLSNSLogv((error?.localizedDescription)!, getVaList([]))
     }
 
     func rwPatchStreamsIdSuccess(data: NSData?){
-        print("patch stream success")
-        dump(data)
+//        print("patch stream success")
+//        dump(data)
 
     }
     
     func rwPatchStreamsIdFailure(error: NSError?){
-        print("patch stream error")
         debugPrint(error?.localizedDescription)
         CLSNSLogv((error?.localizedDescription)!, getVaList([]))
     }
     
     func rwPostStreamsIdHeartbeatSuccess(data: NSData?) {
         debugPrint("heartbeat success")
-        dump(data)
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-        })
+//        dump(data)
+//        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//        })
     }
     
     func rwPostStreamsIdNextSuccess(data: NSData?) {
@@ -334,29 +410,117 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
         dump(data)
     }
 
-    func rwGetAssetsSuccess(data: NSData?){
-        print("get assets success")
-        dump(data)
-    }
-
-    func rwGetAssetsFailure(error: NSError?){
-        print("get assets error")
-        debugPrint(error?.localizedDescription)
-        CLSNSLogv((error?.localizedDescription)!, getVaList([]))
-    }
-    
     func rwGetAssetsIdSuccess(data: NSData?){
-        print("get asset id success")
+        debugPrint("get asset id success")
         dump(data)
     }
 
     func rwGetAssetsIdFailure(error: NSError?){
-        print("get asset id error")
+        debugPrint("get asset id error")
         debugPrint(error?.localizedDescription)
         CLSNSLogv((error?.localizedDescription)!, getVaList([]))
     }
     
-//    func rwObserveValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
-//  }
+    func rwObserveValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+//        debugPrint("keypath")
+//        dump(keyPath)
+//        debugPrint("object")
+//        dump(object)
+//        debugPrint("change")
+//        dump(change)
+//        debugPrint("context")
+//        dump(context)
+        //the stream has started
+        if keyPath == "timedMetadata" {
+            if waitingToStart{
+                waitingToStart = false
+                SVProgressHUD.dismiss()
+                let rwf = RWFramework.sharedInstance
+                
+                //push tags as selected
+                var tagsToSubmit : [String] = []
+                if let roomTag = self.viewModel.selectedRoomTag {
+                    tagsToSubmit.append(String(roomTag.id))
+                }
+                if let itemTag = self.viewModel.selectedItemTag {
+                    tagsToSubmit.append(String(itemTag.id))
+                }
+                let tagsString = tagsToSubmit.joinWithSeparator(",")
+                debugPrint("patching stream with tags \(tagsString)")
+                rwf.submitTags(tagsString)
+            }
 
+            //get values
+            guard let newChange = change["new"] as? NSArray,
+                let avMetadataItem = newChange.firstObject as? AVMetadataItem else{
+                return
+            }
+            guard var value = avMetadataItem.value as? String else{
+                    debugPrint("value problem")
+                    return
+            }
+            value = value.stringByReplacingOccurrencesOfString("Roundware - ", withString: "?", options: NSStringCompareOptions.LiteralSearch, range: nil)
+            guard let params = NSURL(string: value) else{
+                debugPrint("param problem")
+                dump(value)
+                return
+            }
+            guard let queryItems = params.queryItems else{
+                debugPrint("query problem")
+                dump(params)
+                return
+            }
+
+            //ok we have our values
+            //let see what asset we are on
+            guard let assetID = queryItems["asset"] else{
+                debugPrint("no asset id found")
+                dump(queryItems)
+                return
+            }
+            
+            debugPrint("assetID is \(assetID)")
+            if let assetTagView = tagViews.filter({ $0.arrayOfAssetIds.contains( assetID )}).first {
+                if let index = self.viewModel.selectedItemIndex{
+                    //TODO should really have a check on the index
+                    if tagViews[index] == assetTagView {
+                        debugPrint("belongs to our current tagview")
+                        if let remaining = queryItems["remaining"] {
+                            assetTagView.currentAssetIndex = assetTagView.arrayOfAssetIds.count - Int(remaining)! - 1
+                            if assetTagView.arrayOfAssetIds.count > 0 {
+                                let percentage = (Float(assetTagView.arrayOfAssetIds.count) - Float(remaining)!) / Float(assetTagView.arrayOfAssetIds.count)
+                                assetTagView.tagProgress.setProgress(percentage, animated: true)
+                            } else {
+                                debugPrint("0 assets in tagview")
+                            }
+
+                        }
+                        //complete
+                        if let complete = queryItems["complete"]  {
+                            assetTagView.selected = false
+                            self.viewModel.selectedItemIndex = nil
+                        }
+                        //let's make sure it's tag is selected
+                    } else {
+                        debugPrint("its a new tagview")
+                    }
+                }
+                
+            }
+            
+
+
+        }
+        //TODO set progress
+//        let progressView.setProgress(Float(percentage), animated: true)
+
+        
+
+        //TODO set asset
+        //TODO set asset progress
+    }
+
+    func rwAudioPlayerDidFinishPlaying() {
+        self.playPauseButton.showButtonIsPlaying(false)
+    }
 }

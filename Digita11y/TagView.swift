@@ -17,7 +17,6 @@ import UIKit
     @IBOutlet weak var audioImage: UIImageView!
     
 //    var tagModel: Tag?
-    
     var selected : Bool = false {
         didSet {
             if oldValue != self.selected {
@@ -29,8 +28,15 @@ import UIKit
             }
         }
     }
-
     
+    var id : Int?
+    var arrayOfAssetIds : [String] = []
+    var currentAssetIndex : Int = 0
+    var totalLength : Float = 0.0
+    
+    var hasTexts: Bool = false
+    var hasImages: Bool = false
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         xibSetup()
@@ -45,11 +51,6 @@ import UIKit
         }
     }
     
-    //TODO progress
-    //TODO actions
-    
-    
-    
     func xibSetup() {
         let view = loadViewFromNib()
         view.frame = bounds
@@ -59,17 +60,21 @@ import UIKit
                 addSubview(view)
     }
     
-    func setTag(tagModel:Tag){
+    func setTag(tagModel:Tag, index: Int){
+        debugPrint("setting tag for \(tagModel.id) at index \(index)")
+        debugPrint("hasImage \(String(hasImages)) and hasText \(String(hasTexts))")
         tagTitle.setTitle(tagModel.value, forState: .Normal)
-        //TODO set labels
-        
-        [ cameraButton, textButton, audioImage].forEach{
+        id = tagModel.id
+        var subviews : [UIView] = [audioImage, textButton, cameraButton]
+
+        subviews.forEach{
             $0.hidden = true
             $0.alpha = 0
             $0.center.x -= 50
         }
-        
         tagProgress.progress = 0
+        self.layoutIfNeeded()
+
     }
 
     func loadViewFromNib() -> UIView {
@@ -86,18 +91,30 @@ import UIKit
     let springVelocity = CGFloat(0.5)
     
     //TODO toggle button selected state
-    //TODO toggle visibility progress view
-    //TODO default button background
     func select(){
+        self.tagTitle.selected = true
 
-        [ self.cameraButton, self.textButton, self.audioImage, self.tagProgress].forEach{
+        var hiddenSubviews      : [UIView] = [self.audioImage, self.tagProgress]
+        var animatedSubviews    : [UIView] = [self.audioImage]
+        
+        if hasImages {
+            hiddenSubviews.append(self.cameraButton)
+            animatedSubviews.append(self.cameraButton)
+        }
+        if hasTexts {
+            hiddenSubviews.append(self.textButton)
+            animatedSubviews.append(self.textButton)
+        }
+        
+        hiddenSubviews.forEach{
             $0.hidden = false
         }
+        
         self.tagTitle.backgroundColor = UIColor.clearColor()
         
         UIView.animateWithDuration(duration, delay: delay, usingSpringWithDamping: springDamping, initialSpringVelocity: springVelocity, options: [], animations:
             {
-                [ self.cameraButton, self.textButton, self.audioImage].forEach{
+                animatedSubviews.forEach{
                     $0.alpha = 1
                     $0.center.x += 30
                 }
@@ -109,10 +126,24 @@ import UIKit
     }
     
     func deselect(){
+        self.tagTitle.selected = false
+        
+        var hiddenSubviews      : [UIView] = [self.audioImage, self.tagProgress]
+        var animatedSubviews    : [UIView] = [self.audioImage]
+        
+        if hasImages {
+            hiddenSubviews.append(self.cameraButton)
+            animatedSubviews.append(self.cameraButton)
+        }
+        if hasTexts {
+            hiddenSubviews.append(self.textButton)
+            animatedSubviews.append(self.textButton)
+        }
+        
         UIView.animateWithDuration(duration, delay: delay, usingSpringWithDamping: springDamping, initialSpringVelocity: springVelocity, options: [], animations:
             {
                 
-                [ self.cameraButton, self.textButton, self.audioImage].forEach{
+                animatedSubviews.forEach{
                     $0.alpha = 0
                     $0.center.x -= 0
                     
@@ -122,7 +153,7 @@ import UIKit
                 self.tagProgress.progress = 0
 
         }, completion: { finished in
-            [ self.cameraButton, self.textButton, self.audioImage, self.tagProgress].forEach{
+            hiddenSubviews.forEach{
                 $0.hidden = true
             }
             self.tagTitle.backgroundColor = UIColor.GreenishTeal85Color()

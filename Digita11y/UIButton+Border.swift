@@ -13,7 +13,7 @@ import QuartzCore
 @IBDesignable class UIButtonBorder: UIButton {
     
     let buttonHeight :  CGFloat = 50.0
-    let buttonWidth :   CGFloat = 298.0
+    let buttonWidth :   CGFloat = 297.0
     let buttonMarginX : CGFloat = 1.0
     let buttonMarginY : CGFloat = 20.0
     

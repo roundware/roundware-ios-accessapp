@@ -14,45 +14,39 @@ class ChooseExhibitController: BaseViewController, UIScrollViewDelegate {
     var viewModel: ChooseExhibitViewModel!
 
     // MARK: Actions and Outlets
-    @IBOutlet weak var ExhibitHeadline: UILabelHeadline!
-    @IBOutlet weak var ExhibitScroll: UIScrollView!
 
     @IBAction func selectedThis(sender: UIButton) {
-        self.viewModel.selectedTitle(sender.titleLabel!.text!)
+        self.viewModel.selectedTag = self.viewModel.data.getTagById(sender.tag)
         self.performSegueWithIdentifier("TagsSegue", sender: nil)
     }
     
+    @IBOutlet weak var ExhibitHeadline: UILabelHeadline!
+    @IBOutlet weak var ExhibitScroll: UIScrollView!
+
     
     // MARK: View
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
         super.view.addBackground("bg-blue.png")
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
         
         self.viewModel = ChooseExhibitViewModel(data: self.rwData!)
         ExhibitHeadline.text = self.viewModel.title
-        let total = self.viewModel.numberOfItems()
-
+        
         //scroll
         let scroll = ExhibitScroll
         scroll.delegate = self
+        let total = self.viewModel.tags.count
         let buttons = self.createButtonsForScroll(total, scroll: scroll)
-
-        //stack
-//        let stack = ExhibitStack
-//        let buttons = self.createButtonsForStack(total, stack: stack)
-
-        //set titles and actions
+        
         for (index, button) in buttons.enumerate(){
-            button.setTitle(viewModel.titleForIndex(index), forState: .Normal)
+            let tag = self.viewModel.tags[index]
+            button.setTitle(tag.value, forState: .Normal)
             button.addTarget(self,
-                action: #selector(ChooseExhibitController.selectedThis(_:)),
-                forControlEvents: UIControlEvents.TouchUpInside)
+                             action: #selector(ChooseExhibitController.selectedThis(_:)),
+                             forControlEvents: UIControlEvents.TouchUpInside)
+            button.tag = tag.id
         }
-
     }
 
     override func viewDidLayoutSubviews(){

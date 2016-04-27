@@ -13,8 +13,8 @@ class ChooseProjectViewController: BaseViewController, UIScrollViewDelegate {
 
     // MARK: Actions and Outlets
     @IBAction func selectedThis(sender: UIButton) {
-        let projectName = sender.titleLabel?.text
-        self.viewModel.selectByTitle(projectName!)
+        let projectId = sender.tag
+        self.viewModel.selectedProject = self.viewModel.data.getProjectById(projectId)
         self.performSegueWithIdentifier("ProjectSegue", sender: sender)
     }
     
@@ -24,29 +24,35 @@ class ChooseProjectViewController: BaseViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+
         super.view.addBackground("bg-blue.png")
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        //hide nav bar on this page
-        self.navigationController!.setNavigationBarHidden(true, animated: true)
         
         self.viewModel = ChooseProjectViewModel(data: self.rwData!)
         
         //set scroll view for options
         let scroll = ProjectsScrollView
         scroll.delegate = self
-        let total = self.viewModel.numberOfProjects()
+        let total = self.viewModel.projects.count
         let buttons = self.createButtonsForScroll(total, scroll: scroll)
         
-        //set titles and actions
+        //set titles and action
+        //TODO check if already added
         for (index, button) in buttons.enumerate(){
-            button.setTitle(viewModel.titleForIndex(index), forState: .Normal)
+            let project = viewModel.projects[index]
+            button.setTitle(project.name, forState: .Normal)
             button.addTarget(self,
-                action: "selectedThis:",
-                forControlEvents: UIControlEvents.TouchUpInside)
+                             action: "selectedThis:",
+                             forControlEvents: UIControlEvents.TouchUpInside)
+            button.tag = project.id
         }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        //hide nav bar on this page
+        self.navigationController!.setNavigationBarHidden(true, animated: true)
+
     }
     
     override func viewWillDisappear(animated: Bool) {

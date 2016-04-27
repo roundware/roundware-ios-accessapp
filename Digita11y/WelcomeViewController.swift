@@ -14,13 +14,12 @@ class WelcomeViewController: BaseViewController, CLLocationManagerDelegate {
     
     // MARK: Actions and Outlets
     @IBAction func next(sender: UIButton) {
-
-        if (CLLocationManager.authorizationStatus() == .NotDetermined) {
-//            debugPrint("not determined")
-            self.performSegueWithIdentifier("LocationSegue", sender: nil)
-        } else {
-//            debugPrint(CLLocationManager.authorizationStatus())
+        if (CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse) {
+            debugPrint("authorized when in use")
             self.performSegueWithIdentifier("SkipToExhibitSegue", sender: nil)
+        } else {
+            debugPrint(CLLocationManager.authorizationStatus())
+            self.performSegueWithIdentifier("LocationSegue", sender: nil)
         }
     }
     
@@ -29,15 +28,12 @@ class WelcomeViewController: BaseViewController, CLLocationManagerDelegate {
     
     
     // MARK: View
-    override func viewWillAppear(animated: Bool) {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+        super.view.addBackground("bg-blue.png")
         self.viewModel = WelcomeViewModel(data: self.rwData!)
         WelcomeLabelHeadline.text = self.viewModel.title
         WelcomeLabelBody.text = self.viewModel.body
-        super.viewWillAppear(animated)
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        super.view.addBackground("bg-blue.png")
-    }    
 }

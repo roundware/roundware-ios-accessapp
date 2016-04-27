@@ -13,6 +13,7 @@ class MapViewController: BaseViewController {
     @IBOutlet weak var imageScrollView: ImageScrollView!
     
     @IBAction func close(sender: AnyObject) {
+        self.performSegueWithIdentifier("closeMap", sender: sender)
     }
 
     

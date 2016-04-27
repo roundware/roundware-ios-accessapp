@@ -6,21 +6,61 @@ class RWData {
     
     let projects: [Project] = Project.initFromPlist()
     var selectedProject: Project?
+    
+    func getProjectById(id: Int) -> Project? {
+        if let index = projects.indexOf({ $0.id == id }) {
+            return projects[index]
+        } else {
+            return nil
+        }
+    }
 
     
     // MARK: - UIGroup
-    
     var uiGroups: [UIGroup] = []
-        
-    // MARK: - UIItem
     
+    //TODO real error handling
+    func getUIGroupForIndexAndMode(index: Int, mode: String) -> UIGroup? {
+        if let thisProject = selectedProject,
+        let index = uiGroups.indexOf({
+            $0.index == index &&
+            $0.uiMode == mode &&
+            $0.project == thisProject.id
+        }) {
+            return uiGroups[index]
+        } else {
+            debugPrint("missing UIGroup for \(index) and \(mode)")
+            return nil
+        }
+    }
+    
+    func getTagForIndexAndMode(index: Int, mode: String) -> Tag? {
+        if  let uiGroup = getUIGroupForIndexAndMode(index, mode: mode),
+            let uiItem = uiGroup.selectedUIItem,
+            let tag = getTagForUIItem(uiItem){
+            return tag
+        } else {
+            debugPrint("uiitem or tag not found for uigroup \(index) and \(mode)")
+            return nil
+        }
+    }
+
+    
+    // MARK: - UIItem
     func getRelevantUIItems(uiGroup: UIGroup) -> [UIItem] {
         if uiGroup.index > 0,
         let previousUIGroup = uiGroups.filter({$0.uiMode == uiGroup.uiMode && $0.index == uiGroup.index - 1}).first,
         let previousSelectedUIItem = previousUIGroup.selectedUIItem {
-            return uiGroup.uiItems.filter({ $0.parent == previousSelectedUIItem.id})
+            debugPrint("previous uigroup \(previousUIGroup.index)")
+            debugPrint("and its selected uiitem \(previousSelectedUIItem.id)")
+            let uiItems = uiGroup.uiItems.filter({ $0.parent == previousSelectedUIItem.id})
+            dump(uiItems)
+            return uiItems
         } else {
-            return uiGroup.uiItems
+            debugPrint("no previous uiGroup selection.  showing all uiItems for group")
+            let uiItems = uiGroup.uiItems
+            dump(uiItems)
+            return uiItems
         }
     }
     
@@ -38,93 +78,45 @@ class RWData {
         }
     }
     
+    func getSelectedTagForUIGroup(uiGroup: UIGroup) -> Tag? {
+        if let selectedUIItem = uiGroup.selectedUIItem {
+          return getTagForUIItem(selectedUIItem)
+        } else {
+            debugPrint("missing uiItem for \(uiGroup)")
+            return nil
+        }
+    }
+    
     // MARK: - Tags
+    
     var tags: [Tag] = []
+    var listenTags: [Tag] = []
+    var contributeTags: [Tag] = []
     
-    
+    func getTagById(id: Int) -> Tag? {
+        if let index = tags.indexOf({ $0.id == id }) {
+            return tags[index]
+        } else {
+            return nil
+        }
+    }
+
+    func getAssetsForTagIdOfMediaType(tagId: Int, mediaType: MediaType) -> [Asset] {
+        debugPrint("looking for assets with tagID \(tagId) and media type \(mediaType)")
+//        return assets.filter({$0.tagIDs.contains(tagId) && $0.mediaType == mediaType })
+        var theseAssets = assets.filter({$0.tagIDs.contains(tagId)})
+        return theseAssets.filter({$0.mediaType == mediaType })
+
+    }
 
     // MARK: - Assets
+    
     var assets: [Asset] = []
+    
+    var selectedTextAsset: Asset?
+    var selectedImageAssets: [Asset] = []
 
-//    func getSelectedTagForUIGroup(uiGroup: UIGroup) -> Tag? {
-//        if let indexes = uiGroupsToTagIds[uiGroup.uiMode],
-//            let tagId = indexes[uiGroup.index],
-//            let tag = tags.filter({$0.id == tagId}).first{
-//            return tag
-//        } else {
-//            return nil
-//        }
-//    }
-//
-//    func setSelectedTagForUIGroup(uiGroup: UIGroup, tagId: Int?) {
-//        uiGroupsToTagIds[uiGroup.uiMode]![uiGroup.index] = tagId
-//    }
-
-//    var uiGroupsToTagIds = [String:[Int:Int?]]() //= [ : [ : ]]
-//    func initUIGroupsToTagIds(){
-//        for uiGroup in uiGroups {
-//            uiGroupsToTagIds[uiGroup.uiMode] = [uiGroup.index : nil]
-//        }
-//        dump(uiGroupsToTagIds)
-//    }
-    
-//    var listenTags: [Tag] = []
-    
-//    var speakTags: [Tag] = [] {
-//        didSet {
-//            selectedSpeakTags = [Int](count: speakTags.count, repeatedValue: -1)
-//        }
-//    }
-//    var selectedSpeakTag: Tag?
-//    var selectedSpeakTags: [Int] = []
-//    func resetSelectedSpeakTags() {
-//        selectedSpeakTags = [Int](count: speakTags.count, repeatedValue: -1)
-//    }
-//    var speakObjects: [Tag] {
-//        get {
-//            var group:[TagGroup] = speakTags.filter { $0.code == "object" }
-//            return group.first?.options ?? []
-//        }
-//    }
-//    func selectedSpeakObject() -> Tag? {
-//        for var i = 0; i < speakTags.count; ++i {
-//            if speakTags[i].code == "object" {
-//                if selectedSpeakTags[i] != -1 {
-//                    return speakTags[i].options[selectedSpeakTags[i]]
-//                }
-//            }
-//        }
-//        return nil
-//    }
-    
-    
-    // MARK: - Exhibitions
-
-    
-    //NOTE other tags that are cross-exhibition (like male/female) have null parents so for exhibition tags we want null parents AND ui_group index=0
-    //TODO update for ui groups
-//    var selectedExhibition: Tag?
-//    
-//    var exhibitions: [Tag] {
-//        get {
-//            var group = listenTags.filter { $0.code == "exhibition" }
-//            return group.first?.options ?? []
-//        }
-//    }
-//    
-//    func exhibitionForID(tagID: Int) -> Tag? {
-//        var tags = self.exhibitions.filter { $0.tagId == tagID }
-//        return tags.first
-//    }
-
+    // MARK: - Stream
 
     var stream: Stream?
-//
-//    
-//    func objectForID(tagID: Int) -> Tag? {
-//        var group:[TagGroup] = browseTags.filter { $0.code == "object" }
-//        var tags = group.first?.options.filter { $0.tagId == tagID }
-//        return tags?.first
-//    }
-    
 }

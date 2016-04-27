@@ -44,14 +44,14 @@
                                 <constraint firstAttribute="height" constant="21" id="u3v-8m-s4z"/>
                             </constraints>
                         </imageView>
-                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eW2-6p-iDo">
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eW2-6p-iDo">
                             <rect key="frame" x="0.0" y="0.0" width="156" height="50"/>
                             <color key="backgroundColor" red="0.25882354378700256" green="0.65098041296005249" blue="0.57254904508590698" alpha="1" colorSpace="calibratedRGB"/>
                             <accessibility key="accessibilityConfiguration" hint="Cue this asset"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="cjC-nv-juw"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
+                            <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
                             <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
                             <state key="normal" title="The Maids">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -81,7 +81,7 @@
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ETJ-vD-KP7">
                             <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
-                            <accessibility key="accessibilityConfiguration" label="Contribute text"/>
+                            <accessibility key="accessibilityConfiguration" hint="Opens a modal with text contributions related to this tag" label="View text for this tag"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="35" id="bAU-vg-F76"/>
                                 <constraint firstAttribute="width" constant="35" id="z0R-pn-jtv"/>
@@ -90,7 +90,7 @@
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="on6-1g-kvA">
                             <rect key="frame" x="43" y="0.0" width="35" height="35"/>
-                            <accessibility key="accessibilityConfiguration" label="Contribute images"/>
+                            <accessibility key="accessibilityConfiguration" hint="Opens a modal with image contributions related to this tag" label="View images for this tag"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="35" id="0dU-dL-vUC"/>
                                 <constraint firstAttribute="width" constant="35" id="Iuh-Qv-W59"/>

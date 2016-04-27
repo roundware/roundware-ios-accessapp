@@ -1,3 +1,4 @@
+import RWFramework
 import Foundation
 class TagsViewModel: BaseViewModel  {
     let data: RWData
@@ -7,21 +8,57 @@ class TagsViewModel: BaseViewModel  {
 
     var roomUIGroup: UIGroup
     let roomTags: [Tag]
-    
-    var selectedRoomTag: Tag {
+    // convenience for picker
+    // could bug if selectedRoomTag set directly
+    var selectedRoomIndex: Int?  {
         didSet {
-            self.roomUIGroup.selectedUIItem = self.roomUIGroup.uiItems.filter({$0.tagId == self.selectedRoomTag.id }).first
-            data.uiGroups[self.roomUIGroup.index] = self.roomUIGroup
-            self.itemTags = data.getTagsForUIItems(data.getRelevantUIItems(self.itemsUIGroup))
+            if let index = self.selectedRoomIndex {
+                self.selectedRoomTag = self.roomTags[index]
+            } else {
+                self.selectedRoomTag = nil
+            }
+        }
+    }
+    var selectedRoomTag: Tag? {
+        didSet {
+            if let tag = self.selectedRoomTag {
+                self.roomUIGroup.selectedUIItem = self.roomUIGroup.uiItems.filter({$0.tagId == tag.id }).first
+                data.uiGroups[self.roomUIGroup.index] = self.roomUIGroup
+                self.itemTags = data.getTagsForUIItems(data.getRelevantUIItems(self.itemsUIGroup))
+                let rwf = RWFramework.sharedInstance
+                if(rwf.isPlaying){
+                    rwf.submitTags(String(tag.id))
+                }
+            } else {
+                self.roomUIGroup.selectedUIItem = nil
+                data.uiGroups[self.roomUIGroup.index] = self.roomUIGroup
+                self.itemTags = []
+            }
         }
     }
     
+    
     var itemsUIGroup: UIGroup
     var itemTags: [Tag] = []
+    
+    //convenience for next/previous
+    //could bug
+    var selectedItemIndex: Int?  {
+        didSet {
+            //TODO lock/reset in case selectedItemTag set directly
+            if let index = selectedItemIndex {
+                self.selectedItemTag = self.itemTags[index]
+            } else {
+                self.selectedItemTag = nil
+            }
+        }
+    }
     var selectedItemTag: Tag?  {
         didSet {
             if let tag = self.selectedItemTag {
                 self.itemsUIGroup.selectedUIItem = self.itemsUIGroup.uiItems.filter({$0.tagId == tag.id }).first
+                let rwf = RWFramework.sharedInstance
+                rwf.submitTags(String(tag.id))
             } else {
                 self.itemsUIGroup.selectedUIItem = nil
             }
@@ -29,66 +66,28 @@ class TagsViewModel: BaseViewModel  {
         }
     }
     
+    var stream: Stream? {
+        didSet {
+            data.stream = stream
+        }
+    }
     
-    var stream: Stream?
-    
-//    let mapURL: NSURL
-//    var currentAsset = Asset?
-//    var imageAssets = [Asset]
-//    var textAssets = [Asset]
-//    var currentParentTag = Tag?
-//    var currentDescendantTag = Tag?
-//    var images = [Media]
-//    
+    //TODO mapURL
     init(data: RWData) {
         self.data = data
-        
-        //set room tags
-        let uiGroupIndex = 1
-        let uiGroupMode = "listen"
-        
-        //TODO error handle
-        self.roomUIGroup = (data.uiGroups.filter{ $0.index == uiGroupIndex &&
-            $0.uiMode == uiGroupMode }.first)!
-        self.itemsUIGroup = (data.uiGroups.filter{ $0.index == uiGroupIndex + 1 &&
-            $0.uiMode == uiGroupMode }.first)!
 
+        //set title
+        self.exhibitionTag = data.getTagForIndexAndMode(0, mode: "listen")!
+        self.title = exhibitionTag.value
+
+        //get room options
+        self.roomUIGroup = data.getUIGroupForIndexAndMode(1, mode: "listen")!
         self.roomTags = data.getTagsForUIItems(data.getRelevantUIItems(self.roomUIGroup))
         
-        //set title
-        let previousUIGroup = (data.uiGroups.filter{ $0.index == uiGroupIndex - 1 &&
-            $0.uiMode == uiGroupMode }.first)!
-        self.exhibitionTag = data.getTagForUIItem(previousUIGroup.selectedUIItem!)!
-        self.title = exhibitionTag.value
-        
-        //set selected room to first room
-        self.selectedRoomTag = roomTags[0]
+        //set asset/tag/item whatever we call it ui group
+        self.itemsUIGroup = data.getUIGroupForIndexAndMode(2, mode: "listen")!
         
         //set stream
         self.stream = data.stream
-    }
-
-    func numberOfRooms() -> Int {
-        return self.roomTags.count
-    }
-    
-    func selectedRoomIndex(index:Int) {
-        self.selectedRoomTag = self.roomTags[index]
-    }
-    
-    func numberOfItems() -> Int {
-        return self.itemTags.count
-    }
-    
-    func selectedItemIndex(index:Int) {
-        self.selectedItemTag = self.itemTags[index]
-    }
-    
-    func selectedItemTitle(title:String) {
-        self.selectedItemTag = self.itemTags.filter{ $0.value == title}.first!
-    }
-    
-    func deselectItem(){
-        self.selectedItemTag = nil
     }
 }

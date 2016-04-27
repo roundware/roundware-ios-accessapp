@@ -20,34 +20,36 @@ class ThanksViewController: BaseViewController, UIScrollViewDelegate {
         //TODO get available exhibits via tags
     }
     
-    @IBAction func GoToTagsView(sender: AnyObject) {
-        
+    @IBAction func noThanks(sender: UIButton) {
+        self.performSegueWithIdentifier("NoThanksSegue", sender: nil)
+
     }
-    
 
     
     // MARK: View
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.viewModel = ThanksViewModel(data: self.rwData!)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+        self.viewModel = ThanksViewModel(data: self.rwData!)
+
         //Scroll view for subviews of tags
         let scroll = ThanksScroll
         scroll.delegate = self
-        let total = self.viewModel.numberOfTags()
+        let total = self.viewModel.tags.count
         let buttons = self.createButtonsForScroll(total, scroll: scroll)
         
         //set titles and actions
         for (index, button) in buttons.enumerate(){
-            button.setTitle(viewModel.titleForIndex(index), forState: .Normal)
+            let tag = self.viewModel.tags[index]
+            button.setTitle(tag.value, forState: .Normal)
             button.addTarget(self,
                 action: "selectedThis:",
                 forControlEvents: UIControlEvents.TouchUpInside)
+            button.tag = tag.id
         }
     }
     
