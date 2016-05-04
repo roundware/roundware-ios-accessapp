@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreLocation
-import RWFramework
 class LocationViewController: BaseViewController, CLLocationManagerDelegate {
     let locationManager =  CLLocationManager()
     // MARK: Actions and Outlets

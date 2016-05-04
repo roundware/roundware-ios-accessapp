@@ -42,17 +42,20 @@ import UIKit
     
     //include insets in intrinsic content size
     override func intrinsicContentSize() -> CGSize {
-        let s = super.intrinsicContentSize()
-        return CGSizeMake(s.width + self.titleEdgeInsets.left + self.titleEdgeInsets.right,
-            s.height + self.titleEdgeInsets.top + self.titleEdgeInsets.bottom);
+        return CGSizeMake(buttonWidth + self.titleEdgeInsets.left + self.titleEdgeInsets.right,
+                          buttonHeight + self.titleEdgeInsets.top + self.titleEdgeInsets.bottom)
+//
+//        let s = super.intrinsicContentSize()
+//        return CGSizeMake(s.width + self.titleEdgeInsets.left + self.titleEdgeInsets.right,
+//            s.height + self.titleEdgeInsets.top + self.titleEdgeInsets.bottom);
     }
     
-    //    override class func requiresConstraintBasedLayout() -> Bool {
-    //        return true
-    //    }
+        override class func requiresConstraintBasedLayout() -> Bool {
+            return true
+        }
     
     func setType(){
-        self.titleLabel!.font = UIFont(name: "AvenirNext-Medium", size: 17.0)
+        self.titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 17.0)
         self.titleLabel!.textAlignment = .Center
 
     }

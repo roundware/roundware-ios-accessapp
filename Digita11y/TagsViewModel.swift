@@ -8,11 +8,13 @@ class TagsViewModel: BaseViewModel  {
 
     var roomUIGroup: UIGroup
     let roomTags: [Tag]
+    
     // convenience for picker
     // could bug if selectedRoomTag set directly
     var selectedRoomIndex: Int?  {
         didSet {
             if let index = self.selectedRoomIndex {
+                debugPrint("selected room index \(index) out of \(self.roomTags)")
                 self.selectedRoomTag = self.roomTags[index]
             } else {
                 self.selectedRoomTag = nil
@@ -24,16 +26,22 @@ class TagsViewModel: BaseViewModel  {
             if let tag = self.selectedRoomTag {
                 self.roomUIGroup.selectedUIItem = self.roomUIGroup.uiItems.filter({$0.tagId == tag.id }).first
                 data.uiGroups[self.roomUIGroup.index] = self.roomUIGroup
-                self.itemTags = data.getTagsForUIItems(data.getRelevantUIItems(self.itemsUIGroup))
+                debugPrint("selected ui item for room is \(self.roomUIGroup.selectedUIItem)")
+                debugPrint("and their tags \(data.getTagsWithAudioAssetsForUIItems(data.getRelevantUIItems(self.itemsUIGroup)))")
+                self.itemTags = data.getTagsWithAudioAssetsForUIItems(data.getRelevantUIItems(self.itemsUIGroup))
+//                self.itemTags = data.getTagsForUIItems(data.getRelevantUIItems(self.itemsUIGroup))
+                debugPrint("item tags set as \(itemTags)")
+                self.selectedItemIndex = 0
                 let rwf = RWFramework.sharedInstance
                 if(rwf.isPlaying){
                     rwf.submitTags(String(tag.id))
                 }
             } else {
                 self.roomUIGroup.selectedUIItem = nil
-                data.uiGroups[self.roomUIGroup.index] = self.roomUIGroup
                 self.itemTags = []
+                //can't be set nil on rwData
             }
+
         }
     }
     
@@ -47,7 +55,10 @@ class TagsViewModel: BaseViewModel  {
         didSet {
             //TODO lock/reset in case selectedItemTag set directly
             if let index = selectedItemIndex {
-                self.selectedItemTag = self.itemTags[index]
+                debugPrint("selected item index \(index)")
+                if (self.itemTags.count > 0) {
+                    self.selectedItemTag = self.itemTags[index]
+                }
             } else {
                 self.selectedItemTag = nil
             }
@@ -57,12 +68,14 @@ class TagsViewModel: BaseViewModel  {
         didSet {
             if let tag = self.selectedItemTag {
                 self.itemsUIGroup.selectedUIItem = self.itemsUIGroup.uiItems.filter({$0.tagId == tag.id }).first
+                data.uiGroups[self.itemsUIGroup.index] = self.itemsUIGroup
                 let rwf = RWFramework.sharedInstance
+                debugPrint("submitting tag id \(tag.id)")
                 rwf.submitTags(String(tag.id))
             } else {
                 self.itemsUIGroup.selectedUIItem = nil
+                //can't be set nil on rwdata
             }
-            data.uiGroups[self.itemsUIGroup.index] = self.itemsUIGroup
         }
     }
     
@@ -83,8 +96,9 @@ class TagsViewModel: BaseViewModel  {
         //get room options
         self.roomUIGroup = data.getUIGroupForIndexAndMode(1, mode: "listen")!
         self.roomTags = data.getTagsForUIItems(data.getRelevantUIItems(self.roomUIGroup))
+        debugPrint("room tags \(self.roomTags)")
         
-        //set asset/tag/item whatever we call it ui group
+        //set items ui group
         self.itemsUIGroup = data.getUIGroupForIndexAndMode(2, mode: "listen")!
         
         //set stream

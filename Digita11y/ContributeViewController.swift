@@ -14,32 +14,56 @@ import AVFoundation
 
 class ContributeViewController: BaseViewController, UIScrollViewDelegate, UITextViewDelegate, RWFrameworkProtocol{
     var viewModel: ContributeViewModel!
+    
 
-    // MARK: Actions and Outlets
+// MARK: Actions and Outlets
     @IBAction func selectAudio(sender: AnyObject) {
         //TODO setup audio (for recording, right?)
-        textButton.hidden = true
-        viewModel.mediaType = MediaType.Audio
-        ContributeAsk.text = "What do you want to speak about?"
-        showTags()
-        
+        if(!self.viewModel.mediaSelected){
+            let duration = 0.1
+            UIView.animateWithDuration(duration, delay: 0, options: [], animations: {
+                self.textButton.hidden = true
+                }, completion: { finished in
+            })
 
-        //TODO hide text
-        //TODO record
-        //TODO playback
-        //TODO stop
+            viewModel.mediaType = MediaType.Audio
+            ContributeAsk.text = "What do you want to speak about?"
+            tagLabel.text = "Audio"
+            showTags()
+            self.viewModel.mediaSelected = true
+            //TODO disable audio button
+        } else { if(self.viewModel.tagsSelected){
+            
+            }
+        }
+
     }
+
     @IBAction func selectText(sender: AnyObject) {
-        //TODO launch text subview/modal
-        viewModel.mediaType = MediaType.Text
-        audioButton.hidden = true
-        ContributeAsk.text = "What do you want to speak about?"
-        showTags()
+        if(!self.viewModel.mediaSelected){
+
+            let duration = 0.1
+            UIView.animateWithDuration(duration, delay: 0, options: [], animations: {
+                self.audioButton.hidden = true
+                }, completion: { finished in
+            })
+            
+            viewModel.mediaType = MediaType.Text
+            ContributeAsk.text = "What do you want to speak about?"
+            tagLabel.text = "Text"
+            showTags()
+            //TODO disable text button
+            self.viewModel.mediaSelected = true
+
+        } else { if(self.viewModel.tagsSelected){
+            }
+        }
+
     }
     
     func showTags(){
-        //Scroll view for subviews of tags
         let scroll = ContributeScroll
+
         scroll.hidden = false
         scroll.delegate = self
         //TODO set some real tags
@@ -57,11 +81,11 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
             button.tag = tag.id
         }
         
-        // set scroll view
-        let newContentOffsetX = (scroll.contentSize.width/2) - (scroll.bounds.size.width/2)
-        scroll.contentOffset = CGPointMake(newContentOffsetX, 0)
-        
-        tagLabel.hidden = false
+        let duration = 0.1
+        UIView.animateWithDuration(duration, delay: 0, options: [], animations: {
+            self.tagLabel.hidden = false
+            }, completion: { finished in
+        })
     }
     
     @IBAction func selectedThis(sender: AnyObject) {
@@ -70,22 +94,29 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
         for (index, button) in others.enumerate(){
             button.hidden = true
         }
-        //TODO set height?
-        scroll.layoutIfNeeded()
+        
+        //TODO check if we have enough of these
+        let duration = 0.1
+        UIView.animateWithDuration(duration, delay: 0, options: [], animations: {
+            self.progressLabel.hidden = false
+            }, completion: { finished in
+        })
         
         if(viewModel.mediaType == MediaType.Audio){
-            progressLabel.hidden = false
+            //TODO enable buttons again
             setupAudio() { granted, error in
                 if granted == false {
                     debugPrint("Unable to setup audio: \(error)")
                     if let error = error {
                         CLSNSLogv("Unable to setup audio: \(error)", getVaList([error]))
                     }
+                } else {
+                    debugPrint("Setup audio")
                 }
             }
         } else {
             //is text
-            
+            self.responseTextView.hidden = false
         }
         //TODO more tags?
         //TODO prep media
@@ -135,7 +166,6 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
     // MARK: View
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
         ContributeScroll.hidden = true
         uploadButton.hidden = true
         undoButton.hidden = true
@@ -153,22 +183,17 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
         self.viewModel = ContributeViewModel(data: self.rwData!)
         //TODO make a button image
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: #selector(cancel(_:)))
-        
-        ContributeAsk.text = "How would you like to contribute to \(self.viewModel.exhibitionTag.value)?"
-        
+        ContributeAsk.text = "How would you like to contribute to \(self.viewModel.itemTag.value)?"
         ContributeScroll.delegate = self
         responseTextView.delegate = self
-        //TODO instantiate rwf
-
     }
     
     override func viewDidLayoutSubviews(){
         super.viewDidLayoutSubviews()
-        
-        // set scroll view
-//        let scroll = ContributeScroll
-//        let newContentOffsetX = (scroll.contentSize.width/2) - (scroll.bounds.size.width/2)
-//        scroll.contentOffset = CGPointMake(newContentOffsetX, 0)
+        let scroll = ContributeScroll
+        let newContentOffsetX = (scroll.contentSize.width/2) - (scroll.bounds.size.width/2)
+        debugPrint("newContentOffsetX \(newContentOffsetX)")
+        scroll.contentOffset = CGPointMake(newContentOffsetX, 0)
     }
     
     override func didReceiveMemoryWarning() {

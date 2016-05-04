@@ -69,6 +69,12 @@ class RWData {
         return tags.filter({ tagIds.contains($0.id) })
     }
     
+    func getTagsWithAudioAssetsForUIItems(uiItems: [UIItem]) -> [Tag] {
+        let tagIds = uiItems.map { $0.tagId }
+        return tags.filter({ tagIds.contains($0.id) && self.getAssetsForTagIdOfMediaType($0.id, mediaType: MediaType.Audio).count > 0})
+    }
+
+    
     func getTagForUIItem(uiItem: UIItem) -> Tag? {
         if let tag = tags.filter({$0.id == uiItem.tagId}).first {
             return tag
@@ -102,9 +108,12 @@ class RWData {
     }
 
     func getAssetsForTagIdOfMediaType(tagId: Int, mediaType: MediaType) -> [Asset] {
-        debugPrint("looking for assets with tagID \(tagId) and media type \(mediaType)")
+//        debugPrint("looking for assets with tagID \(tagId) and media type \(mediaType)")
 //        return assets.filter({$0.tagIDs.contains(tagId) && $0.mediaType == mediaType })
         var theseAssets = assets.filter({$0.tagIDs.contains(tagId)})
+//        if(theseAssets.count > 0){
+//            debugPrint("does \(theseAssets[0].mediaType) = \(mediaType)")
+//        }
         return theseAssets.filter({$0.mediaType == mediaType })
 
     }

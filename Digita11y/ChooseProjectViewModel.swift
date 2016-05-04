@@ -1,6 +1,4 @@
 import Foundation
-import UIKit
-import RWFramework
 class ChooseProjectViewModel: BaseViewModel  {
     let data: RWData
     let projects: [Project]

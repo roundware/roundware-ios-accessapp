@@ -1,5 +1,4 @@
 import Foundation
-import RWFramework
 class GalleryViewModel: BaseViewModel  {
     let data: RWData
     let tag: Tag

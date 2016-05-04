@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RWFramework
 class ChooseProjectViewController: BaseViewController, UIScrollViewDelegate {
     var viewModel: ChooseProjectViewModel!
 
@@ -37,7 +36,6 @@ class ChooseProjectViewController: BaseViewController, UIScrollViewDelegate {
         let buttons = self.createButtonsForScroll(total, scroll: scroll)
         
         //set titles and action
-        //TODO check if already added
         for (index, button) in buttons.enumerate(){
             let project = viewModel.projects[index]
             button.setTitle(project.name, forState: .Normal)

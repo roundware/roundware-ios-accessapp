@@ -80,9 +80,9 @@ class RootNavigationViewController: UINavigationController, UINavigationControll
     
     func rwGetAssetsSuccess(data: NSData?) {
         let json = JSON(data: data!)
-        debugPrint("assets json received")
         self.rwData?.assets = json.array?.map { Asset(json: $0) } ?? []
-        dump(self.rwData?.assets)
+//        debugPrint("assets json received")
+//        dump(self.rwData?.assets)
     }
     
     func rwGetAssetsFailure(error: NSError?) {

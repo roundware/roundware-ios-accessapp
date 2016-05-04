@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import RWFramework
-import SwiftyJSON
 import Crashlytics
 class ChooseExhibitController: BaseViewController, UIScrollViewDelegate {
     var viewModel: ChooseExhibitViewModel!

@@ -28,8 +28,8 @@ struct Asset {
     }
     
     init(json: JSON) {
-        debugPrint("initing asset")
-        dump(json)
+//        debugPrint("initing asset")
+//        dump(json)
         assetDescription = json["description"].string ?? ""
         volume = json["volume"].int ?? 0
         project = json["project"].int ?? 0

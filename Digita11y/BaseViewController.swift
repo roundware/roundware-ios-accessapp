@@ -29,6 +29,7 @@ class BaseViewController: UIViewController {
                 width: button.buttonWidth,
                 height: button.buttonHeight )
             button.frame = frame
+            button.titleLabel?.numberOfLines = 0
             buttons.append(button as UIButton)
             scroll.addSubview(button)
         }
@@ -56,6 +57,7 @@ class BaseViewController: UIViewController {
                 width: button.buttonWidth,
                 height: button.buttonHeight )
             button.frame = frame
+            button.titleLabel?.numberOfLines = 0
             buttons.append(button as UIButton)
             scroll.addSubview(button)
         }
