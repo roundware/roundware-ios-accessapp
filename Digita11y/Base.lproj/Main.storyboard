@@ -728,12 +728,12 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="82"/>
-                                        </variation>
                                     </label>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" restorationIdentifier="ContributeScroll" bounces="NO" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bSR-Dv-uNZ">
                                         <rect key="frame" x="0.0" y="21" width="406" height="236"/>
+                                        <variation key="heightClass=regular" misplaced="YES">
+                                            <rect key="frame" x="0.0" y="102" width="374" height="127"/>
+                                        </variation>
                                     </scrollView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Response" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8V7-kK-PBe" userLabel="Response Label" customClass="UILabelSubHeadline" customModule="Digita11y" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="257" width="406" height="21"/>
@@ -768,7 +768,8 @@
                                                 <exclude reference="9tc-JU-5tG"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular">
+                                        <variation key="heightClass=regular" misplaced="YES">
+                                            <rect key="frame" x="0.0" y="302" width="374" height="200"/>
                                             <mask key="constraints">
                                                 <include reference="9tc-JU-5tG"/>
                                             </mask>
@@ -780,6 +781,9 @@
                                             <button opaque="NO" contentMode="scaleAspectFit" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jJk-kv-DnR" userLabel="Undo">
                                                 <rect key="frame" x="0.0" y="0.0" width="104" height="142"/>
                                                 <state key="normal" image="undo"/>
+                                                <variation key="heightClass=regular" misplaced="YES">
+                                                    <rect key="frame" x="0.0" y="0.0" width="104" height="174"/>
+                                                </variation>
                                                 <connections>
                                                     <action selector="undo:" destination="80e-wb-9Zi" eventType="touchUpInside" id="NfT-ac-EJU"/>
                                                 </connections>
@@ -792,6 +796,9 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
+                                                        <variation key="heightClass=regular" misplaced="YES">
+                                                            <rect key="frame" x="0.0" y="0.0" width="126" height="21"/>
+                                                        </variation>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" distribution="equalCentering" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="58s-2Y-sUI">
                                                         <rect key="frame" x="0.0" y="21" width="198" height="100"/>
@@ -839,26 +846,39 @@
                                                                 </connections>
                                                             </button>
                                                         </subviews>
-                                                        <variation key="heightClass=regular" axis="horizontal"/>
+                                                        <variation key="heightClass=regular" axis="horizontal" misplaced="YES">
+                                                            <rect key="frame" x="0.0" y="31" width="126" height="100"/>
+                                                        </variation>
                                                     </stackView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i3g-r3-mlV" customClass="UILabelSubHeadline" customModule="Digita11y" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="121" width="198" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
+                                                        <variation key="heightClass=regular" misplaced="YES">
+                                                            <rect key="frame" x="0.0" y="141" width="126" height="33"/>
+                                                        </variation>
                                                     </label>
                                                 </subviews>
+                                                <variation key="heightClass=regular" misplaced="YES">
+                                                    <rect key="frame" x="124" y="0.0" width="126" height="174"/>
+                                                </variation>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleAspectFit" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3lE-le-eli" userLabel="Upload">
                                                 <rect key="frame" x="302" y="0.0" width="104" height="142"/>
                                                 <accessibility key="accessibilityConfiguration" label="Upload"/>
                                                 <state key="normal" image="upload"/>
+                                                <variation key="heightClass=regular" misplaced="YES">
+                                                    <rect key="frame" x="270" y="0.0" width="104" height="174"/>
+                                                </variation>
                                                 <connections>
                                                     <action selector="upload:" destination="80e-wb-9Zi" eventType="touchUpInside" id="iVQ-j9-h2R"/>
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <variation key="heightClass=regular" axis="horizontal"/>
+                                        <variation key="heightClass=regular" axis="horizontal" misplaced="YES">
+                                            <rect key="frame" x="0.0" y="522" width="374" height="174"/>
+                                        </variation>
                                     </stackView>
                                 </subviews>
                                 <constraints>
@@ -932,7 +952,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="aCa-uh-SuQ">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="aCa-uh-SuQ">
                                 <rect key="frame" x="0.0" y="119" width="414" height="499"/>
                                 <subviews>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="right" image="comment-big" translatesAutoresizingMaskIntoConstraints="NO" id="fME-30-kko">
@@ -945,7 +965,8 @@
                                                 <exclude reference="69i-08-gc1"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular">
+                                        <variation key="heightClass=regular" misplaced="YES">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="136"/>
                                             <mask key="constraints">
                                                 <include reference="69i-08-gc1"/>
                                             </mask>
@@ -956,8 +977,8 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="156" width="374" height="84"/>
+                                        <variation key="heightClass=regular" ambiguous="YES" misplaced="YES">
+                                            <rect key="frame" x="0.0" y="157" width="374" height="82"/>
                                         </variation>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="While you’re on a roll would you care to contribute another one for:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rat-u2-dCv" customClass="UILabelBody" customModule="Digita11y" customModuleProvider="target">
@@ -965,34 +986,24 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="260" width="374" height="40"/>
+                                        <variation key="heightClass=regular" ambiguous="YES" misplaced="YES">
+                                            <rect key="frame" x="0.0" y="261" width="374" height="39"/>
                                         </variation>
                                     </label>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="ThanksScroll" translatesAutoresizingMaskIntoConstraints="NO" id="6Fd-r1-7wb">
                                         <rect key="frame" x="20" y="20" width="374" height="459"/>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="320" width="374" height="326"/>
+                                        <variation key="heightClass=regular" ambiguous="YES" misplaced="YES">
+                                            <rect key="frame" x="0.0" y="321" width="374" height="305"/>
                                         </variation>
                                     </scrollView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dOb-Mo-7nE" customClass="UIButtonWhite" customModule="Digita11y" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="224" width="374" height="50"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="SAK-WX-1zl"/>
-                                        </constraints>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ew9-yM-J5J" customClass="UIButtonWhite" customModule="Digita11y" customModuleProvider="target">
+                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                         <state key="normal" title="No Thanks"/>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="SAK-WX-1zl"/>
-                                            </mask>
-                                        </variation>
-                                        <variation key="heightClass=regular">
-                                            <mask key="constraints">
-                                                <include reference="SAK-WX-1zl"/>
-                                            </mask>
+                                        <variation key="heightClass=regular" misplaced="YES">
+                                            <rect key="frame" x="0.0" y="647" width="374" height="49"/>
                                         </variation>
                                         <connections>
-                                            <action selector="noThanks:" destination="RP1-T4-HhY" eventType="touchUpInside" id="hnz-XY-AoQ"/>
+                                            <action selector="noThanks:" destination="RP1-T4-HhY" eventType="touchUpInside" id="EFx-8Y-17r"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1013,7 +1024,9 @@
                             <constraint firstItem="aCa-uh-SuQ" firstAttribute="leading" secondItem="w66-eV-wfq" secondAttribute="leadingMargin" id="B5R-Q6-u3s"/>
                             <constraint firstItem="aCa-uh-SuQ" firstAttribute="top" secondItem="jSn-ju-ihQ" secondAttribute="bottom" id="Rnu-df-oQ3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="aCa-uh-SuQ" secondAttribute="trailing" id="gJ3-mg-GOr"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="aCa-uh-SuQ" secondAttribute="bottom" id="mT6-pk-3tM"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="aCa-uh-SuQ" secondAttribute="bottom" id="mT6-pk-3tM">
+                                <variation key="heightClass=regular" constant="20"/>
+                            </constraint>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">

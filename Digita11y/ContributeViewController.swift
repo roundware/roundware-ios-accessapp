@@ -231,11 +231,6 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
     
     override func viewDidLayoutSubviews(){
         super.viewDidLayoutSubviews()
-        let scroll = ContributeScroll
-        let newContentOffsetX = (scroll.contentSize.width/2) - (scroll.bounds.size.width/2)
-        debugPrint("newContentOffsetX \(newContentOffsetX)")
-        scroll.contentOffset = CGPointMake(newContentOffsetX, 0)
-
     }
     
     override func didReceiveMemoryWarning() {
@@ -258,12 +253,14 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
         for (_, item) in scroll.subviews.enumerate(){
             item.removeFromSuperview()
         }
+        let newContentOffsetX = (button.buttonWidth - scroll.bounds.size.width) / 2
+        debugPrint("new content offset \(newContentOffsetX)")
         
         for index in 0..<total {
             button = UIButtonTag(type: UIButtonType.System)
             let indexFloat = CGFloat(index)
             let frame = CGRect(
-                x: button.buttonMarginX,
+                x: button.buttonMarginX - newContentOffsetX,
                 y: indexFloat * (button.buttonMarginY + button.buttonHeight),
                 width: button.buttonWidth,
                 height: button.buttonHeight )
@@ -272,7 +269,6 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
             buttons.append(button as UIButton)
         }
         
-        //TODO fix scroll center
         scroll.contentSize.width = button.buttonWidth
         scroll.contentSize.height = (button.buttonHeight + button.buttonMarginY) * CGFloat(total)
         
@@ -294,6 +290,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
             }
         }, completion: { finished in
         })
+
     }
 //
     func displayPreviewAudio() {
