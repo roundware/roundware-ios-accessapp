@@ -48,7 +48,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
             waitingToStart = true
             return true
         } else {
-            var alertController = UIAlertController (title: "Title", message: "Enable location detection for streaming", preferredStyle: .Alert)
+            var alertController = UIAlertController (title: "Location services", message: "Please enable location detection for streaming", preferredStyle: .Alert)
             
             var settingsAction = UIAlertAction(title: "Settings", style: .Default) { (_) -> Void in
                 let settingsUrl = NSURL(string: UIApplicationOpenSettingsURLString)

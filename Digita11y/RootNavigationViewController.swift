@@ -45,12 +45,14 @@ class RootNavigationViewController: UINavigationController, UINavigationControll
     }
     
     func rwPostUsersFailure(error: NSError?) {
+        debugPrint("post users failure")
         debugPrint(error?.localizedDescription)
         CLSNSLogv((error?.localizedDescription)!, getVaList([]))
     }
     
     func rwPostSessionsFailure(error: NSError?){
         debugPrint(error?.localizedDescription)
+        debugPrint("post sessions failure")
         CLSNSLogv((error?.localizedDescription)!, getVaList([]))
     }
 
@@ -60,6 +62,7 @@ class RootNavigationViewController: UINavigationController, UINavigationControll
     }
     
     func rwGetProjectsIdTagsFailure(error: NSError?) {
+        debugPrint("get projects id tags failure")
         debugPrint(error?.localizedDescription)
         CLSNSLogv((error?.localizedDescription)!, getVaList([]))
     }
@@ -70,6 +73,7 @@ class RootNavigationViewController: UINavigationController, UINavigationControll
     }
     
     func rwGetProjectsIdUIGroupsFailure(error: NSError?) {
+        debugPrint("get projects id ui groups failure")
         debugPrint(error?.localizedDescription)
         CLSNSLogv((error?.localizedDescription)!, getVaList([]))
     }
@@ -82,6 +86,7 @@ class RootNavigationViewController: UINavigationController, UINavigationControll
     }
     
     func rwGetAssetsFailure(error: NSError?) {
+        debugPrint("get assets failure")
         debugPrint(error?.localizedDescription)
         CLSNSLogv((error?.localizedDescription)!, getVaList([]))
     }
