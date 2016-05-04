@@ -17,7 +17,6 @@ class ThanksViewController: BaseViewController, UIScrollViewDelegate {
     @IBAction func selectedThis(sender: UIButton) {
         //TODO set tags and send as dependency
         self.performSegueWithIdentifier("TagsSegue", sender: nil)
-        //TODO get available exhibits via tags
     }
     
     @IBAction func noThanks(sender: UIButton) {

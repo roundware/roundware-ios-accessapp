@@ -25,7 +25,7 @@ class TagsViewModel: BaseViewModel  {
         didSet {
             if let tag = self.selectedRoomTag {
                 self.roomUIGroup.selectedUIItem = self.roomUIGroup.uiItems.filter({$0.tagId == tag.id }).first
-                data.uiGroups[self.roomUIGroup.index] = self.roomUIGroup
+                data.updateUIGroup(self.roomUIGroup)
                 debugPrint("selected ui item for room is \(self.roomUIGroup.selectedUIItem)")
                 debugPrint("and their tags \(data.getTagsWithAudioAssetsForUIItems(data.getRelevantUIItems(self.itemsUIGroup)))")
                 self.itemTags = data.getTagsWithAudioAssetsForUIItems(data.getRelevantUIItems(self.itemsUIGroup))
@@ -68,7 +68,7 @@ class TagsViewModel: BaseViewModel  {
         didSet {
             if let tag = self.selectedItemTag {
                 self.itemsUIGroup.selectedUIItem = self.itemsUIGroup.uiItems.filter({$0.tagId == tag.id }).first
-                data.uiGroups[self.itemsUIGroup.index] = self.itemsUIGroup
+                data.updateUIGroup(self.itemsUIGroup)
                 let rwf = RWFramework.sharedInstance
                 debugPrint("submitting tag id \(tag.id)")
                 rwf.submitTags(String(tag.id))

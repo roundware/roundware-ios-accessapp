@@ -9,7 +9,7 @@ class ChooseExhibitViewModel: BaseViewModel  {
     var selectedTag: Tag? {
         didSet {
             self.uiGroup.selectedUIItem = self.uiGroup.uiItems.filter({$0.tagId == self.selectedTag!.id}).first
-            data.uiGroups[self.uiGroup.index] = self.uiGroup
+            data.updateUIGroup(self.uiGroup)
             debugPrint("selected ui item for exhibitions uigroup at index \(self.uiGroup.index) set to \(self.uiGroup.selectedUIItem)")
         }
     }

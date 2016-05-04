@@ -52,7 +52,7 @@ class ChooseExhibitController: BaseViewController, UIScrollViewDelegate {
         
         //scroll
         let scroll = ExhibitScroll
-        let newContentOffsetX = (scroll.contentSize.width/2) - (scroll.bounds.size.width/2)
+        let newContentOffsetX = (scroll.contentSize.width - scroll.bounds.size.width) / 2
         scroll.contentOffset = CGPointMake(newContentOffsetX, 0)
     }
 }

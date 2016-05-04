@@ -55,9 +55,8 @@ import UIKit
         }
     
     func setType(){
-        self.titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 17.0)
+        self.titleLabel!.font = UIFont(name: "AvenirNext-Medium", size: 17.0)
         self.titleLabel!.textAlignment = .Center
-
     }
     
     func setupViews() {

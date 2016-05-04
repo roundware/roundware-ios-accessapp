@@ -132,7 +132,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
         selectItemAtIndex(sender.tag)
     }
     
-    //TODO really select item at index
+    //TODO mark item as played
     @IBAction func selectItemAtIndex(index: Int) {
         let tagView = tagViews[index]
         if (tagView.selected){
@@ -324,7 +324,11 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 
     }
     
-    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        SVProgressHUD.dismiss()
+    }
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
     }
@@ -377,8 +381,6 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
             resetRoomItems()
         }
     }
-    
-    
     
     // MARK: RWFramework Protocol
     func rwUpdateStatus(message: String) {

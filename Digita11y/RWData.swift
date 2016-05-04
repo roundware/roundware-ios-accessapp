@@ -34,6 +34,20 @@ class RWData {
         }
     }
     
+    func updateUIGroup(uiGroup: UIGroup) -> Void {
+        if let thisProject = selectedProject,
+            let index = uiGroups.indexOf({
+                $0.index == uiGroup.index &&
+                    $0.uiMode == uiGroup.uiMode &&
+                    $0.project == thisProject.id
+            }) {
+              uiGroups[index] = uiGroup
+        } else {
+            //TODO real error
+            debugPrint("ERROR: missing uiGroup in uiGroups array for \(uiGroup)")
+        }
+    }
+    
     func getTagForIndexAndMode(index: Int, mode: String) -> Tag? {
         if  let uiGroup = getUIGroupForIndexAndMode(index, mode: mode),
             let uiItem = uiGroup.selectedUIItem,

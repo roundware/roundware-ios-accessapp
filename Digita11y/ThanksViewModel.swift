@@ -20,6 +20,8 @@ class ThanksViewModel: BaseViewModel {
         self.uiGroup = data.getUIGroupForIndexAndMode(0, mode: "speak")!
         self.title = "Thanks for your contribution to: \(self.exhibitionTag.value)!"
         self.tags = data.getTagsForUIItems(self.uiGroup.uiItems)
+        //TODO get available get tags that have not been contributed too for this parent tag....
+
     }
     
     func selectedTitle(title:String) {
