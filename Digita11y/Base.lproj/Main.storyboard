@@ -701,7 +701,7 @@
                         <segue destination="tA3-Ku-PWB" kind="presentation" identifier="ReadSegue" id="W90-rJ-ttY"/>
                         <segue destination="s7j-Qm-VDd" kind="presentation" identifier="GallerySegue" id="BOr-iF-dy0"/>
                         <segue destination="ezH-kl-5yA" kind="presentation" identifier="MapSegue" id="Z0z-kF-bzI"/>
-                        <segue destination="80e-wb-9Zi" kind="show" identifier="ContributeSegue" id="iaO-zu-ILf"/>
+                        <segue destination="80e-wb-9Zi" kind="showDetail" identifier="ContributeSegue" action="showViewController:sender:" id="iaO-zu-ILf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X00-lr-frm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -721,22 +721,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="QXD-GU-aCM">
-                                <rect key="frame" x="0.0" y="0.0" width="406" height="658"/>
+                                <rect key="frame" x="0.0" y="0.0" width="466" height="758"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" restorationIdentifier="ContributeAsk" text="How would you like to contribute to XYZ?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bjg-3s-y6Y" customClass="UILabelHeadline" customModule="Digita11y" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="406" height="21"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="466" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" restorationIdentifier="ContributeScroll" bounces="NO" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bSR-Dv-uNZ">
-                                        <rect key="frame" x="0.0" y="21" width="406" height="236"/>
+                                        <rect key="frame" x="0.0" y="41" width="466" height="236"/>
                                         <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="102" width="374" height="127"/>
+                                            <rect key="frame" x="0.0" y="102" width="560" height="200"/>
                                         </variation>
                                     </scrollView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Response" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8V7-kK-PBe" userLabel="Response Label" customClass="UILabelSubHeadline" customModule="Digita11y" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="257" width="406" height="21"/>
+                                        <rect key="frame" x="0.0" y="297" width="466" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="33" id="BHn-gT-CgK"/>
                                         </constraints>
@@ -749,14 +749,14 @@
                                             </mask>
                                         </variation>
                                         <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="249" width="374" height="33"/>
+                                            <rect key="frame" x="0.0" y="322" width="560" height="33"/>
                                             <mask key="constraints">
                                                 <include reference="BHn-gT-CgK"/>
                                             </mask>
                                         </variation>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" text="Your response here" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="yr1-qK-X7C" userLabel="Response Text View">
-                                        <rect key="frame" x="0.0" y="278" width="406" height="238"/>
+                                        <rect key="frame" x="0.0" y="338" width="466" height="238"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="200" id="9tc-JU-5tG"/>
@@ -769,41 +769,41 @@
                                             </mask>
                                         </variation>
                                         <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="302" width="374" height="200"/>
+                                            <rect key="frame" x="0.0" y="375" width="560" height="200"/>
                                             <mask key="constraints">
                                                 <include reference="9tc-JU-5tG"/>
                                             </mask>
                                         </variation>
                                     </textView>
                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" distribution="equalCentering" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="dqw-93-MOw">
-                                        <rect key="frame" x="0.0" y="516" width="406" height="142"/>
+                                        <rect key="frame" x="0.0" y="596" width="466" height="162"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleAspectFit" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jJk-kv-DnR" userLabel="Undo">
-                                                <rect key="frame" x="0.0" y="0.0" width="104" height="142"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="104" height="162"/>
                                                 <state key="normal" image="undo"/>
                                                 <variation key="heightClass=regular" misplaced="YES">
-                                                    <rect key="frame" x="0.0" y="0.0" width="104" height="174"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="104" height="165"/>
                                                 </variation>
                                                 <connections>
                                                     <action selector="undo:" destination="80e-wb-9Zi" eventType="touchUpInside" id="NfT-ac-EJU"/>
                                                 </connections>
                                             </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="SuZ-cA-ngt">
-                                                <rect key="frame" x="104" y="0.0" width="198" height="142"/>
+                                                <rect key="frame" x="124" y="0.0" width="218" height="162"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="axU-gD-3eO" customClass="UILabelSubHeadline" customModule="Digita11y" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="198" height="21"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="218" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                         <variation key="heightClass=regular" misplaced="YES">
-                                                            <rect key="frame" x="0.0" y="0.0" width="126" height="21"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="218" height="12"/>
                                                         </variation>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" distribution="equalCentering" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="58s-2Y-sUI">
-                                                        <rect key="frame" x="0.0" y="21" width="198" height="100"/>
+                                                        <rect key="frame" x="0.0" y="31" width="218" height="100"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleAspectFit" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ok-Wd-4jK" userLabel="Audio">
+                                                            <button opaque="NO" contentMode="scaleAspectFit" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ok-Wd-4jK" userLabel="Audio">
                                                                 <rect key="frame" x="0.0" y="0.0" width="99" height="100"/>
                                                                 <accessibility key="accessibilityConfiguration" label="Audio"/>
                                                                 <constraints>
@@ -825,7 +825,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleAspectFit" horizontalCompressionResistancePriority="749" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uVg-JU-omc" userLabel="Text">
-                                                                <rect key="frame" x="99" y="0.0" width="99" height="100"/>
+                                                                <rect key="frame" x="119" y="0.0" width="99" height="100"/>
                                                                 <accessibility key="accessibilityConfiguration" label="Text"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="100" id="agH-DF-IVl"/>
@@ -847,29 +847,29 @@
                                                             </button>
                                                         </subviews>
                                                         <variation key="heightClass=regular" axis="horizontal" misplaced="YES">
-                                                            <rect key="frame" x="0.0" y="31" width="126" height="100"/>
+                                                            <rect key="frame" x="0.0" y="22" width="218" height="100"/>
                                                         </variation>
                                                     </stackView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i3g-r3-mlV" customClass="UILabelSubHeadline" customModule="Digita11y" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="121" width="198" height="21"/>
+                                                        <rect key="frame" x="0.0" y="141" width="218" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                         <variation key="heightClass=regular" misplaced="YES">
-                                                            <rect key="frame" x="0.0" y="141" width="126" height="33"/>
+                                                            <rect key="frame" x="0.0" y="132" width="218" height="33"/>
                                                         </variation>
                                                     </label>
                                                 </subviews>
                                                 <variation key="heightClass=regular" misplaced="YES">
-                                                    <rect key="frame" x="124" y="0.0" width="126" height="174"/>
+                                                    <rect key="frame" x="171" y="0.0" width="218" height="165"/>
                                                 </variation>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleAspectFit" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3lE-le-eli" userLabel="Upload">
-                                                <rect key="frame" x="302" y="0.0" width="104" height="142"/>
+                                                <rect key="frame" x="362" y="0.0" width="104" height="162"/>
                                                 <accessibility key="accessibilityConfiguration" label="Upload"/>
                                                 <state key="normal" image="upload"/>
                                                 <variation key="heightClass=regular" misplaced="YES">
-                                                    <rect key="frame" x="270" y="0.0" width="104" height="174"/>
+                                                    <rect key="frame" x="456" y="0.0" width="104" height="165"/>
                                                 </variation>
                                                 <connections>
                                                     <action selector="upload:" destination="80e-wb-9Zi" eventType="touchUpInside" id="iVQ-j9-h2R"/>
@@ -877,7 +877,7 @@
                                             </button>
                                         </subviews>
                                         <variation key="heightClass=regular" axis="horizontal" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="522" width="374" height="174"/>
+                                            <rect key="frame" x="0.0" y="595" width="560" height="165"/>
                                         </variation>
                                     </stackView>
                                 </subviews>
@@ -952,11 +952,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="aCa-uh-SuQ">
-                                <rect key="frame" x="0.0" y="119" width="414" height="499"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="xkJ-rC-V1l">
+                                <rect key="frame" x="8" y="230" width="584" height="340"/>
                                 <subviews>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="right" image="comment-big" translatesAutoresizingMaskIntoConstraints="NO" id="fME-30-kko">
-                                        <rect key="frame" x="20" y="216" width="374" height="66"/>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="comment-big" translatesAutoresizingMaskIntoConstraints="NO" id="fME-30-kko">
+                                        <rect key="frame" x="224" y="102" width="136" height="136"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="136" id="69i-08-gc1"/>
                                         </constraints>
@@ -965,95 +965,87 @@
                                                 <exclude reference="69i-08-gc1"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="136"/>
+                                        <variation key="heightClass=regular">
                                             <mask key="constraints">
                                                 <include reference="69i-08-gc1"/>
                                             </mask>
                                         </variation>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="ThanksHeadline" text="Thank you for your contribution to XYZ!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="emy-G4-ovM" customClass="UILabelHeadline" customModule="Digita11y" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="208" width="374" height="82"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" restorationIdentifier="ThanksHeadline" text="Thank you for your contribution to XYZ!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="emy-G4-ovM" customClass="UILabelHeadline" customModule="Digita11y" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="150" width="544" height="41"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
-                                        <variation key="heightClass=regular" ambiguous="YES" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="157" width="374" height="82"/>
-                                        </variation>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="While you’re on a roll would you care to contribute another one for:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rat-u2-dCv" customClass="UILabelBody" customModule="Digita11y" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="230" width="374" height="39"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="While you’re on a roll would you care to contribute another one for:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rat-u2-dCv" customClass="UILabelBody" customModule="Digita11y" customModuleProvider="target">
+                                        <rect key="frame" x="75" y="160" width="433" height="20"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
-                                        <variation key="heightClass=regular" ambiguous="YES" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="261" width="374" height="39"/>
-                                        </variation>
                                     </label>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="ThanksScroll" translatesAutoresizingMaskIntoConstraints="NO" id="6Fd-r1-7wb">
-                                        <rect key="frame" x="20" y="20" width="374" height="459"/>
-                                        <variation key="heightClass=regular" ambiguous="YES" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="321" width="374" height="305"/>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" restorationIdentifier="ThanksScroll" translatesAutoresizingMaskIntoConstraints="NO" id="6Fd-r1-7wb">
+                                        <rect key="frame" x="105" y="20" width="374" height="300"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="300" id="U3Z-fl-MQV"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="U3Z-fl-MQV"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="heightClass=regular">
+                                            <mask key="constraints">
+                                                <include reference="U3Z-fl-MQV"/>
+                                            </mask>
                                         </variation>
                                     </scrollView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ew9-yM-J5J" customClass="UIButtonWhite" customModule="Digita11y" customModuleProvider="target">
-                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ew9-yM-J5J" customClass="UIButtonWhite" customModule="Digita11y" customModuleProvider="target">
+                                        <rect key="frame" x="214" y="146" width="156" height="49"/>
                                         <state key="normal" title="No Thanks"/>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="647" width="374" height="49"/>
-                                        </variation>
                                         <connections>
                                             <action selector="noThanks:" destination="RP1-T4-HhY" eventType="touchUpInside" id="EFx-8Y-17r"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <variation key="default">
-                                    <mask key="subviews">
-                                        <exclude reference="fME-30-kko"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=regular" axis="vertical">
-                                    <mask key="subviews">
-                                        <include reference="fME-30-kko"/>
-                                    </mask>
+                                <variation key="heightClass=regular" axis="vertical" misplaced="YES">
+                                    <rect key="frame" x="28" y="250" width="560" height="760"/>
                                 </variation>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.49411764740000003" green="0.82745099070000006" blue="0.1294117719" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="aCa-uh-SuQ" firstAttribute="leading" secondItem="w66-eV-wfq" secondAttribute="leadingMargin" id="B5R-Q6-u3s"/>
-                            <constraint firstItem="aCa-uh-SuQ" firstAttribute="top" secondItem="jSn-ju-ihQ" secondAttribute="bottom" id="Rnu-df-oQ3"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="aCa-uh-SuQ" secondAttribute="trailing" id="gJ3-mg-GOr"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="aCa-uh-SuQ" secondAttribute="bottom" id="mT6-pk-3tM">
-                                <variation key="heightClass=regular" constant="20"/>
-                            </constraint>
+                            <constraint firstAttribute="trailingMargin" secondItem="xkJ-rC-V1l" secondAttribute="trailing" id="3e1-jI-HUQ"/>
+                            <constraint firstItem="xkJ-rC-V1l" firstAttribute="top" secondItem="jSn-ju-ihQ" secondAttribute="bottom" id="Sj9-H8-yyV"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="xkJ-rC-V1l" secondAttribute="bottom" constant="20" id="UnR-mU-9F9"/>
+                            <constraint firstItem="xkJ-rC-V1l" firstAttribute="leading" secondItem="w66-eV-wfq" secondAttribute="leadingMargin" id="tnH-dX-Dzg"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="B5R-Q6-u3s"/>
-                                <exclude reference="Rnu-df-oQ3"/>
-                                <exclude reference="gJ3-mg-GOr"/>
-                                <exclude reference="mT6-pk-3tM"/>
+                                <exclude reference="3e1-jI-HUQ"/>
+                                <exclude reference="Sj9-H8-yyV"/>
+                                <exclude reference="UnR-mU-9F9"/>
+                                <exclude reference="tnH-dX-Dzg"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular">
                             <mask key="constraints">
-                                <include reference="B5R-Q6-u3s"/>
-                                <include reference="Rnu-df-oQ3"/>
-                                <include reference="gJ3-mg-GOr"/>
-                                <include reference="mT6-pk-3tM"/>
+                                <include reference="3e1-jI-HUQ"/>
+                                <include reference="Sj9-H8-yyV"/>
+                                <include reference="UnR-mU-9F9"/>
+                                <include reference="tnH-dX-Dzg"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
                         <outlet property="ThanksScroll" destination="6Fd-r1-7wb" id="thp-yq-Cpc"/>
                         <segue destination="DRC-bj-ok4" kind="unwind" identifier="NoThanksSegue" unwindAction="prepareForTagsUnwind:" id="G8e-n2-bTD"/>
+                        <segue destination="80e-wb-9Zi" kind="show" identifier="Recontribute" id="Io0-KK-Eig"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SU9-lC-Ivl" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="DRC-bj-ok4" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2352" y="-450"/>
+            <point key="canvasLocation" x="2365" y="-486"/>
         </scene>
         <!--Read-->
         <scene sceneID="h3C-gN-RH6">
@@ -1412,5 +1404,6 @@ This improvement upon the original usage was introduced by no less a man than St
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Rjm-5G-gfP"/>
+        <segue reference="Io0-KK-Eig"/>
     </inferredMetricsTieBreakers>
 </document>

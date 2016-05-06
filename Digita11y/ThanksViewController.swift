@@ -15,13 +15,11 @@ class ThanksViewController: BaseViewController, UIScrollViewDelegate {
     @IBOutlet weak var ThanksScroll: UIScrollView!
     
     @IBAction func selectedThis(sender: UIButton) {
-        //TODO set tags and send as dependency
-        self.performSegueWithIdentifier("TagsSegue", sender: nil)
+        self.performSegueWithIdentifier("Recontribute", sender: nil)
     }
     
     @IBAction func noThanks(sender: UIButton) {
         self.performSegueWithIdentifier("NoThanksSegue", sender: nil)
-
     }
 
     
@@ -38,27 +36,19 @@ class ThanksViewController: BaseViewController, UIScrollViewDelegate {
         //Scroll view for subviews of tags
         let scroll = ThanksScroll
         scroll.delegate = self
-        let total = self.viewModel.tags.count
-        let buttons = self.createButtonsForScroll(total, scroll: scroll)
-        
-        //Set titles and actions
+        let tags = self.viewModel.tags
+        let total = tags.count
+        let buttons = createTagButtonsForScroll(total, scroll: scroll)
+        //set titles and actions
         for (index, button) in buttons.enumerate(){
-            let tag = self.viewModel.tags[index]
+            let tag = tags[index]
             button.setTitle(tag.value, forState: .Normal)
             button.addTarget(self,
-                action: "selectedThis:",
-                forControlEvents: UIControlEvents.TouchUpInside)
+                             
+                             action: #selector(self.selectedThis(_:)),
+                             forControlEvents: UIControlEvents.TouchUpInside)
             button.tag = tag.id
         }
-    }
-    
-    override func viewDidLayoutSubviews(){
-        super.viewDidLayoutSubviews()
-        
-        // set scroll view
-        let scroll = ThanksScroll
-        let newContentOffsetX = (scroll.contentSize.width/2) - (scroll.bounds.size.width/2)
-        scroll.contentOffset = CGPointMake(newContentOffsetX, 0)
     }
     
     override func didReceiveMemoryWarning() {

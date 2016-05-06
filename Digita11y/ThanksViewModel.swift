@@ -5,20 +5,20 @@ class ThanksViewModel: BaseViewModel {
     var uiGroup: UIGroup
     let title: String
     let tags: [Tag]
-    let exhibitionTag: Tag
+    let itemTag: Tag
     
     var selectedTag: Tag? {
         didSet {
             self.uiGroup.selectedUIItem = self.uiGroup.uiItems.filter({$0.tagId == self.selectedTag!.id}).first
-            data.uiGroups[self.uiGroup.index] = self.uiGroup
+            data.updateUIGroup(self.uiGroup)
         }
     }
     
     init(data: RWData) {
         self.data = data
-        exhibitionTag = data.getTagForIndexAndMode(1, mode: "listen")!
         self.uiGroup = data.getUIGroupForIndexAndMode(0, mode: "speak")!
-        self.title = "Thanks for your contribution to: \(self.exhibitionTag.value)!"
+        itemTag = data.getTagForIndexAndMode(2, mode: "listen")!
+        self.title = "Thanks for your contribution to: \(self.itemTag.value)!"
         self.tags = data.getTagsForUIItems(self.uiGroup.uiItems)
         //TODO get available get tags that have not been contributed too for this parent tag....
 

@@ -120,7 +120,6 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
                     self.responseTextView.hidden = false
                     self.tagLabel.hidden = true
                     self.textButton.hidden = true
-                    self.uploadButton.hidden = false
                 }, completion: { finished in
                 })
             }
@@ -151,6 +150,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
                 self.progressLabel.text = "00:30"
             })
         } else {
+            self.viewModel.uploadText = ""
             let duration = 0.1
             UIView.animateWithDuration(duration, delay: 0, options: [], animations: {
                 }, completion: { finished in
@@ -174,8 +174,11 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
 
         if self.viewModel.uploadText.isEmpty == false {
             rwf.addText(self.viewModel.uploadText)
+            debugPrint("text added")
         } else {
             rwf.addRecording()
+            debugPrint("recording added")
+
         }
         
         debugPrint("uploading")
@@ -185,7 +188,6 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
 
     }
 
-    
     @IBOutlet weak var ContributeAsk: UILabelHeadline!
     @IBOutlet weak var ContributeScroll: UIScrollView!
     @IBOutlet weak var textButton: UIButton!
@@ -210,11 +212,18 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
         progressLabel.hidden = true
         responseLabel.hidden = true
         responseTextView.hidden = true
-        responseTextView.returnKeyType = UIReturnKeyType.Done
+//        responseTextView.returnKeyType = UIReturnKeyType.Done
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //http://stackoverflow.com/questions/26070242/move-view-with-keyboard-using-swift
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: self.view.window)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: self.view.window)
+        //Looks for single or multiple taps.
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(tap)
 
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
         super.view.addBackground("bg-comment.png")
@@ -229,8 +238,9 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
         responseTextView.delegate = self
     }
     
-    override func viewDidLayoutSubviews(){
-        super.viewDidLayoutSubviews()
+    override func viewWillDisappear(animated: Bool) {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: self.view.window)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: self.view.window)
     }
     
     override func didReceiveMemoryWarning() {
@@ -243,54 +253,21 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
         let scroll = ContributeScroll
         scroll.hidden = false
         scroll.delegate = self
-
+        
         let tags = self.viewModel.tags
         let total = tags.count
-        
-        var button  = UIButtonTag(type: UIButtonType.System)
-        var buttons : [UIButton] = []
-        
-        for (_, item) in scroll.subviews.enumerate(){
-            item.removeFromSuperview()
-        }
-        let newContentOffsetX = (button.buttonWidth - scroll.bounds.size.width) / 2
-        debugPrint("new content offset \(newContentOffsetX)")
-        
-        for index in 0..<total {
-            button = UIButtonTag(type: UIButtonType.System)
-            let indexFloat = CGFloat(index)
-            let frame = CGRect(
-                x: button.buttonMarginX - newContentOffsetX,
-                y: indexFloat * (button.buttonMarginY + button.buttonHeight),
-                width: button.buttonWidth,
-                height: button.buttonHeight )
-            button.frame = frame
-            button.titleLabel?.numberOfLines = 0
-            buttons.append(button as UIButton)
-        }
-        
-        scroll.contentSize.width = button.buttonWidth
-        scroll.contentSize.height = (button.buttonHeight + button.buttonMarginY) * CGFloat(total)
-        
+
+        let buttons = createTagButtonsForScroll(total, scroll: scroll)
         //set titles and actions
         for (index, button) in buttons.enumerate(){
             let tag = tags[index]
             button.setTitle(tag.value, forState: .Normal)
             button.addTarget(self,
-
-                action: #selector(self.selectedThis(_:)),
-                forControlEvents: UIControlEvents.TouchUpInside)
+                             
+                             action: #selector(self.selectedThis(_:)),
+                             forControlEvents: UIControlEvents.TouchUpInside)
             button.tag = tag.id
         }
-        
-        let duration = 0.1
-        UIView.animateWithDuration(duration, delay: 0, options: [], animations: {
-            for (index, button) in buttons.enumerate(){
-                scroll.addSubview(button)
-            }
-        }, completion: { finished in
-        })
-
     }
 //
     func displayPreviewAudio() {
@@ -319,6 +296,41 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
         progressLabel.accessibilityLabel = "0 seconds"
     }
     
+    func keyboardWillShow(sender: NSNotification) {
+        let userInfo: [NSObject : AnyObject] = sender.userInfo!
+        let keyboardSize: CGSize = userInfo[UIKeyboardFrameBeginUserInfoKey]!.CGRectValue.size
+        let offset: CGSize = userInfo[UIKeyboardFrameEndUserInfoKey]!.CGRectValue.size
+        
+        if (self.responseTextView.text == "Your response here"){
+            self.responseTextView.text = ""
+        }
+        
+        if keyboardSize.height == offset.height {
+            UIView.animateWithDuration(0.1, animations: { () -> Void in
+                self.view.frame.origin.y -= keyboardSize.height
+            })
+        } else {
+            UIView.animateWithDuration(0.1, animations: { () -> Void in
+                self.view.frame.origin.y += keyboardSize.height - offset.height
+            })
+        }
+    }
+    
+    func keyboardWillHide(sender: NSNotification) {
+        let userInfo: [NSObject : AnyObject] = sender.userInfo!
+        let keyboardSize: CGSize = userInfo[UIKeyboardFrameBeginUserInfoKey]!.CGRectValue.size
+        self.view.frame.origin.y += keyboardSize.height
+        self.viewModel.uploadText = self.responseTextView.text
+        self.uploadButton.hidden = false
+        self.undoButton.hidden = false
+    }
+    
+    //Calls this function when the tap is recognized.
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+    }
+
     
     // MARK: RWFramework Protocol
 
@@ -384,7 +396,12 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
     /// Sent in the case that the server can not accept an envelope item (media upload)
         debugPrint("patch envelope success")
         SVProgressHUD.dismiss()
-        //TODO mark tags as contributed
+        //TODO mark uiitems as contributed
+        for (_, tag) in self.viewModel.tags.enumerate(){
+//            tag.contributed
+        }
+
+
         self.performSegueWithIdentifier("Thanks", sender: nil)
 
     }

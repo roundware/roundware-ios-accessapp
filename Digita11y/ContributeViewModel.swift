@@ -44,6 +44,8 @@ class ContributeViewModel: BaseViewModel  {
                 return
             }
             self.uiGroup = uiGroup
+            
+            //TODO check if uiitems contributed
             self.tags = data.getTagsForUIItems(self.uiGroup.uiItems)
             debugPrint("new group is \(self.uiGroup)")
             debugPrint("with these tags \(self.tags)")

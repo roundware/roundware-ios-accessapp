@@ -79,6 +79,7 @@ class TagsViewModel: BaseViewModel  {
         }
     }
     
+    //TODO remove?
     var stream: Stream? {
         didSet {
             data.stream = stream

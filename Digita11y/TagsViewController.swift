@@ -327,6 +327,10 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         SVProgressHUD.dismiss()
+//        let rwf = RWFramework.sharedInstance
+//        if(rwf.isPlaying){
+//            rwf.stop()
+//        }
     }
 
     override func viewWillAppear(animated: Bool) {
