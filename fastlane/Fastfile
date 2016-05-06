@@ -50,14 +50,23 @@ platform :ios do |options|
   desc "Submit a new build to Crashlytics"
   desc "This will also make sure the profile is up to date"
   lane :crashlytics do |options|
-    match(type: "adhoc", force_for_new_devices: true)
+	build_number = increment_build_number
     notification(subtitle: "Changelog prompt ready", message: "Please add your notes for testers...")
     changelog = prompt(text: "Enter the change log: ",
                        multi_line_end_keyword: "END")
+    match(type: "adhoc", force_for_new_devices: true)
     gym(scheme: "Digita11y", use_legacy_build_api: true)
     crashlytics(crashlytics_path: "./Pods/Crashlytics/iOS/Crashlytics.framework",
                     notes: changelog,
                     groups: "Digita11yTech")
+	slack(
+      channel: "digita11y-ios",
+      default_payloads: [], # reduce the notification to the minimum
+      message: "Successfully distributed build number #{build_number} :rocket:",
+      payload: {
+        "Changes" => changelog
+      }
+    )
   end
 
   desc "Submit a new Beta Build to Apple TestFlight"
