@@ -11,7 +11,6 @@ import CoreLocation
 class WelcomeViewController: BaseViewController, CLLocationManagerDelegate {
     var viewModel: WelcomeViewModel!
 
-
     // MARK: Outlets and Actions
     @IBOutlet weak var WelcomeLabelBody: UILabelBody!
     @IBOutlet weak var WelcomeLabelHeadline: UILabelHeadline!

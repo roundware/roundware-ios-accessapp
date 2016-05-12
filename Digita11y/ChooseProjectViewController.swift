@@ -25,7 +25,6 @@ class ChooseProjectViewController: BaseViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
-
         super.view.addBackground("bg-blue.png")
 
         self.viewModel = ChooseProjectViewModel(data: self.rwData!)
@@ -51,7 +50,6 @@ class ChooseProjectViewController: BaseViewController, UIScrollViewDelegate {
         super.viewWillAppear(animated)
         //hide nav bar on this page
         self.navigationController!.setNavigationBarHidden(true, animated: true)
-
     }
 
     override func viewWillDisappear(animated: Bool) {

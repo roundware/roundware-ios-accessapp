@@ -72,4 +72,6 @@ class BaseViewController: UIViewController {
 
         return buttons
     }
+
+    //TODOsoon move focus to title on viewWillAppear
 }

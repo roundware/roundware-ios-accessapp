@@ -18,6 +18,7 @@ class ThanksViewController: BaseViewController, UIScrollViewDelegate {
 
     @IBAction func selectedThis(sender: UIButton) {
         self.performSegueWithIdentifier("Recontribute", sender: nil)
+        //TODOnow fix this transition
     }
 
     @IBAction func noThanks(sender: UIButton) {

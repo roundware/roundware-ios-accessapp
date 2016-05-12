@@ -9,8 +9,8 @@ class PageItemController: UIViewController {
     var itemIndex: Int = 0
     var imageName: String = "" {
         didSet {
-            //TODO grab image
-            //TODO set image alt
+            //TODOsoon grab image
+            //TODOsoon set image alt
             if let imageView = contentImageView {
                 imageView.image = UIImage(named: imageName)
             }

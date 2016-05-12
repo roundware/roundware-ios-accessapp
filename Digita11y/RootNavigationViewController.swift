@@ -29,8 +29,7 @@ class RootNavigationViewController: UINavigationController, UINavigationControll
     }
 
     override func viewWillAppear(animated: Bool) {
-        //TODO set correct appearance
-        //TODO attach delegate for endpoint switcher (and make view)
+        //TODOsoon attach delegate for endpoint switcher (and make view)
         super.viewWillAppear(animated)
         if let vc = self.topViewController as? BaseViewController{
             vc.rwData = self.rwData

@@ -34,10 +34,10 @@ class GalleryViewController: BaseViewController, UIPageViewControllerDataSource 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.viewModel = GalleryViewModel(data: self.rwData!)
-        //TODO get content images
-        //TODO combine with texts
-        //TODO send to pageview controller
-        //TODO see pageItemController
+        //TODOsoon get content images
+        //TODOsoon combine with texts
+        //TODOsoon send to pageview controller
+        //TODOsoon see pageItemController
 
         createPageViewController()
         setupPageControl()

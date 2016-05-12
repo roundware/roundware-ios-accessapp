@@ -34,7 +34,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 
 
     @IBAction func cycleSpeed(sender: AnyObject) {
-        //TODO cycle speed
+        //TODOsoon cycle speed
         debugPrint("cycle speed")
     }
 
@@ -51,6 +51,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
     }
 
     //really next asset
+    //TODOsoon rewrite with api update
     @IBAction func nextTag(sender: AnyObject) {
         debugPrint("next asset really")
         let rwf = RWFramework.sharedInstance
@@ -91,7 +92,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
     }
 
     @IBAction func previousTag(sender: AnyObject) {
-        //TODO will restart current asset or
+        //TODOsoon will restart current asset or
         //move to previous asset
         debugPrint("previous tag")
 
@@ -118,7 +119,6 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
         selectItemAtIndex(sender.tag)
     }
 
-    //TODO mark item as played?
     @IBAction func selectItemAtIndex(index: Int) {
         let tagView = tagViews[index]
         if (tagView.selected){
@@ -166,11 +166,9 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 
     //back from modals
     @IBAction func prepareForTagsDimiss(segue: UIStoryboardSegue) {
-        //TODO reset after coming back from contribute
     }
     //back from contribute
     @IBAction func prepareForTagsUnwind(segue: UIStoryboardSegue) {
-        //TODO reset after coming back from contribute
     }
 
 
@@ -195,7 +193,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
         self.parentTagPickerView.reloadData()
         self.parentTagPickerView.selectItem(0)
 
-        //TODO double check for location...
+        //TODOsoon double check for location...
         let rwf = RWFramework.sharedInstance
         rwf.addDelegate(self)
         self.playPauseButton.showButtonIsPlaying(false)
@@ -267,7 +265,6 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
     }
 
     func resetRoomItems(){
-        //TODO check if old assets are same as new assets
         let duration = 0.5
         let delay = 0.1
         let springDamping = CGFloat(0.5)
@@ -410,7 +407,6 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
             self.playPauseButton.enabled = true
             self.nextButton.enabled = true
             self.previousButton.enabled = true
-            //TODO enable
         })
     }
 
@@ -472,6 +468,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
                 }
                 let tagsString = tagsToSubmit.joinWithSeparator(",")
                 debugPrint("patching stream with tags \(tagsString)")
+                //TODOsoon only item tag
                 rwf.submitTags(tagsString)
                 self.playPauseButton.showButtonIsPlaying(true)
                 self.nextButton.enabled = true
@@ -509,7 +506,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 
             debugPrint("assetID is \(assetID)")
 
-            //TODO api update will mean we look at remaining and total in queryItems and update progress based on that
+            //TODOsoon api update will mean we look at remaining and total in queryItems and update progress based on that
 
             if let assetTagView = tagViews.filter({ $0.arrayOfAssetIds.contains( assetID )}).first {
                 if let index = self.viewModel.selectedItemIndex{
@@ -549,6 +546,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 //                            }
                         }
                     } else {
+                        //TODO mark item as played?
                         debugPrint("its a new tagview")
                         selectItemAtIndex(tagViews.indexOf(assetTagView)!)
                     }
@@ -563,8 +561,6 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 //        dump(change)
 //        debugPrint("context")
 //        dump(context)
-
-
     }
 
     func rwAudioPlayerDidFinishPlaying() {

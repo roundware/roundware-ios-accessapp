@@ -33,7 +33,6 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
 
 
     @IBAction func selectAudio(sender: AnyObject) {
-        //TODO setup audio (for recording, right?)
         if(!self.viewModel.mediaSelected){
             let duration = 0.1
             UIView.animateWithDuration(duration, delay: 0, options: [], animations: {
@@ -49,7 +48,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
 
             viewModel.mediaType = MediaType.Audio
             viewModel.mediaSelected = true
-            //TODO move focus to question
+            //TODOnow move focus to question
 
         } else {
             if(self.viewModel.tagsSelected){
@@ -92,7 +91,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
 
             viewModel.mediaType = MediaType.Text
             self.viewModel.mediaSelected = true
-            //TODO move focus to question
+            //TODOnow move focus to question
         }
     }
 
@@ -122,7 +121,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
         if(!self.viewModel.tagsSelected){
             self.ContributeAsk.text = self.viewModel.uiGroup.headerTextLoc
             showTags()
-            //TODO move focus to question
+            //TODOnow move focus to question
         } else {
             if let button = sender as? UIButton {
                 button.enabled = false
@@ -134,7 +133,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
                         if let error = error {
                             CLSNSLogv("Unable to setup audio: \(error)", getVaList([error]))
                         }
-                        //TODO alert message
+                        //TODOnow alert message
                     } else {
                         debugPrint("Successfully setup audio")
                         let duration = 0.1
@@ -144,7 +143,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
                             self.progressLabel.text = "00:30"
                         }, completion: { finished in
                         })
-                        //TODO move focus, set audio label
+                        //TODOnow move focus, set audio label
                     }
                 }
             } else {
@@ -163,7 +162,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
     }
 
     @IBAction func cancel(sender: AnyObject) {
-        //TODO should go into unwind also
+        //TODOnow should go into unwind also
         let rwf = RWFramework.sharedInstance
         if(rwf.hasRecording()){
             rwf.deleteRecording()
@@ -218,9 +217,9 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
 
         debugPrint("uploading")
 
+        //TODOsoon only item tag with all speak tags
         rwf.uploadAllMedia(self.viewModel.tagIds)
         SVProgressHUD.showWithStatus("Uploading")
-
     }
 
 
@@ -257,7 +256,6 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
         super.view.addBackground("bg-comment.png")
         self.viewModel = ContributeViewModel(data: self.rwData!)
-        //TODO make a button image
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: #selector(cancel(_:)))
         ContributeAsk.text = "How would you like to contribute to \(self.viewModel.itemTag.value)?"
 
@@ -303,8 +301,8 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
         audioButton.accessibilityLabel = "Preview audio"
         progressLabel.text = "00:00"
         audioButton.setImage(UIImage(named: "playContribute"), forState: .Normal)
-        //TODO fix upload undo index order
-        //TODO fix upload under sizing
+        //TODOnow fix upload undo index order
+        //TODOnow fix upload under sizing
     }
 
     func displayStopPlayback() {
@@ -419,7 +417,8 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
     func rwPostEnvelopesFailure(error: NSError?){
         debugPrint("post envelope failure")
         SVProgressHUD.dismiss()
-        //TODO trigger undo
+        //TODOnow display alert
+        //TODOnow trigger undo
 
     }
 
@@ -428,14 +427,12 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
         debugPrint("patch envelope success")
         SVProgressHUD.dismiss()
 
-        //TODO mark uiitems as contributed
+        //TODOnow mark uiitems as contributed
         for (_, tag) in self.viewModel.tags.enumerate(){
 //            tag.contributed
         }
 
-
         self.performSegueWithIdentifier("Thanks", sender: nil)
-
     }
 
     func rwPatchEnvelopesIdFailure(error: NSError?){

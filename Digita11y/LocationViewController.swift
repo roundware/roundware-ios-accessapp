@@ -13,7 +13,7 @@ class LocationViewController: BaseViewController, CLLocationManagerDelegate {
 
     // MARK: Outlets and Actions
     @IBAction func next(sender: AnyObject) {
-        //TODO needs a hint "requests location services permissions"
+        //TODOnow needs a hint "requests location services permissions"
         debugPrint("getting location authorization")
         let status = CLLocationManager.authorizationStatus()
         if status == .AuthorizedWhenInUse || status == .AuthorizedAlways {
@@ -32,7 +32,6 @@ class LocationViewController: BaseViewController, CLLocationManagerDelegate {
 
     // MARK: View
     override func viewDidLoad() {
-        //TODO skip this view controller if permission available
         super.viewDidLoad()
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
         super.view.addBackground("bg-green.png")
@@ -47,7 +46,6 @@ class LocationViewController: BaseViewController, CLLocationManagerDelegate {
         if status == .AuthorizedWhenInUse || status == .AuthorizedAlways {
             self.performSegueWithIdentifier("ExhibitSegue", sender: nil)
         } else {
-            //TODO warning
             debugPrint("we need your location")
         }
     }
