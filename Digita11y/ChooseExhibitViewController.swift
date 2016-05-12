@@ -19,22 +19,22 @@ class ChooseExhibitController: BaseViewController, UIScrollViewDelegate {
         self.viewModel.selectedTag = self.viewModel.data.getTagById(sender.tag)
         self.performSegueWithIdentifier("TagsSegue", sender: nil)
     }
-    
+
     // MARK: View
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
         super.view.addBackground("bg-blue.png")
-        
+
         self.viewModel = ChooseExhibitViewModel(data: self.rwData!)
         ExhibitHeadline.text = self.viewModel.title
-        
+
         //scroll
         let scroll = ExhibitScroll
         scroll.delegate = self
         let total = self.viewModel.tags.count
         let buttons = self.createButtonsForScroll(total, scroll: scroll)
-        
+
         for (index, button) in buttons.enumerate(){
             let tag = self.viewModel.tags[index]
             button.setTitle(tag.value, forState: .Normal)
@@ -47,7 +47,7 @@ class ChooseExhibitController: BaseViewController, UIScrollViewDelegate {
 
     override func viewDidLayoutSubviews(){
         super.viewDidLayoutSubviews()
-        
+
         //scroll
         let scroll = ExhibitScroll
         let newContentOffsetX = (scroll.contentSize.width - scroll.bounds.size.width) / 2

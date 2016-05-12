@@ -9,13 +9,13 @@
 import UIKit
 
 @IBDesignable class TagView: UIView {
-    
+
     @IBOutlet weak var textButton: UIButton!
     @IBOutlet weak var cameraButton: UIButton!
     @IBOutlet weak var tagProgress: UIProgressView!
     @IBOutlet weak var tagTitle: UIButton!
     @IBOutlet weak var audioImage: UIImageView!
-    
+
 //    var tagModel: Tag?
     var selected : Bool = false {
         didSet {
@@ -28,12 +28,12 @@ import UIKit
             }
         }
     }
-    
+
     var id : Int?
     var arrayOfAssetIds : [String] = []
     var currentAssetIndex : Int = 0
     var totalLength : Float = 0.0
-    
+
     var hasTexts: Bool = false
     var hasImages: Bool = false
 
@@ -42,15 +42,15 @@ import UIKit
         xibSetup()
         self.selected = false
     }
-    
-    
+
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         if self.subviews.count == 0 {
             xibSetup()
         }
     }
-    
+
     func xibSetup() {
         let view = loadViewFromNib()
         view.frame = bounds
@@ -59,7 +59,7 @@ import UIKit
         view.autoresizingMask = [UIViewAutoresizing.FlexibleWidth, UIViewAutoresizing.FlexibleHeight]
                 addSubview(view)
     }
-    
+
     func setTag(tagModel:Tag, index: Int){
         debugPrint("setting tag for \(tagModel.id) at index \(index)")
         debugPrint("hasImage \(String(hasImages)) and hasText \(String(hasTexts))")
@@ -83,20 +83,20 @@ import UIKit
         let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
         return view
     }
-    
+
     // MARK: actions
     let duration = 0.5
     let delay = 0.0
     let springDamping = CGFloat(0.5)
     let springVelocity = CGFloat(0.5)
-    
+
     //TODO toggle button selected state
     func select(){
         self.tagTitle.selected = true
 
         var hiddenSubviews      : [UIView] = [self.audioImage, self.tagProgress]
         var animatedSubviews    : [UIView] = [self.audioImage]
-        
+
         if hasImages {
             hiddenSubviews.append(self.cameraButton)
             animatedSubviews.append(self.cameraButton)
@@ -105,13 +105,13 @@ import UIKit
             hiddenSubviews.append(self.textButton)
             animatedSubviews.append(self.textButton)
         }
-        
+
         hiddenSubviews.forEach{
             $0.hidden = false
         }
-        
+
         self.tagTitle.backgroundColor = UIColor.clearColor()
-        
+
         UIView.animateWithDuration(duration, delay: delay, usingSpringWithDamping: springDamping, initialSpringVelocity: springVelocity, options: [], animations:
             {
                 animatedSubviews.forEach{
@@ -120,17 +120,17 @@ import UIKit
                 }
                 self.tagTitle.contentEdgeInsets.right += 20
                 self.tagTitle.superview!.layoutIfNeeded()
-                
+
             }, completion: { finished in
         })
     }
-    
+
     func deselect(){
         self.tagTitle.selected = false
-        
+
         var hiddenSubviews      : [UIView] = [self.audioImage, self.tagProgress]
         var animatedSubviews    : [UIView] = [self.audioImage]
-        
+
         if hasImages {
             hiddenSubviews.append(self.cameraButton)
             animatedSubviews.append(self.cameraButton)
@@ -139,14 +139,14 @@ import UIKit
             hiddenSubviews.append(self.textButton)
             animatedSubviews.append(self.textButton)
         }
-        
+
         UIView.animateWithDuration(duration, delay: delay, usingSpringWithDamping: springDamping, initialSpringVelocity: springVelocity, options: [], animations:
             {
-                
+
                 animatedSubviews.forEach{
                     $0.alpha = 0
                     $0.center.x -= 0
-                    
+
                 }
                 self.tagTitle.contentEdgeInsets.right -= 20
                 self.tagTitle.superview!.layoutIfNeeded()

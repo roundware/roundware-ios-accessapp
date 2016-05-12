@@ -15,16 +15,16 @@ class ThanksViewController: BaseViewController, UIScrollViewDelegate {
     @IBOutlet weak var ThanksScroll: UIScrollView!
     @IBOutlet weak var thanksHeadline: UILabelHeadline!
     @IBOutlet weak var thanksBody: UILabelBody!
-    
+
     @IBAction func selectedThis(sender: UIButton) {
         self.performSegueWithIdentifier("Recontribute", sender: nil)
     }
-    
+
     @IBAction func noThanks(sender: UIButton) {
         self.performSegueWithIdentifier("NoThanksSegue", sender: nil)
     }
 
-    
+
     // MARK: View
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -46,26 +46,26 @@ class ThanksViewController: BaseViewController, UIScrollViewDelegate {
             let tag = tags[index]
             button.setTitle(tag.value, forState: .Normal)
             button.addTarget(self,
-                             
+
                              action: #selector(self.selectedThis(_:)),
                              forControlEvents: UIControlEvents.TouchUpInside)
             button.tag = tag.id
         }
         thanksHeadline.text = self.viewModel.title
-        
+
         thanksBody.text = "While you’re on a roll would you care to contribute another for: " + self.viewModel.uiGroup.headerTextLoc
     }
-    
+
     override func viewDidLayoutSubviews(){
         super.viewDidLayoutSubviews()
-        
+
         //scroll
         let scroll = ThanksScroll
         let newContentOffsetX = (scroll.contentSize.width - scroll.bounds.size.width) / 2
         scroll.contentOffset = CGPointMake(newContentOffsetX, 0)
     }
-    
-    
+
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

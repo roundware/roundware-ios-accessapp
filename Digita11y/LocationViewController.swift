@@ -28,8 +28,8 @@ class LocationViewController: BaseViewController, CLLocationManagerDelegate {
         //No Thanks
         self.performSegueWithIdentifier("ExhibitSegue", sender: nil)
     }
-    
-    
+
+
     // MARK: View
     override func viewDidLoad() {
         //TODO skip this view controller if permission available
@@ -39,7 +39,7 @@ class LocationViewController: BaseViewController, CLLocationManagerDelegate {
         locationManager.delegate = self
     }
 
-    
+
     // MARK: LocationManager Protocol
 
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {

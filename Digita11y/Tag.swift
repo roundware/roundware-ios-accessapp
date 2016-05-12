@@ -8,7 +8,7 @@ struct Tag {
     var description: String = ""
     var data: String = ""
     var tagCategory: Int = 0
-    
+
     init(json: JSON) {
         id = json["id"].int ?? 0
         relationships = json["relationships"].dictionaryObject ?? [:]

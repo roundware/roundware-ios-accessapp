@@ -17,20 +17,20 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
     var viewModel: ContributeViewModel!
 
     // MARK: Outlets and Actions
-    
+
     @IBOutlet weak var ContributeAsk: UILabelHeadline!
     @IBOutlet weak var ContributeScroll: UIScrollView!
     @IBOutlet weak var textButton: UIButton!
     @IBOutlet weak var audioButton: UIButton!
     @IBOutlet weak var uploadButton: UIButton!
     @IBOutlet weak var undoButton: UIButton!
-    
+
     @IBOutlet weak var tagLabel: UILabel!
     @IBOutlet weak var progressLabel: UILabel!
-    
+
     @IBOutlet weak var responseLabel: UILabel!
     @IBOutlet weak var responseTextView: UITextView!
-    
+
 
     @IBAction func selectAudio(sender: AnyObject) {
         //TODO setup audio (for recording, right?)
@@ -44,9 +44,9 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
                 self.audioButton.enabled = false
             }, completion: { finished in
             })
-            
+
             showTags()
-            
+
             viewModel.mediaType = MediaType.Audio
             viewModel.mediaSelected = true
             //TODO move focus to question
@@ -71,7 +71,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
                     displayStopRecording()
                 }
             }
-                
+
         }
 
     }
@@ -87,7 +87,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
                 self.textButton.enabled = false
                 }, completion: { finished in
             })
-            
+
             showTags()
 
             viewModel.mediaType = MediaType.Text
@@ -95,17 +95,17 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
             //TODO move focus to question
         }
     }
-    
+
     @IBAction func selectedThis(sender: AnyObject) {
         let scroll = ContributeScroll
         let selectedView = sender as! UIView
-        
+
         //hide others
         let others = scroll.subviews.filter({$0 as UIView != selectedView})
         for (index, button) in others.enumerate(){
             button.hidden = true
         }
-        
+
         //hide move selected to top
         selectedView.frame =  CGRect(
             x: selectedView.frame.origin.x,
@@ -116,7 +116,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
         scroll.contentSize.width = selectedView.frame.width
         scroll.contentSize.height = selectedView.frame.height
 
-        
+
         //set tag into viewmodel
         self.viewModel.selectedTag = self.viewModel.data.getTagById(sender.tag)
         if(!self.viewModel.tagsSelected){
@@ -159,9 +159,9 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
                 })
             }
         }
-        
+
     }
-        
+
     @IBAction func cancel(sender: AnyObject) {
         //TODO should go into unwind also
         let rwf = RWFramework.sharedInstance
@@ -170,7 +170,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
         }
         self.performSegueWithIdentifier("cancel", sender: nil)
     }
-    
+
     @IBAction func undo(sender: AnyObject) {
         debugPrint("undoing")
         let rwf = RWFramework.sharedInstance
@@ -203,7 +203,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
 //        for image in self.viewModel.images {
 //            rwf.setImageDescription(image.path, description: image.text)
 //        }
-        
+
 //        self.images.removeAll()
 //        self.uploadText = ""
 
@@ -215,7 +215,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
             debugPrint("recording added")
 
         }
-        
+
         debugPrint("uploading")
 
         rwf.uploadAllMedia(self.viewModel.tagIds)
@@ -223,7 +223,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
 
     }
 
-    
+
     // MARK: View
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -236,10 +236,10 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
         responseTextView.hidden = true
 //        responseTextView.returnKeyType = UIReturnKeyType.Done
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         //keyboard with view adjustment as well as done button and outside tap dismissal
         //http://stackoverflow.com/questions/26070242/move-view-with-keyboard-using-swift
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillShow), name:UIKeyboardWillShowNotification, object: self.view.window)
@@ -253,36 +253,36 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
         toolBar.userInteractionEnabled = true
         toolBar.sizeToFit()
         responseTextView.inputAccessoryView = toolBar
-        
+
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
         super.view.addBackground("bg-comment.png")
         self.viewModel = ContributeViewModel(data: self.rwData!)
         //TODO make a button image
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: #selector(cancel(_:)))
         ContributeAsk.text = "How would you like to contribute to \(self.viewModel.itemTag.value)?"
-        
+
         let rwf = RWFramework.sharedInstance
         rwf.addDelegate(self)
         ContributeScroll.delegate = self
         responseTextView.delegate = self
     }
-    
+
     override func viewWillDisappear(animated: Bool) {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: self.view.window)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: self.view.window)
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     // MARK: Layout work
     func showTags(){
         let scroll = ContributeScroll
         scroll.hidden = false
         scroll.delegate = self
-        
+
         let tags = self.viewModel.tags
         let total = tags.count
 
@@ -292,7 +292,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
             let tag = tags[index]
             button.setTitle(tag.value, forState: .Normal)
             button.addTarget(self,
-                             
+
                              action: #selector(self.selectedThis(_:)),
                              forControlEvents: UIControlEvents.TouchUpInside)
             button.tag = tag.id
@@ -306,19 +306,19 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
         //TODO fix upload undo index order
         //TODO fix upload under sizing
     }
-    
+
     func displayStopPlayback() {
         audioButton.accessibilityLabel = "Stop playback"
         audioButton.setImage(UIImage(named: "stop"), forState: .Normal)
         progressLabel.text = "00:00"
         progressLabel.accessibilityLabel = "0 seconds"
     }
-    
+
     func displayStopRecording() {
         audioButton.accessibilityLabel = "Stop recording"
         audioButton.setImage(UIImage(named: "stop"), forState: .Normal)
     }
-    
+
     func displayRecordAudio() {
         audioButton.accessibilityLabel = "Record audio"
 //        progressView.progress = 0.0
@@ -326,16 +326,16 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
         progressLabel.text = "00:30"
         progressLabel.accessibilityLabel = "0 seconds"
     }
-    
+
     func keyboardWillShow(sender: NSNotification) {
         let userInfo: [NSObject : AnyObject] = sender.userInfo!
         let keyboardSize: CGSize = userInfo[UIKeyboardFrameBeginUserInfoKey]!.CGRectValue.size
         let offset: CGSize = userInfo[UIKeyboardFrameEndUserInfoKey]!.CGRectValue.size
-        
+
         if (self.responseTextView.text == "Your response here"){
             self.responseTextView.text = ""
         }
-        
+
         if keyboardSize.height == offset.height {
             UIView.animateWithDuration(0.1, animations: { () -> Void in
                 self.view.frame.origin.y -= keyboardSize.height
@@ -346,7 +346,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
             })
         }
     }
-    
+
     func keyboardWillHide(sender: NSNotification) {
         let userInfo: [NSObject : AnyObject] = sender.userInfo!
         let keyboardSize: CGSize = userInfo[UIKeyboardFrameBeginUserInfoKey]!.CGRectValue.size
@@ -355,14 +355,14 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
         self.uploadButton.hidden = false
         self.undoButton.hidden = false
     }
-    
+
     //Calls this function when the tap is recognized.
     func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
 
-    
+
     // MARK: RWFramework Protocol
 
 //
@@ -372,12 +372,12 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
 //        let rwf = RWFramework.sharedInstance
 //        rwf.setImageDescription(path, description: "Hello, This is an image!")
 //    }
-//    
+//
     /// Sent when the framework determines that recording is possible (via config)
     func rwReadyToRecord(){
         debugPrint("ready to record")
     }
-    
+
 
     func rwRecordingProgress(percentage: Double, maxDuration: NSTimeInterval, peakPower: Float, averagePower: Float) {
         var dt = maxDuration - (percentage*maxDuration)
@@ -388,13 +388,13 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
         progressLabel.accessibilityLabel = "\(secStr) seconds"
     }
 
-    
+
     func rwAudioRecorderDidFinishRecording() {
         displayPreviewAudio()
         self.undoButton.hidden = false
         self.uploadButton.hidden = false
     }
-    
+
     func rwPlayingBackProgress(percentage: Double, duration: NSTimeInterval, peakPower: Float, averagePower: Float) {
         var dt = (percentage*duration)
         var sec = Int(dt%60.0)
@@ -403,18 +403,18 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
         progressLabel.text = "00:\(secStr)"
         progressLabel.accessibilityLabel = "\(secStr) seconds"
     }
-    
+
     func rwAudioPlayerDidFinishPlaying() {
 //        let rwf = RWFramework.sharedInstance
 //        displayPreviewAudio()
         debugPrint("stopped playing")
         displayPreviewAudio()
     }
-    
+
     func rwPostEnvelopesSuccess(data: NSData?){
         debugPrint("post envelope success")
     }
-    
+
     /// Sent in the case that the server can not return a new envelope id
     func rwPostEnvelopesFailure(error: NSError?){
         debugPrint("post envelope failure")
@@ -427,7 +427,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
     /// Sent in the case that the server can not accept an envelope item (media upload)
         debugPrint("patch envelope success")
         SVProgressHUD.dismiss()
-        
+
         //TODO mark uiitems as contributed
         for (_, tag) in self.viewModel.tags.enumerate(){
 //            tag.contributed
@@ -437,14 +437,14 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
         self.performSegueWithIdentifier("Thanks", sender: nil)
 
     }
-    
+
     func rwPatchEnvelopesIdFailure(error: NSError?){
         debugPrint("patch envelope failure")
         SVProgressHUD.dismiss()
         //TODO trigger undo
     }
-    
-    
+
+
     // MARK: UITextView Protocol
 
     func textViewDidBeginEditing(textView: UITextView) {
@@ -454,7 +454,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
             textView.textColor = UIColor.blackColor()
         }
     }
-    
+
     func textViewDidEndEditing(textView: UITextView) {
         debugPrint("finished editing")
         if textView.text.isEmpty {

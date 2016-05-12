@@ -11,12 +11,12 @@ import UIKit
 import QuartzCore
 
 @IBDesignable class UIButtonBorder: UIButton {
-    
+
     let buttonHeight :  CGFloat = 50.0
     let buttonWidth :   CGFloat = 297.0
     let buttonMarginX : CGFloat = 1.0
     let buttonMarginY : CGFloat = 20.0
-    
+
     //this init fires usually called, when storyboards UI objects created:
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -28,7 +28,7 @@ import QuartzCore
         super.init(frame: frame)
         setupViews()
     }
-    
+
     //required method to present changes in IB
     override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
@@ -38,29 +38,29 @@ import QuartzCore
     override func intrinsicContentSize() -> CGSize {
         return CGSizeMake(buttonWidth, buttonHeight)
     }
-    
+
     override class func requiresConstraintBasedLayout() -> Bool {
         return true
     }
-    
+
     override func setTitle(title: String?, forState state: UIControlState) {
         super.setTitle(title, forState: state)
         self.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         self.setType()
     }
-    
+
     func setType(){
         self.titleLabel!.font = UIFont(name: "AvenirNext-Medium", size: 24.0)
         self.titleLabel!.textAlignment = .Center
     }
-    
+
     func setupViews() {
         //borders
         self.layer.borderColor = UIColor.whiteColor().CGColor
         self.layer.borderWidth = 1.0
         self.layer.cornerRadius = 0
         self.layer.masksToBounds = false
-        
+
         self.backgroundColor = UIColor.DarkSkyBlueColor()
 
         self.setType()

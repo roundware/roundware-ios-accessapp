@@ -8,7 +8,7 @@ class ChooseProjectViewModel: BaseViewModel  {
             self.data.selectedProject = selectedProject
         }
     }
-    
+
     init(data: RWData) {
         self.data = data
         self.projects = data.projects

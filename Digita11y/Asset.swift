@@ -26,7 +26,7 @@ struct Asset {
             return TextCache[fileURL.absoluteString ?? ""]
         }
     }
-    
+
     init(json: JSON) {
 //        debugPrint("initing asset")
 //        dump(json)
@@ -36,7 +36,7 @@ struct Asset {
         assetID = json["asset_id"].int ?? 0
         audioLength = json["audio_length_in_seconds"].float ?? 0
         tagIDs = json["tag_ids"].array?.map { $0.int ?? 0 } ?? []
-        
+
         let base = RWFrameworkConfig.getConfigValueAsString("base_url")
         var path = (json["file"].string ?? "")
         if base.hasSuffix("/") && path.hasPrefix("/") {
@@ -44,10 +44,10 @@ struct Asset {
         }
         let strURL = base + path
         fileURL = NSURL(string: strURL) ?? NSURL()
-        
+
         if json["media_type"].string == "text" {
             mediaType = .Text
-            
+
             let url = fileURL.absoluteString
             if TextCache[url] == nil {
                 requestAssetText(url) { text in

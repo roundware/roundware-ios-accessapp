@@ -10,12 +10,12 @@ import UIKit
 import CoreLocation
 class WelcomeViewController: BaseViewController, CLLocationManagerDelegate {
     var viewModel: WelcomeViewModel!
-    
-    
+
+
     // MARK: Outlets and Actions
     @IBOutlet weak var WelcomeLabelBody: UILabelBody!
     @IBOutlet weak var WelcomeLabelHeadline: UILabelHeadline!
-    
+
     @IBAction func next(sender: UIButton) {
         if (CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse) {
             debugPrint("authorized when in use")
@@ -25,7 +25,7 @@ class WelcomeViewController: BaseViewController, CLLocationManagerDelegate {
             self.performSegueWithIdentifier("LocationSegue", sender: nil)
         }
     }
-    
+
     // MARK: View
     override func viewDidLoad() {
         super.viewDidLoad()

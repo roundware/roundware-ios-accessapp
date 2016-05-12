@@ -8,7 +8,7 @@ class ContributeViewModel: BaseViewModel  {
     var tagsSelected: Bool = false
     var mediaCreated: Bool = false
     var uploaded: Bool = false
-    
+
     var tag: Tag?
     let exhibitionTag: Tag
     let roomTag: Tag
@@ -16,16 +16,16 @@ class ContributeViewModel: BaseViewModel  {
 
     var speakIndex: Int = 0
     var tags: [Tag]
-    
+
     struct Image {
         var path: String
         var text: String
         var image: UIImage?
     }
     var images: [Image] = []
-    
+
     var uploadText = ""
-    
+
     var selectedTag: Tag?  {
         didSet {
             //set tag on data and onto string
@@ -44,7 +44,7 @@ class ContributeViewModel: BaseViewModel  {
                 return
             }
             self.uiGroup = uiGroup
-            
+
             //TODO check if uiitems contributed
             self.tags = data.getTagsForUIItems(self.uiGroup.uiItems)
             debugPrint("new group is \(self.uiGroup)")
@@ -52,11 +52,11 @@ class ContributeViewModel: BaseViewModel  {
 
         }
     }
-    
+
     var tagIds: String = ""
-    
+
     init(data: RWData) {
-        self.data = data        
+        self.data = data
         exhibitionTag = data.getTagForIndexAndMode(0, mode: "listen")!
         roomTag = data.getTagForIndexAndMode(1, mode: "listen")!
         itemTag = data.getTagForIndexAndMode(2, mode: "listen")!

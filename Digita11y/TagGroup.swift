@@ -10,7 +10,7 @@ struct TagGroup {
     var name: String = ""
     var options: [Tag] = []
     var defaultTags: [Int] = []
-    
+
     init(json: JSON) {
         select = json["select"].string ?? ""
         order = json["order"].int ?? 0
@@ -20,7 +20,7 @@ struct TagGroup {
         defaultTags = json["defaults"].array?.map { $0.int ?? 0 } ?? []
         options = json["options"].array?.map { Tag(json: $0) } ?? []
     }
-    
+
     init(headerText: String, options: [Tag]) {
         self.headerText = headerText
         self.options = options

@@ -3,7 +3,7 @@ class GalleryViewModel: BaseViewModel  {
     let data: RWData
     let tag: Tag
     let assets: [Asset]
-    
+
     init(data: RWData) {
         self.data = data
         //set room tags

@@ -8,7 +8,7 @@ class TagsViewModel: BaseViewModel  {
 
     var roomUIGroup: UIGroup
     let roomTags: [Tag]
-    
+
     // convenience for picker
     // could bug if selectedRoomTag set directly
     var selectedRoomIndex: Int?  {
@@ -44,11 +44,11 @@ class TagsViewModel: BaseViewModel  {
 
         }
     }
-    
-    
+
+
     var itemsUIGroup: UIGroup
     var itemTags: [Tag] = []
-    
+
     //convenience for next/previous
     //could bug
     var selectedItemIndex: Int?  {
@@ -78,14 +78,14 @@ class TagsViewModel: BaseViewModel  {
             }
         }
     }
-    
+
     //TODO remove?
     var stream: Stream? {
         didSet {
             data.stream = stream
         }
     }
-    
+
     //TODO mapURL
     init(data: RWData) {
         self.data = data
@@ -98,10 +98,10 @@ class TagsViewModel: BaseViewModel  {
         self.roomUIGroup = data.getUIGroupForIndexAndMode(1, mode: "listen")!
         self.roomTags = data.getTagsForUIItems(data.getRelevantUIItems(self.roomUIGroup))
         debugPrint("room tags \(self.roomTags)")
-        
+
         //set items ui group
         self.itemsUIGroup = data.getUIGroupForIndexAndMode(2, mode: "listen")!
-        
+
         //set stream
         self.stream = data.stream
     }

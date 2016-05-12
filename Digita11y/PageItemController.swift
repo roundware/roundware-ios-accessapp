@@ -3,9 +3,9 @@
 import UIKit
 
 class PageItemController: UIViewController {
-    
+
     // MARK: - Variables
-    
+
     var itemIndex: Int = 0
     var imageName: String = "" {
         didSet {
@@ -14,14 +14,14 @@ class PageItemController: UIViewController {
             if let imageView = contentImageView {
                 imageView.image = UIImage(named: imageName)
             }
-            
+
         }
     }
-    
+
     // MARK: Outlets and Actions
-    
+
     @IBOutlet var contentImageView: UIImageView?
-    
+
     // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()

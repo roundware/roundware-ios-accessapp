@@ -4,13 +4,13 @@ import AVFoundation
 func setupAudio(audioSetup: (granted: Bool, error: NSError?) -> Void) {
     let avAudioSession = AVAudioSession.sharedInstance()
     var error: NSError?
-    
+
     avAudioSession.requestRecordPermission { (granted: Bool) -> Void in
         dispatch_async(dispatch_get_main_queue()) {
             audioSetup(granted: granted, error: nil)
         }
     }
-    
+
     // Play and record for VOIP
     do {
         try avAudioSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
@@ -24,9 +24,9 @@ func setupAudio(audioSetup: (granted: Bool, error: NSError?) -> Void) {
             }
         }
     }
-    
+
     let override = (TARGET_IPHONE_SIMULATOR == 1 || isHeadsetPluggedIn()) ? AVAudioSessionPortOverride.None : AVAudioSessionPortOverride.Speaker
-    
+
     // Send audio to the speaker
     do {
         try avAudioSession.overrideOutputAudioPort(AVAudioSessionPortOverride.Speaker)
@@ -37,8 +37,8 @@ func setupAudio(audioSetup: (granted: Bool, error: NSError?) -> Void) {
             print(e.localizedDescription)
         }
     }
-    
-    
+
+
     // Activiate the AVAudioSession
     do {
         try avAudioSession.setActive(true)

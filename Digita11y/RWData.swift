@@ -3,10 +3,10 @@ import RWFramework
 
 class RWData {
     // MARK: - Project
-    
+
     let projects: [Project] = Project.initFromPlist()
     var selectedProject: Project?
-    
+
     func getProjectById(id: Int) -> Project? {
         if let index = projects.indexOf({ $0.id == id }) {
             return projects[index]
@@ -15,10 +15,10 @@ class RWData {
         }
     }
 
-    
+
     // MARK: - UIGroup
     var uiGroups: [UIGroup] = []
-    
+
     //TODO real error handling
     func getUIGroupForIndexAndMode(index: Int, mode: String) -> UIGroup? {
         if let thisProject = selectedProject,
@@ -33,7 +33,7 @@ class RWData {
             return nil
         }
     }
-    
+
     func updateUIGroup(uiGroup: UIGroup) -> Void {
         if let thisProject = selectedProject,
             let index = uiGroups.indexOf({
@@ -47,7 +47,7 @@ class RWData {
             debugPrint("ERROR: missing uiGroup in uiGroups array for \(uiGroup)")
         }
     }
-    
+
     func getTagForIndexAndMode(index: Int, mode: String) -> Tag? {
         if  let uiGroup = getUIGroupForIndexAndMode(index, mode: mode),
             let uiItem = uiGroup.selectedUIItem,
@@ -59,7 +59,7 @@ class RWData {
         }
     }
 
-    
+
     // MARK: - UIItem
     func getRelevantUIItems(uiGroup: UIGroup) -> [UIItem] {
         if uiGroup.index > 0,
@@ -77,18 +77,18 @@ class RWData {
             return uiItems
         }
     }
-    
+
     func getTagsForUIItems(uiItems: [UIItem]) -> [Tag] {
         let tagIds = uiItems.map { $0.tagId }
         return tags.filter({ tagIds.contains($0.id) })
     }
-    
+
     func getTagsWithAudioAssetsForUIItems(uiItems: [UIItem]) -> [Tag] {
         let tagIds = uiItems.map { $0.tagId }
         return tags.filter({ tagIds.contains($0.id) && self.getAssetsForTagIdOfMediaType($0.id, mediaType: MediaType.Audio).count > 0})
     }
 
-    
+
     func getTagForUIItem(uiItem: UIItem) -> Tag? {
         if let tag = tags.filter({$0.id == uiItem.tagId}).first {
             return tag
@@ -97,7 +97,7 @@ class RWData {
             return nil
         }
     }
-    
+
     func getSelectedTagForUIGroup(uiGroup: UIGroup) -> Tag? {
         if let selectedUIItem = uiGroup.selectedUIItem {
           return getTagForUIItem(selectedUIItem)
@@ -106,13 +106,13 @@ class RWData {
             return nil
         }
     }
-    
+
     // MARK: - Tags
-    
+
     var tags: [Tag] = []
     var listenTags: [Tag] = []
     var contributeTags: [Tag] = []
-    
+
     func getTagById(id: Int) -> Tag? {
         if let index = tags.indexOf({ $0.id == id }) {
             return tags[index]
@@ -133,9 +133,9 @@ class RWData {
     }
 
     // MARK: - Assets
-    
+
     var assets: [Asset] = []
-    
+
     var selectedTextAsset: Asset?
     var selectedImageAssets: [Asset] = []
 

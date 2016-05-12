@@ -19,7 +19,7 @@ struct UIItem {
     //TODO same as active?
     var contributed: Bool = false
 
-    
+
     init(json: JSON) {
         index = json["index"].int ?? 0
         parent = json["parent"].int ?? 0

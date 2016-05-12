@@ -8,21 +8,21 @@
 import UIKit
 class ReadViewController: BaseViewController {
     var viewModel: ReadViewModel!
-    
+
     // MARK: Outlets and Actions
-    
+
     @IBOutlet weak var prompt: UILabel!
     @IBOutlet weak var response: UILabelBody!
-    
+
     @IBAction func close(sender: AnyObject) {
         self.performSegueWithIdentifier("closeRead", sender: sender)
     }
 
-    
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.viewModel = ReadViewModel(data: self.rwData!)

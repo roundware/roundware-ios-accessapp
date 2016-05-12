@@ -15,13 +15,13 @@ import UIKit
         super.init(coder: aDecoder)
         self.setupViews()
     }
-    
+
     //during developing IB fires this init to create object
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
     }
-    
+
     func setupViews() {
         self.font = UIFont(name: "AvenirNext-Medium", size: 30.0)
         self.numberOfLines = 0

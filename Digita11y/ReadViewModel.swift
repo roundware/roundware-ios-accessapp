@@ -13,7 +13,7 @@ class ReadViewModel: BaseViewModel  {
     let assets: [Asset]
     let prompt: String
     let response: String
-    
+
     init(data: RWData) {
         self.data = data
         //set room tags

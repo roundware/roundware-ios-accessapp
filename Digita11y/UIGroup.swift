@@ -20,7 +20,7 @@ struct UIGroup {
     var headerTextLoc: String = ""
     var uiItems: [UIItem]
     var selectedUIItem: UIItem?
-    
+
     init(json: JSON) {
         index = json["index"].int ?? 0
         name = json["name"].string ?? ""

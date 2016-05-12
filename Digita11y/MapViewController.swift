@@ -11,18 +11,18 @@ import ImageScrollView
 class MapViewController: BaseViewController {
 
     // MARK: Outlets and Actions
-    
+
     @IBOutlet weak var imageScrollView: ImageScrollView!
-    
+
     @IBAction func close(sender: AnyObject) {
         self.performSegueWithIdentifier("closeMap", sender: sender)
     }
 
-    
+
     // MARK: View
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         //TODO set from project map url
         let url = NSURL(string: "https://jasonstravelsdotcom.files.wordpress.com/2013/03/national-gallery-of-art-west-building-map-washington-dc.jpg")
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
