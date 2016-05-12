@@ -16,12 +16,12 @@ class ThanksViewModel: BaseViewModel {
     
     init(data: RWData) {
         self.data = data
-        self.uiGroup = data.getUIGroupForIndexAndMode(0, mode: "speak")!
+        self.uiGroup = data.getUIGroupForIndexAndMode(1, mode: "speak")!
         itemTag = data.getTagForIndexAndMode(2, mode: "listen")!
         self.title = "Thanks for your contribution to: \(self.itemTag.value)!"
         self.tags = data.getTagsForUIItems(self.uiGroup.uiItems)
+        
         //TODO get available get tags that have not been contributed too for this parent tag....
-
     }
     
     func selectedTitle(title:String) {

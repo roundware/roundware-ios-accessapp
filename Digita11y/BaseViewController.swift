@@ -20,32 +20,26 @@ class BaseViewController: UIViewController {
         for (_, item) in scroll.subviews.enumerate(){
             item.removeFromSuperview()
         }
-        let newContentOffsetX = (button.buttonWidth - scroll.bounds.size.width) / 2
-        debugPrint("new content offset \(newContentOffsetX)")
+//        let newContentOffsetX = (button.buttonWidth - scroll.bounds.size.width) / 2
+//        debugPrint("new content offset \(newContentOffsetX)")
         
         for index in 0..<total {
             button = UIButtonTag(type: UIButtonType.System)
             let indexFloat = CGFloat(index)
             let frame = CGRect(
-                x: button.buttonMarginX - newContentOffsetX,
+                x: button.buttonMarginX,
                 y: indexFloat * (button.buttonMarginY + button.buttonHeight),
                 width: button.buttonWidth,
                 height: button.buttonHeight )
             button.frame = frame
             button.titleLabel?.numberOfLines = 0
             buttons.append(button as UIButton)
+            scroll.addSubview(button)
         }
         
         scroll.contentSize.width = button.buttonWidth
         scroll.contentSize.height = (button.buttonHeight + button.buttonMarginY) * CGFloat(total)
         
-        let duration = 0.1
-        UIView.animateWithDuration(duration, delay: 0, options: [], animations: {
-            for (index, button) in buttons.enumerate(){
-                scroll.addSubview(button)
-            }
-            }, completion: { finished in
-        })
 
         return buttons
 

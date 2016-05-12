@@ -34,6 +34,8 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
             
             viewModel.mediaType = MediaType.Audio
             viewModel.mediaSelected = true
+            //TODO move focus to question
+
         } else {
             if(self.viewModel.tagsSelected){
             //record, play, stop
@@ -75,21 +77,37 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
 
             viewModel.mediaType = MediaType.Text
             self.viewModel.mediaSelected = true
+            //TODO move focus to question
         }
     }
     
     @IBAction func selectedThis(sender: AnyObject) {
         let scroll = ContributeScroll
-        let others = scroll.subviews.filter({$0 as UIView != sender as! UIView})
+        let selectedView = sender as! UIView
+        
+        //hide others
+        let others = scroll.subviews.filter({$0 as UIView != selectedView})
         for (index, button) in others.enumerate(){
             button.hidden = true
         }
+        
+        //hide move selected to top
+        selectedView.frame =  CGRect(
+            x: selectedView.frame.origin.x,
+            y: 0,
+            width: selectedView.frame.width,
+            height: selectedView.frame.height
+        )
+        scroll.contentSize.width = selectedView.frame.width
+        scroll.contentSize.height = selectedView.frame.height
+
         
         //set tag into viewmodel
         self.viewModel.selectedTag = self.viewModel.data.getTagById(sender.tag)
         if(!self.viewModel.tagsSelected){
             self.ContributeAsk.text = self.viewModel.uiGroup.headerTextLoc
             showTags()
+            //TODO move focus to question
         } else {
             if let button = sender as? UIButton {
                 button.enabled = false
@@ -101,6 +119,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
                         if let error = error {
                             CLSNSLogv("Unable to setup audio: \(error)", getVaList([error]))
                         }
+                        //TODO alert message
                     } else {
                         debugPrint("Successfully setup audio")
                         let duration = 0.1
@@ -110,6 +129,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
                             self.progressLabel.text = "00:30"
                         }, completion: { finished in
                         })
+                        //TODO move focus, set audio label
                     }
                 }
             } else {
@@ -218,13 +238,20 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //keyboard with view adjustment as well as done button and outside tap dismissal
         //http://stackoverflow.com/questions/26070242/move-view-with-keyboard-using-swift
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: self.view.window)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: self.view.window)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillShow), name:UIKeyboardWillShowNotification, object: self.view.window)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillHide), name:UIKeyboardWillHideNotification, object: self.view.window)
         //Looks for single or multiple taps.
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
-
+        let doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: #selector(dismissKeyboard))
+        let toolBar = UIToolbar()
+        toolBar.setItems([doneButton], animated: false)
+        toolBar.userInteractionEnabled = true
+        toolBar.sizeToFit()
+        responseTextView.inputAccessoryView = toolBar
+        
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
         super.view.addBackground("bg-comment.png")
         self.viewModel = ContributeViewModel(data: self.rwData!)
@@ -272,8 +299,10 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
 //
     func displayPreviewAudio() {
         audioButton.accessibilityLabel = "Preview audio"
-//        progressView.progress = 0.0
+        progressLabel.text = "00:00"
         audioButton.setImage(UIImage(named: "playContribute"), forState: .Normal)
+        //TODO fix upload undo index order
+        //TODO fix upload under sizing
     }
     
     func displayStopPlayback() {
@@ -396,6 +425,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
     /// Sent in the case that the server can not accept an envelope item (media upload)
         debugPrint("patch envelope success")
         SVProgressHUD.dismiss()
+        
         //TODO mark uiitems as contributed
         for (_, tag) in self.viewModel.tags.enumerate(){
 //            tag.contributed

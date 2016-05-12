@@ -22,6 +22,8 @@ class ThanksViewController: BaseViewController, UIScrollViewDelegate {
         self.performSegueWithIdentifier("NoThanksSegue", sender: nil)
     }
 
+    @IBOutlet weak var thanksHeadline: UILabelHeadline!
+    @IBOutlet weak var thanksBody: UILabelBody!
     
     // MARK: View
     override func viewWillAppear(animated: Bool) {
@@ -49,7 +51,20 @@ class ThanksViewController: BaseViewController, UIScrollViewDelegate {
                              forControlEvents: UIControlEvents.TouchUpInside)
             button.tag = tag.id
         }
+        thanksHeadline.text = self.viewModel.title
+        
+        thanksBody.text = "While you’re on a roll would you care to contribute another for: " + self.viewModel.uiGroup.headerTextLoc
     }
+    
+    override func viewDidLayoutSubviews(){
+        super.viewDidLayoutSubviews()
+        
+        //scroll
+        let scroll = ThanksScroll
+        let newContentOffsetX = (scroll.contentSize.width - scroll.bounds.size.width) / 2
+        scroll.contentOffset = CGPointMake(newContentOffsetX, 0)
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

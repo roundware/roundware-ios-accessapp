@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="DmJ-mn-9SY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="DmJ-mn-9SY">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -116,7 +116,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" restorationIdentifier="WelcomeStack" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="cAW-TA-Z1n">
                                 <rect key="frame" x="93" y="60" width="6073" height="205"/>
                                 <subviews>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" restorationIdentifier="WelcomeCastle" image="castle" translatesAutoresizingMaskIntoConstraints="NO" id="8Gn-9F-5B8">
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" misplaced="YES" restorationIdentifier="WelcomeCastle" image="castle" translatesAutoresizingMaskIntoConstraints="NO" id="8Gn-9F-5B8">
                                         <rect key="frame" x="2970" y="0.0" width="133" height="133"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="133" id="DFG-EQ-Ur0"/>
@@ -132,7 +132,7 @@
                                             </mask>
                                         </variation>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" restorationIdentifier="WelcomeTitle" text="Welcome to Museum XYZ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1JY-P8-634" customClass="UILabelHeadline" customModule="Digita11y" customModuleProvider="target">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" restorationIdentifier="WelcomeTitle" text="Welcome to Museum XYZ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1JY-P8-634" customClass="UILabelHeadline" customModule="Digita11y" customModuleProvider="target">
                                         <rect key="frame" x="2937" y="133" width="199" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="3Gw-vX-TNb"/>
@@ -145,14 +145,13 @@
                                                 <exclude reference="3Gw-vX-TNb"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="88" y="133" width="199" height="100"/>
+                                        <variation key="heightClass=regular">
                                             <mask key="constraints">
                                                 <include reference="3Gw-vX-TNb"/>
                                             </mask>
                                         </variation>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" restorationIdentifier="WelcomeText" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ssu-Sz-qmD" customClass="UILabelBody" customModule="Digita11y" customModuleProvider="target">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" restorationIdentifier="WelcomeText" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ssu-Sz-qmD" customClass="UILabelBody" customModule="Digita11y" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="154" width="6073" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="I7F-JH-OK6"/>
@@ -171,7 +170,7 @@
                                             </mask>
                                         </variation>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" restorationIdentifier="WelcomeBegin" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q4z-dT-tJR" customClass="UIButtonWhite" customModule="Digita11y" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" restorationIdentifier="WelcomeBegin" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q4z-dT-tJR" customClass="UIButtonWhite" customModule="Digita11y" customModuleProvider="target">
                                         <rect key="frame" x="3017" y="175" width="39" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="200" id="UTc-dE-mjb"/>
@@ -279,8 +278,7 @@
                                                 <exclude reference="oT5-ga-hJ0"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="37" y="209" width="300" height="200"/>
+                                        <variation key="heightClass=regular">
                                             <mask key="constraints">
                                                 <include reference="4OK-Rm-j8c"/>
                                                 <include reference="oT5-ga-hJ0"/>
@@ -302,8 +300,7 @@
                                                 <exclude reference="lGN-UH-JJp"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="187" y="489" width="0.0" height="70"/>
+                                        <variation key="heightClass=regular">
                                             <mask key="constraints">
                                                 <include reference="Ayq-QB-AwM"/>
                                                 <include reference="lGN-UH-JJp"/>
@@ -540,9 +537,6 @@
                                         <state key="normal" title="Speed 1x">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="0.0" width="61" height="37"/>
-                                        </variation>
                                         <connections>
                                             <action selector="cycleSpeed:" destination="FnB-gZ-PAk" eventType="touchUpInside" id="fBk-Uf-Cb3"/>
                                         </connections>
@@ -551,9 +545,6 @@
                                         <rect key="frame" x="20" y="46" width="24" height="32"/>
                                         <accessibility key="accessibilityConfiguration" label="Previous asset"/>
                                         <state key="normal" image="previous"/>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="99" y="0.0" width="24" height="37"/>
-                                        </variation>
                                         <connections>
                                             <action selector="previousTag:" destination="FnB-gZ-PAk" eventType="touchUpInside" id="Qzl-wq-IZo"/>
                                         </connections>
@@ -564,9 +555,6 @@
                                         <state key="normal">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="177" y="0.0" width="30" height="37"/>
-                                        </variation>
                                         <connections>
                                             <action selector="toggleStream:" destination="FnB-gZ-PAk" eventType="touchUpInside" id="TBs-XL-QR3"/>
                                         </connections>
@@ -575,9 +563,6 @@
                                         <rect key="frame" x="133" y="51" width="24" height="32"/>
                                         <accessibility key="accessibilityConfiguration" label="Next asset"/>
                                         <state key="normal" image="next"/>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="261" y="0.0" width="24" height="37"/>
-                                        </variation>
                                         <connections>
                                             <action selector="nextTag:" destination="FnB-gZ-PAk" eventType="touchUpInside" id="eid-dr-xbJ"/>
                                         </connections>
@@ -586,17 +571,11 @@
                                         <rect key="frame" x="190" y="42" width="38" height="39"/>
                                         <accessibility key="accessibilityConfiguration" label="Contribute"/>
                                         <state key="normal" image="comment-small"/>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="334" y="0.0" width="40" height="37"/>
-                                        </variation>
                                         <connections>
                                             <action selector="contribute:" destination="FnB-gZ-PAk" eventType="touchUpInside" id="RVj-1n-Q3Y"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <variation key="heightClass=regular" misplaced="YES">
-                                    <rect key="frame" x="20" y="691" width="374" height="37"/>
-                                </variation>
                             </stackView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wmp-MJ-emO" userLabel="Items Scroll View">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -727,26 +706,20 @@
                         <viewControllerLayoutGuide type="bottom" id="Ljb-vT-yUP"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="KPc-37-Fgd">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="QXD-GU-aCM">
                                 <rect key="frame" x="0.0" y="0.0" width="466" height="758"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" restorationIdentifier="ContributeAsk" text="How would you like to contribute to XYZ?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bjg-3s-y6Y" customClass="UILabelHeadline" customModule="Digita11y" customModuleProvider="target">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" restorationIdentifier="ContributeAsk" text="How would you like to contribute to XYZ?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bjg-3s-y6Y" customClass="UILabelHeadline" customModule="Digita11y" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="466" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="0.0" width="560" height="21"/>
-                                        </variation>
                                     </label>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" restorationIdentifier="ContributeScroll" bounces="NO" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bSR-Dv-uNZ">
                                         <rect key="frame" x="0.0" y="41" width="466" height="236"/>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="41" width="560" height="264"/>
-                                        </variation>
                                     </scrollView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Response" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8V7-kK-PBe" userLabel="Response Label" customClass="UILabelSubHeadline" customModule="Digita11y" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="297" width="466" height="21"/>
@@ -754,15 +727,14 @@
                                             <constraint firstAttribute="height" constant="33" id="BHn-gT-CgK"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="default">
                                             <mask key="constraints">
                                                 <exclude reference="BHn-gT-CgK"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="325" width="560" height="33"/>
+                                        <variation key="heightClass=regular">
                                             <mask key="constraints">
                                                 <include reference="BHn-gT-CgK"/>
                                             </mask>
@@ -781,8 +753,7 @@
                                                 <exclude reference="9tc-JU-5tG"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="378" width="560" height="200"/>
+                                        <variation key="heightClass=regular">
                                             <mask key="constraints">
                                                 <include reference="9tc-JU-5tG"/>
                                             </mask>
@@ -791,29 +762,23 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" distribution="equalCentering" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="dqw-93-MOw">
                                         <rect key="frame" x="0.0" y="596" width="466" height="162"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleAspectFit" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jJk-kv-DnR" userLabel="Undo">
+                                            <button opaque="NO" contentMode="scaleAspectFit" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jJk-kv-DnR" userLabel="Undo">
                                                 <rect key="frame" x="0.0" y="0.0" width="104" height="162"/>
                                                 <state key="normal" image="undo"/>
-                                                <variation key="heightClass=regular" misplaced="YES">
-                                                    <rect key="frame" x="0.0" y="0.0" width="104" height="162"/>
-                                                </variation>
                                                 <connections>
                                                     <action selector="undo:" destination="80e-wb-9Zi" eventType="touchUpInside" id="NfT-ac-EJU"/>
                                                 </connections>
                                             </button>
-                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="SuZ-cA-ngt">
+                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="SuZ-cA-ngt">
                                                 <rect key="frame" x="124" y="0.0" width="218" height="162"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="axU-gD-3eO" customClass="UILabelSubHeadline" customModule="Digita11y" customModuleProvider="target">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="axU-gD-3eO" customClass="UILabelSubHeadline" customModule="Digita11y" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="218" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
-                                                        <variation key="heightClass=regular" misplaced="YES">
-                                                            <rect key="frame" x="0.0" y="0.0" width="218" height="21"/>
-                                                        </variation>
                                                     </label>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" distribution="equalCentering" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="58s-2Y-sUI">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="equalCentering" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="58s-2Y-sUI">
                                                         <rect key="frame" x="0.0" y="31" width="218" height="100"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleAspectFit" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ok-Wd-4jK" userLabel="Audio">
@@ -837,7 +802,7 @@
                                                                     <action selector="selectAudio:" destination="80e-wb-9Zi" eventType="touchUpInside" id="yGo-Oe-mES"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleAspectFit" horizontalCompressionResistancePriority="749" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uVg-JU-omc" userLabel="Text">
+                                                            <button opaque="NO" contentMode="scaleAspectFit" horizontalCompressionResistancePriority="749" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uVg-JU-omc" userLabel="Text">
                                                                 <rect key="frame" x="119" y="0.0" width="99" height="100"/>
                                                                 <accessibility key="accessibilityConfiguration" label="Text"/>
                                                                 <constraints>
@@ -859,39 +824,26 @@
                                                                 </connections>
                                                             </button>
                                                         </subviews>
-                                                        <variation key="heightClass=regular" axis="horizontal" misplaced="YES">
-                                                            <rect key="frame" x="0.0" y="31" width="218" height="100"/>
-                                                        </variation>
+                                                        <variation key="heightClass=regular" axis="horizontal"/>
                                                     </stackView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i3g-r3-mlV" customClass="UILabelSubHeadline" customModule="Digita11y" customModuleProvider="target">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i3g-r3-mlV" customClass="UILabelSubHeadline" customModule="Digita11y" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="141" width="218" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
-                                                        <variation key="heightClass=regular" misplaced="YES">
-                                                            <rect key="frame" x="0.0" y="141" width="218" height="21"/>
-                                                        </variation>
                                                     </label>
                                                 </subviews>
-                                                <variation key="heightClass=regular" misplaced="YES">
-                                                    <rect key="frame" x="171" y="0.0" width="218" height="162"/>
-                                                </variation>
                                             </stackView>
-                                            <button opaque="NO" contentMode="scaleAspectFit" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3lE-le-eli" userLabel="Upload">
+                                            <button opaque="NO" contentMode="scaleAspectFit" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3lE-le-eli" userLabel="Upload">
                                                 <rect key="frame" x="362" y="0.0" width="104" height="162"/>
                                                 <accessibility key="accessibilityConfiguration" label="Upload"/>
                                                 <state key="normal" image="upload"/>
-                                                <variation key="heightClass=regular" misplaced="YES">
-                                                    <rect key="frame" x="456" y="0.0" width="104" height="162"/>
-                                                </variation>
                                                 <connections>
                                                     <action selector="upload:" destination="80e-wb-9Zi" eventType="touchUpInside" id="iVQ-j9-h2R"/>
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <variation key="heightClass=regular" axis="horizontal" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="598" width="560" height="162"/>
-                                        </variation>
+                                        <variation key="heightClass=regular" axis="horizontal"/>
                                     </stackView>
                                 </subviews>
                                 <constraints>
@@ -962,105 +914,141 @@
                         <viewControllerLayoutGuide type="bottom" id="Dt4-7E-GgV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="w66-eV-wfq">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="xkJ-rC-V1l">
-                                <rect key="frame" x="8" y="230" width="584" height="340"/>
-                                <subviews>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="comment-big" translatesAutoresizingMaskIntoConstraints="NO" id="fME-30-kko">
-                                        <rect key="frame" x="224" y="102" width="136" height="136"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="136" id="69i-08-gc1"/>
-                                        </constraints>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="69i-08-gc1"/>
-                                            </mask>
-                                        </variation>
-                                        <variation key="heightClass=regular">
-                                            <mask key="constraints">
-                                                <include reference="69i-08-gc1"/>
-                                            </mask>
-                                        </variation>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" restorationIdentifier="ThanksHeadline" text="Thank you for your contribution to XYZ!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="emy-G4-ovM" customClass="UILabelHeadline" customModule="Digita11y" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="150" width="544" height="41"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="156" width="560" height="21"/>
-                                        </variation>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="While you’re on a roll would you care to contribute another one for:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rat-u2-dCv" customClass="UILabelBody" customModule="Digita11y" customModuleProvider="target">
-                                        <rect key="frame" x="75" y="160" width="433" height="20"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="197" width="560" height="21"/>
-                                        </variation>
-                                    </label>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" restorationIdentifier="ThanksScroll" translatesAutoresizingMaskIntoConstraints="NO" id="6Fd-r1-7wb">
-                                        <rect key="frame" x="105" y="20" width="374" height="300"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="300" id="U3Z-fl-MQV"/>
-                                        </constraints>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="U3Z-fl-MQV"/>
-                                            </mask>
-                                        </variation>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="238" width="560" height="300"/>
-                                            <mask key="constraints">
-                                                <include reference="U3Z-fl-MQV"/>
-                                            </mask>
-                                        </variation>
-                                    </scrollView>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ew9-yM-J5J" customClass="UIButtonWhite" customModule="Digita11y" customModuleProvider="target">
-                                        <rect key="frame" x="214" y="146" width="156" height="49"/>
-                                        <state key="normal" title="No Thanks"/>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="558" width="560" height="202"/>
-                                        </variation>
-                                        <connections>
-                                            <action selector="noThanks:" destination="RP1-T4-HhY" eventType="touchUpInside" id="EFx-8Y-17r"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <variation key="heightClass=regular" axis="vertical" misplaced="YES">
-                                    <rect key="frame" x="28" y="250" width="560" height="760"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" restorationIdentifier="ThanksHeadline" text="Thank you for your contribution to XYZ!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="emy-G4-ovM" customClass="UILabelHeadline" customModule="Digita11y" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="145" width="509" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="While you’re on a roll would you care to contribute another?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rat-u2-dCv" customClass="UILabelBody" customModule="Digita11y" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="186" width="509" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" restorationIdentifier="ThanksScroll" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Fd-r1-7wb">
+                                <rect key="frame" x="0.0" y="227" width="509" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="U3Z-fl-MQV"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="U3Z-fl-MQV"/>
+                                    </mask>
                                 </variation>
-                            </stackView>
+                                <variation key="heightClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="U3Z-fl-MQV"/>
+                                    </mask>
+                                </variation>
+                            </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ew9-yM-J5J" customClass="UIButtonWhite" customModule="Digita11y" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="547" width="509" height="30"/>
+                                <state key="normal" title="No Thanks"/>
+                                <connections>
+                                    <action selector="noThanks:" destination="RP1-T4-HhY" eventType="touchUpInside" id="EFx-8Y-17r"/>
+                                </connections>
+                            </button>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" ambiguous="YES" image="comment-big" translatesAutoresizingMaskIntoConstraints="NO" id="fME-30-kko">
+                                <rect key="frame" x="0.0" y="0.0" width="509" height="125"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="136" id="69i-08-gc1">
+                                        <variation key="heightClass=regular" constant="50"/>
+                                    </constraint>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="cx6-ak-Ljt"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="69i-08-gc1"/>
+                                        <exclude reference="cx6-ak-Ljt"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="69i-08-gc1"/>
+                                        <exclude reference="cx6-ak-Ljt"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.49411764740000003" green="0.82745099070000006" blue="0.1294117719" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="xkJ-rC-V1l" secondAttribute="trailing" id="3e1-jI-HUQ"/>
-                            <constraint firstItem="xkJ-rC-V1l" firstAttribute="top" secondItem="jSn-ju-ihQ" secondAttribute="bottom" id="Sj9-H8-yyV"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="xkJ-rC-V1l" secondAttribute="bottom" constant="20" id="UnR-mU-9F9"/>
-                            <constraint firstItem="xkJ-rC-V1l" firstAttribute="leading" secondItem="w66-eV-wfq" secondAttribute="leadingMargin" id="tnH-dX-Dzg"/>
+                            <constraint firstItem="Rat-u2-dCv" firstAttribute="leading" secondItem="w66-eV-wfq" secondAttribute="leadingMargin" id="8jF-pp-lpS"/>
+                            <constraint firstItem="6Fd-r1-7wb" firstAttribute="leading" secondItem="w66-eV-wfq" secondAttribute="leadingMargin" id="Ddx-Px-uPJ"/>
+                            <constraint firstItem="6Fd-r1-7wb" firstAttribute="top" secondItem="Rat-u2-dCv" secondAttribute="bottom" constant="20" id="Exk-PV-fZi"/>
+                            <constraint firstItem="Rat-u2-dCv" firstAttribute="top" secondItem="emy-G4-ovM" secondAttribute="bottom" constant="20" id="GfH-pt-p0k"/>
+                            <constraint firstItem="Rat-u2-dCv" firstAttribute="trailing" secondItem="w66-eV-wfq" secondAttribute="trailingMargin" id="ORQ-uf-41w"/>
+                            <constraint firstItem="Ew9-yM-J5J" firstAttribute="leading" secondItem="w66-eV-wfq" secondAttribute="leadingMargin" id="POK-IX-5pH"/>
+                            <constraint firstItem="Ew9-yM-J5J" firstAttribute="trailing" secondItem="w66-eV-wfq" secondAttribute="trailingMargin" id="QAz-NM-fca"/>
+                            <constraint firstItem="fME-30-kko" firstAttribute="leading" secondItem="w66-eV-wfq" secondAttribute="leadingMargin" id="gec-bh-uCu"/>
+                            <constraint firstItem="6Fd-r1-7wb" firstAttribute="trailing" secondItem="w66-eV-wfq" secondAttribute="trailingMargin" id="hHF-Sa-a5Y"/>
+                            <constraint firstItem="emy-G4-ovM" firstAttribute="top" secondItem="fME-30-kko" secondAttribute="bottom" constant="20" id="hjf-Iw-Hze"/>
+                            <constraint firstItem="fME-30-kko" firstAttribute="trailing" secondItem="w66-eV-wfq" secondAttribute="trailingMargin" id="msr-x5-WCx"/>
+                            <constraint firstItem="emy-G4-ovM" firstAttribute="leading" secondItem="w66-eV-wfq" secondAttribute="leadingMargin" id="qth-cF-Xvd"/>
+                            <constraint firstItem="Dt4-7E-GgV" firstAttribute="top" secondItem="Ew9-yM-J5J" secondAttribute="bottom" constant="20" id="t4b-va-VEo"/>
+                            <constraint firstItem="fME-30-kko" firstAttribute="top" secondItem="jSn-ju-ihQ" secondAttribute="bottom" id="uss-YO-jgI"/>
+                            <constraint firstItem="emy-G4-ovM" firstAttribute="trailing" secondItem="w66-eV-wfq" secondAttribute="trailingMargin" id="y1K-UK-GHO"/>
                         </constraints>
                         <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="emy-G4-ovM"/>
+                                <exclude reference="Rat-u2-dCv"/>
+                                <exclude reference="6Fd-r1-7wb"/>
+                                <exclude reference="Ew9-yM-J5J"/>
+                                <exclude reference="fME-30-kko"/>
+                            </mask>
                             <mask key="constraints">
-                                <exclude reference="3e1-jI-HUQ"/>
-                                <exclude reference="Sj9-H8-yyV"/>
-                                <exclude reference="UnR-mU-9F9"/>
-                                <exclude reference="tnH-dX-Dzg"/>
+                                <exclude reference="gec-bh-uCu"/>
+                                <exclude reference="msr-x5-WCx"/>
+                                <exclude reference="uss-YO-jgI"/>
+                                <exclude reference="hjf-Iw-Hze"/>
+                                <exclude reference="qth-cF-Xvd"/>
+                                <exclude reference="y1K-UK-GHO"/>
+                                <exclude reference="8jF-pp-lpS"/>
+                                <exclude reference="GfH-pt-p0k"/>
+                                <exclude reference="ORQ-uf-41w"/>
+                                <exclude reference="Ddx-Px-uPJ"/>
+                                <exclude reference="Exk-PV-fZi"/>
+                                <exclude reference="hHF-Sa-a5Y"/>
+                                <exclude reference="POK-IX-5pH"/>
+                                <exclude reference="QAz-NM-fca"/>
+                                <exclude reference="t4b-va-VEo"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular">
+                            <mask key="subviews">
+                                <include reference="emy-G4-ovM"/>
+                                <include reference="Rat-u2-dCv"/>
+                                <include reference="6Fd-r1-7wb"/>
+                                <include reference="Ew9-yM-J5J"/>
+                                <include reference="fME-30-kko"/>
+                            </mask>
                             <mask key="constraints">
-                                <include reference="3e1-jI-HUQ"/>
-                                <include reference="Sj9-H8-yyV"/>
-                                <include reference="UnR-mU-9F9"/>
-                                <include reference="tnH-dX-Dzg"/>
+                                <include reference="gec-bh-uCu"/>
+                                <include reference="msr-x5-WCx"/>
+                                <include reference="uss-YO-jgI"/>
+                                <include reference="hjf-Iw-Hze"/>
+                                <include reference="qth-cF-Xvd"/>
+                                <include reference="y1K-UK-GHO"/>
+                                <include reference="8jF-pp-lpS"/>
+                                <include reference="GfH-pt-p0k"/>
+                                <include reference="ORQ-uf-41w"/>
+                                <include reference="Ddx-Px-uPJ"/>
+                                <include reference="Exk-PV-fZi"/>
+                                <include reference="hHF-Sa-a5Y"/>
+                                <include reference="POK-IX-5pH"/>
+                                <include reference="QAz-NM-fca"/>
+                                <include reference="t4b-va-VEo"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
                         <outlet property="ThanksScroll" destination="6Fd-r1-7wb" id="thp-yq-Cpc"/>
+                        <outlet property="thanksBody" destination="Rat-u2-dCv" id="4UT-TE-RNM"/>
+                        <outlet property="thanksHeadline" destination="emy-G4-ovM" id="552-4S-JKC"/>
                         <segue destination="DRC-bj-ok4" kind="unwind" identifier="NoThanksSegue" unwindAction="prepareForTagsUnwind:" id="G8e-n2-bTD"/>
                         <segue destination="80e-wb-9Zi" kind="show" identifier="Recontribute" id="Io0-KK-Eig"/>
                     </connections>
@@ -1107,6 +1095,9 @@ This improvement upon the original usage was introduced by no less a man than St
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular" misplaced="YES">
+                                    <rect key="frame" x="20" y="129" width="374" height="183"/>
+                                </variation>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>

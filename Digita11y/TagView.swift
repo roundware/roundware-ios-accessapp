@@ -65,7 +65,7 @@ import UIKit
         debugPrint("hasImage \(String(hasImages)) and hasText \(String(hasTexts))")
         tagTitle.setTitle(tagModel.value, forState: .Normal)
         id = tagModel.id
-        var subviews : [UIView] = [audioImage, textButton, cameraButton]
+        var subviews : [UIView] = [audioImage, textButton, cameraButton, tagProgress]
 
         subviews.forEach{
             $0.hidden = true
