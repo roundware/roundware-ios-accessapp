@@ -10,9 +10,11 @@ import UIKit
 class ThanksViewController: BaseViewController, UIScrollViewDelegate {
     var viewModel: ThanksViewModel!
 
-    // MARK: Actions and Outlets
+    // MARK: Outlets and Actions
 
     @IBOutlet weak var ThanksScroll: UIScrollView!
+    @IBOutlet weak var thanksHeadline: UILabelHeadline!
+    @IBOutlet weak var thanksBody: UILabelBody!
     
     @IBAction func selectedThis(sender: UIButton) {
         self.performSegueWithIdentifier("Recontribute", sender: nil)
@@ -22,8 +24,6 @@ class ThanksViewController: BaseViewController, UIScrollViewDelegate {
         self.performSegueWithIdentifier("NoThanksSegue", sender: nil)
     }
 
-    @IBOutlet weak var thanksHeadline: UILabelHeadline!
-    @IBOutlet weak var thanksBody: UILabelBody!
     
     // MARK: View
     override func viewWillAppear(animated: Bool) {

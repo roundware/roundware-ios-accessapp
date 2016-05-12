@@ -8,24 +8,29 @@
 // with http://swiftiostutorials.com/ios-tutorial-using-uipageviewcontroller-create-content-slider-objective-cswift/
 import UIKit
 class GalleryViewController: BaseViewController, UIPageViewControllerDataSource {
+    // MARK: - Variables
     
-    // MARK: - Actions and outlets
+    var viewModel: GalleryViewModel!
+    
+    private var pageViewController: UIPageViewController?
+    
+    private let contentImages =
+        ["play.png",
+         "pause.png"];
+    
+    
+    // MARK: Outlets and Actions
+
+    @IBOutlet weak var pageContainer: UIView!
 
     @IBAction func close(sender: AnyObject) {
         self.performSegueWithIdentifier("closeGallery", sender: sender)
     }
-    @IBOutlet weak var pageContainer: UIView!
 
-    // MARK: - Variables
-    var viewModel: GalleryViewModel!
 
-    private var pageViewController: UIPageViewController?
-
-    private let contentImages =
-        ["play.png",
-    "pause.png"];
     
     // MARK: - View Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.viewModel = GalleryViewModel(data: self.rwData!)
@@ -64,6 +69,7 @@ class GalleryViewController: BaseViewController, UIPageViewControllerDataSource 
 //        appearance.backgroundColor = UIColor.darkGrayColor()
     }
     
+    
     // MARK: - UIPageViewControllerDataSource
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
@@ -99,6 +105,7 @@ class GalleryViewController: BaseViewController, UIPageViewControllerDataSource 
         
         return nil
     }
+    
     
     // MARK: - Page Indicator
     

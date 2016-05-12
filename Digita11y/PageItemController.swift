@@ -5,6 +5,7 @@ import UIKit
 class PageItemController: UIViewController {
     
     // MARK: - Variables
+    
     var itemIndex: Int = 0
     var imageName: String = "" {
         didSet {
@@ -16,6 +17,8 @@ class PageItemController: UIViewController {
             
         }
     }
+    
+    // MARK: Outlets and Actions
     
     @IBOutlet var contentImageView: UIImageView?
     

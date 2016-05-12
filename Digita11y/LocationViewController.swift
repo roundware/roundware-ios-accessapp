@@ -10,7 +10,8 @@ import UIKit
 import CoreLocation
 class LocationViewController: BaseViewController, CLLocationManagerDelegate {
     let locationManager =  CLLocationManager()
-    // MARK: Actions and Outlets
+
+    // MARK: Outlets and Actions
     @IBAction func next(sender: AnyObject) {
         //TODO needs a hint "requests location services permissions"
         debugPrint("getting location authorization")

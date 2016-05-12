@@ -9,7 +9,9 @@
 import UIKit
 import ImageScrollView
 class MapViewController: BaseViewController {
-    // MARK: Actions and Outlets
+
+    // MARK: Outlets and Actions
+    
     @IBOutlet weak var imageScrollView: ImageScrollView!
     
     @IBAction func close(sender: AnyObject) {

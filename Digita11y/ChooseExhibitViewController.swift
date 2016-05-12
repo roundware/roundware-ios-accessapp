@@ -11,16 +11,14 @@ import Crashlytics
 class ChooseExhibitController: BaseViewController, UIScrollViewDelegate {
     var viewModel: ChooseExhibitViewModel!
 
-    // MARK: Actions and Outlets
+    // MARK: Outlets and Actions
+    @IBOutlet weak var ExhibitHeadline: UILabelHeadline!
+    @IBOutlet weak var ExhibitScroll: UIScrollView!
 
     @IBAction func selectedThis(sender: UIButton) {
         self.viewModel.selectedTag = self.viewModel.data.getTagById(sender.tag)
         self.performSegueWithIdentifier("TagsSegue", sender: nil)
     }
-    
-    @IBOutlet weak var ExhibitHeadline: UILabelHeadline!
-    @IBOutlet weak var ExhibitScroll: UIScrollView!
-
     
     // MARK: View
     override func viewDidLoad() {

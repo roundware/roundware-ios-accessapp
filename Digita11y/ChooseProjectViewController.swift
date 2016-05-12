@@ -10,14 +10,15 @@ import UIKit
 class ChooseProjectViewController: BaseViewController, UIScrollViewDelegate {
     var viewModel: ChooseProjectViewModel!
 
-    // MARK: Actions and Outlets
+    // MARK: Outlets and Actions
+    @IBOutlet weak var ProjectsScrollView: UIScrollView!
+
     @IBAction func selectedThis(sender: UIButton) {
         let projectId = sender.tag
         self.viewModel.selectedProject = self.viewModel.data.getProjectById(projectId)
         self.performSegueWithIdentifier("ProjectSegue", sender: sender)
     }
     
-    @IBOutlet weak var ProjectsScrollView: UIScrollView!
 
     // MARK: View
     

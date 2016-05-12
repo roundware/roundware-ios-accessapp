@@ -20,7 +20,18 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
     var tagViews : [TagView] = []
     var waitingToStart: Bool = false
 
-    // MARK: Actions and Outlets
+    // MARK: Outlets and Actions
+    
+    @IBOutlet weak var parentTagPickerView: AKPickerView!
+    @IBOutlet weak var itemsScrollView: UIScrollView!
+    @IBOutlet weak var playPauseButton: PlayPauseButton!
+    @IBOutlet weak var contributeButton: UIButton!
+    @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var previousButton: UIButton!
+    @IBOutlet weak var speedButton: UIButton!
+    @IBOutlet weak var elapsedTimeLabel: UILabel!
+    @IBOutlet weak var totalTimeLabel: UILabel!
+    
     
     @IBAction func cycleSpeed(sender: AnyObject) {
         //TODO cycle speed
@@ -36,33 +47,6 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
             self.previousButton.enabled = false
         } else {
             startPlaying()
-        }
-    }
-    
-    func startPlaying() -> Bool {
-        if (CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse) {
-            let rwf = RWFramework.sharedInstance
-            rwf.play()
-            SVProgressHUD.showWithStatus("Loading Stream")
-            self.playPauseButton.showButtonIsPlaying(true)
-            waitingToStart = true
-            return true
-        } else {
-            var alertController = UIAlertController (title: "Location services", message: "Please enable location detection for streaming", preferredStyle: .Alert)
-            
-            var settingsAction = UIAlertAction(title: "Settings", style: .Default) { (_) -> Void in
-                let settingsUrl = NSURL(string: UIApplicationOpenSettingsURLString)
-                if let url = settingsUrl {
-                    UIApplication.sharedApplication().openURL(url)
-                }
-            }
-            
-            var cancelAction = UIAlertAction(title: "Cancel", style: .Default, handler: nil)
-            alertController.addAction(settingsAction)
-            alertController.addAction(cancelAction)
-            
-            presentViewController(alertController, animated: true, completion: nil)
-            return false
         }
     }
     
@@ -125,14 +109,16 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
         self.performSegueWithIdentifier("MapSegue", sender: sender)
     }
     
+    
     // MARK: Asset Actions
+    
     //do not confuse with pickerView delegate method
     @IBAction func selectItem(sender: UIButton) {
         debugPrint("selected tag at index \(String(sender.tag))")
         selectItemAtIndex(sender.tag)
     }
     
-    //TODO mark item as played
+    //TODO mark item as played?
     @IBAction func selectItemAtIndex(index: Int) {
         let tagView = tagViews[index]
         if (tagView.selected){
@@ -163,9 +149,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
             elapsedTimeLabel.text = "00:00"
             elapsedTimeLabel.accessibilityLabel = "estimated time elapsed for tag playback"
         }
-
     }
-
 
     //item must be set already and stored in rwdata
     @IBAction func seeGalleryForAsset(sender: UIButton) {
@@ -177,7 +161,9 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
         self.performSegueWithIdentifier("ReadSegue", sender: sender)
     }
 
+    
     // MARK: Segue Actions
+    
     //back from modals
     @IBAction func prepareForTagsDimiss(segue: UIStoryboardSegue) {
         //TODO reset after coming back from contribute
@@ -187,17 +173,9 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
         //TODO reset after coming back from contribute
     }
 
-    @IBOutlet weak var parentTagPickerView: AKPickerView!
-    @IBOutlet weak var itemsScrollView: UIScrollView!
-    @IBOutlet weak var playPauseButton: PlayPauseButton!
-    @IBOutlet weak var contributeButton: UIButton!
-    @IBOutlet weak var nextButton: UIButton!
-    @IBOutlet weak var previousButton: UIButton!
-    @IBOutlet weak var speedButton: UIButton!
-    @IBOutlet weak var elapsedTimeLabel: UILabel!
-    @IBOutlet weak var totalTimeLabel: UILabel!
     
     // MARK: Views
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
@@ -233,6 +211,59 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
         let barButton = UIBarButtonItem(customView: button)
         //assign button to navigationbar
         self.navigationItem.rightBarButtonItem = barButton
+    }
+    
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        SVProgressHUD.dismiss()
+        let rwf = RWFramework.sharedInstance
+        if(rwf.isPlaying){
+            rwf.stop()
+        }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    override func viewDidLayoutSubviews(){
+        super.viewDidLayoutSubviews()
+        let scroll = itemsScrollView
+        let newContentOffsetX = (scroll.contentSize.width/2) - (scroll.bounds.size.width/2)
+        scroll.contentOffset = CGPointMake(newContentOffsetX, 0)
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    
+    func startPlaying() -> Bool {
+        if (CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse) {
+            let rwf = RWFramework.sharedInstance
+            rwf.play()
+            SVProgressHUD.showWithStatus("Loading Stream")
+            self.playPauseButton.showButtonIsPlaying(true)
+            waitingToStart = true
+            return true
+        } else {
+            var alertController = UIAlertController (title: "Location services", message: "Please enable location detection for streaming", preferredStyle: .Alert)
+            
+            var settingsAction = UIAlertAction(title: "Settings", style: .Default) { (_) -> Void in
+                let settingsUrl = NSURL(string: UIApplicationOpenSettingsURLString)
+                if let url = settingsUrl {
+                    UIApplication.sharedApplication().openURL(url)
+                }
+            }
+            
+            var cancelAction = UIAlertAction(title: "Cancel", style: .Default, handler: nil)
+            alertController.addAction(settingsAction)
+            alertController.addAction(cancelAction)
+            
+            presentViewController(alertController, animated: true, completion: nil)
+            return false
+        }
     }
     
     func resetRoomItems(){
@@ -323,31 +354,6 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
         }
 
     }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        SVProgressHUD.dismiss()
-        let rwf = RWFramework.sharedInstance
-        if(rwf.isPlaying){
-            rwf.stop()
-        }
-    }
-
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
-    override func viewDidLayoutSubviews(){
-        super.viewDidLayoutSubviews()
-        let scroll = itemsScrollView
-        let newContentOffsetX = (scroll.contentSize.width/2) - (scroll.bounds.size.width/2)
-        scroll.contentOffset = CGPointMake(newContentOffsetX, 0)
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
     
     
     // MARK: - AKPickerViewDataSource

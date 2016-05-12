@@ -16,7 +16,22 @@ import AVFoundation
 class ContributeViewController: BaseViewController, UIScrollViewDelegate, UITextViewDelegate, RWFrameworkProtocol{
     var viewModel: ContributeViewModel!
 
-// MARK: Actions and Outlets
+    // MARK: Outlets and Actions
+    
+    @IBOutlet weak var ContributeAsk: UILabelHeadline!
+    @IBOutlet weak var ContributeScroll: UIScrollView!
+    @IBOutlet weak var textButton: UIButton!
+    @IBOutlet weak var audioButton: UIButton!
+    @IBOutlet weak var uploadButton: UIButton!
+    @IBOutlet weak var undoButton: UIButton!
+    
+    @IBOutlet weak var tagLabel: UILabel!
+    @IBOutlet weak var progressLabel: UILabel!
+    
+    @IBOutlet weak var responseLabel: UILabel!
+    @IBOutlet weak var responseTextView: UITextView!
+    
+
     @IBAction func selectAudio(sender: AnyObject) {
         //TODO setup audio (for recording, right?)
         if(!self.viewModel.mediaSelected){
@@ -207,19 +222,6 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
         SVProgressHUD.showWithStatus("Uploading")
 
     }
-
-    @IBOutlet weak var ContributeAsk: UILabelHeadline!
-    @IBOutlet weak var ContributeScroll: UIScrollView!
-    @IBOutlet weak var textButton: UIButton!
-    @IBOutlet weak var audioButton: UIButton!
-    @IBOutlet weak var uploadButton: UIButton!
-    @IBOutlet weak var undoButton: UIButton!
-
-    @IBOutlet weak var tagLabel: UILabel!
-    @IBOutlet weak var progressLabel: UILabel!
-
-    @IBOutlet weak var responseLabel: UILabel!
-    @IBOutlet weak var responseTextView: UITextView!
 
     
     // MARK: View
