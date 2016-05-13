@@ -100,13 +100,17 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 
     @IBAction func contribute(sender: AnyObject) {
         let rwf = RWFramework.sharedInstance
-        if(rwf.isPlaying){
-            rwf.stop()
+        if (rwf.isPlaying) {
+            self.toggleStream(self)
         }
         self.performSegueWithIdentifier("ContributeSegue", sender: sender)
     }
 
     @IBAction func seeMap(sender: AnyObject) {
+        let rwf = RWFramework.sharedInstance
+        if (rwf.isPlaying) {
+            self.toggleStream(self)
+        }
         self.performSegueWithIdentifier("MapSegue", sender: sender)
     }
 
@@ -153,11 +157,20 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 
     //item must be set already and stored in rwdata
     @IBAction func seeGalleryForAsset(sender: UIButton) {
+        let rwf = RWFramework.sharedInstance
+        if (rwf.isPlaying) {
+            self.toggleStream(self)
+        }
         self.performSegueWithIdentifier("GallerySegue", sender: sender)
+        
     }
 
     //item must be set already and stored in rwdata
     @IBAction func seeTextForAsset(sender: UIButton) {
+        let rwf = RWFramework.sharedInstance
+        if (rwf.isPlaying) {
+            self.toggleStream(self)
+        }
         self.performSegueWithIdentifier("ReadSegue", sender: sender)
     }
 
