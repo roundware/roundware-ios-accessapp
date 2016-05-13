@@ -73,6 +73,11 @@ import UIKit
             $0.center.x -= 50
         }
         tagProgress.progress = 0
+
+        self.cameraButton.accessibilityLabel = "Images for " + tagModel.value
+        self.textButton.accessibilityLabel = "Texts for " + tagModel.value
+        self.tagProgress.accessibilityLabel = "Progress of " + tagModel.value
+
         self.layoutIfNeeded()
 
     }

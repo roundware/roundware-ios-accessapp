@@ -17,8 +17,9 @@ class ThanksViewController: BaseViewController, UIScrollViewDelegate {
     @IBOutlet weak var thanksBody: UILabelBody!
 
     @IBAction func selectedThis(sender: UIButton) {
+        self.viewModel.uiGroup.selectedUIItem = self.viewModel.uiGroup.uiItems.filter({$0.tagId == sender.tag}).first
+        self.viewModel.data.updateUIGroup(self.viewModel.uiGroup)
         self.performSegueWithIdentifier("Recontribute", sender: nil)
-        //TODOnow fix this transition
     }
 
     @IBAction func noThanks(sender: UIButton) {
@@ -29,11 +30,11 @@ class ThanksViewController: BaseViewController, UIScrollViewDelegate {
     // MARK: View
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController!.setNavigationBarHidden(true, animated: true)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
         self.viewModel = ThanksViewModel(data: self.rwData!)
 
         //Scroll view for subviews of tags
@@ -41,8 +42,9 @@ class ThanksViewController: BaseViewController, UIScrollViewDelegate {
         scroll.delegate = self
         let tags = self.viewModel.tags
         let total = tags.count
-        let buttons = createTagButtonsForScroll(total, scroll: scroll)
+        let buttons = createCenteredTagButtonsForScroll(total, scroll: scroll)
         //set titles and actions
+
         for (index, button) in buttons.enumerate(){
             let tag = tags[index]
             button.setTitle(tag.value, forState: .Normal)
@@ -57,18 +59,13 @@ class ThanksViewController: BaseViewController, UIScrollViewDelegate {
         thanksBody.text = "While you’re on a roll would you care to contribute another for: " + self.viewModel.uiGroup.headerTextLoc
     }
 
-    override func viewDidLayoutSubviews(){
-        super.viewDidLayoutSubviews()
-
-        //scroll
-        let scroll = ThanksScroll
-        let newContentOffsetX = (scroll.contentSize.width - scroll.bounds.size.width) / 2
-        scroll.contentOffset = CGPointMake(newContentOffsetX, 0)
-    }
-
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func viewDidLayoutSubviews(){
+        super.viewDidLayoutSubviews()
+    }
+    
 }

@@ -55,7 +55,7 @@ class ChooseProjectViewController: BaseViewController, UIScrollViewDelegate {
     override func viewWillDisappear(animated: Bool) {
         //show nav bar everywhere else
         self.navigationController!.setNavigationBarHidden(false, animated: true)
-        super.viewWillAppear(animated);
+        super.viewWillDisappear(animated);
     }
 
     override func viewDidLayoutSubviews(){

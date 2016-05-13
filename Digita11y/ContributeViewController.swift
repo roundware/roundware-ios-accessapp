@@ -81,7 +81,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
             let duration = 0.1
             UIView.animateWithDuration(duration, delay: 0, options: [], animations: {
                 self.audioButton.hidden = true
-                self.ContributeAsk.text = "What do you want to speak about?"
+                self.ContributeAsk.text = self.viewModel.uiGroup.headerTextLoc
                 self.tagLabel.text = "Text"
                 self.textButton.enabled = false
                 }, completion: { finished in
@@ -105,7 +105,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
             button.hidden = true
         }
 
-        //hide move selected to top
+        //move selected to top
         selectedView.frame =  CGRect(
             x: selectedView.frame.origin.x,
             y: 0,
@@ -162,7 +162,6 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
     }
 
     @IBAction func cancel(sender: AnyObject) {
-        //TODOnow should go into unwind also
         let rwf = RWFramework.sharedInstance
         if(rwf.hasRecording()){
             rwf.deleteRecording()
@@ -173,7 +172,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
     @IBAction func undo(sender: AnyObject) {
         debugPrint("undoing")
         let rwf = RWFramework.sharedInstance
-        if(rwf.hasRecording()){
+        if(self.viewModel.mediaType == MediaType.Audio){
             rwf.deleteRecording()
             displayRecordAudio()
             let duration = 0.1
@@ -205,50 +204,88 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
 
 //        self.images.removeAll()
 //        self.uploadText = ""
-
-        if self.viewModel.uploadText.isEmpty == false {
+        if self.viewModel.mediaType == MediaType.Text {
             rwf.addText(self.viewModel.uploadText)
             debugPrint("text added")
         } else {
             rwf.addRecording()
             debugPrint("recording added")
-
         }
 
-        debugPrint("uploading")
-
-        //TODOsoon only item tag with all speak tags
-        rwf.uploadAllMedia(self.viewModel.tagIds)
+        rwf.uploadAllMedia(self.viewModel.tagIds())
         SVProgressHUD.showWithStatus("Uploading")
     }
 
 
+    // MARK: Segue Actions
+    //back from thank you
+    @IBAction func prepareForRecontribute(segue: UIStoryboardSegue) {
+
+        debugPrint("prepare for recontribute")
+
+        //set header
+        self.ContributeAsk.text = self.viewModel.uiGroup.headerTextLoc
+        let scroll = ContributeScroll
+
+        //set selected tag
+        let tags = [self.viewModel.data.getTagById(self.viewModel.uiGroup.selectedUIItem!.tagId)]
+        let total = tags.count
+        let buttons = createTagButtonsForScroll(total, scroll: scroll)
+        buttons[0].setTitle(tags[0]!.value, forState: .Normal)
+
+        //reset audio
+        if(viewModel.mediaType == MediaType.Audio){
+            setupAudio() { granted, error in
+                if granted == false {
+                    debugPrint("Unable to setup audio: \(error)")
+                    if let error = error {
+                        CLSNSLogv("Unable to setup audio: \(error)", getVaList([error]))
+                    }
+                    //TODOnow alert message
+                } else {
+                    debugPrint("Successfully setup audio")
+                    let duration = 0.1
+                    UIView.animateWithDuration(duration, delay: 0, options: [], animations: {
+                        self.audioButton.enabled = true
+                        self.progressLabel.hidden = false
+                        self.progressLabel.text = "00:30"
+                        }, completion: { finished in
+                    })
+                    //TODOnow move focus, set audio label
+                }
+            }
+        } else {
+            //is text
+            let duration = 0.1
+            UIView.animateWithDuration(duration, delay: 0, options: [], animations: {
+                self.responseTextView.hidden = false
+                self.tagLabel.hidden = true
+                self.textButton.hidden = true
+                }, completion: { finished in
+            })
+        }
+        self.responseTextView.text = "Your response here"
+        uploadButton.hidden = true
+        undoButton.hidden = true
+    }
+
     // MARK: View
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        ContributeScroll.hidden = true
-        uploadButton.hidden = true
-        undoButton.hidden = true
-        tagLabel.hidden = true
-        progressLabel.hidden = true
-        responseLabel.hidden = true
-        responseTextView.hidden = true
-//        responseTextView.returnKeyType = UIReturnKeyType.Done
+        //keyboard with view adjustment as well as done button and outside tap dismissal
+
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //keyboard with view adjustment as well as done button and outside tap dismissal
-        //http://stackoverflow.com/questions/26070242/move-view-with-keyboard-using-swift
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillShow), name:UIKeyboardWillShowNotification, object: self.view.window)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillHide), name:UIKeyboardWillHideNotification, object: self.view.window)
         //Looks for single or multiple taps.
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
         let doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: #selector(dismissKeyboard))
         let toolBar = UIToolbar()
-        toolBar.setItems([doneButton], animated: false)
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: self, action: nil)
+        toolBar.setItems([flexibleSpace, doneButton], animated: false)
         toolBar.userInteractionEnabled = true
         toolBar.sizeToFit()
         responseTextView.inputAccessoryView = toolBar
@@ -263,6 +300,18 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
         rwf.addDelegate(self)
         ContributeScroll.delegate = self
         responseTextView.delegate = self
+
+        ContributeScroll.hidden = true
+        uploadButton.hidden = true
+        undoButton.hidden = true
+        tagLabel.hidden = true
+        progressLabel.hidden = true
+        responseLabel.hidden = true
+        responseTextView.hidden = true
+
+        //http://stackoverflow.com/questions/26070242/move-view-with-keyboard-using-swift
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillShow), name:UIKeyboardWillShowNotification, object: self.view.window)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillHide), name:UIKeyboardWillHideNotification, object: self.view.window)
     }
 
     override func viewWillDisappear(animated: Bool) {
@@ -275,7 +324,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
         // Dispose of any resources that can be recreated.
     }
 
-    // MARK: Layout work
+    // MARK: Tags layout
     func showTags(){
         let scroll = ContributeScroll
         scroll.hidden = false
@@ -296,7 +345,8 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
             button.tag = tag.id
         }
     }
-//
+
+    // MARK: Audio layout
     func displayPreviewAudio() {
         audioButton.accessibilityLabel = "Preview audio"
         progressLabel.text = "00:00"
@@ -325,11 +375,14 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
         progressLabel.accessibilityLabel = "0 seconds"
     }
 
+    // MARK: Text layout
     func keyboardWillShow(sender: NSNotification) {
         let userInfo: [NSObject : AnyObject] = sender.userInfo!
         let keyboardSize: CGSize = userInfo[UIKeyboardFrameBeginUserInfoKey]!.CGRectValue.size
         let offset: CGSize = userInfo[UIKeyboardFrameEndUserInfoKey]!.CGRectValue.size
 
+        debugPrint("keyboardSize \(keyboardSize)")
+        debugPrint("offset \(offset)")
         if (self.responseTextView.text == "Your response here"){
             self.responseTextView.text = ""
         }
@@ -363,14 +416,6 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
 
     // MARK: RWFramework Protocol
 
-//
-//    func rwImagePickerControllerDidFinishPickingMedia(info: [NSObject : AnyObject], path: String) {
-//        print(path)
-//        print(info)
-//        let rwf = RWFramework.sharedInstance
-//        rwf.setImageDescription(path, description: "Hello, This is an image!")
-//    }
-//
     /// Sent when the framework determines that recording is possible (via config)
     func rwReadyToRecord(){
         debugPrint("ready to record")
@@ -385,7 +430,6 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
         progressLabel.text = "00:\(secStr)"
         progressLabel.accessibilityLabel = "\(secStr) seconds"
     }
-
 
     func rwAudioRecorderDidFinishRecording() {
         displayPreviewAudio()
@@ -440,6 +484,15 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
         SVProgressHUD.dismiss()
         //TODO trigger undo
     }
+
+//
+//    func rwImagePickerControllerDidFinishPickingMedia(info: [NSObject : AnyObject], path: String) {
+//        print(path)
+//        print(info)
+//        let rwf = RWFramework.sharedInstance
+//        rwf.setImageDescription(path, description: "Hello, This is an image!")
+//    }
+//
 
 
     // MARK: UITextView Protocol

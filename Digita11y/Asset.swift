@@ -45,6 +45,7 @@ struct Asset {
         let strURL = base + path
         fileURL = NSURL(string: strURL) ?? NSURL()
 
+        //TODO offload text caching
         if json["media_type"].string == "text" {
             mediaType = .Text
 
@@ -52,8 +53,6 @@ struct Asset {
             if TextCache[url] == nil {
                 requestAssetText(url) { text in
                     TextCache[url] = text
-                    print("text cached")
-                    dump(text)
                 }
             }
         } else if json["media_type"].string == "photo" {

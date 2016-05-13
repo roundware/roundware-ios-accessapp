@@ -164,11 +164,14 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 
     // MARK: Segue Actions
 
+
     //back from modals
     @IBAction func prepareForTagsDimiss(segue: UIStoryboardSegue) {
+        //TODOsoon move focus to current asset
     }
     //back from contribute
     @IBAction func prepareForTagsUnwind(segue: UIStoryboardSegue) {
+        //TODOsoon move focus to current asset
     }
 
 
@@ -223,6 +226,8 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController!.setNavigationBarHidden(false, animated: true)
+
     }
 
     override func viewDidLayoutSubviews(){
@@ -458,21 +463,13 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
                 SVProgressHUD.dismiss()
                 //push tags as selected
                 let rwf = RWFramework.sharedInstance
-                var tagsToSubmit : [String] = []
-//                tagsToSubmit.append(String(self.viewModel.exhibitionTag.id))
-//                if let roomTag = self.viewModel.selectedRoomTag {
-//                    tagsToSubmit.append(String(roomTag.id))
-//                }
                 if let itemTag = self.viewModel.selectedItemTag {
-                    tagsToSubmit.append(String(itemTag.id))
+                    debugPrint("patching stream with tags \(String(itemTag.id))")
+                    rwf.submitTags(String(itemTag.id))
+                    self.playPauseButton.showButtonIsPlaying(true)
+                    self.nextButton.enabled = true
+                    self.previousButton.enabled = true
                 }
-                let tagsString = tagsToSubmit.joinWithSeparator(",")
-                debugPrint("patching stream with tags \(tagsString)")
-                //TODOsoon only item tag
-                rwf.submitTags(tagsString)
-                self.playPauseButton.showButtonIsPlaying(true)
-                self.nextButton.enabled = true
-                self.previousButton.enabled = true
             }
 
             //get values

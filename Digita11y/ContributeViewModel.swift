@@ -9,7 +9,7 @@ class ContributeViewModel: BaseViewModel  {
     var mediaCreated: Bool = false
     var uploaded: Bool = false
 
-    var tag: Tag?
+//    var tag: Tag?
     let exhibitionTag: Tag
     let roomTag: Tag
     let itemTag: Tag
@@ -28,32 +28,28 @@ class ContributeViewModel: BaseViewModel  {
 
     var selectedTag: Tag?  {
         didSet {
-            //set tag on data and onto string
-            debugPrint("selected tag is \(selectedTag)")
-            debugPrint("available ui items are is \(self.uiGroup.uiItems)")
-            self.uiGroup.selectedUIItem = self.uiGroup.uiItems.filter({$0.tagId == self.selectedTag!.id}).first
-            debugPrint("selected \(self.uiGroup.selectedUIItem) for \(self.uiGroup)")
-            data.updateUIGroup(self.uiGroup)
-            if let thisTag = tag{
-                tagIds = String(thisTag.id, ",")
+            //set tag on data
+            if let thisTag = selectedTag{
+//                debugPrint("selected tag is \(thisTag)")
+//                debugPrint("available ui items are is \(self.uiGroup.uiItems)")
+                self.uiGroup.selectedUIItem = self.uiGroup.uiItems.filter({$0.tagId == thisTag.id}).first
+//                debugPrint("selected \(self.uiGroup.selectedUIItem) for \(self.uiGroup)")
+                data.updateUIGroup(self.uiGroup)
+                //get next set of tags
+                speakIndex += 1
+                guard let uiGroup = data.getUIGroupForIndexAndMode(speakIndex, mode: "speak") else {
+                    tagsSelected = true
+                    return
+                }
+                self.uiGroup = uiGroup
+                self.tags = data.getTagsForUIItems(self.uiGroup.uiItems)
+//                debugPrint("new group is \(self.uiGroup)")
+//                debugPrint("with these tags \(self.tags)")
+            } else {
+                self.uiGroup.selectedUIItem = nil
             }
-            //get next set of tags
-            speakIndex += 1
-            guard let uiGroup = data.getUIGroupForIndexAndMode(speakIndex, mode: "speak") else {
-                tagsSelected = true
-                return
-            }
-            self.uiGroup = uiGroup
-
-            //TODO check if uiitems contributed
-            self.tags = data.getTagsForUIItems(self.uiGroup.uiItems)
-            debugPrint("new group is \(self.uiGroup)")
-            debugPrint("with these tags \(self.tags)")
-
         }
     }
-
-    var tagIds: String = ""
 
     init(data: RWData) {
         self.data = data
@@ -63,5 +59,16 @@ class ContributeViewModel: BaseViewModel  {
 
         uiGroup = data.getUIGroupForIndexAndMode(speakIndex, mode: "speak")!
         tags = data.getTagsForUIItems(self.uiGroup.uiItems)
+    }
+
+    func tagIds() -> String{
+        var ids = String(itemTag.id) + ","
+        for index in 0 ..< speakIndex {
+            if let tag = data.getTagForIndexAndMode(index, mode: "speak"){
+                debugPrint("adding tagId for speak index \(index)")
+                ids += String(tag.id) + ","
+            }
+        }
+        return ids
     }
 }

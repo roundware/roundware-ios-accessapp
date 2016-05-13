@@ -59,7 +59,6 @@ class RWData {
         }
     }
 
-
     // MARK: - UIItem
     func getRelevantUIItems(uiGroup: UIGroup) -> [UIItem] {
         if uiGroup.index > 0,
@@ -110,8 +109,6 @@ class RWData {
     // MARK: - Tags
 
     var tags: [Tag] = []
-    var listenTags: [Tag] = []
-    var contributeTags: [Tag] = []
 
     func getTagById(id: Int) -> Tag? {
         if let index = tags.indexOf({ $0.id == id }) {
@@ -125,6 +122,8 @@ class RWData {
 //        debugPrint("looking for assets with tagID \(tagId) and media type \(mediaType)")
 //        return assets.filter({$0.tagIDs.contains(tagId) && $0.mediaType == mediaType })
         var theseAssets = assets.filter({$0.tagIDs.contains(tagId)})
+        debugPrint("assets for tag \(tagId)")
+        dump(theseAssets)
 //        if(theseAssets.count > 0){
 //            debugPrint("does \(theseAssets[0].mediaType) = \(mediaType)")
 //        }
@@ -138,6 +137,8 @@ class RWData {
 
     var selectedTextAsset: Asset?
     var selectedImageAssets: [Asset] = []
+
+    var mediaTypeSelected: MediaType?
 
     // MARK: - Stream
 
