@@ -531,9 +531,11 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
                             if assetTagView.arrayOfAssetIds.count > 0 {
                                 //update tag progress
                                 debugPrint("there are \(remaining) assets remaining of \(assetTagView.arrayOfAssetIds.count)")
-                                let percentage = (Float(assetTagView.arrayOfAssetIds.count) - Float(remaining)!) / Float(assetTagView.arrayOfAssetIds.count)
+                                let percentage = Float((Float(assetTagView.arrayOfAssetIds.count) - Float(remaining)!) / Float(assetTagView.arrayOfAssetIds.count))
+                                assetTagView.tagProgress.hidden = false
                                 debugPrint("we are \(percentage) through this tag's assets")
                                 assetTagView.tagProgress.setProgress(percentage, animated: true)
+                                debugPrint(assetTagView.tagProgress.progress)
 
                                 //update elapsed time
                                 let seconds = (assetTagView.totalLength * percentage) % 60

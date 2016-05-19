@@ -14,8 +14,9 @@ class ContributeViewModel: BaseViewModel  {
     let roomTag: Tag
     let itemTag: Tag
 
-    var speakIndex: Int = 0
+    var speakIndex: Int = 1
     var tags: [Tag]
+    var uiItems: [UIItem]
 
     struct Image {
         var path: String
@@ -42,7 +43,9 @@ class ContributeViewModel: BaseViewModel  {
                     return
                 }
                 self.uiGroup = uiGroup
-                self.tags = data.getTagsForUIItems(self.uiGroup.uiItems)
+                self.uiGroup = uiGroup
+                self.uiItems = data.getRelevantUIItems(self.uiGroup)
+                self.tags = data.getTagsForUIItems(self.uiItems)
 //                debugPrint("new group is \(self.uiGroup)")
 //                debugPrint("with these tags \(self.tags)")
             } else {
@@ -53,17 +56,18 @@ class ContributeViewModel: BaseViewModel  {
 
     init(data: RWData) {
         self.data = data
-        exhibitionTag = data.getTagForIndexAndMode(0, mode: "listen")!
-        roomTag = data.getTagForIndexAndMode(1, mode: "listen")!
-        itemTag = data.getTagForIndexAndMode(2, mode: "listen")!
+        exhibitionTag = data.getTagForIndexAndMode(1, mode: "listen")!
+        roomTag = data.getTagForIndexAndMode(2, mode: "listen")!
+        itemTag = data.getTagForIndexAndMode(3, mode: "listen")!
 
         uiGroup = data.getUIGroupForIndexAndMode(speakIndex, mode: "speak")!
-        tags = data.getTagsForUIItems(self.uiGroup.uiItems)
+        uiItems = data.getRelevantUIItems(self.uiGroup)
+        tags = data.getTagsForUIItems(self.uiItems)
     }
 
     func tagIds() -> String{
         var ids = String(itemTag.id) + ","
-        for index in 0 ..< speakIndex {
+        for index in 1 ..< speakIndex {
             if let tag = data.getTagForIndexAndMode(index, mode: "speak"){
                 debugPrint("adding tagId for speak index \(index)")
                 ids += String(tag.id) + ","

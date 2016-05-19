@@ -7,7 +7,7 @@ class GalleryViewModel: BaseViewModel  {
     init(data: RWData) {
         self.data = data
         //set room tags
-        tag = data.getTagForIndexAndMode(2, mode: "listen")!
+        tag = data.getTagForIndexAndMode(3, mode: "listen")!
         assets = data.getAssetsForTagIdOfMediaType(tag.id, mediaType: .Photo)
     }
 }

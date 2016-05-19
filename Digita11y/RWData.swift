@@ -21,27 +21,39 @@ class RWData {
 
     //TODO real error handling
     func getUIGroupForIndexAndMode(index: Int, mode: String) -> UIGroup? {
-        if let thisProject = selectedProject,
-        let index = uiGroups.indexOf({
-            $0.index == index &&
-            $0.uiMode == mode &&
-            $0.project == thisProject.id
-        }) {
-            return uiGroups[index]
+        guard let thisProject = selectedProject else{
+            debugPrint("needs project")
+            return nil
+        }
+
+        let matches = uiGroups.filter() {
+            let indexMatch = $0.index == index
+            let modeMatch = $0.uiMode == mode
+            let active = $0.active == true
+            let projectMatch  =  $0.project == thisProject.id
+            return indexMatch && modeMatch && active && projectMatch
+        }
+        if(matches.count > 0){
+            return matches[0]
         } else {
             debugPrint("missing UIGroup for \(index) and \(mode)")
+            if let thisProject = selectedProject{
+                debugPrint("For project \(thisProject.id)")
+            }
+            dump(uiGroups)
             return nil
         }
     }
 
     func updateUIGroup(uiGroup: UIGroup) -> Void {
+        //TODO filter ofr active
         if let thisProject = selectedProject,
             let index = uiGroups.indexOf({
                 $0.index == uiGroup.index &&
                     $0.uiMode == uiGroup.uiMode &&
                     $0.project == thisProject.id
             }) {
-              uiGroups[index] = uiGroup
+            uiGroups[index] = uiGroup
         } else {
             //TODO real error
             debugPrint("ERROR: missing uiGroup in uiGroups array for \(uiGroup)")
@@ -61,8 +73,12 @@ class RWData {
 
     // MARK: - UIItem
     func getRelevantUIItems(uiGroup: UIGroup) -> [UIItem] {
-        if uiGroup.index > 0,
-        let previousUIGroup = uiGroups.filter({$0.uiMode == uiGroup.uiMode && $0.index == uiGroup.index - 1}).first,
+        if uiGroup.index > 1,
+        let previousUIGroup = uiGroups.filter({
+            $0.uiMode == uiGroup.uiMode &&
+            $0.index == uiGroup.index - 1 &&
+            $0.active == true
+        }).first,
         let previousSelectedUIItem = previousUIGroup.selectedUIItem {
             debugPrint("previous uigroup \(previousUIGroup.index)")
             debugPrint("and its selected uiitem \(previousSelectedUIItem.id)")

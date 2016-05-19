@@ -24,7 +24,7 @@ struct UIItem {
         index = json["index"].int ?? 0
         parent = json["parent"].int ?? 0
         defaultSelection = json["default"].bool ?? false
-        tagId = json["tag_id"].int ?? 0
+        tagId = json["tag"].int ?? 0
         active = json["active"].bool ?? false
         id = json["id"].int ?? 0
     }

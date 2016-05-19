@@ -91,16 +91,16 @@ class TagsViewModel: BaseViewModel  {
         self.data = data
 
         //set title
-        self.exhibitionTag = data.getTagForIndexAndMode(0, mode: "listen")!
+        self.exhibitionTag = data.getTagForIndexAndMode(1, mode: "listen")!
         self.title = exhibitionTag.value
 
         //get room options
-        self.roomUIGroup = data.getUIGroupForIndexAndMode(1, mode: "listen")!
+        self.roomUIGroup = data.getUIGroupForIndexAndMode(2, mode: "listen")!
         self.roomTags = data.getTagsForUIItems(data.getRelevantUIItems(self.roomUIGroup))
         debugPrint("room tags \(self.roomTags)")
 
         //set items ui group
-        self.itemsUIGroup = data.getUIGroupForIndexAndMode(2, mode: "listen")!
+        self.itemsUIGroup = data.getUIGroupForIndexAndMode(3, mode: "listen")!
 
         //set stream
         self.stream = data.stream

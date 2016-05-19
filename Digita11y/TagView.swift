@@ -12,6 +12,7 @@ import UIKit
 
     @IBOutlet weak var textButton: UIButton!
     @IBOutlet weak var cameraButton: UIButton!
+    
     @IBOutlet weak var tagProgress: UIProgressView!
     @IBOutlet weak var tagTitle: UIButton!
     @IBOutlet weak var audioImage: UIImageView!
@@ -99,6 +100,8 @@ import UIKit
     func select(){
         self.tagTitle.selected = true
 
+
+        //TODO move to init
         var hiddenSubviews      : [UIView] = [self.audioImage, self.tagProgress]
         var animatedSubviews    : [UIView] = [self.audioImage]
 
@@ -115,7 +118,7 @@ import UIKit
             $0.hidden = false
         }
 
-        self.tagTitle.backgroundColor = UIColor.clearColor()
+//        self.tagTitle.backgroundColor = UIColor.clearColor()
 
         UIView.animateWithDuration(duration, delay: delay, usingSpringWithDamping: springDamping, initialSpringVelocity: springVelocity, options: [], animations:
             {
@@ -133,9 +136,9 @@ import UIKit
     func deselect(){
         self.tagTitle.selected = false
 
+        //TODO move to init
         var hiddenSubviews      : [UIView] = [self.audioImage, self.tagProgress]
         var animatedSubviews    : [UIView] = [self.audioImage]
-
         if hasImages {
             hiddenSubviews.append(self.cameraButton)
             animatedSubviews.append(self.cameraButton)
@@ -144,6 +147,8 @@ import UIKit
             hiddenSubviews.append(self.textButton)
             animatedSubviews.append(self.textButton)
         }
+
+
 
         UIView.animateWithDuration(duration, delay: delay, usingSpringWithDamping: springDamping, initialSpringVelocity: springVelocity, options: [], animations:
             {
@@ -161,7 +166,7 @@ import UIKit
             hiddenSubviews.forEach{
                 $0.hidden = true
             }
-            self.tagTitle.backgroundColor = UIColor.GreenishTeal85Color()
+//            self.tagTitle.backgroundColor = UIColor.GreenishTeal85Color()
 
         })
     }

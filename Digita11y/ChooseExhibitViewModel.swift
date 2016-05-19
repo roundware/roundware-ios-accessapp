@@ -3,8 +3,9 @@ class ChooseExhibitViewModel: BaseViewModel  {
     let data: RWData
     let project: Project
     var uiGroup: UIGroup
-    let title: String
+    let uiItems: [UIItem]
     let tags: [Tag]
+    let title: String
 
     var selectedTag: Tag? {
         didSet {
@@ -18,9 +19,11 @@ class ChooseExhibitViewModel: BaseViewModel  {
         self.data = data
         self.project = data.selectedProject!
 
-        self.uiGroup = data.getUIGroupForIndexAndMode(0, mode: "listen")!
+        //TODO error handle
+        self.uiGroup = data.getUIGroupForIndexAndMode(1, mode: "listen")!
+        self.uiItems = data.getRelevantUIItems(uiGroup)
+        self.tags = data.getTagsForUIItems(self.uiItems)
         self.title = "Welcome to the \(self.project.name)! \n \(self.uiGroup.headerTextLoc)"
-        self.tags = data.getTagsForUIItems(self.uiGroup.uiItems)
     }
 
 
