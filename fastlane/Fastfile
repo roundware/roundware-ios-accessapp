@@ -58,7 +58,8 @@ platform :ios do |options|
     gym(scheme: "Digita11y", use_legacy_build_api: true)
     crashlytics(crashlytics_path: "./Pods/Crashlytics/iOS/Crashlytics.framework",
                     notes: changelog,
-                    groups: "Digita11yTech")
+                    groups: "Digita11yInternal")
+                    #groups: "Digita11yTech")
 	slack(
       channel: "digita11y-ios",
       default_payloads: [], # reduce the notification to the minimum
