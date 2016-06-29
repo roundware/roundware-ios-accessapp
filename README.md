@@ -2,6 +2,13 @@
 
 Native iOS client for Roundware built for PEM, Smithsonian, and BMA using the RWFramework.
 
+## Links
+- [Digita11y: Development](https://github.com/seeRead/roundware-ios-digita11y)
+- [Digita11y](https://github.com/roundware/roundware-ios-digita11y)
+- [RWFramework:Development](https://github.com/seeRead/roundware-ios-framework-v2)
+- [RWFramework](https://github.com/roundware/roundware-ios-framework-v2)
+- [Slack](https://roundware.slack.com/messages/digita11y-ios/)
+
 ## Build
 
 Install [Cocoapods](http://cocoapods.org).
@@ -31,10 +38,10 @@ $ bundle exec fastlane crashlytics
 
 When you want to add a new device or team member to a distribution, invite them to the team and project in Beta (Crashlytics) and then add their device and name to the `devices.txt` file (untracked).  Then run `bundle exec fastlane devices` and then the crashlytics command.
 
-##License
+## License
 
 TBD
 
-##Authors
+## Authors
 
 Christopher Reed, [@seereadnow](http://twitter.com/seereadnow)

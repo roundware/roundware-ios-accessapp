@@ -12,6 +12,12 @@ import RWFramework
 struct Project {
 
 // MARK: Initialization
+    //TODO add more attributes for project, e.g.
+        // startupMessage
+        // reverseDomain
+        // geoListenEnabled
+        // listenEnabled
+        // speakEnabled
 
     var name: String
     var id: Int

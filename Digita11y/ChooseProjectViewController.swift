@@ -7,7 +7,11 @@
 //
 
 import UIKit
-class ChooseProjectViewController: BaseViewController, UIScrollViewDelegate {
+import RWFramework
+import SwiftyJSON
+import SVProgressHUD
+
+class ChooseProjectViewController: BaseViewController, UIScrollViewDelegate, RWFrameworkProtocol {
     var viewModel: ChooseProjectViewModel!
 
     // MARK: Outlets and Actions
@@ -15,8 +19,10 @@ class ChooseProjectViewController: BaseViewController, UIScrollViewDelegate {
 
     @IBAction func selectedThis(sender: UIButton) {
         let projectId = sender.tag
+        SVProgressHUD.showWithStatus("Loading project data")
+        let rwf = RWFramework.sharedInstance
         self.viewModel.selectedProject = self.viewModel.data.getProjectById(projectId)
-        self.performSegueWithIdentifier("ProjectSegue", sender: sender)
+        rwf.setProjectId(String(projectId))
     }
 
 
@@ -24,6 +30,10 @@ class ChooseProjectViewController: BaseViewController, UIScrollViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        let rwf = RWFramework.sharedInstance
+        rwf.addDelegate(self)
+
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
         super.view.addBackground("bg-blue.png")
 
@@ -66,4 +76,12 @@ class ChooseProjectViewController: BaseViewController, UIScrollViewDelegate {
         scroll.contentOffset = CGPointMake(newContentOffsetX, 0)
     }
 
+    func rwGetProjectsIdSuccess(data: NSData?) {
+        let json = JSON(data: data!)
+        print("projects id json")
+        //TODO update project model and corresponding functionality with info from JSON
+//        dump(json)
+        SVProgressHUD.dismiss()
+        self.performSegueWithIdentifier("ProjectSegue", sender: nil)
+    }
 }
