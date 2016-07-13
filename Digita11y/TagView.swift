@@ -96,22 +96,17 @@ import UIKit
     let springDamping = CGFloat(0.5)
     let springVelocity = CGFloat(0.5)
 
-    //TODO toggle button selected state
     func select(){
+        self.selected = true
         self.tagTitle.selected = true
 
-
-        //TODO move to init
         var hiddenSubviews      : [UIView] = [self.audioImage, self.tagProgress]
-        var animatedSubviews    : [UIView] = [self.audioImage]
 
         if hasImages {
             hiddenSubviews.append(self.cameraButton)
-            animatedSubviews.append(self.cameraButton)
         }
         if hasTexts {
             hiddenSubviews.append(self.textButton)
-            animatedSubviews.append(self.textButton)
         }
 
         hiddenSubviews.forEach{
@@ -122,7 +117,7 @@ import UIKit
 
         UIView.animateWithDuration(duration, delay: delay, usingSpringWithDamping: springDamping, initialSpringVelocity: springVelocity, options: [], animations:
             {
-                animatedSubviews.forEach{
+                hiddenSubviews.forEach{
                     $0.alpha = 1
                     $0.center.x += 30
                 }
@@ -134,26 +129,21 @@ import UIKit
     }
 
     func deselect(){
+        self.selected = false
         self.tagTitle.selected = false
 
-        //TODO move to init
         var hiddenSubviews      : [UIView] = [self.audioImage, self.tagProgress]
-        var animatedSubviews    : [UIView] = [self.audioImage]
         if hasImages {
             hiddenSubviews.append(self.cameraButton)
-            animatedSubviews.append(self.cameraButton)
         }
         if hasTexts {
             hiddenSubviews.append(self.textButton)
-            animatedSubviews.append(self.textButton)
         }
-
-
 
         UIView.animateWithDuration(duration, delay: delay, usingSpringWithDamping: springDamping, initialSpringVelocity: springVelocity, options: [], animations:
             {
 
-                animatedSubviews.forEach{
+                hiddenSubviews.forEach{
                     $0.alpha = 0
                     $0.center.x -= 0
 

@@ -138,8 +138,8 @@ class RWData {
 //        debugPrint("looking for assets with tagID \(tagId) and media type \(mediaType)")
 //        return assets.filter({$0.tagIDs.contains(tagId) && $0.mediaType == mediaType })
         var theseAssets = assets.filter({$0.tagIDs.contains(tagId)})
-        debugPrint("assets for tag \(tagId)")
-        dump(theseAssets)
+//        debugPrint("assets for tag \(tagId)")
+//        dump(theseAssets)
 //        if(theseAssets.count > 0){
 //            debugPrint("does \(theseAssets[0].mediaType) = \(mediaType)")
 //        }

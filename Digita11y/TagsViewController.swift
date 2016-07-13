@@ -23,7 +23,9 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
     // MARK: Outlets and Actions
 
     @IBOutlet weak var parentTagPickerView: AKPickerView!
+
     @IBOutlet weak var itemsScrollView: UIScrollView!
+
     @IBOutlet weak var playPauseButton: PlayPauseButton!
     @IBOutlet weak var contributeButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
@@ -209,7 +211,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
         self.parentTagPickerView.reloadData()
         self.parentTagPickerView.selectItem(0)
 
-        //TODOsoon double check for location...
+        //TODO double check for location...
         let rwf = RWFramework.sharedInstance
         rwf.addDelegate(self)
         self.playPauseButton.showButtonIsPlaying(false)
@@ -218,7 +220,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
         //set image for button
         button.setImage(UIImage(named: "map.png"), forState: UIControlState.Normal)
         //add function for button
-        button.addTarget(self, action: "seeMap", forControlEvents: UIControlEvents.TouchUpInside)
+        button.addTarget(self, action: #selector(self.seeMap(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         //set frame
         button.frame = CGRectMake(0, 0, 50, 50)
 
@@ -475,14 +477,14 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
                 waitingToStart = false
                 SVProgressHUD.dismiss()
                 //push tags as selected
-                let rwf = RWFramework.sharedInstance
-                if let itemTag = self.viewModel.selectedItemTag {
-                    debugPrint("patching stream with tags \(String(itemTag.id))")
-                    rwf.submitTags(String(itemTag.id))
+//                let rwf = RWFramework.sharedInstance
+//                if let itemTag = self.viewModel.selectedItemTag {
+//                    debugPrint("patching stream with tags \(String(itemTag.id))")
+//                    rwf.submitTags(String(itemTag.id))
                     self.playPauseButton.showButtonIsPlaying(true)
                     self.nextButton.enabled = true
                     self.previousButton.enabled = true
-                }
+//                }
             }
 
             //get values
@@ -515,54 +517,64 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
             }
 
             debugPrint("assetID is \(assetID)")
+            dump(queryItems)
 
-            //TODOsoon api update will mean we look at remaining and total in queryItems and update progress based on that
+            //TODO soon api update will mean we look at remaining and total in queryItems and update progress based on that
 
-            if let assetTagView = tagViews.filter({ $0.arrayOfAssetIds.contains( assetID )}).first {
-                if let index = self.viewModel.selectedItemIndex{
-                    debugPrint("selectedItemIndex is \(index) and its tag id is \(self.tagViews[index].id)")
-                    debugPrint("and that tag has these audio assets such as...")
-                    dump(self.viewModel.data.getAssetsForTagIdOfMediaType(self.tagViews[index].id!, mediaType: MediaType.Audio))
-                    //TODO should really have a check on the index
-                    if tagViews[index] == assetTagView {
-                        debugPrint("the current asset belongs to our current tagview")
-                        if let remaining = queryItems["remaining"] {
-                            assetTagView.currentAssetIndex = assetTagView.arrayOfAssetIds.count - Int(remaining)! - 1
-                            if assetTagView.arrayOfAssetIds.count > 0 {
-                                //update tag progress
-                                debugPrint("there are \(remaining) assets remaining of \(assetTagView.arrayOfAssetIds.count)")
-                                let percentage = Float((Float(assetTagView.arrayOfAssetIds.count) - Float(remaining)!) / Float(assetTagView.arrayOfAssetIds.count))
-                                assetTagView.tagProgress.hidden = false
-                                debugPrint("we are \(percentage) through this tag's assets")
-                                assetTagView.tagProgress.setProgress(percentage, animated: true)
-                                debugPrint(assetTagView.tagProgress.progress)
+            guard let assetTagView = tagViews.filter({ $0.arrayOfAssetIds.contains( assetID )}).first else {
+                debugPrint("no assetTagView found")
+                return
+            }
 
-                                //update elapsed time
-                                let seconds = (assetTagView.totalLength * percentage) % 60
-                                let minutes = ((assetTagView.totalLength * percentage) / 60) % 60
-                                let time = String(format: "%02d:%02d", Int(minutes), Int(seconds))
-                                elapsedTimeLabel.text = time
-                                elapsedTimeLabel.accessibilityLabel = "and about \(minutes) minutes and \(seconds) seconds have elapsed for this tag"
-                            } else {
-                                debugPrint("0 assets in tagview")
-                            }
-                            //completed an asset
+            guard let index = self.viewModel.selectedItemIndex else {
+                debugPrint("no item selected")
+                return
+            }
+            debugPrint("selectedItemIndex is \(index) and its tag id is \(self.tagViews[index].id)")
+//                    debugPrint("and that tag has these audio assets such as...")
+//                    dump(self.viewModel.data.getAssetsForTagIdOfMediaType(self.tagViews[index].id!, mediaType: MediaType.Audio))
+            //TODO should really have a check on the index
+
+            if tagViews[index] == assetTagView {
+                debugPrint("the current asset belongs to our current tagview")
+
+                if let remaining = queryItems["remaining"] {
+                    assetTagView.currentAssetIndex = assetTagView.arrayOfAssetIds.count - Int(remaining)! - 1
+                    if assetTagView.arrayOfAssetIds.count > 0 {
+                        //update tag progress
+                        debugPrint("there are \(remaining) assets remaining of \(assetTagView.arrayOfAssetIds.count)")
+                        let percentage = Float((Float(assetTagView.arrayOfAssetIds.count) - Float(remaining)!) / Float(assetTagView.arrayOfAssetIds.count))
+                        assetTagView.tagProgress.hidden = false
+                        debugPrint("we are \(percentage) through this tag's assets")
+                        assetTagView.tagProgress.setProgress(percentage, animated: true)
+
+                        //update elapsed time
+                        let seconds = (assetTagView.totalLength * percentage) % 60
+                        let minutes = ((assetTagView.totalLength * percentage) / 60) % 60
+                        let time = String(format: "%02d:%02d", Int(minutes), Int(seconds))
+                        elapsedTimeLabel.text = time
+                        elapsedTimeLabel.accessibilityLabel = "and about \(minutes) minutes and \(seconds) seconds have elapsed for this tag"
+                    } else {
+                        debugPrint("0 assets in tagview")
+                    }
+                    //completed an asset
 //                            if let complete = queryItems["complete"]  {
 //                                if Int(remaining)! == 0 {
 //                                    debugPrint("we finished this tag's assets")
 //                                    assetTagView.selected = false
 //                                    self.viewModel.selectedItemIndex = nil
+
 //                                    elapsedTimeLabel.text = "00:00"
 //                                    elapsedTimeLabel.accessibilityLabel = "estimated time elapsed for tag playback"
 //                                }
 //                            }
-                        }
-                    } else {
-                        //TODO mark item as played?
-                        debugPrint("its a new tagview")
-                        selectItemAtIndex(tagViews.indexOf(assetTagView)!)
-                    }
                 }
+
+                //This block is for updating UI based on stream metadata ... conflicts with interruption due to delayed response from metadata
+//            } else {
+//                //TODO mark item as played?
+//                debugPrint("its a new tagview")
+//                selectItemAtIndex(tagViews.indexOf(assetTagView)!)
             }
         }
 //        debugPrint("keypath")

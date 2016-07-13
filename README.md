@@ -38,6 +38,12 @@ $ bundle exec fastlane crashlytics
 
 When you want to add a new device or team member to a distribution, invite them to the team and project in Beta (Crashlytics) and then add their device and name to the `devices.txt` file (untracked).  Then run `bundle exec fastlane devices` and then the crashlytics command.
 
+## Hierarchy
+
+`Project -> Exhibition -> Room -> Item`
+
+Exhibition, Room, and Item are UIGroups, each with a set of UIItems filtered by the selected parent UIItem and each UIItems having a corresponding Tag.
+
 ## License
 
 TBD

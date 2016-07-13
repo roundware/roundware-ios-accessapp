@@ -6,9 +6,15 @@ class TagsViewModel: BaseViewModel  {
     let exhibitionTag: Tag
     let title: String
 
+    var stream: Stream? {
+        didSet {
+            data.stream = stream
+        }
+    }
+
+
     var roomUIGroup: UIGroup
     let roomTags: [Tag]
-
     // convenience for picker
     // could bug if selectedRoomTag set directly
     var selectedRoomIndex: Int?  {
@@ -23,6 +29,7 @@ class TagsViewModel: BaseViewModel  {
     }
     var selectedRoomTag: Tag? {
         didSet {
+            //TODO only submit if setting to a new room tag
             if let tag = self.selectedRoomTag {
                 self.roomUIGroup.selectedUIItem = self.roomUIGroup.uiItems.filter({$0.tagId == tag.id }).first
                 data.updateUIGroup(self.roomUIGroup)
@@ -48,12 +55,8 @@ class TagsViewModel: BaseViewModel  {
 
     var itemsUIGroup: UIGroup
     var itemTags: [Tag] = []
-
-    //convenience for next/previous
-    //could bug
     var selectedItemIndex: Int?  {
         didSet {
-            //TODO lock/reset in case selectedItemTag set directly
             if let index = selectedItemIndex {
                 debugPrint("selected item index \(index)")
                 if (self.itemTags.count > 0) {
@@ -65,28 +68,24 @@ class TagsViewModel: BaseViewModel  {
         }
     }
     var selectedItemTag: Tag?  {
-        didSet {
-            if let tag = self.selectedItemTag {
-                self.itemsUIGroup.selectedUIItem = self.itemsUIGroup.uiItems.filter({$0.tagId == tag.id }).first
-                data.updateUIGroup(self.itemsUIGroup)
-                let rwf = RWFramework.sharedInstance
-                debugPrint("submitting tag id \(tag.id)")
-                rwf.submitTags(String(tag.id))
-            } else {
+        willSet(newItemTag) {
+            if let tag = newItemTag {
+                //only submit tag if it's a new tag selection
+                if (selectedItemTag == nil || tag.id != selectedItemTag!.id){
+                    self.itemsUIGroup.selectedUIItem = self.itemsUIGroup.uiItems.filter({$0.tagId == tag.id }).first
+                    data.updateUIGroup(self.itemsUIGroup)
+                    let rwf = RWFramework.sharedInstance
+                    debugPrint("submitting tag id \(tag.id)")
+                    rwf.submitTags(String(tag.id))
+                }
+            } else{
                 self.itemsUIGroup.selectedUIItem = nil
-                //can't be set nil on rwdata
             }
         }
     }
 
-    //TODO remove?
-    var stream: Stream? {
-        didSet {
-            data.stream = stream
-        }
-    }
-
     //TODO mapURL
+    //TODO handle missing data
     init(data: RWData) {
         self.data = data
 

@@ -29,7 +29,7 @@
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wjd-cm-8mq" userLabel="Tag Wrap">
                     <rect key="frame" x="0.0" y="30" width="121" height="50"/>
                     <subviews>
-                        <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" misplaced="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="9rZ-wA-hjy">
+                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" misplaced="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="9rZ-wA-hjy">
                             <rect key="frame" x="0.0" y="0.0" width="121" height="50"/>
                             <color key="tintColor" red="0.30196078430000001" green="0.73725490199999999" blue="0.44705882349999998" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
@@ -60,7 +60,7 @@
                             </userDefinedRuntimeAttributes>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" red="0.21568627450980393" green="0.59607843137254901" blue="0.49803921568627452" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.2156862745" green="0.59607843140000005" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="eW2-6p-iDo" firstAttribute="top" secondItem="Wjd-cm-8mq" secondAttribute="top" id="Edj-Np-sfQ"/>
                         <constraint firstAttribute="bottom" secondItem="n0c-Fs-qmN" secondAttribute="bottom" constant="15" id="FCN-5W-Prn"/>

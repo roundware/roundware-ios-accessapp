@@ -372,7 +372,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
 //        progressView.progress = 0.0
         audioButton.setImage(UIImage(named: "record"), forState: .Normal)
         progressLabel.text = "00:30"
-        progressLabel.accessibilityLabel = "0 seconds"
+        progressLabel.accessibilityLabel = "30 seconds"
     }
 
     // MARK: Text layout
