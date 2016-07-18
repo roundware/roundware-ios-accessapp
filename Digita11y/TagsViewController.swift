@@ -211,6 +211,9 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
         self.parentTagPickerView.reloadData()
         self.parentTagPickerView.selectItem(0)
 
+        self.parentTagPickerView.accessibilityLabel = "Rooms"
+        self.parentTagPickerView.accessibilityTraits = UIAccessibilityTraitHeader
+
         //TODO double check for location...
         let rwf = RWFramework.sharedInstance
         rwf.addDelegate(self)
@@ -310,6 +313,10 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
         scroll.contentSize.height = CGFloat(itemHeight * total)
 
         tagViews = []
+
+        scroll.accessibilityLabel = "Items"
+        scroll.accessibilityTraits = UIAccessibilityTraitHeader
+
         for index in 0..<total {
             let tagView = TagView()
             let tag = self.viewModel.itemTags[index]
