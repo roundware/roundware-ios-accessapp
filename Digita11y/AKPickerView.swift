@@ -48,6 +48,7 @@ public enum AKPickerViewStyle {
 @objc public protocol AKPickerViewDataSource {
     func numberOfItemsInPickerView(pickerView: AKPickerView) -> Int
     optional func pickerView(pickerView: AKPickerView, titleForItem item: Int) -> String
+    optional func pickerView(pickerView: AKPickerView, accessibilityLabelForItem item: Int) -> String
     optional func pickerView(pickerView: AKPickerView, imageForItem item: Int) -> UIImage
 }
 
@@ -558,6 +559,9 @@ public class AKPickerView: UIView, UICollectionViewDataSource, UICollectionViewD
             }
         } else if let image = self.dataSource?.pickerView?(self, imageForItem: indexPath.item) {
             cell.imageView.image = image
+        }
+        if let accessibilityLabel = self.dataSource?.pickerView?(self, accessibilityLabelForItem: indexPath.item) {
+            cell.label.accessibilityLabel = accessibilityLabel
         }
         cell._selected = (indexPath.item == self.selectedItem)
         return cell

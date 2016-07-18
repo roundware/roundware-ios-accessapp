@@ -49,6 +49,7 @@ class ChooseProjectViewController: BaseViewController, UIScrollViewDelegate, RWF
         for (index, button) in buttons.enumerate(){
             let project = viewModel.projects[index]
             button.setTitle(project.name, forState: .Normal)
+            button.accessibilityLabel = project.name + ", \(index + 1) of \(buttons.count)"
             button.addTarget(self,
                              action: "selectedThis:",
                              forControlEvents: UIControlEvents.TouchUpInside)

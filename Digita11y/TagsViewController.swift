@@ -320,7 +320,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
             debugPrint("tagview index \(index) has \(images.count) images")
 
             tagView.hasTexts = texts.count > 0
-            tagView.setTag(tag, index: index)
+            tagView.setTag(tag, index: index, total: total)
 
             //TODO should really go into setTag and use delegate...
             tagView.tagTitle.addTarget(self,
@@ -381,6 +381,9 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 
     func pickerView(pickerView: AKPickerView, titleForItem item: Int) -> String {
         return self.viewModel.roomTags[item].value
+    }
+    func pickerView(pickerView: AKPickerView, accessibilityForLabel item: Int) -> String {
+        return self.viewModel.roomTags[item].value + ", \(item + 1) of \(self.viewModel.roomTags.count)"
     }
 
     func pickerView(pickerView: AKPickerView, configureLabel label: UILabel, forItem item: Int) {

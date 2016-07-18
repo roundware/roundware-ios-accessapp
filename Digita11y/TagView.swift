@@ -61,10 +61,13 @@ import UIKit
                 addSubview(view)
     }
 
-    func setTag(tagModel:Tag, index: Int){
+    func setTag(tagModel:Tag, index: Int, total: Int){
         debugPrint("setting tag for \(tagModel.id) at index \(index)")
         debugPrint("hasImage \(String(hasImages)) and hasText \(String(hasTexts))")
         tagTitle.setTitle(tagModel.value, forState: .Normal)
+        tagTitle.accessibilityLabel = tagModel.value + ", \(index + 1) of \(total)"
+
+
         id = tagModel.id
         var subviews : [UIView] = [audioImage, textButton, cameraButton, tagProgress]
 
