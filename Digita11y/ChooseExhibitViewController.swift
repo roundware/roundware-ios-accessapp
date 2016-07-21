@@ -37,7 +37,11 @@ class ChooseExhibitController: BaseViewController, UIScrollViewDelegate {
 
         for (index, button) in buttons.enumerate(){
             let tag = self.viewModel.tags[index]
+            let uiItem = self.viewModel.uiItems[index]
             button.setTitle(tag.value, forState: .Normal)
+            if(uiItem.active == false || self.rwData?.getChildren(uiItem).count == 0){
+                button.enabled = false
+            }
             button.accessibilityLabel = tag.value + ", \(index + 1) of \(buttons.count)"
 
             button.addTarget(self,

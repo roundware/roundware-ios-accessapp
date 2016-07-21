@@ -60,6 +60,7 @@ class RWData {
         }
     }
 
+    //TODO mode should be uiMode
     func getTagForIndexAndMode(index: Int, mode: String) -> Tag? {
         if  let uiGroup = getUIGroupForIndexAndMode(index, mode: mode),
             let uiItem = uiGroup.selectedUIItem,
@@ -83,12 +84,12 @@ class RWData {
             debugPrint("previous uigroup \(previousUIGroup.index)")
             debugPrint("and its selected uiitem \(previousSelectedUIItem.id)")
             let uiItems = uiGroup.uiItems.filter({ $0.parent == previousSelectedUIItem.id})
-            dump(uiItems)
+//            dump(uiItems)
             return uiItems
         } else {
             debugPrint("no previous uiGroup selection.  showing all uiItems for group")
             let uiItems = uiGroup.uiItems
-            dump(uiItems)
+//            dump(uiItems)
             return uiItems
         }
     }
@@ -119,6 +120,25 @@ class RWData {
         } else {
             debugPrint("missing uiItem for \(uiGroup)")
             return nil
+        }
+    }
+
+
+    // for active state fudging
+    func getUIGroupFromUIItem(uiItem: UIItem) -> UIGroup? {
+        if let uiGroup = uiGroups.filter({$0.uiItems.map{$0.id}.contains(uiItem.id)}).first{
+            return uiGroup
+        } else{
+            return nil
+        }
+    }
+    
+    func getChildren(uiItem: UIItem) -> [UIItem]{
+        if let uiGroupTop = getUIGroupFromUIItem(uiItem),
+            let uiGroupBottom = getUIGroupForIndexAndMode(uiGroupTop.index + 1, mode: uiGroupTop.uiMode){
+            return uiGroupBottom.uiItems.filter({ $0.parent == uiItem.id})
+        } else {
+            return []
         }
     }
 

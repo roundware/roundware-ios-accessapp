@@ -30,6 +30,7 @@
 		8A58732F1CD0EE9B007C3844 /* NSURL+Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A58732E1CD0EE9B007C3844 /* NSURL+Query.swift */; };
 		8A6598971C877399009A29C8 /* Digita11yTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6598961C877399009A29C8 /* Digita11yTests.swift */; };
 		8A6AB1291C9257FC0074083C /* UIButton+Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6AB1281C9257FC0074083C /* UIButton+Tag.swift */; };
+		8A8947491D4113100008F33B /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8947481D4113100008F33B /* MapViewModel.swift */; };
 		8AA4911E1C84C2C000422274 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA4911D1C84C2C000422274 /* WelcomeViewController.swift */; };
 		8AA491201C84C32700422274 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA4911F1C84C32600422274 /* LocationViewController.swift */; };
 		8AA491221C84C33D00422274 /* ChooseExhibitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA491211C84C33D00422274 /* ChooseExhibitViewController.swift */; };
@@ -110,6 +111,7 @@
 		8A6598961C877399009A29C8 /* Digita11yTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Digita11yTests.swift; sourceTree = "<group>"; };
 		8A6598981C877399009A29C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8A6AB1281C9257FC0074083C /* UIButton+Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Tag.swift"; sourceTree = "<group>"; };
+		8A8947481D4113100008F33B /* MapViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		8AA4911D1C84C2C000422274 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		8AA4911F1C84C32600422274 /* LocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		8AA491211C84C33D00422274 /* ChooseExhibitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseExhibitViewController.swift; sourceTree = "<group>"; };
@@ -304,6 +306,7 @@
 				8A2C200D1CA4CC02002A9245 /* GalleryViewModel.swift */,
 				8A2C200B1CA4CBF7002A9245 /* ReadViewModel.swift */,
 				8A00CF541C98990C0011C5D9 /* ContributeViewModel.swift */,
+				8A8947481D4113100008F33B /* MapViewModel.swift */,
 				8ABADE531C987C5300660907 /* ThanksViewModel.swift */,
 				8A00CF4E1C988AC00011C5D9 /* BaseViewModel.swift */,
 			);
@@ -591,6 +594,7 @@
 				8AA491341C84D25800422274 /* Project.swift in Sources */,
 				8A00CF4F1C988AC00011C5D9 /* BaseViewModel.swift in Sources */,
 				8A0C48011C7E85E100B11A25 /* UIButton+Border.swift in Sources */,
+				8A8947491D4113100008F33B /* MapViewModel.swift in Sources */,
 				8A4BA32C1C93EB5E00D5DDC6 /* PlayPauseButton.swift in Sources */,
 				8A404AF21CA43501009E3E3B /* TagView.swift in Sources */,
 				8ABADE4A1C98725000660907 /* RequestAssets.swift in Sources */,

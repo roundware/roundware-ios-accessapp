@@ -28,4 +28,5 @@ struct UIItem {
         active = json["active"].bool ?? false
         id = json["id"].int ?? 0
     }
+
 }

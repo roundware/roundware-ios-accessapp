@@ -219,17 +219,19 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
         rwf.addDelegate(self)
         self.playPauseButton.showButtonIsPlaying(false)
 
-        let button: UIButton = UIButton(type:UIButtonType.Custom)
-        //set image for button
-        button.setImage(UIImage(named: "map.png"), forState: UIControlState.Normal)
-        //add function for button
-        button.addTarget(self, action: #selector(self.seeMap(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        //set frame
-        button.frame = CGRectMake(0, 0, 50, 50)
+        if !self.rwData!.selectedProject!.mapURL.isEmpty {
+            let button: UIButton = UIButton(type:UIButtonType.Custom)
+            //set image for button
+            button.setImage(UIImage(named: "map.png"), forState: UIControlState.Normal)
+            //add function for button
+            button.addTarget(self, action: #selector(self.seeMap(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+            //set frame
+            button.frame = CGRectMake(0, 0, 50, 50)
+            let barButton = UIBarButtonItem(customView: button)
+            //assign button to navigationbar
+            self.navigationItem.rightBarButtonItem = barButton
+        }
 
-        let barButton = UIBarButtonItem(customView: button)
-        //assign button to navigationbar
-        self.navigationItem.rightBarButtonItem = barButton
     }
 
 

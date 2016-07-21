@@ -94,6 +94,8 @@ class BaseViewController: UIViewController {
                 height: button.buttonHeight )
             button.frame = frame
             button.titleLabel?.numberOfLines = 0
+
+            button.setTitleColor(UIColor.lightGrayColor(), forState: .Disabled)
             buttons.append(button as UIButton)
             scroll.addSubview(button)
         }

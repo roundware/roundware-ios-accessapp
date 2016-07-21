@@ -147,8 +147,7 @@
                                                 <exclude reference="3Gw-vX-TNb"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="9" y="133" width="357" height="100"/>
+                                        <variation key="heightClass=regular">
                                             <mask key="constraints">
                                                 <include reference="3Gw-vX-TNb"/>
                                             </mask>
@@ -281,8 +280,7 @@
                                                 <exclude reference="oT5-ga-hJ0"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="37" y="140" width="300" height="200"/>
+                                        <variation key="heightClass=regular">
                                             <mask key="constraints">
                                                 <include reference="4OK-Rm-j8c"/>
                                                 <include reference="oT5-ga-hJ0"/>
@@ -304,8 +302,7 @@
                                                 <exclude reference="lGN-UH-JJp"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="187" y="350" width="0.0" height="278"/>
+                                        <variation key="heightClass=regular">
                                             <mask key="constraints">
                                                 <include reference="Ayq-QB-AwM"/>
                                                 <include reference="lGN-UH-JJp"/>

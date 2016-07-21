@@ -23,6 +23,7 @@ class ChooseProjectViewController: BaseViewController, UIScrollViewDelegate, RWF
         let rwf = RWFramework.sharedInstance
         self.viewModel.selectedProject = self.viewModel.data.getProjectById(projectId)
         rwf.setProjectId(String(projectId))
+        RWFrameworkConfig.setConfigValue("reverse_domain", value: String(self.viewModel.selectedProject?.reverseDomain))
     }
 
 
@@ -49,6 +50,9 @@ class ChooseProjectViewController: BaseViewController, UIScrollViewDelegate, RWF
         for (index, button) in buttons.enumerate(){
             let project = viewModel.projects[index]
             button.setTitle(project.name, forState: .Normal)
+            if(self.viewModel.projects[index].active == false){
+                button.enabled = false
+            }
             button.accessibilityLabel = project.name + ", \(index + 1) of \(buttons.count)"
             button.addTarget(self,
                              action: "selectedThis:",
