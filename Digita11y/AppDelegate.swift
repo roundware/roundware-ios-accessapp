@@ -52,4 +52,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, RWFrameworkProtocol {
     func applicationWillTerminate(application: UIApplication) {
         CLSNSLogv("APPLICATION WILL TERMINATE", getVaList([]))
     }
+
+    //TODO move to correct view controllers and integrate with UI
+    override func accessibilityPerformMagicTap() -> Bool {
+        CLSNSLogv("ACCESSIBILITY PERFORM MAGIC TAP - APP DELEGATE", getVaList([]))
+        let rwf = RWFramework.sharedInstance
+        if(rwf.isPlaying){
+            rwf.pause()
+        } else if (rwf.isPlayingBack()){
+            rwf.stopPlayback()
+        } else if (rwf.isRecording()){
+            rwf.stopRecording()
+        }
+        return true
+    }
 }
