@@ -91,7 +91,7 @@ class TagsViewModel: BaseViewModel  {
 
         //set title
         self.exhibitionTag = data.getTagForIndexAndMode(1, mode: "listen")!
-        self.title = exhibitionTag.value
+        self.title = exhibitionTag.locMsg
 
         //get room options
         self.roomUIGroup = data.getUIGroupForIndexAndMode(2, mode: "listen")!

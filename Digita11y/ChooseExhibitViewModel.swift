@@ -34,7 +34,7 @@ class ChooseExhibitViewModel: BaseViewModel  {
     }
 
     func titleForIndex(index:Int) -> String{
-        return self.tags[index].value
+        return self.tags[index].locMsg
     }
 
     func selectedIndex(index:Int) {
@@ -43,6 +43,6 @@ class ChooseExhibitViewModel: BaseViewModel  {
     }
 
     func selectedTitle(title:String) {
-        self.selectedTag = self.tags.filter{ $0.value == title}.first!
+        self.selectedTag = self.tags.filter{ $0.locMsg == title}.first!
     }
 }

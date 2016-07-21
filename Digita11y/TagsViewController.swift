@@ -389,10 +389,10 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
     }
 
     func pickerView(pickerView: AKPickerView, titleForItem item: Int) -> String {
-        return self.viewModel.roomTags[item].value
+        return self.viewModel.roomTags[item].locMsg
     }
     func pickerView(pickerView: AKPickerView, accessibilityForLabel item: Int) -> String {
-        return self.viewModel.roomTags[item].value + ", \(item + 1) of \(self.viewModel.roomTags.count)"
+        return self.viewModel.roomTags[item].locMsg + ", \(item + 1) of \(self.viewModel.roomTags.count)"
     }
 
     func pickerView(pickerView: AKPickerView, configureLabel label: UILabel, forItem item: Int) {

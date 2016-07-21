@@ -18,8 +18,8 @@ class ReadViewModel: BaseViewModel  {
         self.data = data
         //set room tags
         tag = data.getTagForIndexAndMode(3, mode: "listen")!
-        prompt = tag.value
-        debugPrint("prompt is \(tag.value)")
+        prompt = tag.locMsg
+        debugPrint("prompt is \(tag.locMsg)")
         assets = data.getAssetsForTagIdOfMediaType(tag.id, mediaType: .Text)
         response = ""
         for (i, asset) in assets.enumerate() {

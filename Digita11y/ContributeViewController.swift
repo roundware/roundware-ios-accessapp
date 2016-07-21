@@ -39,7 +39,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
                 self.textButton.hidden = true
                 self.ContributeAsk.text = self.viewModel.uiGroup.headerTextLoc
                 self.tagLabel.hidden = false
-                self.tagLabel.text = self.viewModel.itemTag.value
+                self.tagLabel.text = self.viewModel.itemTag.locMsg
                 self.audioButton.enabled = false
             }, completion: { finished in
             })
@@ -231,7 +231,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
         let tags = [self.viewModel.data.getTagById(self.viewModel.uiGroup.selectedUIItem!.tagId)]
         let total = tags.count
         let buttons = createTagButtonsForScroll(total, scroll: scroll)
-        buttons[0].setTitle(tags[0]!.value, forState: .Normal)
+        buttons[0].setTitle(tags[0]!.locMsg, forState: .Normal)
 
         //reset audio
         if(viewModel.mediaType == MediaType.Audio){
@@ -294,7 +294,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
         super.view.addBackground("bg-comment.png")
         self.viewModel = ContributeViewModel(data: self.rwData!)
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: #selector(cancel(_:)))
-        ContributeAsk.text = "How would you like to contribute to \(self.viewModel.itemTag.value)?"
+        ContributeAsk.text = "How would you like to contribute to \(self.viewModel.itemTag.locMsg)?"
 
         let rwf = RWFramework.sharedInstance
         rwf.addDelegate(self)
@@ -337,8 +337,8 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
         //set titles and actions
         for (index, button) in buttons.enumerate(){
             let tag = tags[index]
-            button.setTitle(tag.value, forState: .Normal)
-            button.accessibilityLabel = tag.value + ", \(index + 1) of \(buttons.count)"
+            button.setTitle(tag.locMsg, forState: .Normal)
+            button.accessibilityLabel = tag.locMsg + ", \(index + 1) of \(buttons.count)"
 
             button.addTarget(self,
 

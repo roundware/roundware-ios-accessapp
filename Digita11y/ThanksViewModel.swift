@@ -19,13 +19,13 @@ class ThanksViewModel: BaseViewModel {
         //TODO should be max uigroup for speak
         self.uiGroup = data.getUIGroupForIndexAndMode(2, mode: "speak")!
         itemTag = data.getTagForIndexAndMode(3, mode: "listen")!
-        self.title = "Thanks for your contribution to: \(self.itemTag.value)!"
+        self.title = "Thanks for your contribution to: \(self.itemTag.locMsg)!"
         self.tags = data.getTagsForUIItems(self.uiGroup.uiItems)
 
         //TODO get available get tags that have not been contributed too for this parent tag....
     }
 
     func selectedTitle(title:String) {
-        self.selectedTag = self.tags.filter{ $0.value == title}.first!
+        self.selectedTag = self.tags.filter{ $0.locMsg == title}.first!
     }
 }

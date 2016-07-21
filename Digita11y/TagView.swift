@@ -64,8 +64,8 @@ import UIKit
     func setTag(tagModel:Tag, index: Int, total: Int){
         debugPrint("setting tag for \(tagModel.id) at index \(index)")
         debugPrint("hasImage \(String(hasImages)) and hasText \(String(hasTexts))")
-        tagTitle.setTitle(tagModel.value, forState: .Normal)
-        tagTitle.accessibilityLabel = tagModel.value + ", \(index + 1) of \(total)"
+        tagTitle.setTitle(tagModel.locMsg, forState: .Normal)
+        tagTitle.accessibilityLabel = tagModel.locMsg + ", \(index + 1) of \(total)"
 
 
         id = tagModel.id
@@ -78,9 +78,9 @@ import UIKit
         }
         tagProgress.progress = 0
 
-        self.cameraButton.accessibilityLabel = "Images for " + tagModel.value
-        self.textButton.accessibilityLabel = "Texts for " + tagModel.value
-        self.tagProgress.accessibilityLabel = "Progress of " + tagModel.value
+        self.cameraButton.accessibilityLabel = "Images for " + tagModel.locMsg
+        self.textButton.accessibilityLabel = "Texts for " + tagModel.locMsg
+        self.tagProgress.accessibilityLabel = "Progress of " + tagModel.locMsg
 
         self.layoutIfNeeded()
 
