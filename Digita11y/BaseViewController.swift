@@ -106,5 +106,11 @@ class BaseViewController: UIViewController {
         return buttons
     }
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        //Move focus to title for VoiceOver
+        UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.navigationItem.titleView);
+    }
+
     //TODOsoon move focus to title on viewWillAppear
 }

@@ -68,6 +68,7 @@ import UIKit
 //        let fillColor3 = UIColor(red: 0.225, green: 0.225, blue: 0.225, alpha: 1.000)
         if (playing){
             print("playing")
+            self.titleLabel = "Pause"
             self.setTitle("pause", forState:  UIControlState.Normal)
             self.setBackgroundImage(UIImage(named: "pause.png"), forState: UIControlState.Normal)
 
@@ -86,6 +87,8 @@ import UIKit
         } else {
             print("paused")
             self.setTitle("play", forState:  UIControlState.Normal)
+            self.titleLabel = "Play"
+
             self.setBackgroundImage(UIImage(named: "play.png"), forState: UIControlState.Normal)
 //            let stroke840Path = UIBezierPath(ovalInRect: CGRectMake(2.6, 2.5, 64.3, 63.9))
 //            fillColor.setFill()

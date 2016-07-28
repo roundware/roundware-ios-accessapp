@@ -61,7 +61,7 @@ platform :ios do |options|
                     groups: "Digita11yInternal")
                     #groups: "Digita11yTech")
 	slack(
-      channel: "digita11y-ios",
+      channel: "digita11y-notify",
       default_payloads: [], # reduce the notification to the minimum
       message: "Successfully distributed build number #{build_number} :rocket:",
       payload: {

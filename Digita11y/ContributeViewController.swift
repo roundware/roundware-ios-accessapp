@@ -42,6 +42,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
                 self.tagLabel.text = self.viewModel.itemTag.locMsg
                 self.audioButton.enabled = false
             }, completion: { finished in
+                UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.ContributeAsk);
             })
 
             showTags()
@@ -85,6 +86,8 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
                 self.tagLabel.text = "Text"
                 self.textButton.enabled = false
                 }, completion: { finished in
+                    UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.ContributeAsk);
+
             })
 
             showTags()
@@ -121,7 +124,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
         if(!self.viewModel.tagsSelected){
             self.ContributeAsk.text = self.viewModel.uiGroup.headerTextLoc
             showTags()
-            //TODOnow move focus to question
+            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.ContributeAsk);
         } else {
             if let button = sender as? UIButton {
                 button.enabled = false
@@ -154,7 +157,8 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
                     self.responseTextView.hidden = false
                     self.tagLabel.hidden = true
                     self.textButton.hidden = true
-                }, completion: { finished in
+                }, completion: { finished in                    UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.responseTextView);
+
                 })
             }
         }
@@ -191,6 +195,8 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
                     self.uploadButton.hidden = true
                     self.responseTextView.hidden = true
                     self.responseTextView.text = "Your response here"
+                    self.responseTextView.accessibilityHint = "Double tap to edit"
+
                     self.responseTextView.textColor = UIColor.lightGrayColor()
             })
         }
@@ -407,6 +413,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
         self.viewModel.uploadText = self.responseTextView.text
         self.uploadButton.hidden = false
         self.undoButton.hidden = false
+        UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.uploadButton);
     }
 
     //Calls this function when the tap is recognized.
@@ -437,6 +444,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
         displayPreviewAudio()
         self.undoButton.hidden = false
         self.uploadButton.hidden = false
+
     }
 
     func rwPlayingBackProgress(percentage: Double, duration: NSTimeInterval, peakPower: Float, averagePower: Float) {
@@ -453,6 +461,8 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
 //        displayPreviewAudio()
         debugPrint("stopped playing")
         displayPreviewAudio()
+        UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.uploadButton);
+
     }
 
     func rwPostEnvelopesSuccess(data: NSData?){

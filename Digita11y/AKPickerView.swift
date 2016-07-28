@@ -88,6 +88,11 @@ private class AKCollectionViewCell: UICollectionViewCell {
             animation.duration = 0.15
             self.label.layer.addAnimation(animation, forKey: "")
             self.label.font = self.selected ? self.highlightedFont : self.font
+            if(selected){
+                self.label.accessibilityHint = "Selected"
+            } else {
+                self.label.accessibilityHint = "Tap to select"
+            }
         }
     }
 
@@ -102,6 +107,7 @@ private class AKCollectionViewCell: UICollectionViewCell {
         self.label.textColor = UIColor.grayColor()
         self.label.numberOfLines = 1
         self.label.lineBreakMode = .ByTruncatingTail
+        self.label.accessibilityHint = "Tap to select"
         self.label.highlightedTextColor = UIColor.blackColor()
         self.label.font = self.font
         self.label.autoresizingMask = [.FlexibleTopMargin, .FlexibleLeftMargin, .FlexibleBottomMargin, .FlexibleRightMargin]

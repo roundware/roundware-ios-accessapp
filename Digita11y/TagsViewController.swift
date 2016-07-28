@@ -211,6 +211,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
         self.parentTagPickerView.reloadData()
         self.parentTagPickerView.selectItem(0)
 
+        self.parentTagPickerView.isAccessibilityElement = true
         self.parentTagPickerView.accessibilityLabel = "Rooms"
         self.parentTagPickerView.accessibilityTraits = UIAccessibilityTraitHeader
 
@@ -315,7 +316,8 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
         scroll.contentSize.height = CGFloat(itemHeight * total)
 
         tagViews = []
-
+        
+        self.parentTagPickerView.isAccessibilityElement = true
         scroll.accessibilityLabel = "Items"
         scroll.accessibilityTraits = UIAccessibilityTraitHeader
 
@@ -391,7 +393,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
     func pickerView(pickerView: AKPickerView, titleForItem item: Int) -> String {
         return self.viewModel.roomTags[item].locMsg
     }
-    func pickerView(pickerView: AKPickerView, accessibilityForLabel item: Int) -> String {
+    func pickerView(pickerView: AKPickerView, accessibilityLabelForItem item: Int) -> String {
         return self.viewModel.roomTags[item].locMsg + ", \(item + 1) of \(self.viewModel.roomTags.count)"
     }
 
@@ -419,6 +421,8 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
             self.viewModel.selectedRoomIndex = item
             resetRoomItems()
         }
+        //TODO update labels
+        self.viewModel.roomTags[item].locMsg + ", \(item + 1) of \(self.viewModel.roomTags.count)"
     }
 
     // MARK: RWFramework Protocol
