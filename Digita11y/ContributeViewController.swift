@@ -284,7 +284,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        UIApplication.sharedApplication.setIdleTimerDisabled = false
+        UIApplication.sharedApplication().idleTimerDisabled = false
         //Looks for single or multiple taps.
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
