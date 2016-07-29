@@ -23,6 +23,7 @@ class ChooseExhibitController: BaseViewController, UIScrollViewDelegate {
     // MARK: View
     override func viewDidLoad() {
         super.viewDidLoad()
+        UIApplication.sharedApplication.setIdleTimerDisabled = false
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
         super.view.addBackground("bg-blue.png")
 

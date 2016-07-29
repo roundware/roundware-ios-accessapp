@@ -47,8 +47,10 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
             self.playPauseButton.showButtonIsPlaying(false)
             self.nextButton.enabled = false
             self.previousButton.enabled = false
+            UIApplication.sharedApplication.setIdleTimerDisabled = false
         } else {
             startPlaying()
+            UIApplication.sharedApplication.setIdleTimerDisabled = true
         }
     }
 
