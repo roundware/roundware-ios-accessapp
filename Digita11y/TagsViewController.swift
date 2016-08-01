@@ -22,7 +22,11 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 
     // MARK: Outlets and Actions
 
+    @IBOutlet weak var roomsLabel: UILabel!
+
     @IBOutlet weak var parentTagPickerView: AKPickerView!
+
+    @IBOutlet weak var itemsLabel: UILabel!
 
     @IBOutlet weak var itemsScrollView: UIScrollView!
 
@@ -213,9 +217,8 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
         self.parentTagPickerView.reloadData()
         self.parentTagPickerView.selectItem(0)
 
-        self.parentTagPickerView.isAccessibilityElement = true
-        self.parentTagPickerView.accessibilityLabel = "Rooms"
-        self.parentTagPickerView.accessibilityTraits = UIAccessibilityTraitHeader
+        self.roomsLabel.accessibilityLabel = "Rooms"
+        self.roomsLabel.accessibilityTraits = UIAccessibilityTraitHeader
 
         //TODO double check for location...
         let rwf = RWFramework.sharedInstance
@@ -319,9 +322,8 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 
         tagViews = []
         
-        self.parentTagPickerView.isAccessibilityElement = true
-        scroll.accessibilityLabel = "Items"
-        scroll.accessibilityTraits = UIAccessibilityTraitHeader
+        self.itemsLabel.accessibilityLabel = "Items"
+        self.itemsLabel.accessibilityTraits = UIAccessibilityTraitHeader
 
         for index in 0..<total {
             let tagView = TagView()
@@ -460,8 +462,8 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
     }
 
     func rwPatchStreamsIdFailure(error: NSError?){
-        debugPrint(error?.localizedDescription)
-        CLSNSLogv((error?.localizedDescription)!, getVaList([]))
+        DebugLog("patch streams failure")
+        DebugLog((error?.localizedDescription)!)
     }
 
     func rwPostStreamsIdHeartbeatSuccess(data: NSData?) {
@@ -482,9 +484,8 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
     }
 
     func rwGetAssetsIdFailure(error: NSError?){
-        debugPrint("get asset id error")
-        debugPrint(error?.localizedDescription)
-        CLSNSLogv((error?.localizedDescription)!, getVaList([]))
+        DebugLog("get asset id error")
+        DebugLog((error?.localizedDescription)!)
     }
 
     func rwObserveValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {

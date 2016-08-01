@@ -471,7 +471,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
 
     /// Sent in the case that the server can not return a new envelope id
     func rwPostEnvelopesFailure(error: NSError?){
-        debugPrint("post envelope failure")
+        DebugLog("post envelope failure")
         SVProgressHUD.dismiss()
         //TODOnow display alert
         //TODOnow trigger undo
@@ -483,7 +483,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
         debugPrint("patch envelope success")
         SVProgressHUD.dismiss()
 
-        //TODOnow mark uiitems as contributed
+        //TODO now mark uiitems as contributed
         for (_, tag) in self.viewModel.tags.enumerate(){
 //            tag.contributed
         }
@@ -492,7 +492,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
     }
 
     func rwPatchEnvelopesIdFailure(error: NSError?){
-        debugPrint("patch envelope failure")
+        DebugLog("patch envelope failure")
         SVProgressHUD.dismiss()
         //TODO trigger undo
     }

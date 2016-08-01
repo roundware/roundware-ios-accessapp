@@ -59,6 +59,7 @@
 		8ABADE4F1C98743600660907 /* RequestAssetText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABADE4E1C98743600660907 /* RequestAssetText.swift */; };
 		8ABADE511C98764400660907 /* ChooseProjectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABADE501C98764400660907 /* ChooseProjectViewModel.swift */; };
 		8ABADE541C987C5300660907 /* ThanksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABADE531C987C5300660907 /* ThanksViewModel.swift */; };
+		8ACEC8E71D4FD60D00E1FFA4 /* DebugLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACEC8E61D4FD60D00E1FFA4 /* DebugLog.swift */; };
 		8ADED7B51C7F773400BBB65C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8ADED7B41C7F773400BBB65C /* Assets.xcassets */; };
 		8ADED7B71C7F7F5200BBB65C /* UIViewAddBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADED7B61C7F7F5200BBB65C /* UIViewAddBackground.swift */; };
 		8ADFBCBA1CBFDD760079B43A /* PageItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADFBCB91CBFDD760079B43A /* PageItemController.swift */; };
@@ -144,6 +145,7 @@
 		8ABADE4E1C98743600660907 /* RequestAssetText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestAssetText.swift; sourceTree = "<group>"; };
 		8ABADE501C98764400660907 /* ChooseProjectViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseProjectViewModel.swift; sourceTree = "<group>"; };
 		8ABADE531C987C5300660907 /* ThanksViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThanksViewModel.swift; sourceTree = "<group>"; };
+		8ACEC8E61D4FD60D00E1FFA4 /* DebugLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugLog.swift; sourceTree = "<group>"; };
 		8ADED7B41C7F773400BBB65C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8ADED7B61C7F7F5200BBB65C /* UIViewAddBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewAddBackground.swift; sourceTree = "<group>"; };
 		8ADFBCB91CBFDD760079B43A /* PageItemController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageItemController.swift; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				8A58732E1CD0EE9B007C3844 /* NSURL+Query.swift */,
+				8ACEC8E61D4FD60D00E1FFA4 /* DebugLog.swift */,
 				8A2C20051CA4B094002A9245 /* AKPickerView.swift */,
 				8A4BA32B1C93EB5E00D5DDC6 /* PlayPauseButton.swift */,
 				8A0C48001C7E85E100B11A25 /* UIButton+Border.swift */,
@@ -558,6 +561,7 @@
 			files = (
 				8A2C200C1CA4CBF7002A9245 /* ReadViewModel.swift in Sources */,
 				8AA85E681C7CF12D0086AA6B /* ChooseProjectViewController.swift in Sources */,
+				8ACEC8E71D4FD60D00E1FFA4 /* DebugLog.swift in Sources */,
 				8AB65BC81C90CD73005D112B /* UILabel+SubHeadline.swift in Sources */,
 				8A58732F1CD0EE9B007C3844 /* NSURL+Query.swift in Sources */,
 				8AA491321C84C94800422274 /* UIColor+Digita11y.swift in Sources */,

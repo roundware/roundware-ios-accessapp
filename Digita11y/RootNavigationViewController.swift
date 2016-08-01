@@ -38,20 +38,17 @@ class RootNavigationViewController: UINavigationController, UINavigationControll
     // MARK: - RWFrameworkProtocol
 
     func rwUpdateStatus(message: String) {
-        debugPrint(message)
-        CLSNSLogv(message, getVaList([]))
+        DebugLog(message)
     }
 
     func rwPostUsersFailure(error: NSError?) {
-        debugPrint("post users failure")
-        debugPrint(error?.localizedDescription)
-        CLSNSLogv((error?.localizedDescription)!, getVaList([]))
+        DebugLog("post users failure")
+        DebugLog((error?.localizedDescription)!)
     }
 
     func rwPostSessionsFailure(error: NSError?){
-        debugPrint(error?.localizedDescription)
-        debugPrint("post sessions failure")
-        CLSNSLogv((error?.localizedDescription)!, getVaList([]))
+        DebugLog("post sessions failure")
+        DebugLog((error?.localizedDescription)!)
     }
 
 
@@ -61,9 +58,8 @@ class RootNavigationViewController: UINavigationController, UINavigationControll
     }
 
     func rwGetProjectsIdTagsFailure(error: NSError?) {
-        debugPrint("get projects id tags failure")
-        debugPrint(error?.localizedDescription)
-        CLSNSLogv((error?.localizedDescription)!, getVaList([]))
+        DebugLog("get projects id tags failure")
+        DebugLog((error?.localizedDescription)!)
     }
 
     func rwGetProjectsIdUIGroupsSuccess(data: NSData?) {
@@ -72,9 +68,8 @@ class RootNavigationViewController: UINavigationController, UINavigationControll
     }
 
     func rwGetProjectsIdUIGroupsFailure(error: NSError?) {
-        debugPrint("get projects id ui groups failure")
-        debugPrint(error?.localizedDescription)
-        CLSNSLogv((error?.localizedDescription)!, getVaList([]))
+        DebugLog("get projects id ui groups failure")
+        DebugLog((error?.localizedDescription)!)
     }
 
     func rwGetAssetsSuccess(data: NSData?) {
@@ -85,8 +80,7 @@ class RootNavigationViewController: UINavigationController, UINavigationControll
     }
 
     func rwGetAssetsFailure(error: NSError?) {
-        debugPrint("get assets failure")
-        debugPrint(error?.localizedDescription)
-        CLSNSLogv((error?.localizedDescription)!, getVaList([]))
+        DebugLog("get assets failure")
+        DebugLog((error?.localizedDescription)!)
     }
 }

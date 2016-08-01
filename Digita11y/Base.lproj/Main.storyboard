@@ -118,7 +118,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" restorationIdentifier="WelcomeStack" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="cAW-TA-Z1n">
                                 <rect key="frame" x="93" y="60" width="6073" height="205"/>
                                 <subviews>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" misplaced="YES" restorationIdentifier="WelcomeCastle" image="castle" translatesAutoresizingMaskIntoConstraints="NO" id="8Gn-9F-5B8">
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" restorationIdentifier="WelcomeCastle" image="castle" translatesAutoresizingMaskIntoConstraints="NO" id="8Gn-9F-5B8">
                                         <rect key="frame" x="2970" y="0.0" width="133" height="133"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="133" id="DFG-EQ-Ur0"/>
@@ -134,7 +134,7 @@
                                             </mask>
                                         </variation>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" restorationIdentifier="WelcomeTitle" text="Welcome to Museum XYZ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1JY-P8-634" customClass="UILabelHeadline" customModule="Digita11y" customModuleProvider="target">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" restorationIdentifier="WelcomeTitle" text="Welcome to Museum XYZ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1JY-P8-634" customClass="UILabelHeadline" customModule="Digita11y" customModuleProvider="target">
                                         <rect key="frame" x="2937" y="133" width="199" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="3Gw-vX-TNb"/>
@@ -153,7 +153,7 @@
                                             </mask>
                                         </variation>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" restorationIdentifier="WelcomeText" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ssu-Sz-qmD" customClass="UILabelBody" customModule="Digita11y" customModuleProvider="target">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" restorationIdentifier="WelcomeText" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ssu-Sz-qmD" customClass="UILabelBody" customModule="Digita11y" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="154" width="6073" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="I7F-JH-OK6"/>
@@ -172,7 +172,7 @@
                                             </mask>
                                         </variation>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" restorationIdentifier="WelcomeBegin" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q4z-dT-tJR" customClass="UIButtonWhite" customModule="Digita11y" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" restorationIdentifier="WelcomeBegin" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q4z-dT-tJR" customClass="UIButtonWhite" customModule="Digita11y" customModuleProvider="target">
                                         <rect key="frame" x="3017" y="175" width="39" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="200" id="UTc-dE-mjb"/>
@@ -508,6 +508,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oYr-FB-amj" userLabel="Rooms Label">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" id="MCE-LM-R9b"/>
+                                    <constraint firstAttribute="width" id="a7R-sX-ksw"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="MCE-LM-R9b"/>
+                                        <exclude reference="a7R-sX-ksw"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular" misplaced="YES">
+                                    <rect key="frame" x="186" y="358" width="42" height="21"/>
+                                    <mask key="constraints">
+                                        <include reference="MCE-LM-R9b"/>
+                                        <include reference="a7R-sX-ksw"/>
+                                    </mask>
+                                </variation>
+                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C7b-85-kju" customClass="AKPickerView" customModule="Digita11y" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <constraints>
@@ -574,6 +597,29 @@
                                     <rect key="frame" x="20" y="691" width="374" height="68"/>
                                 </variation>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Md-KG-eZr" userLabel="Items Label">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" id="d7I-Ym-i1y"/>
+                                    <constraint firstAttribute="width" id="jhQ-wj-xQb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="d7I-Ym-i1y"/>
+                                        <exclude reference="jhQ-wj-xQb"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular" misplaced="YES">
+                                    <rect key="frame" x="186" y="334" width="42" height="68"/>
+                                    <mask key="constraints">
+                                        <include reference="d7I-Ym-i1y"/>
+                                        <include reference="jhQ-wj-xQb"/>
+                                    </mask>
+                                </variation>
+                            </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wmp-MJ-emO" userLabel="Items Scroll View">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <constraints>
@@ -616,6 +662,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.29019609089999998" green="0.5647059083" blue="0.88627451660000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="oYr-FB-amj" firstAttribute="leading" secondItem="8Wk-MV-rj2" secondAttribute="leadingMargin" id="1XN-1v-o10"/>
                             <constraint firstItem="C7b-85-kju" firstAttribute="top" secondItem="F2h-gl-tuJ" secondAttribute="bottom" id="6e9-LH-pwX"/>
                             <constraint firstItem="wmp-MJ-emO" firstAttribute="top" secondItem="C7b-85-kju" secondAttribute="bottom" id="A0B-2e-0q8"/>
                             <constraint firstItem="hgv-wM-mnd" firstAttribute="leading" secondItem="8Wk-MV-rj2" secondAttribute="leadingMargin" id="Bbe-EJ-9iI"/>
@@ -625,6 +672,9 @@
                             <constraint firstItem="hgv-wM-mnd" firstAttribute="top" secondItem="wmp-MJ-emO" secondAttribute="bottom" constant="8" id="IKm-Nc-eXV"/>
                             <constraint firstAttribute="trailingMargin" secondItem="hgv-wM-mnd" secondAttribute="trailing" id="JP9-5Y-uBr"/>
                             <constraint firstAttribute="trailingMargin" secondItem="JzA-bL-0dw" secondAttribute="trailing" id="Npy-B5-2hh"/>
+                            <constraint firstItem="0Md-KG-eZr" firstAttribute="top" secondItem="C7b-85-kju" secondAttribute="bottom" id="Oxj-78-tap"/>
+                            <constraint firstItem="0Md-KG-eZr" firstAttribute="leading" secondItem="8Wk-MV-rj2" secondAttribute="leadingMargin" id="R9v-4x-zf6"/>
+                            <constraint firstItem="oYr-FB-amj" firstAttribute="top" secondItem="C7b-85-kju" secondAttribute="bottom" id="ToU-8S-nug"/>
                             <constraint firstItem="C7b-85-kju" firstAttribute="leading" secondItem="8Wk-MV-rj2" secondAttribute="leadingMargin" id="hU8-R6-uJl">
                                 <variation key="heightClass=regular" constant="0.0"/>
                             </constraint>
@@ -637,57 +687,71 @@
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
+                                <exclude reference="oYr-FB-amj"/>
                                 <exclude reference="C7b-85-kju"/>
                                 <exclude reference="JzA-bL-0dw"/>
+                                <exclude reference="0Md-KG-eZr"/>
                                 <exclude reference="wmp-MJ-emO"/>
                                 <exclude reference="hgv-wM-mnd"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="t3x-2d-rvF"/>
+                                <exclude reference="6e9-LH-pwX"/>
+                                <exclude reference="hU8-R6-uJl"/>
+                                <exclude reference="iaW-Vj-UBT"/>
+                                <exclude reference="A0B-2e-0q8"/>
+                                <exclude reference="tOY-nc-N44"/>
+                                <exclude reference="Oxj-78-tap"/>
+                                <exclude reference="R9v-4x-zf6"/>
+                                <exclude reference="1XN-1v-o10"/>
+                                <exclude reference="ToU-8S-nug"/>
                                 <exclude reference="Bbe-EJ-9iI"/>
                                 <exclude reference="IKm-Nc-eXV"/>
                                 <exclude reference="JP9-5Y-uBr"/>
                                 <exclude reference="Fye-Uh-2R1"/>
                                 <exclude reference="Npy-B5-2hh"/>
                                 <exclude reference="zys-Ic-mUd"/>
-                                <exclude reference="6e9-LH-pwX"/>
-                                <exclude reference="hU8-R6-uJl"/>
-                                <exclude reference="iaW-Vj-UBT"/>
-                                <exclude reference="A0B-2e-0q8"/>
-                                <exclude reference="tOY-nc-N44"/>
+                                <exclude reference="t3x-2d-rvF"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular">
                             <mask key="subviews">
+                                <include reference="oYr-FB-amj"/>
                                 <include reference="C7b-85-kju"/>
                                 <include reference="JzA-bL-0dw"/>
+                                <include reference="0Md-KG-eZr"/>
                                 <include reference="wmp-MJ-emO"/>
                                 <include reference="hgv-wM-mnd"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="t3x-2d-rvF"/>
+                                <include reference="6e9-LH-pwX"/>
+                                <include reference="hU8-R6-uJl"/>
+                                <include reference="iaW-Vj-UBT"/>
+                                <include reference="A0B-2e-0q8"/>
+                                <include reference="tOY-nc-N44"/>
+                                <include reference="Oxj-78-tap"/>
+                                <include reference="R9v-4x-zf6"/>
+                                <include reference="1XN-1v-o10"/>
+                                <include reference="ToU-8S-nug"/>
                                 <include reference="Bbe-EJ-9iI"/>
                                 <include reference="IKm-Nc-eXV"/>
                                 <include reference="JP9-5Y-uBr"/>
                                 <include reference="Fye-Uh-2R1"/>
                                 <include reference="Npy-B5-2hh"/>
                                 <include reference="zys-Ic-mUd"/>
-                                <include reference="6e9-LH-pwX"/>
-                                <include reference="hU8-R6-uJl"/>
-                                <include reference="iaW-Vj-UBT"/>
-                                <include reference="A0B-2e-0q8"/>
-                                <include reference="tOY-nc-N44"/>
+                                <include reference="t3x-2d-rvF"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
                         <outlet property="contributeButton" destination="nSq-6d-cAH" id="uQu-ia-2BV"/>
                         <outlet property="elapsedTimeLabel" destination="L0T-v5-bl1" id="fkp-qA-T2q"/>
+                        <outlet property="itemsLabel" destination="0Md-KG-eZr" id="tOl-0U-oc8"/>
                         <outlet property="itemsScrollView" destination="wmp-MJ-emO" id="fBz-w5-Jkj"/>
                         <outlet property="nextButton" destination="MY3-Ra-BVY" id="9GG-FJ-e0E"/>
                         <outlet property="parentTagPickerView" destination="C7b-85-kju" id="vZo-6W-80T"/>
                         <outlet property="playPauseButton" destination="ufw-ye-fFd" id="tU1-Ty-45U"/>
                         <outlet property="previousButton" destination="LxB-14-20Q" id="aOX-fF-VsP"/>
+                        <outlet property="roomsLabel" destination="oYr-FB-amj" id="s04-2b-C9A"/>
                         <outlet property="totalTimeLabel" destination="PVB-qE-AIn" id="xsk-GZ-PQz"/>
                         <segue destination="tA3-Ku-PWB" kind="presentation" identifier="ReadSegue" id="W90-rJ-ttY"/>
                         <segue destination="s7j-Qm-VDd" kind="presentation" identifier="GallerySegue" id="BOr-iF-dy0"/>
