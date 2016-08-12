@@ -126,43 +126,40 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
             showTags()
             UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.ContributeAsk);
         } else {
+            //tags are selected!
             if let button = sender as? UIButton {
                 button.enabled = false
             }
-            if(viewModel.mediaType == MediaType.Audio){
-                setupAudio() { granted, error in
-                    if granted == false {
-                        DebugLog("Unable to setup audio: \(error)")
-                        if let error = error {
-                            DebugLog("Unable to setup audio: \(error)")
-                        }
-                        //TODOnow alert message
-                    } else {
-                        debugPrint("Successfully setup audio")
-                        let duration = 0.1
-                        UIView.animateWithDuration(duration, delay: 0, options: [], animations: {
-                            self.audioButton.enabled = true
-                            self.progressLabel.hidden = false
-                            self.progressLabel.text = "00:30"
-                        }, completion: { finished in
-                        })
-                        //TODOnow move focus, set audio label
-                    }
-                }
-            } else {
-                //is text
-                let duration = 0.1
-
-                UIView.animateWithDuration(duration, delay: 0, options: [], animations: {
-                    self.responseTextView.hidden = false
-                    self.tagLabel.hidden = true
-                    self.textButton.hidden = true
-                }, completion: { finished in                    UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.responseTextView);
-
-                })
-            }
+            showMedia()
         }
 
+    }
+
+    func showMedia() {
+        if(viewModel.mediaType == MediaType.Audio){
+            setupAudio() { granted, error in
+                if granted == false {
+                    DebugLog("Unable to setup audio: \(error)")
+                    if let error = error {
+                        DebugLog("Unable to setup audio: \(error)")
+                    }
+                    //TODOnow alert message
+                } else {
+                    self.displayRecordAudio()
+                }
+            }
+        } else {
+            //is text
+            let duration = 0.1
+
+            UIView.animateWithDuration(duration, delay: 0, options: [], animations: {
+                self.responseTextView.hidden = false
+                self.tagLabel.hidden = true
+                self.textButton.hidden = true
+                }, completion: { finished in
+                    UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.responseTextView);
+            })
+        }
     }
 
     @IBAction func cancel(sender: AnyObject) {
@@ -176,38 +173,22 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
     @IBAction func undo(sender: AnyObject) {
         debugPrint("undoing")
         let rwf = RWFramework.sharedInstance
+
         if(self.viewModel.mediaType == MediaType.Audio){
             rwf.deleteRecording()
-            displayRecordAudio()
-            let duration = 0.1
-            UIView.animateWithDuration(duration, delay: 0, options: [], animations: {
-            }, completion: { finished in
-                self.undoButton.hidden = true
-                self.uploadButton.hidden = true
-                self.progressLabel.text = "00:30"
-            })
         } else {
-            self.viewModel.uploadText = ""
-            let duration = 0.1
-            UIView.animateWithDuration(duration, delay: 0, options: [], animations: {
-                }, completion: { finished in
-                    self.undoButton.hidden = true
-                    self.uploadButton.hidden = true
-                    self.responseTextView.hidden = true
-                    self.responseTextView.text = "Your response here"
-                    self.responseTextView.accessibilityHint = "Double tap to edit"
-
-                    self.responseTextView.textColor = UIColor.lightGrayColor()
-            })
+            self.responseTextView.text = "Your response here"
         }
+        showMedia()
     }
 
     @IBAction func upload(sender: AnyObject) {
         let rwf = RWFramework.sharedInstance
+
+        //images
 //        for image in self.viewModel.images {
 //            rwf.setImageDescription(image.path, description: image.text)
 //        }
-
 //        self.images.removeAll()
 //        self.uploadText = ""
         if self.viewModel.mediaType == MediaType.Text {
@@ -226,53 +207,19 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
     // MARK: Segue Actions
     //back from thank you
     @IBAction func prepareForRecontribute(segue: UIStoryboardSegue) {
-
+        self.navigationController!.setNavigationBarHidden(false, animated: true)
         debugPrint("prepare for recontribute")
+
+        self.viewModel.data = self.rwData!
+        self.viewModel.resetForRecontribute()
 
         //set header
         self.ContributeAsk.text = self.viewModel.uiGroup.headerTextLoc
-        let scroll = ContributeScroll
 
-        //set selected tag
-        let tags = [self.viewModel.data.getTagById(self.viewModel.uiGroup.selectedUIItem!.tagId)]
-        let total = tags.count
-        let buttons = createTagButtonsForScroll(total, scroll: scroll)
-        buttons[0].setTitle(tags[0]!.locMsg, forState: .Normal)
-
-        //reset audio
-        if(viewModel.mediaType == MediaType.Audio){
-            setupAudio() { granted, error in
-                if granted == false {
-                    DebugLog("Unable to setup audio: \(error)")
-                    if let error = error {
-                        DebugLog("Unable to setup audio: \(error)")
-                    }
-                    //TODO now alert message
-                } else {
-                    debugPrint("Successfully setup audio")
-                    let duration = 0.1
-                    UIView.animateWithDuration(duration, delay: 0, options: [], animations: {
-                        self.audioButton.enabled = true
-                        self.progressLabel.hidden = false
-                        self.progressLabel.text = "00:30"
-                        }, completion: { finished in
-                    })
-                    //TODOnow move focus, set audio label
-                }
-            }
-        } else {
-            //is text
-            let duration = 0.1
-            UIView.animateWithDuration(duration, delay: 0, options: [], animations: {
-                self.responseTextView.hidden = false
-                self.tagLabel.hidden = true
-                self.textButton.hidden = true
-                }, completion: { finished in
-            })
-        }
-        self.responseTextView.text = "Your response here"
-        uploadButton.hidden = true
-        undoButton.hidden = true
+        //show selected tag
+        self.viewModel.tags = [self.viewModel.data.getTagById(self.viewModel.uiGroup.selectedUIItem!.tagId)!]
+        showTags(false)
+        self.undo(self)
     }
 
     // MARK: View
@@ -302,11 +249,6 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: #selector(cancel(_:)))
         ContributeAsk.text = "How would you like to contribute to \(self.viewModel.itemTag.locMsg)?"
 
-        let rwf = RWFramework.sharedInstance
-        rwf.addDelegate(self)
-        ContributeScroll.delegate = self
-        responseTextView.delegate = self
-
         ContributeScroll.hidden = true
         uploadButton.hidden = true
         undoButton.hidden = true
@@ -314,6 +256,10 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
         progressLabel.hidden = true
         responseLabel.hidden = true
         responseTextView.hidden = true
+        let rwf = RWFramework.sharedInstance
+        rwf.addDelegate(self)
+        ContributeScroll.delegate = self
+        responseTextView.delegate = self
 
         //http://stackoverflow.com/questions/26070242/move-view-with-keyboard-using-swift
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillShow), name:UIKeyboardWillShowNotification, object: self.view.window)
@@ -331,7 +277,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
     }
 
     // MARK: Tags layout
-    func showTags(){
+    func showTags(enabled: Bool = true){
         let scroll = ContributeScroll
         scroll.hidden = false
         scroll.delegate = self
@@ -345,11 +291,12 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
             let tag = tags[index]
             button.setTitle(tag.locMsg, forState: .Normal)
             button.accessibilityLabel = tag.locMsg + ", \(index + 1) of \(buttons.count)"
-
             button.addTarget(self,
-
                              action: #selector(self.selectedThis(_:)),
                              forControlEvents: UIControlEvents.TouchUpInside)
+            if !enabled {
+                button.enabled = false
+            }
             button.tag = tag.id
         }
     }
@@ -357,7 +304,10 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
     // MARK: Audio layout
     func displayPreviewAudio() {
         audioButton.accessibilityLabel = "Preview audio"
-        progressLabel.text = "00:00"
+        let sec = elapsed
+        let secStr = sec < 10 ? "0\(sec)" : "\(sec)"
+        progressLabel.text = "00:\(secStr)"
+        progressLabel.accessibilityLabel = "\(secStr) seconds"
         audioButton.setImage(UIImage(named: "playContribute"), forState: .Normal)
         //TODOnow fix upload undo index order
         //TODOnow fix upload under sizing
@@ -366,8 +316,6 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
     func displayStopPlayback() {
         audioButton.accessibilityLabel = "Stop playback"
         audioButton.setImage(UIImage(named: "stop"), forState: .Normal)
-        progressLabel.text = "00:00"
-        progressLabel.accessibilityLabel = "0 seconds"
     }
 
     func displayStopRecording() {
@@ -377,10 +325,18 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
 
     func displayRecordAudio() {
         audioButton.accessibilityLabel = "Record audio"
-//        progressView.progress = 0.0
         audioButton.setImage(UIImage(named: "record"), forState: .Normal)
-        progressLabel.text = "00:30"
-        progressLabel.accessibilityLabel = "30 seconds"
+
+        let duration = 0.1
+        UIView.animateWithDuration(duration, delay: 0, options: [], animations: {
+            self.audioButton.enabled = true
+            self.progressLabel.hidden = false
+            self.progressLabel.text = "00:30"
+            self.progressLabel.accessibilityLabel = "30 seconds"
+            }, completion: { finished in
+                UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.audioButton);
+        })
+
     }
 
     // MARK: Text layout
@@ -430,12 +386,12 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
         debugPrint("ready to record")
     }
 
-
+    var elapsed = 0
     func rwRecordingProgress(percentage: Double, maxDuration: NSTimeInterval, peakPower: Float, averagePower: Float) {
-        var dt = maxDuration - (percentage*maxDuration)
-        var sec = Int(dt%60.0)
-        var milli = Int(100*(dt - floor(dt)))
-        var secStr = sec < 10 ? "0\(sec)" : "\(sec)"
+        let dt = maxDuration - (percentage*maxDuration)
+        let sec = Int(dt % 60.0)
+        elapsed = Int(maxDuration) - sec - 1 // fudging
+        let secStr = sec < 10 ? "0\(sec)" : "\(sec)"
         progressLabel.text = "00:\(secStr)"
         progressLabel.accessibilityLabel = "\(secStr) seconds"
     }
@@ -444,13 +400,11 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
         displayPreviewAudio()
         self.undoButton.hidden = false
         self.uploadButton.hidden = false
-
     }
 
     func rwPlayingBackProgress(percentage: Double, duration: NSTimeInterval, peakPower: Float, averagePower: Float) {
         var dt = (percentage*duration)
         var sec = Int(dt%60.0)
-        var milli = Int(100*(dt - floor(dt)))
         var secStr = sec < 10 ? "0\(sec)" : "\(sec)"
         progressLabel.text = "00:\(secStr)"
         progressLabel.accessibilityLabel = "\(secStr) seconds"

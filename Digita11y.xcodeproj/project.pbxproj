@@ -308,8 +308,8 @@
 				8A00CF521C9899000011C5D9 /* TagsViewModel.swift */,
 				8A2C200D1CA4CC02002A9245 /* GalleryViewModel.swift */,
 				8A2C200B1CA4CBF7002A9245 /* ReadViewModel.swift */,
-				8A00CF541C98990C0011C5D9 /* ContributeViewModel.swift */,
 				8A8947481D4113100008F33B /* MapViewModel.swift */,
+				8A00CF541C98990C0011C5D9 /* ContributeViewModel.swift */,
 				8ABADE531C987C5300660907 /* ThanksViewModel.swift */,
 				8A00CF4E1C988AC00011C5D9 /* BaseViewModel.swift */,
 			);

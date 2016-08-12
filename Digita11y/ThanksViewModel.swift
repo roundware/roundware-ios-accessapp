@@ -16,8 +16,7 @@ class ThanksViewModel: BaseViewModel {
 
     init(data: RWData) {
         self.data = data
-        //TODO should be max uigroup for speak
-        self.uiGroup = data.getUIGroupForIndexAndMode(2, mode: "speak")!
+        self.uiGroup = data.getUIGroupForIndexAndMode(data.getMaxUIGroupIndexWithSelected("speak"), mode: "speak")!
         itemTag = data.getTagForIndexAndMode(3, mode: "listen")!
         self.title = "Thanks for your contribution to: \(self.itemTag.locMsg)!"
         self.tags = data.getTagsForUIItems(self.uiGroup.uiItems)

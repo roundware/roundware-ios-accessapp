@@ -45,6 +45,51 @@ class RWData {
         }
     }
 
+    func getMaxUIGroupIndexWithSelected(mode:String) -> Int {
+        guard let thisProject = selectedProject else{
+            debugPrint("needs project")
+            return 0
+        }
+        let matches = uiGroups.filter() {
+            let modeMatch = $0.uiMode == mode
+            let active = $0.active == true
+            let projectMatch  =  $0.project == thisProject.id
+            let selectedUIItemExists = $0.selectedUIItem != nil
+            return modeMatch && active && projectMatch && selectedUIItemExists
+        }
+        var max = 0
+        matches.forEach {
+            if $0.index > max {
+                max = $0.index
+            }
+        }
+        return max
+    }
+
+    func resetUIGroupAndAbove(index: Int, mode: String) -> Bool{
+        guard let thisProject = selectedProject else{
+            debugPrint("needs project")
+            return false
+        }
+        let matches = uiGroups.filter() {
+            let indexMatch = $0.index >= index
+            let modeMatch = $0.uiMode == mode
+            let active = $0.active == true
+            let projectMatch  =  $0.project == thisProject.id
+            let selectedUIItemExists = $0.selectedUIItem != nil
+            return indexMatch && modeMatch && active && projectMatch && selectedUIItemExists
+        }
+        if(matches.count > 0){
+            for(var uiGroup) in matches            {
+                uiGroup.selectedUIItem = nil
+                updateUIGroup(uiGroup)
+            }
+            return true
+        } else {
+            return false
+        }
+    }
+
     func updateUIGroup(uiGroup: UIGroup) -> Void {
         //TODO filter ofr active
         if let thisProject = selectedProject,

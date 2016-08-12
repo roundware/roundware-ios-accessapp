@@ -1,7 +1,7 @@
 import Foundation
 import RWFramework
 class ContributeViewModel: BaseViewModel  {
-    let data: RWData
+    var data: RWData
     var uiGroup: UIGroup
     var mediaType: MediaType?
     var mediaSelected: Bool = false
@@ -9,7 +9,6 @@ class ContributeViewModel: BaseViewModel  {
     var mediaCreated: Bool = false
     var uploaded: Bool = false
 
-//    var tag: Tag?
     let exhibitionTag: Tag
     let roomTag: Tag
     let itemTag: Tag
@@ -38,16 +37,21 @@ class ContributeViewModel: BaseViewModel  {
                 data.updateUIGroup(self.uiGroup)
                 //get next set of tags
                 speakIndex += 1
+
+                //TODO might not have relevant uiItems
                 guard let uiGroup = data.getUIGroupForIndexAndMode(speakIndex, mode: "speak") else {
                     tagsSelected = true
                     return
                 }
+                let uiItems = data.getRelevantUIItems(uiGroup)
+                if (uiItems.count == 0){
+                    tagsSelected = true
+                    return
+                }
+
                 self.uiGroup = uiGroup
-                self.uiGroup = uiGroup
-                self.uiItems = data.getRelevantUIItems(self.uiGroup)
+                self.uiItems = uiItems
                 self.tags = data.getTagsForUIItems(self.uiItems)
-//                debugPrint("new group is \(self.uiGroup)")
-//                debugPrint("with these tags \(self.tags)")
             } else {
                 self.uiGroup.selectedUIItem = nil
             }
@@ -59,12 +63,17 @@ class ContributeViewModel: BaseViewModel  {
         exhibitionTag = data.getTagForIndexAndMode(1, mode: "listen")!
         roomTag = data.getTagForIndexAndMode(2, mode: "listen")!
         itemTag = data.getTagForIndexAndMode(3, mode: "listen")!
-
         uiGroup = data.getUIGroupForIndexAndMode(speakIndex, mode: "speak")!
         uiItems = data.getRelevantUIItems(self.uiGroup)
         tags = data.getTagsForUIItems(self.uiItems)
     }
 
+    func resetForRecontribute(){
+        uiGroup = data.getUIGroupForIndexAndMode(data.getMaxUIGroupIndexWithSelected("speak"), mode: "speak")!
+        uiItems = data.getRelevantUIItems(self.uiGroup)
+        tags = data.getTagsForUIItems(self.uiItems)
+
+    }
     func tagIds() -> String{
         var ids = String(itemTag.id) + ","
         for index in 1 ..< speakIndex {
