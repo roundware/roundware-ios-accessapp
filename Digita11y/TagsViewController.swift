@@ -452,7 +452,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 
     func rwPostStreamsError(error: NSError?) {
         debugPrint(error?.localizedDescription)
-        CLSNSLogv((error?.localizedDescription)!, getVaList([]))
+        DebugLog((error?.localizedDescription)!)
     }
 
     func rwPatchStreamsIdSuccess(data: NSData?){

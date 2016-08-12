@@ -15,8 +15,7 @@ func requestAssets(completion: (assets: [Asset]) -> ()) {
                 completion(assets: assets)
             }
             }) { (error) -> Void in
-                debugPrint(error.localizedDescription)
-                CLSNSLogv(error.localizedDescription, getVaList([]))
+                DebugLog(error.localizedDescription)
                 completion(assets: [])
         }
     }

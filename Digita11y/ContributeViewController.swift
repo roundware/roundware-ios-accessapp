@@ -132,9 +132,9 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
             if(viewModel.mediaType == MediaType.Audio){
                 setupAudio() { granted, error in
                     if granted == false {
-                        debugPrint("Unable to setup audio: \(error)")
+                        DebugLog("Unable to setup audio: \(error)")
                         if let error = error {
-                            CLSNSLogv("Unable to setup audio: \(error)", getVaList([error]))
+                            DebugLog("Unable to setup audio: \(error)")
                         }
                         //TODOnow alert message
                     } else {
@@ -243,11 +243,11 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
         if(viewModel.mediaType == MediaType.Audio){
             setupAudio() { granted, error in
                 if granted == false {
-                    debugPrint("Unable to setup audio: \(error)")
+                    DebugLog("Unable to setup audio: \(error)")
                     if let error = error {
-                        CLSNSLogv("Unable to setup audio: \(error)", getVaList([error]))
+                        DebugLog("Unable to setup audio: \(error)")
                     }
-                    //TODOnow alert message
+                    //TODO now alert message
                 } else {
                     debugPrint("Successfully setup audio")
                     let duration = 0.1

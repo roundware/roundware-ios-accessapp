@@ -34,28 +34,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate, RWFrameworkProtocol {
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
-        CLSNSLogv("APPLICATION DID BECOME ACTIVE", getVaList([]))
+        DebugLog("APPLICATION DID BECOME ACTIVE")
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
-        CLSNSLogv("APPLICATION DID ENTER BACKGROUND", getVaList([]))
+        DebugLog("APPLICATION DID ENTER BACKGROUND")
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
-        CLSNSLogv("APPLICATION WILL ENTER FOREGROUND", getVaList([]))
+        DebugLog("APPLICATION WILL ENTER FOREGROUND")
     }
 
     func applicationWillResignActive(application: UIApplication) {
-        CLSNSLogv("APPLICATION WILL RESIGN ACTIVE", getVaList([]))
+        DebugLog("APPLICATION WILL RESIGN ACTIVE")
     }
 
     func applicationWillTerminate(application: UIApplication) {
-        CLSNSLogv("APPLICATION WILL TERMINATE", getVaList([]))
+        DebugLog("APPLICATION WILL TERMINATE")
     }
 
     //TODO move to correct view controllers and integrate with UI
     override func accessibilityPerformMagicTap() -> Bool {
-        CLSNSLogv("ACCESSIBILITY PERFORM MAGIC TAP - APP DELEGATE", getVaList([]))
+        DebugLog("ACCESSIBILITY PERFORM MAGIC TAP - APP DELEGATE")
         let rwf = RWFramework.sharedInstance
         if(rwf.isPlaying){
             rwf.pause()
