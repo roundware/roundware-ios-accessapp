@@ -365,7 +365,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 
             let audioAssets : [Asset] = self.viewModel.data.getAssetsForTagIdOfMediaType(tagView.id!, mediaType: MediaType.Audio)
             debugPrint("audio assets for tag \(tagView.id!)")
-            dump(audioAssets)
+//            dump(audioAssets)
             let totalLength = audioAssets.map({$0.audioLength}).reduce(0, combine: +)
             debugPrint("total length is \(totalLength)")
             let arrayOfAssetIds = audioAssets.map({ String($0.assetID)})
@@ -439,18 +439,18 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 
     // MARK: RWFramework Protocol
     func rwUpdateStatus(message: String) {
-        print("update status")
-        print(message)
+//        print("update status")
+//        print(message)
     }
 
     func rwGetStreamsIdCurrentSuccess(data: NSData?) {
-        print("current success")
-        dump(data)
+        DebugLog("current success")
+//        dump(data)
     }
 
     func rwPostStreamsSuccess(data: NSData?) {
-        print("stream success")
-        dump(data)
+        DebugLog("stream success")
+//        dump(data)
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             self.playPauseButton.enabled = true
             self.nextButton.enabled = true
@@ -459,7 +459,6 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
     }
 
     func rwPostStreamsError(error: NSError?) {
-        debugPrint(error?.localizedDescription)
         DebugLog((error?.localizedDescription)!)
     }
 
@@ -475,26 +474,33 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
     }
 
     func rwPostStreamsIdHeartbeatSuccess(data: NSData?) {
-        debugPrint("heartbeat success")
+//        DebugLog("heartbeat success")
 //        dump(data)
 //        dispatch_async(dispatch_get_main_queue(), { () -> Void in
 //        })
     }
 
     func rwPostStreamsIdNextSuccess(data: NSData?) {
-        debugPrint("next success")
+        DebugLog("next success")
         dump(data)
     }
 
+    func rwPostStreamsIdNextFailure(error: NSError?) {
+        DebugLog("rwPostStreamsIdNextFailureerror")
+        DebugLog((error?.localizedDescription)!)
+
+    }
+
     func rwGetAssetsIdSuccess(data: NSData?){
-        debugPrint("get asset id success")
-        dump(data)
+        DebugLog("get asset id success")
+//        dump(data)
     }
 
     func rwGetAssetsIdFailure(error: NSError?){
         DebugLog("get asset id error")
         DebugLog((error?.localizedDescription)!)
     }
+
 
     func rwObserveValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
 
@@ -531,7 +537,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
             }
             guard let queryItems = params.queryItems else{
                 DebugLog("query problem")
-                dump(params)
+                DebugLog(String(params))
                 return
             }
 
@@ -539,7 +545,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
             //let see what asset we are on
             guard let assetID = queryItems["asset"] else{
                 DebugLog("no assetID set")
-                dump(queryItems)
+                DebugLog(String(queryItems))
                 return
             }
 
@@ -574,11 +580,11 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 //                        debugPrint("there are \(remaining) assets remaining of \(assetTagView.arrayOfAssetIds.count)")
                         let percentage = Float((Float(assetTagView.arrayOfAssetIds.count) - Float(remaining)!) / Float(assetTagView.arrayOfAssetIds.count))
                         assetTagView.tagProgress.hidden = false
-                        debugPrint("we are \(percentage) through this tag's assets")
+                        DebugLog("we are \(percentage) through this tag's assets")
                         assetTagView.tagProgress.setProgress(percentage, animated: true)
 
                     } else {
-                        debugPrint("0 assets in tagview")
+                        DebugLog("0 assets in tagview")
                     }
 
                     //TODO mark as completed in uiItem and ui
