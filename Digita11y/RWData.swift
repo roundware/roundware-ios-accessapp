@@ -101,7 +101,7 @@ class RWData {
             uiGroups[index] = uiGroup
         } else {
             //TODO real error
-            debugPrint("ERROR: missing uiGroup in uiGroups array for \(uiGroup)")
+            DebugLog("ERROR: missing uiGroup in uiGroups array for \(uiGroup)")
         }
     }
 

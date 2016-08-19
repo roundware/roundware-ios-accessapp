@@ -23,13 +23,12 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
     // MARK: Outlets and Actions
 
     @IBOutlet weak var roomsLabel: UILabel!
-
     @IBOutlet weak var parentTagPickerView: AKPickerView!
 
     @IBOutlet weak var itemsLabel: UILabel!
-
     @IBOutlet weak var itemsScrollView: UIScrollView!
 
+    @IBOutlet weak var playerLabel: UILabel!
     @IBOutlet weak var playPauseButton: PlayPauseButton!
     @IBOutlet weak var contributeButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
@@ -134,6 +133,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
     var countdownTime = 60
     var timer = NSTimer()
     @IBAction func selectItemAtIndex(index: Int) {
+        self.contributeButton.enabled = true
         let tagView = tagViews[index]
         if (tagView.selected){
             DebugLog("this item is already selected")
@@ -206,6 +206,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        SVProgressHUD.dismiss()
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
         super.view.addBackground("bg-comment.png")
         self.viewModel = TagsViewModel(data: self.rwData!)
@@ -225,6 +226,10 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 
         self.roomsLabel.accessibilityLabel = "Rooms"
         self.roomsLabel.accessibilityTraits = UIAccessibilityTraitHeader
+        self.itemsLabel.accessibilityLabel = "Items"
+        self.itemsLabel.accessibilityTraits = UIAccessibilityTraitHeader\
+        self.playerLabel.accessibilityLabel = "Player"
+        self.playerLabel.accessibilityTraits = UIAccessibilityTraitHeader
 
         //TODO double check for location...
         let rwf = RWFramework.sharedInstance
@@ -243,6 +248,8 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
             //assign button to navigationbar
             self.navigationItem.rightBarButtonItem = barButton
         }
+
+        self.contributeButton.enabled = false
 
     }
 
@@ -328,9 +335,6 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
         scroll.contentSize.height = CGFloat(itemHeight * total)
 
         tagViews = []
-        
-        self.itemsLabel.accessibilityLabel = "Items"
-        self.itemsLabel.accessibilityTraits = UIAccessibilityTraitHeader
 
         for index in 0..<total {
             let tagView = TagView()
@@ -452,8 +456,6 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 //        dump(data)
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             self.playPauseButton.enabled = true
-            self.nextButton.enabled = true
-            self.previousButton.enabled = true
         })
     }
 
@@ -462,7 +464,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
     }
 
     func rwPatchStreamsIdSuccess(data: NSData?){
-//        print("patch stream success")
+        DebugLog("patch stream success")
 //        dump(data)
 
     }
@@ -514,8 +516,8 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
                 timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(TagsViewController.countdown), userInfo: nil, repeats: true)
                 SVProgressHUD.dismiss()
                 self.playPauseButton.showButtonIsPlaying(true)
-                self.nextButton.enabled = true
-                self.previousButton.enabled = true
+//                self.nextButton.enabled = true
+//                self.previousButton.enabled = true
             }
 
             //get values

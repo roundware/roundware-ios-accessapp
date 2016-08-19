@@ -281,8 +281,7 @@
                                                 <exclude reference="oT5-ga-hJ0"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="37" y="140" width="300" height="200"/>
+                                        <variation key="heightClass=regular">
                                             <mask key="constraints">
                                                 <include reference="4OK-Rm-j8c"/>
                                                 <include reference="oT5-ga-hJ0"/>
@@ -304,8 +303,7 @@
                                                 <exclude reference="lGN-UH-JJp"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="187" y="350" width="0.0" height="278"/>
+                                        <variation key="heightClass=regular">
                                             <mask key="constraints">
                                                 <include reference="Ayq-QB-AwM"/>
                                                 <include reference="lGN-UH-JJp"/>
@@ -511,25 +509,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oYr-FB-amj" userLabel="Rooms Label">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="24E-P3-HvX" userLabel="Rooms Label">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" id="MCE-LM-R9b"/>
-                                    <constraint firstAttribute="width" id="a7R-sX-ksw"/>
+                                    <constraint firstAttribute="height" id="kEM-V4-HvW"/>
+                                    <constraint firstAttribute="width" id="so2-M6-sv1"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="MCE-LM-R9b"/>
-                                        <exclude reference="a7R-sX-ksw"/>
+                                        <exclude reference="kEM-V4-HvW"/>
+                                        <exclude reference="so2-M6-sv1"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular">
+                                <variation key="heightClass=regular" misplaced="YES">
+                                    <rect key="frame" x="207" y="368" width="0.0" height="0.0"/>
                                     <mask key="constraints">
-                                        <include reference="MCE-LM-R9b"/>
-                                        <include reference="a7R-sX-ksw"/>
+                                        <include reference="kEM-V4-HvW"/>
+                                        <include reference="so2-M6-sv1"/>
                                     </mask>
                                 </variation>
                             </label>
@@ -557,70 +556,6 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="JzA-bL-0dw">
-                                <rect key="frame" x="48" y="-20" width="248" height="123"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="CountdownLabel" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PVB-qE-AIn">
-                                        <rect key="frame" x="237" y="20" width="48" height="25"/>
-                                        <accessibility key="accessibilityConfiguration" hint="total"/>
-                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="0.0" width="48" height="68"/>
-                                        </variation>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LxB-14-20Q" userLabel="Previous">
-                                        <rect key="frame" x="20" y="46" width="24" height="32"/>
-                                        <accessibility key="accessibilityConfiguration" label="Previous asset"/>
-                                        <state key="normal" image="previous"/>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="95" y="0.0" width="24" height="68"/>
-                                        </variation>
-                                        <connections>
-                                            <action selector="previousTag:" destination="FnB-gZ-PAk" eventType="touchUpInside" id="Qzl-wq-IZo"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ufw-ye-fFd" userLabel="Toggle" customClass="PlayPauseButton" customModule="Digita11y" customModuleProvider="target">
-                                        <rect key="frame" x="61" y="20" width="64" height="83"/>
-                                        <accessibility key="accessibilityConfiguration" label="Toggle stream playback"/>
-                                        <state key="normal">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="155" y="0.0" width="68" height="68"/>
-                                        </variation>
-                                        <connections>
-                                            <action selector="toggleStream:" destination="FnB-gZ-PAk" eventType="touchUpInside" id="TBs-XL-QR3"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MY3-Ra-BVY" userLabel="Next">
-                                        <rect key="frame" x="133" y="51" width="24" height="32"/>
-                                        <accessibility key="accessibilityConfiguration" label="Next asset"/>
-                                        <state key="normal" image="next"/>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="260" y="0.0" width="24" height="68"/>
-                                        </variation>
-                                        <connections>
-                                            <action selector="nextTag:" destination="FnB-gZ-PAk" eventType="touchUpInside" id="eid-dr-xbJ"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nSq-6d-cAH" userLabel="Contribute">
-                                        <rect key="frame" x="190" y="42" width="38" height="39"/>
-                                        <accessibility key="accessibilityConfiguration" label="Contribute"/>
-                                        <state key="normal" image="comment-small"/>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="334" y="0.0" width="40" height="68"/>
-                                        </variation>
-                                        <connections>
-                                            <action selector="contribute:" destination="FnB-gZ-PAk" eventType="touchUpInside" id="RVj-1n-Q3Y"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <variation key="heightClass=regular" misplaced="YES">
-                                    <rect key="frame" x="20" y="691" width="374" height="68"/>
-                                </variation>
-                            </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Md-KG-eZr" userLabel="Items Label">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <constraints>
@@ -660,22 +595,96 @@
                                     </mask>
                                 </variation>
                             </scrollView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oYr-FB-amj" userLabel="Player Label">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" id="MCE-LM-R9b"/>
+                                    <constraint firstAttribute="width" id="a7R-sX-ksw"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="MCE-LM-R9b"/>
+                                        <exclude reference="a7R-sX-ksw"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular" misplaced="YES">
+                                    <rect key="frame" x="207" y="368" width="0.0" height="0.0"/>
+                                    <mask key="constraints">
+                                        <include reference="MCE-LM-R9b"/>
+                                        <include reference="a7R-sX-ksw"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="JzA-bL-0dw">
+                                <rect key="frame" x="48" y="-20" width="248" height="123"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="CountdownLabel" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PVB-qE-AIn">
+                                        <rect key="frame" x="237" y="20" width="48" height="25"/>
+                                        <accessibility key="accessibilityConfiguration" hint="total"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LxB-14-20Q" userLabel="Previous">
+                                        <rect key="frame" x="20" y="46" width="24" height="32"/>
+                                        <accessibility key="accessibilityConfiguration" label="Previous asset"/>
+                                        <state key="normal" image="previous"/>
+                                        <connections>
+                                            <action selector="previousTag:" destination="FnB-gZ-PAk" eventType="touchUpInside" id="Qzl-wq-IZo"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ufw-ye-fFd" userLabel="Toggle" customClass="PlayPauseButton" customModule="Digita11y" customModuleProvider="target">
+                                        <rect key="frame" x="61" y="20" width="64" height="83"/>
+                                        <accessibility key="accessibilityConfiguration" label="Toggle stream playback"/>
+                                        <state key="normal">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="toggleStream:" destination="FnB-gZ-PAk" eventType="touchUpInside" id="TBs-XL-QR3"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MY3-Ra-BVY" userLabel="Next">
+                                        <rect key="frame" x="133" y="51" width="24" height="32"/>
+                                        <accessibility key="accessibilityConfiguration" label="Next asset"/>
+                                        <state key="normal" image="next"/>
+                                        <connections>
+                                            <action selector="nextTag:" destination="FnB-gZ-PAk" eventType="touchUpInside" id="eid-dr-xbJ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nSq-6d-cAH" userLabel="Contribute">
+                                        <rect key="frame" x="190" y="42" width="38" height="39"/>
+                                        <accessibility key="accessibilityConfiguration" label="Contribute"/>
+                                        <state key="normal" image="comment-small"/>
+                                        <connections>
+                                            <action selector="contribute:" destination="FnB-gZ-PAk" eventType="touchUpInside" id="RVj-1n-Q3Y"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <variation key="heightClass=regular" misplaced="YES">
+                                    <rect key="frame" x="20" y="691" width="374" height="68"/>
+                                </variation>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.29019609089999998" green="0.5647059083" blue="0.88627451660000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="oYr-FB-amj" firstAttribute="leading" secondItem="8Wk-MV-rj2" secondAttribute="leadingMargin" id="1XN-1v-o10"/>
                             <constraint firstItem="C7b-85-kju" firstAttribute="top" secondItem="F2h-gl-tuJ" secondAttribute="bottom" id="6e9-LH-pwX"/>
                             <constraint firstItem="wmp-MJ-emO" firstAttribute="top" secondItem="C7b-85-kju" secondAttribute="bottom" id="A0B-2e-0q8"/>
                             <constraint firstItem="JzA-bL-0dw" firstAttribute="leading" secondItem="8Wk-MV-rj2" secondAttribute="leadingMargin" id="Fye-Uh-2R1">
                                 <variation key="heightClass=regular" constant="0.0"/>
                             </constraint>
+                            <constraint firstItem="24E-P3-HvX" firstAttribute="top" secondItem="8Wk-MV-rj2" secondAttribute="topMargin" id="Hwc-F1-V00"/>
                             <constraint firstAttribute="trailingMargin" secondItem="JzA-bL-0dw" secondAttribute="trailing" id="Npy-B5-2hh"/>
                             <constraint firstItem="0Md-KG-eZr" firstAttribute="top" secondItem="C7b-85-kju" secondAttribute="bottom" id="Oxj-78-tap"/>
                             <constraint firstItem="0Md-KG-eZr" firstAttribute="leading" secondItem="8Wk-MV-rj2" secondAttribute="leadingMargin" id="R9v-4x-zf6"/>
-                            <constraint firstItem="oYr-FB-amj" firstAttribute="top" secondItem="C7b-85-kju" secondAttribute="bottom" id="ToU-8S-nug"/>
+                            <constraint firstItem="oYr-FB-amj" firstAttribute="top" secondItem="8Wk-MV-rj2" secondAttribute="topMargin" id="bmA-nP-tJU"/>
+                            <constraint firstItem="oYr-FB-amj" firstAttribute="leading" secondItem="8Wk-MV-rj2" secondAttribute="leadingMargin" id="eWY-6y-MID"/>
                             <constraint firstItem="C7b-85-kju" firstAttribute="leading" secondItem="8Wk-MV-rj2" secondAttribute="leadingMargin" id="hU8-R6-uJl">
                                 <variation key="heightClass=regular" constant="0.0"/>
                             </constraint>
+                            <constraint firstItem="24E-P3-HvX" firstAttribute="leading" secondItem="8Wk-MV-rj2" secondAttribute="leadingMargin" id="iVa-0n-Jfa"/>
                             <constraint firstAttribute="trailingMargin" secondItem="C7b-85-kju" secondAttribute="trailing" constant="50" id="iaW-Vj-UBT">
                                 <variation key="heightClass=regular" constant="0.0"/>
                             </constraint>
@@ -685,50 +694,56 @@
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="oYr-FB-amj"/>
+                                <exclude reference="24E-P3-HvX"/>
                                 <exclude reference="C7b-85-kju"/>
-                                <exclude reference="JzA-bL-0dw"/>
                                 <exclude reference="0Md-KG-eZr"/>
                                 <exclude reference="wmp-MJ-emO"/>
+                                <exclude reference="oYr-FB-amj"/>
+                                <exclude reference="JzA-bL-0dw"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="t3x-2d-rvF"/>
-                                <exclude reference="Oxj-78-tap"/>
-                                <exclude reference="R9v-4x-zf6"/>
-                                <exclude reference="1XN-1v-o10"/>
-                                <exclude reference="ToU-8S-nug"/>
-                                <exclude reference="Fye-Uh-2R1"/>
-                                <exclude reference="Npy-B5-2hh"/>
-                                <exclude reference="nso-75-kir"/>
                                 <exclude reference="6e9-LH-pwX"/>
                                 <exclude reference="hU8-R6-uJl"/>
                                 <exclude reference="iaW-Vj-UBT"/>
+                                <exclude reference="Oxj-78-tap"/>
+                                <exclude reference="R9v-4x-zf6"/>
                                 <exclude reference="A0B-2e-0q8"/>
                                 <exclude reference="tOY-nc-N44"/>
+                                <exclude reference="Hwc-F1-V00"/>
+                                <exclude reference="iVa-0n-Jfa"/>
+                                <exclude reference="bmA-nP-tJU"/>
+                                <exclude reference="eWY-6y-MID"/>
+                                <exclude reference="Fye-Uh-2R1"/>
+                                <exclude reference="Npy-B5-2hh"/>
+                                <exclude reference="nso-75-kir"/>
+                                <exclude reference="t3x-2d-rvF"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular">
                             <mask key="subviews">
-                                <include reference="oYr-FB-amj"/>
+                                <include reference="24E-P3-HvX"/>
                                 <include reference="C7b-85-kju"/>
-                                <include reference="JzA-bL-0dw"/>
                                 <include reference="0Md-KG-eZr"/>
                                 <include reference="wmp-MJ-emO"/>
+                                <include reference="oYr-FB-amj"/>
+                                <include reference="JzA-bL-0dw"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="t3x-2d-rvF"/>
-                                <include reference="Oxj-78-tap"/>
-                                <include reference="R9v-4x-zf6"/>
-                                <include reference="1XN-1v-o10"/>
-                                <include reference="ToU-8S-nug"/>
-                                <include reference="Fye-Uh-2R1"/>
-                                <include reference="Npy-B5-2hh"/>
-                                <include reference="nso-75-kir"/>
                                 <include reference="6e9-LH-pwX"/>
                                 <include reference="hU8-R6-uJl"/>
                                 <include reference="iaW-Vj-UBT"/>
+                                <include reference="Oxj-78-tap"/>
+                                <include reference="R9v-4x-zf6"/>
                                 <include reference="A0B-2e-0q8"/>
                                 <include reference="tOY-nc-N44"/>
+                                <include reference="Hwc-F1-V00"/>
+                                <include reference="iVa-0n-Jfa"/>
+                                <include reference="bmA-nP-tJU"/>
+                                <include reference="eWY-6y-MID"/>
+                                <include reference="Fye-Uh-2R1"/>
+                                <include reference="Npy-B5-2hh"/>
+                                <include reference="nso-75-kir"/>
+                                <include reference="t3x-2d-rvF"/>
                             </mask>
                         </variation>
                     </view>
@@ -740,6 +755,7 @@
                         <outlet property="nextButton" destination="MY3-Ra-BVY" id="9GG-FJ-e0E"/>
                         <outlet property="parentTagPickerView" destination="C7b-85-kju" id="vZo-6W-80T"/>
                         <outlet property="playPauseButton" destination="ufw-ye-fFd" id="tU1-Ty-45U"/>
+                        <outlet property="playerLabel" destination="oYr-FB-amj" id="HgL-N3-ONP"/>
                         <outlet property="previousButton" destination="LxB-14-20Q" id="aOX-fF-VsP"/>
                         <outlet property="roomsLabel" destination="oYr-FB-amj" id="s04-2b-C9A"/>
                         <segue destination="tA3-Ku-PWB" kind="presentation" identifier="ReadSegue" id="W90-rJ-ttY"/>

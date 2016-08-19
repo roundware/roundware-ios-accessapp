@@ -27,6 +27,7 @@ class ReadViewController: BaseViewController {
         super.viewDidLoad()
         self.viewModel = ReadViewModel(data: self.rwData!)
         prompt.text = self.viewModel.prompt
+        //TODO as separate ui items
         response.text = self.viewModel.response
     }
 }
