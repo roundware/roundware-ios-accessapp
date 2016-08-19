@@ -227,7 +227,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
         self.roomsLabel.accessibilityLabel = "Rooms"
         self.roomsLabel.accessibilityTraits = UIAccessibilityTraitHeader
         self.itemsLabel.accessibilityLabel = "Items"
-        self.itemsLabel.accessibilityTraits = UIAccessibilityTraitHeader\
+        self.itemsLabel.accessibilityTraits = UIAccessibilityTraitHeader
         self.playerLabel.accessibilityLabel = "Player"
         self.playerLabel.accessibilityTraits = UIAccessibilityTraitHeader
 
