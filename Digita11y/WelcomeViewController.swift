@@ -19,9 +19,10 @@ class WelcomeViewController: BaseViewController, CLLocationManagerDelegate {
 
     @IBAction func next(sender: UIButton) {
         if (CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse) {
-            debugPrint("authorized when in use")
+            DebugLog("authorized when in use")
             self.performSegueWithIdentifier("SkipToExhibitSegue", sender: nil)
         } else {
+            DebugLog("location not authorized for in use")
             debugPrint(CLLocationManager.authorizationStatus())
             self.performSegueWithIdentifier("LocationSegue", sender: nil)
         }
@@ -35,7 +36,7 @@ class WelcomeViewController: BaseViewController, CLLocationManagerDelegate {
         self.viewModel = WelcomeViewModel(data: self.rwData!)
         WelcomeLabelHeadline.text = self.viewModel.title
         WelcomeLabelBody.text = self.viewModel.body
-        dump(self.viewModel.logoImage)
+//        dump(self.viewModel.logoImage)
         if (self.viewModel.logoImage != nil) {
             WelcomeLogo.image = self.viewModel.logoImage
         }

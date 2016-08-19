@@ -171,7 +171,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
     }
 
     @IBAction func undo(sender: AnyObject) {
-        debugPrint("undoing")
+        DebugLog("undoing")
         let rwf = RWFramework.sharedInstance
 
         if(self.viewModel.mediaType == MediaType.Audio){
@@ -193,10 +193,10 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
 //        self.uploadText = ""
         if self.viewModel.mediaType == MediaType.Text {
             rwf.addText(self.viewModel.uploadText)
-            debugPrint("text added")
+            DebugLog("text added")
         } else {
             rwf.addRecording()
-            debugPrint("recording added")
+            DebugLog("recording added")
         }
 
         rwf.uploadAllMedia(self.viewModel.tagIds())
@@ -208,7 +208,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
     //back from thank you
     @IBAction func prepareForRecontribute(segue: UIStoryboardSegue) {
         self.navigationController!.setNavigationBarHidden(false, animated: true)
-        debugPrint("prepare for recontribute")
+        DebugLog("prepare for recontribute")
 
         self.viewModel.data = self.rwData!
         self.viewModel.resetForRecontribute()
@@ -345,8 +345,8 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
         let keyboardSize: CGSize = userInfo[UIKeyboardFrameBeginUserInfoKey]!.CGRectValue.size
         let offset: CGSize = userInfo[UIKeyboardFrameEndUserInfoKey]!.CGRectValue.size
 
-        debugPrint("keyboardSize \(keyboardSize)")
-        debugPrint("offset \(offset)")
+//        debugPrint("keyboardSize \(keyboardSize)")
+//        debugPrint("offset \(offset)")
         if (self.responseTextView.text == "Your response here"){
             self.responseTextView.text = ""
         }
@@ -383,7 +383,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
 
     /// Sent when the framework determines that recording is possible (via config)
     func rwReadyToRecord(){
-        debugPrint("ready to record")
+        DebugLog("ready to record")
     }
 
     var elapsed = 0
@@ -413,14 +413,14 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
     func rwAudioPlayerDidFinishPlaying() {
 //        let rwf = RWFramework.sharedInstance
 //        displayPreviewAudio()
-        debugPrint("stopped playing")
+        DebugLog("stopped playing")
         displayPreviewAudio()
         UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.uploadButton);
 
     }
 
     func rwPostEnvelopesSuccess(data: NSData?){
-        debugPrint("post envelope success")
+        DebugLog("post envelope success")
     }
 
     /// Sent in the case that the server can not return a new envelope id
@@ -434,7 +434,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
 
     func rwPatchEnvelopesIdSuccess(data: NSData?){
     /// Sent in the case that the server can not accept an envelope item (media upload)
-        debugPrint("patch envelope success")
+        DebugLog("patch envelope success")
         SVProgressHUD.dismiss()
 
         //TODO now mark uiitems as contributed
@@ -464,7 +464,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
     // MARK: UITextView Protocol
 
     func textViewDidBeginEditing(textView: UITextView) {
-        debugPrint("began editing")
+        DebugLog("began editing")
         if textView.textColor == UIColor.lightGrayColor() {
             textView.text = nil
             textView.textColor = UIColor.blackColor()
@@ -472,7 +472,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
     }
 
     func textViewDidEndEditing(textView: UITextView) {
-        debugPrint("finished editing")
+        DebugLog("finished editing")
         if textView.text.isEmpty {
             textView.text = "Your response here"
             textView.textColor = UIColor.lightGrayColor()

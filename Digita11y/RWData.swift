@@ -22,7 +22,7 @@ class RWData {
     //TODO real error handling
     func getUIGroupForIndexAndMode(index: Int, mode: String) -> UIGroup? {
         guard let thisProject = selectedProject else{
-            debugPrint("needs project")
+            DebugLog("needs project")
             return nil
         }
 
@@ -36,9 +36,9 @@ class RWData {
         if(matches.count > 0){
             return matches[0]
         } else {
-            debugPrint("missing UIGroup for \(index) and \(mode)")
+            DebugLog("missing UIGroup for \(index) and \(mode)")
             if let thisProject = selectedProject{
-                debugPrint("For project \(thisProject.id)")
+                DebugLog("For project \(thisProject.id)")
             }
             dump(uiGroups)
             return nil
@@ -47,7 +47,7 @@ class RWData {
 
     func getMaxUIGroupIndexWithSelected(mode:String) -> Int {
         guard let thisProject = selectedProject else{
-            debugPrint("needs project")
+            DebugLog("needs project")
             return 0
         }
         let matches = uiGroups.filter() {
@@ -68,7 +68,7 @@ class RWData {
 
     func resetUIGroupAndAbove(index: Int, mode: String) -> Bool{
         guard let thisProject = selectedProject else{
-            debugPrint("needs project")
+            DebugLog("needs project")
             return false
         }
         let matches = uiGroups.filter() {
@@ -112,7 +112,7 @@ class RWData {
             let tag = getTagForUIItem(uiItem){
             return tag
         } else {
-            debugPrint("uiitem or tag not found for uigroup \(index) and \(mode)")
+            DebugLog("uiitem or tag not found for uigroup \(index) and \(mode)")
             return nil
         }
     }
@@ -126,13 +126,13 @@ class RWData {
             $0.active == true
         }).first,
         let previousSelectedUIItem = previousUIGroup.selectedUIItem {
-            debugPrint("previous uigroup \(previousUIGroup.index)")
-            debugPrint("and its selected uiitem \(previousSelectedUIItem.id)")
+            DebugLog("previous uigroup \(previousUIGroup.index)")
+            DebugLog("and its selected uiitem \(previousSelectedUIItem.id)")
             let uiItems = uiGroup.uiItems.filter({ $0.parent == previousSelectedUIItem.id})
 //            dump(uiItems)
             return uiItems
         } else {
-            debugPrint("no previous uiGroup selection.  showing all uiItems for group")
+            DebugLog("no previous uiGroup selection.  showing all uiItems for group")
             let uiItems = uiGroup.uiItems
 //            dump(uiItems)
             return uiItems
@@ -154,7 +154,7 @@ class RWData {
         if let tag = tags.filter({$0.id == uiItem.tagId}).first {
             return tag
         } else {
-            debugPrint("Missing tag for uiItem \(uiItem.id) with tagId \(uiItem.tagId)")
+            DebugLog("Missing tag for uiItem \(uiItem.id) with tagId \(uiItem.tagId)")
             return nil
         }
     }
@@ -163,7 +163,7 @@ class RWData {
         if let selectedUIItem = uiGroup.selectedUIItem {
           return getTagForUIItem(selectedUIItem)
         } else {
-            debugPrint("missing uiItem for \(uiGroup)")
+            DebugLog("missing uiItem for \(uiGroup)")
             return nil
         }
     }

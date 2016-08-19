@@ -20,7 +20,7 @@ class TagsViewModel: BaseViewModel  {
     var selectedRoomIndex: Int?  {
         didSet {
             if let index = self.selectedRoomIndex {
-                debugPrint("selected room index \(index) out of \(self.roomTags)")
+//                debugPrint("selected room index \(index) out of \(self.roomTags)")
                 self.selectedRoomTag = self.roomTags[index]
             } else {
                 self.selectedRoomTag = nil
@@ -33,11 +33,11 @@ class TagsViewModel: BaseViewModel  {
             if let tag = self.selectedRoomTag {
                 self.roomUIGroup.selectedUIItem = self.roomUIGroup.uiItems.filter({$0.tagId == tag.id }).first
                 data.updateUIGroup(self.roomUIGroup)
-                debugPrint("selected ui item for room is \(self.roomUIGroup.selectedUIItem)")
-                debugPrint("and their tags \(data.getTagsWithAudioAssetsForUIItems(data.getRelevantUIItems(self.itemsUIGroup)))")
+//                debugPrint("selected ui item for room is \(self.roomUIGroup.selectedUIItem)")
+//                debugPrint("and their tags \(data.getTagsWithAudioAssetsForUIItems(data.getRelevantUIItems(self.itemsUIGroup)))")
                 self.itemTags = data.getTagsWithAudioAssetsForUIItems(data.getRelevantUIItems(self.itemsUIGroup))
 //                self.itemTags = data.getTagsForUIItems(data.getRelevantUIItems(self.itemsUIGroup))
-                debugPrint("item tags set as \(itemTags)")
+//                debugPrint("item tags set as \(itemTags)")
                 self.selectedItemIndex = 0
                 let rwf = RWFramework.sharedInstance
                 if(rwf.isPlaying){
@@ -58,7 +58,7 @@ class TagsViewModel: BaseViewModel  {
     var selectedItemIndex: Int?  {
         didSet {
             if let index = selectedItemIndex {
-                debugPrint("selected item index \(index)")
+//                debugPrint("selected item index \(index)")
                 if (self.itemTags.count > 0) {
                     self.selectedItemTag = self.itemTags[index]
                 }
@@ -75,7 +75,7 @@ class TagsViewModel: BaseViewModel  {
                     self.itemsUIGroup.selectedUIItem = self.itemsUIGroup.uiItems.filter({$0.tagId == tag.id }).first
                     data.updateUIGroup(self.itemsUIGroup)
                     let rwf = RWFramework.sharedInstance
-                    debugPrint("submitting tag id \(tag.id)")
+                    DebugLog("submitting tag id \(tag.id)")
                     rwf.submitTags(String(tag.id))
                 }
             } else{
@@ -96,7 +96,7 @@ class TagsViewModel: BaseViewModel  {
         //get room options
         self.roomUIGroup = data.getUIGroupForIndexAndMode(2, mode: "listen")!
         self.roomTags = data.getTagsForUIItems(data.getRelevantUIItems(self.roomUIGroup))
-        debugPrint("room tags \(self.roomTags)")
+        DebugLog("room tags \(self.roomTags)")
 
         //set items ui group
         self.itemsUIGroup = data.getUIGroupForIndexAndMode(3, mode: "listen")!

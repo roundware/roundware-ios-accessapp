@@ -53,7 +53,7 @@ class BaseViewController: UIViewController {
             item.removeFromSuperview()
         }
         let newContentOffsetX = (button.buttonWidth - scroll.bounds.size.width) / 2
-        debugPrint("new content offset \(newContentOffsetX)")
+//        debugPrint("new content offset \(newContentOffsetX)")
 
         for index in 0..<total {
             button = UIButtonTag(type: UIButtonType.System)

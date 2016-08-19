@@ -62,8 +62,8 @@ import UIKit
     }
 
     func setTag(tagModel:Tag, index: Int, total: Int){
-        debugPrint("setting tag for \(tagModel.id) at index \(index)")
-        debugPrint("hasImage \(String(hasImages)) and hasText \(String(hasTexts))")
+//        debugPrint("setting tag for \(tagModel.id) at index \(index)")
+//        debugPrint("hasImage \(String(hasImages)) and hasText \(String(hasTexts))")
         tagTitle.setTitle(tagModel.locMsg, forState: .Normal)
         tagTitle.accessibilityLabel = tagModel.locMsg + ", \(index + 1) of \(total)"
 

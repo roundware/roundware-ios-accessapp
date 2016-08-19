@@ -88,4 +88,10 @@ class ChooseProjectViewController: BaseViewController, UIScrollViewDelegate, RWF
         SVProgressHUD.dismiss()
         self.performSegueWithIdentifier("ProjectSegue", sender: nil)
     }
+    func rwGetProjectsIdFailure(error: NSError?) {
+        SVProgressHUD.dismiss()
+        DebugLog("project id failure")
+
+    }
+
 }

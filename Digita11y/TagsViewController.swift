@@ -45,7 +45,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
     @IBAction func toggleStream(sender: AnyObject) {
         let rwf = RWFramework.sharedInstance
         if (rwf.isPlaying) {
-            debugPrint("pause timer")
+            DebugLog("pause timer")
             timer.invalidate()
             rwf.stop()
             self.playPauseButton.showButtonIsPlaying(false)
@@ -61,7 +61,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
     //really next asset
     //TODOsoon rewrite with api update
     @IBAction func nextTag(sender: AnyObject) {
-        debugPrint("next asset really")
+        DebugLog("next item")
         let rwf = RWFramework.sharedInstance
         if (rwf.isPlaying) {
             //set to first item if none is selected
@@ -102,7 +102,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
     @IBAction func previousTag(sender: AnyObject) {
         //TODOsoon will restart current asset or
         //move to previous asset
-        debugPrint("previous tag")
+        DebugLog("previous tag")
 
     }
 
@@ -127,7 +127,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 
     //do not confuse with pickerView delegate method
     @IBAction func selectItem(sender: UIButton) {
-        debugPrint("selected tag at index \(String(sender.tag))")
+        DebugLog("selected tag at index \(String(sender.tag))")
         selectItemAtIndex(sender.tag)
     }
 
@@ -136,7 +136,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
     @IBAction func selectItemAtIndex(index: Int) {
         let tagView = tagViews[index]
         if (tagView.selected){
-            debugPrint("this item is already selected")
+            DebugLog("this item is already selected")
         } else {
             tagView.selected = true
             self.viewModel.selectedItemIndex = index
@@ -156,18 +156,17 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
     }
 
     func countdown() {
-        debugPrint("counting")
+//        debugPrint("counting")
         if countdownTime > 0 {
             let seconds = countdownTime % 60
             let minutes = (countdownTime / 60) % 60
-            debugPrint("seconds \(seconds)")
-            debugPrint("minutes \(minutes)")
+//            debugPrint("seconds \(seconds)")
+//            debugPrint("minutes \(minutes)")
             let countdownText = String(format: "%02d:%02d", minutes, seconds)
             countdownLabel.text = countdownText
             countdownLabel.accessibilityLabel = "\(minutes) minutes and \(seconds) seconds total for this tag"
             countdownTime -= 1
         }
-
     }
 
     //item must be set already and stored in rwdata
@@ -340,7 +339,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
             let texts = self.viewModel.data.getAssetsForTagIdOfMediaType(tag.id, mediaType: MediaType.Text)
 
             tagView.hasImages = images.count > 0
-            debugPrint("tagview index \(index) has \(images.count) images")
+//            debugPrint("tagview index \(index) has \(images.count) images")
 
             tagView.hasTexts = texts.count > 0
             tagView.setTag(tag, index: index, total: total)
@@ -364,10 +363,10 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
             }
 
             let audioAssets : [Asset] = self.viewModel.data.getAssetsForTagIdOfMediaType(tagView.id!, mediaType: MediaType.Audio)
-            debugPrint("audio assets for tag \(tagView.id!)")
+//            debugPrint("audio assets for tag \(tagView.id!)")
 //            dump(audioAssets)
             let totalLength = audioAssets.map({$0.audioLength}).reduce(0, combine: +)
-            debugPrint("total length is \(totalLength)")
+//            debugPrint("total length is \(totalLength)")
             let arrayOfAssetIds = audioAssets.map({ String($0.assetID)})
             tagView.arrayOfAssetIds = arrayOfAssetIds
             tagView.totalLength = totalLength
@@ -428,7 +427,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
     // MARK: - AKPickerViewDelegate
 
     func pickerView(pickerView: AKPickerView, didSelectItem item: Int) {
-        debugPrint("selected room with index \(item)")
+        DebugLog("selected room with index \(item)")
         if( self.viewModel.selectedRoomIndex != item){
             self.viewModel.selectedRoomIndex = item
             resetRoomItems()
@@ -509,7 +508,8 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 
             if waitingToStart{
                 //start playing actually!
-                debugPrint("starting time")
+//                debugPrint("starting time")
+                DebugLog("playback has begun in UI")
                 waitingToStart = false
                 timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(TagsViewController.countdown), userInfo: nil, repeats: true)
                 SVProgressHUD.dismiss()

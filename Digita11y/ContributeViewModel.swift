@@ -78,7 +78,7 @@ class ContributeViewModel: BaseViewModel  {
         var ids = String(itemTag.id) + ","
         for index in 1 ..< speakIndex {
             if let tag = data.getTagForIndexAndMode(index, mode: "speak"){
-                debugPrint("adding tagId for speak index \(index)")
+//                debugPrint("adding tagId for speak index \(index)")
                 ids += String(tag.id) + ","
             }
         }

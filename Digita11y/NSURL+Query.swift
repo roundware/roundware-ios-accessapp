@@ -11,14 +11,14 @@ import Foundation
 extension NSURL {
     var queryItems: [String: String]? {
         var params = [String: String]()
-        dump(self)
-        dump(params)
+//        dump(self)
+//        dump(params)
         return NSURLComponents(URL: self, resolvingAgainstBaseURL: false)?
             .queryItems?
             .reduce([:], combine: { (_, item) -> [String: String] in
                 params[item.name] = item.value
-                dump(item.name)
-                dump(item.value)
+//                dump(item.name)
+//                dump(item.value)
                 return params
             })
     }

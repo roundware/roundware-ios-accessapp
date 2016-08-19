@@ -60,7 +60,7 @@ struct Asset {
         } else if json["media_type"].string == "audio" {
             mediaType = .Audio
         } else {
-            debugPrint(json["media_type"].string)
+//            debugPrint(json["media_type"].string)
         }
     }
 }

@@ -14,12 +14,12 @@ class LocationViewController: BaseViewController, CLLocationManagerDelegate {
     // MARK: Outlets and Actions
     @IBAction func next(sender: AnyObject) {
         //TODOnow needs a hint "requests location services permissions"
-        debugPrint("getting location authorization")
+        DebugLog("getting location authorization")
         let status = CLLocationManager.authorizationStatus()
         if status == .AuthorizedWhenInUse || status == .AuthorizedAlways {
             self.performSegueWithIdentifier("ExhibitSegue", sender: nil)
         } else {
-            debugPrint("request in use")
+            DebugLog("requesting location when in use")
             locationManager.requestWhenInUseAuthorization()
         }
     }
@@ -42,11 +42,12 @@ class LocationViewController: BaseViewController, CLLocationManagerDelegate {
     // MARK: LocationManager Protocol
 
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        debugPrint("authorization status changed")
+        DebugLog("authorization status changed")
         if status == .AuthorizedWhenInUse || status == .AuthorizedAlways {
             self.performSegueWithIdentifier("ExhibitSegue", sender: nil)
         } else {
-            debugPrint("we need your location")
+            //TODO
+            DebugLog("location not authorized but needed?")
         }
     }
 }

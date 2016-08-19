@@ -17,8 +17,8 @@ class ThanksViewController: BaseViewController, UIScrollViewDelegate {
 
     @IBAction func selectedThis(sender: UIButton) {
         self.viewModel.uiGroup.selectedUIItem = self.viewModel.uiGroup.uiItems.filter({$0.tagId == sender.tag}).first
-        debugPrint("selected Ui item")
-        dump(self.viewModel.uiGroup.selectedUIItem )
+        DebugLog("selected tag id \(sender.tag)")
+//        dump(self.viewModel.uiGroup.selectedUIItem )
         self.viewModel.data.updateUIGroup(self.viewModel.uiGroup)
         self.performSegueWithIdentifier("Recontribute", sender: nil)
     }
