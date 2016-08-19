@@ -14,6 +14,8 @@ class WelcomeViewController: BaseViewController, CLLocationManagerDelegate {
     // MARK: Outlets and Actions
     @IBOutlet weak var WelcomeLabelBody: UILabelBody!
     @IBOutlet weak var WelcomeLabelHeadline: UILabelHeadline!
+    @IBOutlet weak var WelcomeLogo: UIImageView!
+
 
     @IBAction func next(sender: UIButton) {
         if (CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse) {
@@ -33,5 +35,9 @@ class WelcomeViewController: BaseViewController, CLLocationManagerDelegate {
         self.viewModel = WelcomeViewModel(data: self.rwData!)
         WelcomeLabelHeadline.text = self.viewModel.title
         WelcomeLabelBody.text = self.viewModel.body
+        dump(self.viewModel.logoImage)
+        if (self.viewModel.logoImage != nil) {
+            WelcomeLogo.image = self.viewModel.logoImage
+        }
     }
 }

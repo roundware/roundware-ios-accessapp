@@ -12,7 +12,7 @@ import QuartzCore
 
 @IBDesignable class UIButtonBorder: UIButton {
 
-    let buttonHeight :  CGFloat = 50.0
+    var buttonHeight :  CGFloat = 50.0
     let buttonWidth :   CGFloat = 297.0
     let buttonMarginX : CGFloat = 1.0
     let buttonMarginY : CGFloat = 20.0
@@ -26,6 +26,8 @@ import QuartzCore
     //during developing IB fires this init to create object
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.setTitleColor(UIColor.whiteColor(), forState: state)
+        self.setTitleColor(UIColor.lightGrayColor(), forState: .Disabled)
         setupViews()
     }
 
@@ -39,14 +41,19 @@ import QuartzCore
         return CGSizeMake(buttonWidth, buttonHeight)
     }
 
+
     override class func requiresConstraintBasedLayout() -> Bool {
         return true
     }
 
     override func setTitle(title: String?, forState state: UIControlState) {
         super.setTitle(title, forState: state)
-        self.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        self.titleLabel?.numberOfLines = 0
         self.setType()
+        let attributeString = NSAttributedString(string: title!, attributes: [NSFontAttributeName: titleLabel!.font])
+        let rect = attributeString.boundingRectWithSize(CGSizeMake(buttonWidth, CGFloat.max), options: NSStringDrawingOptions.UsesLineFragmentOrigin, context: nil)
+        buttonHeight = rect.size.height + 18
+        self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, buttonWidth, buttonHeight)
     }
 
     func setType(){
@@ -62,7 +69,6 @@ import QuartzCore
         self.layer.masksToBounds = false
 
         self.backgroundColor = UIColor.DarkSkyBlueColor()
-
         self.setType()
     }
 }

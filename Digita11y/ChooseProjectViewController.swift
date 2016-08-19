@@ -43,13 +43,12 @@ class ChooseProjectViewController: BaseViewController, UIScrollViewDelegate, RWF
         //set scroll view for options
         let scroll = ProjectsScrollView
         scroll.delegate = self
-        let total = self.viewModel.projects.count
-        let buttons = self.createButtonsForScroll(total, scroll: scroll)
+        let titles = self.viewModel.projects.map{$0.name}
+        let buttons = self.createButtonsForScroll(titles, scroll: scroll)
 
         //set titles and action
         for (index, button) in buttons.enumerate(){
             let project = viewModel.projects[index]
-            button.setTitle(project.name, forState: .Normal)
             if(self.viewModel.projects[index].active == false){
                 button.enabled = false
             }

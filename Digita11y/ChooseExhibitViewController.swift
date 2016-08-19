@@ -33,13 +33,12 @@ class ChooseExhibitController: BaseViewController, UIScrollViewDelegate {
         //scroll
         let scroll = ExhibitScroll
         scroll.delegate = self
-        let total = self.viewModel.tags.count
-        let buttons = self.createButtonsForScroll(total, scroll: scroll)
+        let titles = self.viewModel.tags.map{$0.locMsg}
+        let buttons = self.createButtonsForScroll(titles, scroll: scroll)
 
         for (index, button) in buttons.enumerate(){
             let tag = self.viewModel.tags[index]
             let uiItem = self.viewModel.uiItems[index]
-            button.setTitle(tag.locMsg, forState: .Normal)
             if(uiItem.active == false || self.rwData?.getChildren(uiItem).count == 0){
                 button.enabled = false
             }

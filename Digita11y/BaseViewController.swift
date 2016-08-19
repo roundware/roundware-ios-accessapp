@@ -76,33 +76,33 @@ class BaseViewController: UIViewController {
 
     }
 
-    func createButtonsForScroll(total: Int, scroll: UIScrollView) -> [UIButton]{
+    func createButtonsForScroll(titles: [String], scroll: UIScrollView) -> [UIButton]{
         var button  = UIButtonBorder(type: UIButtonType.System)
         var buttons : [UIButton] = []
+        var width: CGFloat = 0.0
+        var height: CGFloat = 0.0
 
         for (_, item) in scroll.subviews.enumerate(){
             item.removeFromSuperview()
         }
 
-        for index in 0..<total {
+        for (index, title) in titles.enumerate() {
             button = UIButtonBorder(type: UIButtonType.System)
-            let indexFloat = CGFloat(index)
+            button.setTitle(title, forState: .Normal)
             let frame = CGRect(
                 x: button.buttonMarginX,
-                y: indexFloat * (button.buttonMarginY + button.buttonHeight),
+                y: height,
                 width: button.buttonWidth,
                 height: button.buttonHeight )
+            width = max(width, button.buttonWidth)
+            height = height + button.buttonMarginY + button.buttonHeight
             button.frame = frame
-            button.titleLabel?.numberOfLines = 0
-
-            button.setTitleColor(UIColor.lightGrayColor(), forState: .Disabled)
             buttons.append(button as UIButton)
             scroll.addSubview(button)
         }
-
-        scroll.contentSize.width = button.buttonWidth + CGFloat(2)
-        scroll.contentSize.height = (button.buttonHeight + button.buttonMarginY) * CGFloat(total)
-
+        
+        scroll.contentSize.width = width
+        scroll.contentSize.height = height
         return buttons
     }
 
