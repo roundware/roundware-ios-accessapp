@@ -35,7 +35,8 @@ class TagsViewModel: BaseViewModel  {
                 data.updateUIGroup(self.roomUIGroup)
 //                debugPrint("selected ui item for room is \(self.roomUIGroup.selectedUIItem)")
 //                debugPrint("and their tags \(data.getTagsWithAudioAssetsForUIItems(data.getRelevantUIItems(self.itemsUIGroup)))")
-                self.itemTags = data.getTagsWithAudioAssetsForUIItems(data.getRelevantUIItems(self.itemsUIGroup))
+                self.itemTags = data.getTagsForUIItems(data.getRelevantUIItems(self.itemsUIGroup))
+//                self.itemTags = data.getTagsWithAudioAssetsForUIItems(data.getRelevantUIItems(self.itemsUIGroup))
 //                self.itemTags = data.getTagsForUIItems(data.getRelevantUIItems(self.itemsUIGroup))
 //                debugPrint("item tags set as \(itemTags)")
                 self.selectedItemIndex = 0
@@ -97,10 +98,11 @@ class TagsViewModel: BaseViewModel  {
         self.roomUIGroup = data.getUIGroupForIndexAndMode(2, mode: "listen")!
         self.roomTags = data.getTagsForUIItems(data.getRelevantUIItems(self.roomUIGroup))
         DebugLog("room tags \(self.roomTags)")
+//        dump(data.getRelevantUIItems(self.roomUIGroup))
 
         //set items ui group
         self.itemsUIGroup = data.getUIGroupForIndexAndMode(3, mode: "listen")!
-
+//        dump(data.getUIGroupForIndexAndMode(3, mode: "listen"))
         //set stream
         self.stream = data.stream
     }

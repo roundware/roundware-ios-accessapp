@@ -44,6 +44,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
     @IBAction func toggleStream(sender: AnyObject) {
         let rwf = RWFramework.sharedInstance
         if (rwf.isPlaying) {
+            SVProgressHUD.dismiss()
             DebugLog("pause timer")
             timer.invalidate()
             rwf.stop()
@@ -133,7 +134,6 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
     var countdownTime = 60
     var timer = NSTimer()
     @IBAction func selectItemAtIndex(index: Int) {
-        self.contributeButton.enabled = true
         let tagView = tagViews[index]
         if (tagView.selected){
             DebugLog("this item is already selected")
@@ -223,6 +223,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
         self.parentTagPickerView.highlightedFont = UIFont(name: "AvenirNext-Medium", size: 30)!
         self.parentTagPickerView.reloadData()
         self.parentTagPickerView.selectItem(0)
+        self.contributeButton.enabled = true
 
         self.roomsLabel.accessibilityLabel = "Rooms"
         self.roomsLabel.accessibilityTraits = UIAccessibilityTraitHeader
@@ -248,9 +249,6 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
             //assign button to navigationbar
             self.navigationItem.rightBarButtonItem = barButton
         }
-
-        self.contributeButton.enabled = false
-
     }
 
 
@@ -328,6 +326,8 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 
         //show new assets
         let total = self.viewModel.itemTags.count
+        DebugLog("\(total) items in this room")
+//        dump(self.viewModel.itemTags)
         scroll.delegate = self
         let itemWidth = 300
         let itemHeight = 80
@@ -546,8 +546,8 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
             //ok we have our values
             //let see what asset we are on
             guard let assetID = queryItems["asset"] else{
-                DebugLog("no assetID set")
-                DebugLog(String(queryItems))
+//                DebugLog("no assetID set")
+//                DebugLog(String(queryItems))
                 return
             }
 
@@ -555,12 +555,12 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 
 //            debugPrint("assetID is \(assetID)")
             guard let assetTagView = tagViews.filter({ $0.arrayOfAssetIds.contains( assetID )}).first else {
-                DebugLog("no assetTagView found")
+//                DebugLog("no assetTagView found")
                 return
             }
 
             guard let index = self.viewModel.selectedItemIndex else {
-                DebugLog("no item selected")
+//                DebugLog("no item selected")
                 return
             }
 
@@ -582,7 +582,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 //                        debugPrint("there are \(remaining) assets remaining of \(assetTagView.arrayOfAssetIds.count)")
                         let percentage = Float((Float(assetTagView.arrayOfAssetIds.count) - Float(remaining)!) / Float(assetTagView.arrayOfAssetIds.count))
                         assetTagView.tagProgress.hidden = false
-                        DebugLog("we are \(percentage) through this tag's assets")
+//                        DebugLog("we are \(percentage) through this tag's assets")
                         assetTagView.tagProgress.setProgress(percentage, animated: true)
 
                     } else {
