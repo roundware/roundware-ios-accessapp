@@ -32,11 +32,11 @@ import UIKit
         self.setupViews()
     }
 
-    override func intrinsicContentSize() -> CGSize {
-        return CGSizeMake(width, height)
+    override var intrinsicContentSize : CGSize {
+        return CGSize(width: width, height: height)
     }
 
-    override class func requiresConstraintBasedLayout() -> Bool {
+    override class var requiresConstraintBasedLayout : Bool {
         return true
     }
 
@@ -55,13 +55,13 @@ import UIKit
     }
 
 
-    override func drawRect(rect: CGRect) {
-        super.drawRect(rect)
-        self.setTitleColor(UIColor.clearColor(), forState: .Normal)
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        self.setTitleColor(UIColor.clear, for: UIControlState())
         showButtonIsPlaying(false)
     }
 
-    func showButtonIsPlaying(playing: Bool) {
+    func showButtonIsPlaying(_ playing: Bool) {
 //        let fillColor = UIColor(red: 0.000, green: 0.000, blue: 0.000, alpha: 0.100)
 //        let fillColor2 = UIColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 1.000)
 //        let strokeColor = UIColor(red: 0.225, green: 0.225, blue: 0.225, alpha: 1.000)
@@ -69,8 +69,8 @@ import UIKit
         if (playing){
             print("playing")
             self.accessibilityLabel = "Pause"
-            self.setTitle("pause", forState:  UIControlState.Normal)
-            self.setBackgroundImage(UIImage(named: "pause.png"), forState: UIControlState.Normal)
+            self.setTitle("pause", for:  UIControlState())
+            self.setBackgroundImage(UIImage(named: "pause.png"), for: UIControlState())
 
 //
 //            //// PauseIcon
@@ -86,10 +86,10 @@ import UIKit
 
         } else {
             print("paused")
-            self.setTitle("play", forState:  UIControlState.Normal)
+            self.setTitle("play", for:  UIControlState())
             self.accessibilityLabel = "Play"
 
-            self.setBackgroundImage(UIImage(named: "play.png"), forState: UIControlState.Normal)
+            self.setBackgroundImage(UIImage(named: "play.png"), for: UIControlState())
 //            let stroke840Path = UIBezierPath(ovalInRect: CGRectMake(2.6, 2.5, 64.3, 63.9))
 //            fillColor.setFill()
 //            stroke840Path.fill()

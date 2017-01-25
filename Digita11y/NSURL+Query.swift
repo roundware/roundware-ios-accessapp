@@ -8,14 +8,14 @@
 // from https://gist.github.com/jackreichert/81a7ce9d0cefd5d1780f
 
 import Foundation
-extension NSURL {
+extension URL {
     var queryItems: [String: String]? {
         var params = [String: String]()
 //        dump(self)
 //        dump(params)
-        return NSURLComponents(URL: self, resolvingAgainstBaseURL: false)?
+        return URLComponents(url: self, resolvingAgainstBaseURL: false)?
             .queryItems?
-            .reduce([:], combine: { (_, item) -> [String: String] in
+            .reduce([:], { (_, item) -> [String: String] in
                 params[item.name] = item.value
 //                dump(item.name)
 //                dump(item.value)

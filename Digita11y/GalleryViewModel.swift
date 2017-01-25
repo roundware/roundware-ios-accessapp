@@ -8,6 +8,6 @@ class GalleryViewModel: BaseViewModel  {
         self.data = data
         //set room tags
         tag = data.getTagForIndexAndMode(3, mode: "listen")!
-        assets = data.getAssetsForTagIdOfMediaType(tag.id, mediaType: .Photo)
+        assets = data.getAssetsForTagIdOfMediaType(tag.id, mediaType: .photo)
     }
 }

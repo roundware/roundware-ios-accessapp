@@ -4,10 +4,10 @@ import RWFramework
 import SwiftyJSON
 
 enum MediaType {
-    case None
-    case Text
-    case Photo
-    case Audio
+    case none
+    case text
+    case photo
+    case audio
 }
 
 private var TextCache = [String:String]()
@@ -17,13 +17,13 @@ struct Asset {
     var volume = 0
     var project = 0
     var assetID = 0
-    var mediaType = MediaType.None
+    var mediaType = MediaType.none
     var tagIDs: [Int] = []
-    var fileURL = NSURL()
+    var fileURL = URL(string:"")
     var audioLength: Float = 0.0
     var text: String? {
         get {
-            return TextCache[fileURL.absoluteString ?? ""]
+            return TextCache[fileURL?.absoluteString ?? ""]
         }
     }
 
@@ -37,28 +37,28 @@ struct Asset {
         audioLength = json["audio_length_in_seconds"].float ?? 0
         tagIDs = json["tag_ids"].array?.map { $0.int ?? 0 } ?? []
 
-        let base = RWFrameworkConfig.getConfigValueAsString("base_url")
+        let base = RWFrameworkConfig.getConfigValueAsString(key: "base_url")
         var path = (json["file"].string ?? "")
         if base.hasSuffix("/") && path.hasPrefix("/") {
-            path.removeAtIndex(path.startIndex)
+            path.remove(at: path.startIndex)
         }
         let strURL = base + path
-        fileURL = NSURL(string: strURL) ?? NSURL()
+        fileURL = (NSURL(string: strURL) ?? NSURL()) as URL
 
         //TODO offload text caching
         if json["media_type"].string == "text" {
-            mediaType = .Text
+            mediaType = .text
 
-            let url = fileURL.absoluteString
-            if TextCache[url] == nil {
-                requestAssetText(url) { text in
-                    TextCache[url] = text
+            let url = fileURL?.absoluteString
+            if TextCache[url!] == nil {
+                requestAssetText(url!) { text in
+                    TextCache[url!] = text
                 }
             }
         } else if json["media_type"].string == "photo" {
-            mediaType = .Photo
+            mediaType = .photo
         } else if json["media_type"].string == "audio" {
-            mediaType = .Audio
+            mediaType = .audio
         } else {
 //            debugPrint(json["media_type"].string)
         }

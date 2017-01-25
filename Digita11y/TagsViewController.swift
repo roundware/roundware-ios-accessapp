@@ -36,12 +36,12 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
     @IBOutlet weak var speedButton: UIButton!
     @IBOutlet weak var countdownLabel: UILabel!
 
-    @IBAction func cycleSpeed(sender: AnyObject) {
+    @IBAction func cycleSpeed(_ sender: AnyObject) {
         //TODO cycle speed
         debugPrint("cycle speed")
     }
 
-    @IBAction func toggleStream(sender: AnyObject) {
+    @IBAction func toggleStream(_ sender: AnyObject) {
         let rwf = RWFramework.sharedInstance
         if (rwf.isPlaying) {
             SVProgressHUD.dismiss()
@@ -49,18 +49,18 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
             timer.invalidate()
             rwf.stop()
             self.playPauseButton.showButtonIsPlaying(false)
-            self.nextButton.enabled = false
-            self.previousButton.enabled = false
-            UIApplication.sharedApplication().idleTimerDisabled = false
+            self.nextButton.isEnabled = false
+            self.previousButton.isEnabled = false
+            UIApplication.shared.isIdleTimerDisabled = false
         } else {
             startPlaying()
-            UIApplication.sharedApplication().idleTimerDisabled = true
+            UIApplication.shared.isIdleTimerDisabled = true
         }
     }
 
     //really next asset
     //TODOsoon rewrite with api update
-    @IBAction func nextTag(sender: AnyObject) {
+    @IBAction func nextTag(_ sender: AnyObject) {
         DebugLog("next item")
         let rwf = RWFramework.sharedInstance
         if (rwf.isPlaying) {
@@ -99,41 +99,41 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
         }
     }
 
-    @IBAction func previousTag(sender: AnyObject) {
+    @IBAction func previousTag(_ sender: AnyObject) {
         //TODOsoon will restart current asset or
         //move to previous asset
         DebugLog("previous tag")
 
     }
 
-    @IBAction func contribute(sender: AnyObject) {
+    @IBAction func contribute(_ sender: AnyObject) {
         let rwf = RWFramework.sharedInstance
         if (rwf.isPlaying) {
             self.toggleStream(self)
         }
-        self.performSegueWithIdentifier("ContributeSegue", sender: sender)
+        self.performSegue(withIdentifier: "ContributeSegue", sender: sender)
     }
 
-    @IBAction func seeMap(sender: AnyObject) {
+    @IBAction func seeMap(_ sender: AnyObject) {
         let rwf = RWFramework.sharedInstance
         if (rwf.isPlaying) {
             self.toggleStream(self)
         }
-        self.performSegueWithIdentifier("MapSegue", sender: sender)
+        self.performSegue(withIdentifier: "MapSegue", sender: sender)
     }
 
 
     // MARK: Asset Actions
 
     //do not confuse with pickerView delegate method
-    @IBAction func selectItem(sender: UIButton) {
+    @IBAction func selectItem(_ sender: UIButton) {
         DebugLog("selected tag at index \(String(sender.tag))")
         selectItemAtIndex(sender.tag)
     }
 
     var countdownTime = 60
-    var timer = NSTimer()
-    @IBAction func selectItemAtIndex(index: Int) {
+    var timer = Timer()
+    @IBAction func selectItemAtIndex(_ index: Int) {
         let tagView = tagViews[index]
         if (tagView.selected){
             DebugLog("this item is already selected")
@@ -170,22 +170,22 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
     }
 
     //item must be set already and stored in rwdata
-    @IBAction func seeGalleryForAsset(sender: UIButton) {
+    @IBAction func seeGalleryForAsset(_ sender: UIButton) {
         let rwf = RWFramework.sharedInstance
         if (rwf.isPlaying) {
             self.toggleStream(self)
         }
-        self.performSegueWithIdentifier("GallerySegue", sender: sender)
+        self.performSegue(withIdentifier: "GallerySegue", sender: sender)
         
     }
 
     //item must be set already and stored in rwdata
-    @IBAction func seeTextForAsset(sender: UIButton) {
+    @IBAction func seeTextForAsset(_ sender: UIButton) {
         let rwf = RWFramework.sharedInstance
         if (rwf.isPlaying) {
             self.toggleStream(self)
         }
-        self.performSegueWithIdentifier("ReadSegue", sender: sender)
+        self.performSegue(withIdentifier: "ReadSegue", sender: sender)
     }
 
 
@@ -193,11 +193,11 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 
 
     //back from modals
-    @IBAction func prepareForTagsDimiss(segue: UIStoryboardSegue) {
+    @IBAction func prepareForTagsDimiss(_ segue: UIStoryboardSegue) {
         //TODOsoon move focus to current asset
     }
     //back from contribute
-    @IBAction func prepareForTagsUnwind(segue: UIStoryboardSegue) {
+    @IBAction func prepareForTagsUnwind(_ segue: UIStoryboardSegue) {
         //TODOsoon move focus to current asset
     }
 
@@ -207,7 +207,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         SVProgressHUD.dismiss()
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         super.view.addBackground("bg-comment.png")
         self.viewModel = TagsViewModel(data: self.rwData!)
 
@@ -216,14 +216,14 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
         //set room pickerview
         self.parentTagPickerView.delegate = self
         self.parentTagPickerView.dataSource = self
-        self.parentTagPickerView.pickerViewStyle = .Flat
+        self.parentTagPickerView.pickerViewStyle = .flat
         self.parentTagPickerView.viewDepth = 0
         self.parentTagPickerView.maskDisabled = true
         self.parentTagPickerView.font = UIFont(name: "AvenirNext-Medium", size: 30)!
         self.parentTagPickerView.highlightedFont = UIFont(name: "AvenirNext-Medium", size: 30)!
         self.parentTagPickerView.reloadData()
         self.parentTagPickerView.selectItem(0)
-        self.contributeButton.enabled = true
+        self.contributeButton.isEnabled = true
 
         self.roomsLabel.accessibilityLabel = "Rooms"
         self.roomsLabel.accessibilityTraits = UIAccessibilityTraitHeader
@@ -234,17 +234,17 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 
         //TODO double check for location...
         let rwf = RWFramework.sharedInstance
-        rwf.addDelegate(self)
+        rwf.addDelegate(object: self)
         self.playPauseButton.showButtonIsPlaying(false)
 
         if !self.rwData!.selectedProject!.mapURL.isEmpty {
-            let button: UIButton = UIButton(type:UIButtonType.Custom)
+            let button: UIButton = UIButton(type:UIButtonType.custom)
             //set image for button
-            button.setImage(UIImage(named: "map.png"), forState: UIControlState.Normal)
+            button.setImage(UIImage(named: "map.png"), for: UIControlState())
             //add function for button
-            button.addTarget(self, action: #selector(self.seeMap(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+            button.addTarget(self, action: #selector(self.seeMap(_:)), for: UIControlEvents.touchUpInside)
             //set frame
-            button.frame = CGRectMake(0, 0, 50, 50)
+            button.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
             let barButton = UIBarButtonItem(customView: button)
             //assign button to navigationbar
             self.navigationItem.rightBarButtonItem = barButton
@@ -252,7 +252,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
     }
 
 
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         SVProgressHUD.dismiss()
         let rwf = RWFramework.sharedInstance
@@ -261,7 +261,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
         }
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController!.setNavigationBarHidden(false, animated: true)
 
@@ -270,8 +270,8 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
     override func viewDidLayoutSubviews(){
         super.viewDidLayoutSubviews()
         let scroll = itemsScrollView
-        let newContentOffsetX = (scroll.contentSize.width/2) - (scroll.bounds.size.width/2)
-        scroll.contentOffset = CGPointMake(newContentOffsetX, 0)
+        let newContentOffsetX = ((scroll?.contentSize.width)!/2) - ((scroll?.bounds.size.width)!/2)
+        scroll?.contentOffset = CGPoint(x: newContentOffsetX, y: 0)
     }
 
     override func didReceiveMemoryWarning() {
@@ -281,28 +281,28 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 
     func startPlaying() -> Bool {
         //TODO rework for geolocation toggle && project settings
-        if (CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse) {
+        if (CLLocationManager.authorizationStatus() == .authorizedWhenInUse) {
             let rwf = RWFramework.sharedInstance
             rwf.play()
-            SVProgressHUD.showWithStatus("Loading Stream")
+            SVProgressHUD.show(withStatus: "Loading Stream")
             self.playPauseButton.showButtonIsPlaying(true)
             waitingToStart = true
             return true
         } else {
-            var alertController = UIAlertController (title: "Location services", message: "Please enable location detection for streaming", preferredStyle: .Alert)
+            var alertController = UIAlertController (title: "Location services", message: "Please enable location detection for streaming", preferredStyle: .alert)
 
-            var settingsAction = UIAlertAction(title: "Settings", style: .Default) { (_) -> Void in
-                let settingsUrl = NSURL(string: UIApplicationOpenSettingsURLString)
+            var settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+                let settingsUrl = URL(string: UIApplicationOpenSettingsURLString)
                 if let url = settingsUrl {
-                    UIApplication.sharedApplication().openURL(url)
+                    UIApplication.shared.openURL(url)
                 }
             }
 
-            var cancelAction = UIAlertAction(title: "Cancel", style: .Default, handler: nil)
+            var cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
             alertController.addAction(settingsAction)
             alertController.addAction(cancelAction)
 
-            presentViewController(alertController, animated: true, completion: nil)
+            present(alertController, animated: true, completion: nil)
             return false
         }
     }
@@ -315,8 +315,8 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
         let scroll = itemsScrollView
 
         //hide old assets
-        for (index, item) in scroll.subviews.enumerate(){
-            UIView.animateWithDuration(duration, delay: Double(index) * delay, usingSpringWithDamping: springDamping, initialSpringVelocity: springVelocity, options: [], animations: {
+        for (index, item) in (scroll?.subviews.enumerated())!{
+            UIView.animate(withDuration: duration, delay: Double(index) * delay, usingSpringWithDamping: springDamping, initialSpringVelocity: springVelocity, options: [], animations: {
                 item.alpha = 0
                 item.center.y -= 30
             }, completion: { finished in
@@ -328,19 +328,19 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
         let total = self.viewModel.itemTags.count
         DebugLog("\(total) items in this room")
 //        dump(self.viewModel.itemTags)
-        scroll.delegate = self
+        scroll?.delegate = self
         let itemWidth = 300
         let itemHeight = 80
-        scroll.contentSize.width = CGFloat(itemWidth)
-        scroll.contentSize.height = CGFloat(itemHeight * total)
+        scroll?.contentSize.width = CGFloat(itemWidth)
+        scroll?.contentSize.height = CGFloat(itemHeight * total)
 
         tagViews = []
 
         for index in 0..<total {
             let tagView = TagView()
             let tag = self.viewModel.itemTags[index]
-            let images = self.viewModel.data.getAssetsForTagIdOfMediaType(tag.id, mediaType: MediaType.Photo)
-            let texts = self.viewModel.data.getAssetsForTagIdOfMediaType(tag.id, mediaType: MediaType.Text)
+            let images = self.viewModel.data.getAssetsForTagIdOfMediaType(tag.id, mediaType: MediaType.photo)
+            let texts = self.viewModel.data.getAssetsForTagIdOfMediaType(tag.id, mediaType: MediaType.text)
 
             tagView.hasImages = images.count > 0
 //            debugPrint("tagview index \(index) has \(images.count) images")
@@ -351,25 +351,25 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
             //TODO should really go into setTag and use delegate...
             tagView.tagTitle.addTarget(self,
                                action: #selector(selectItem),
-                               forControlEvents: UIControlEvents.TouchUpInside)
+                               for: UIControlEvents.touchUpInside)
             tagView.tagTitle.tag = index
             if(tagView.hasTexts){
                 tagView.textButton.addTarget(self,
                                      action: #selector(seeTextForAsset(_:)),
-                                     forControlEvents: UIControlEvents.TouchUpInside)
+                                     for: UIControlEvents.touchUpInside)
                 tagView.textButton.tag = tag.id
             }
             if(tagView.hasImages){
                 tagView.cameraButton.addTarget(self,
                                        action: #selector(seeGalleryForAsset(_:)),
-                                       forControlEvents: UIControlEvents.TouchUpInside)
+                                       for: UIControlEvents.touchUpInside)
                 tagView.cameraButton.tag = tag.id
             }
 
-            let audioAssets : [Asset] = self.viewModel.data.getAssetsForTagIdOfMediaType(tagView.id!, mediaType: MediaType.Audio)
+            let audioAssets : [Asset] = self.viewModel.data.getAssetsForTagIdOfMediaType(tagView.id!, mediaType: MediaType.audio)
 //            debugPrint("audio assets for tag \(tagView.id!)")
 //            dump(audioAssets)
-            let totalLength = audioAssets.map({$0.audioLength}).reduce(0, combine: +)
+            let totalLength = audioAssets.map({$0.audioLength}).reduce(0, +)
 //            debugPrint("total length is \(totalLength)")
             let arrayOfAssetIds = audioAssets.map({ String($0.assetID)})
             tagView.arrayOfAssetIds = arrayOfAssetIds
@@ -383,8 +383,8 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
             tagView.frame = frame
             tagView.alpha = 0
             tagView.center.y -= 30
-            scroll.addSubview(tagView)
-            UIView.animateWithDuration(duration, delay: Double(index) * delay, usingSpringWithDamping: springDamping, initialSpringVelocity: springVelocity, options: [], animations: {
+            scroll?.addSubview(tagView)
+            UIView.animate(withDuration: duration, delay: Double(index) * delay, usingSpringWithDamping: springDamping, initialSpringVelocity: springVelocity, options: [], animations: {
                 tagView.alpha = 1
                 tagView.center.y += 30
                 }, completion: { finished in
@@ -401,28 +401,28 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 
     // MARK: - AKPickerViewDataSource
 
-    func numberOfItemsInPickerView(pickerView: AKPickerView) -> Int {
+    func numberOfItemsInPickerView(_ pickerView: AKPickerView) -> Int {
         return self.viewModel.roomTags.count
     }
 
-    func pickerView(pickerView: AKPickerView, titleForItem item: Int) -> String {
+    func pickerView(_ pickerView: AKPickerView, titleForItem item: Int) -> String {
         return self.viewModel.roomTags[item].locMsg
     }
-    func pickerView(pickerView: AKPickerView, accessibilityLabelForItem item: Int) -> String {
+    func pickerView(_ pickerView: AKPickerView, accessibilityLabelForItem item: Int) -> String {
         return self.viewModel.roomTags[item].locMsg + ", \(item + 1) of \(self.viewModel.roomTags.count)"
     }
 
-    func pickerView(pickerView: AKPickerView, configureLabel label: UILabel, forItem item: Int) {
-        label.textColor = UIColor.lightGrayColor()
-        label.highlightedTextColor = UIColor.blackColor()
-        label.backgroundColor = UIColor.whiteColor()
+    func pickerView(_ pickerView: AKPickerView, configureLabel label: UILabel, forItem item: Int) {
+        label.textColor = UIColor.lightGray
+        label.highlightedTextColor = UIColor.black
+        label.backgroundColor = UIColor.white
     }
 
-    func pickerView(pickerView: AKPickerView, marginForItem item: Int) -> CGSize {
-        return CGSizeMake(20, 20)
+    func pickerView(_ pickerView: AKPickerView, marginForItem item: Int) -> CGSize {
+        return CGSize(width: 20, height: 20)
     }
 
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         // println("\(scrollView.contentOffset.x)")
     }
 
@@ -430,7 +430,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 
     // MARK: - AKPickerViewDelegate
 
-    func pickerView(pickerView: AKPickerView, didSelectItem item: Int) {
+    func pickerView(_ pickerView: AKPickerView, didSelectItem item: Int) {
         DebugLog("selected room with index \(item)")
         if( self.viewModel.selectedRoomIndex != item){
             self.viewModel.selectedRoomIndex = item
@@ -441,69 +441,69 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
     }
 
     // MARK: RWFramework Protocol
-    func rwUpdateStatus(message: String) {
+    func rwUpdateStatus(_ message: String) {
 //        print("update status")
 //        print(message)
     }
 
-    func rwGetStreamsIdCurrentSuccess(data: NSData?) {
+    func rwGetStreamsIdCurrentSuccess(_ data: Data?) {
         DebugLog("current success")
 //        dump(data)
     }
 
-    func rwPostStreamsSuccess(data: NSData?) {
+    func rwPostStreamsSuccess(_ data: Data?) {
         DebugLog("stream success")
 //        dump(data)
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            self.playPauseButton.enabled = true
+        DispatchQueue.main.async(execute: { () -> Void in
+            self.playPauseButton.isEnabled = true
         })
     }
 
-    func rwPostStreamsError(error: NSError?) {
+    func rwPostStreamsError(_ error: NSError?) {
         DebugLog((error?.localizedDescription)!)
     }
 
-    func rwPatchStreamsIdSuccess(data: NSData?){
+    func rwPatchStreamsIdSuccess(_ data: Data?){
         DebugLog("patch stream success")
 //        dump(data)
 
     }
 
-    func rwPatchStreamsIdFailure(error: NSError?){
+    func rwPatchStreamsIdFailure(_ error: NSError?){
         DebugLog("patch streams failure")
         DebugLog((error?.localizedDescription)!)
     }
 
-    func rwPostStreamsIdHeartbeatSuccess(data: NSData?) {
+    func rwPostStreamsIdHeartbeatSuccess(_ data: Data?) {
 //        DebugLog("heartbeat success")
 //        dump(data)
 //        dispatch_async(dispatch_get_main_queue(), { () -> Void in
 //        })
     }
 
-    func rwPostStreamsIdNextSuccess(data: NSData?) {
+    func rwPostStreamsIdNextSuccess(_ data: Data?) {
         DebugLog("next success")
         dump(data)
     }
 
-    func rwPostStreamsIdNextFailure(error: NSError?) {
+    func rwPostStreamsIdNextFailure(_ error: NSError?) {
         DebugLog("rwPostStreamsIdNextFailureerror")
         DebugLog((error?.localizedDescription)!)
 
     }
 
-    func rwGetAssetsIdSuccess(data: NSData?){
+    func rwGetAssetsIdSuccess(_ data: Data?){
         DebugLog("get asset id success")
 //        dump(data)
     }
 
-    func rwGetAssetsIdFailure(error: NSError?){
+    func rwGetAssetsIdFailure(_ error: NSError?){
         DebugLog("get asset id error")
         DebugLog((error?.localizedDescription)!)
     }
 
 
-    func rwObserveValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+    func rwObserveValueForKeyPath(_ keyPath: String, ofObject object: AnyObject, change: [AnyHashable: Any], context: UnsafeMutableRawPointer) {
 
         //the stream has started
         if keyPath == "timedMetadata" {
@@ -513,7 +513,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 //                debugPrint("starting time")
                 DebugLog("playback has begun in UI")
                 waitingToStart = false
-                timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(TagsViewController.countdown), userInfo: nil, repeats: true)
+                timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(TagsViewController.countdown), userInfo: nil, repeats: true)
                 SVProgressHUD.dismiss()
                 self.playPauseButton.showButtonIsPlaying(true)
 //                self.nextButton.enabled = true
@@ -530,16 +530,16 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
                     DebugLog("value problem")
                     return
             }
-            value = value.stringByReplacingOccurrencesOfString("Roundware - ", withString: "?", options: NSStringCompareOptions.LiteralSearch, range: nil)
+            value = value.replacingOccurrences(of: "Roundware - ", with: "?", options: NSString.CompareOptions.literal, range: nil)
 
-            guard let params = NSURL(string: value) else{
+            guard let params = URL(string: value) else{
                 DebugLog("param problem")
                 DebugLog(value)
                 return
             }
             guard let queryItems = params.queryItems else{
                 DebugLog("query problem")
-                DebugLog(String(params))
+                DebugLog(String(describing: params))
                 return
             }
 
@@ -581,7 +581,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
                         //update tag progress based on remaining count
 //                        debugPrint("there are \(remaining) assets remaining of \(assetTagView.arrayOfAssetIds.count)")
                         let percentage = Float((Float(assetTagView.arrayOfAssetIds.count) - Float(remaining)!) / Float(assetTagView.arrayOfAssetIds.count))
-                        assetTagView.tagProgress.hidden = false
+                        assetTagView.tagProgress.isHidden = false
 //                        DebugLog("we are \(percentage) through this tag's assets")
                         assetTagView.tagProgress.setProgress(percentage, animated: true)
 

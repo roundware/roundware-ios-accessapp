@@ -26,8 +26,8 @@ import QuartzCore
     //during developing IB fires this init to create object
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.setTitleColor(UIColor.whiteColor(), forState: state)
-        self.setTitleColor(UIColor.lightGrayColor(), forState: .Disabled)
+        self.setTitleColor(UIColor.white, for: state)
+        self.setTitleColor(UIColor.lightGray, for: .disabled)
         setupViews()
     }
 
@@ -37,33 +37,33 @@ import QuartzCore
         self.setupViews()
     }
 
-    override func intrinsicContentSize() -> CGSize {
-        return CGSizeMake(buttonWidth, buttonHeight)
+    override var intrinsicContentSize : CGSize {
+        return CGSize(width: buttonWidth, height: buttonHeight)
     }
 
 
-    override class func requiresConstraintBasedLayout() -> Bool {
+    override class var requiresConstraintBasedLayout : Bool {
         return true
     }
 
-    override func setTitle(title: String?, forState state: UIControlState) {
-        super.setTitle(title, forState: state)
+    override func setTitle(_ title: String?, for state: UIControlState) {
+        super.setTitle(title, for: state)
         self.titleLabel?.numberOfLines = 0
         self.setType()
         let attributeString = NSAttributedString(string: title!, attributes: [NSFontAttributeName: titleLabel!.font])
-        let rect = attributeString.boundingRectWithSize(CGSizeMake(buttonWidth, CGFloat.max), options: NSStringDrawingOptions.UsesLineFragmentOrigin, context: nil)
+        let rect = attributeString.boundingRect(with: CGSize(width: buttonWidth, height: CGFloat.greatestFiniteMagnitude), options: NSStringDrawingOptions.usesLineFragmentOrigin, context: nil)
         buttonHeight = rect.size.height + 18
-        self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, buttonWidth, buttonHeight)
+        self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: buttonWidth, height: buttonHeight)
     }
 
     func setType(){
         self.titleLabel!.font = UIFont(name: "AvenirNext-Medium", size: 24.0)
-        self.titleLabel!.textAlignment = .Center
+        self.titleLabel!.textAlignment = .center
     }
 
     func setupViews() {
         //borders
-        self.layer.borderColor = UIColor.whiteColor().CGColor
+        self.layer.borderColor = UIColor.white.cgColor
         self.layer.borderWidth = 1.0
         self.layer.cornerRadius = 0
         self.layer.masksToBounds = false

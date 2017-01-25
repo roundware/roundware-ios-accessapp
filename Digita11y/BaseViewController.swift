@@ -3,8 +3,8 @@ import Foundation
 class BaseViewController: UIViewController {
     var rwData: RWData?
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let to = segue.destinationViewController as? BaseViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let to = segue.destination as? BaseViewController {
             to.rwData = self.rwData
         }
     }
@@ -13,17 +13,17 @@ class BaseViewController: UIViewController {
     //TODO add subViewLayout method too
     //TODO refactor to allow passing button subclass as param
 
-    func createCenteredTagButtonsForScroll(total: Int, scroll: UIScrollView) -> [UIButton]{
+    func createCenteredTagButtonsForScroll(_ total: Int, scroll: UIScrollView) -> [UIButton]{
 
-        var button  = UIButtonTag(type: UIButtonType.System)
+        var button  = UIButtonTag(type: UIButtonType.system)
         var buttons : [UIButton] = []
 
-        for (_, item) in scroll.subviews.enumerate(){
+        for (_, item) in scroll.subviews.enumerated(){
             item.removeFromSuperview()
         }
 
         for index in 0..<total {
-            button = UIButtonTag(type: UIButtonType.System)
+            button = UIButtonTag(type: UIButtonType.system)
             let indexFloat = CGFloat(index)
             let frame = CGRect(
                 x: button.buttonMarginX,
@@ -44,19 +44,19 @@ class BaseViewController: UIViewController {
     }
 
     //presumes a centered scroll bound
-    func createTagButtonsForScroll(total: Int, scroll: UIScrollView) -> [UIButton]{
+    func createTagButtonsForScroll(_ total: Int, scroll: UIScrollView) -> [UIButton]{
 
-        var button  = UIButtonTag(type: UIButtonType.System)
+        var button  = UIButtonTag(type: UIButtonType.system)
         var buttons : [UIButton] = []
 
-        for (_, item) in scroll.subviews.enumerate(){
+        for (_, item) in scroll.subviews.enumerated(){
             item.removeFromSuperview()
         }
         let newContentOffsetX = (button.buttonWidth - scroll.bounds.size.width) / 2
 //        debugPrint("new content offset \(newContentOffsetX)")
 
         for index in 0..<total {
-            button = UIButtonTag(type: UIButtonType.System)
+            button = UIButtonTag(type: UIButtonType.system)
             let indexFloat = CGFloat(index)
             let frame = CGRect(
                 x: button.buttonMarginX - newContentOffsetX,
@@ -76,19 +76,19 @@ class BaseViewController: UIViewController {
 
     }
 
-    func createButtonsForScroll(titles: [String], scroll: UIScrollView) -> [UIButton]{
-        var button  = UIButtonBorder(type: UIButtonType.System)
+    func createButtonsForScroll(_ titles: [String], scroll: UIScrollView) -> [UIButton]{
+        var button  = UIButtonBorder(type: UIButtonType.system)
         var buttons : [UIButton] = []
         var width: CGFloat = 0.0
         var height: CGFloat = 0.0
 
-        for (_, item) in scroll.subviews.enumerate(){
+        for (_, item) in scroll.subviews.enumerated(){
             item.removeFromSuperview()
         }
 
-        for (index, title) in titles.enumerate() {
-            button = UIButtonBorder(type: UIButtonType.System)
-            button.setTitle(title, forState: .Normal)
+        for (index, title) in titles.enumerated() {
+            button = UIButtonBorder(type: UIButtonType.system)
+            button.setTitle(title, for: UIControlState())
             let frame = CGRect(
                 x: button.buttonMarginX,
                 y: height,
@@ -106,7 +106,7 @@ class BaseViewController: UIViewController {
         return buttons
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         //Move focus to title for VoiceOver
         UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.navigationItem.titleView);

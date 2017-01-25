@@ -22,7 +22,7 @@ class Digita11yTests: XCTestCase {
     }
     
     func testProjectInit(){
-        let project = Project.init(name: "Baltimore Museum of Art", id: 1, welcome: "Hello there")
+        let project = Project.init(name: "Baltimore Museum of Art", id: 1, welcome: "Hello there", active: True, reverseDomain: "bma", mapUrl: "", logoImg: nil)
         assert(project != nil, "Project should init")
     }
     
@@ -35,7 +35,7 @@ class Digita11yTests: XCTestCase {
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock {
+        self.measure {
             // Put the code you want to measure the time of here.
         }
     }

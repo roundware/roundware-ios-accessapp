@@ -15,16 +15,16 @@ class ChooseExhibitController: BaseViewController, UIScrollViewDelegate {
     @IBOutlet weak var ExhibitHeadline: UILabelHeadline!
     @IBOutlet weak var ExhibitScroll: UIScrollView!
 
-    @IBAction func selectedThis(sender: UIButton) {
+    @IBAction func selectedThis(_ sender: UIButton) {
         self.viewModel.selectedTag = self.viewModel.data.getTagById(sender.tag)
-        self.performSegueWithIdentifier("TagsSegue", sender: nil)
+        self.performSegue(withIdentifier: "TagsSegue", sender: nil)
     }
 
     // MARK: View
     override func viewDidLoad() {
         super.viewDidLoad()
-        UIApplication.sharedApplication().idleTimerDisabled = false
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+        UIApplication.shared.isIdleTimerDisabled = false
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         super.view.addBackground("bg-blue.png")
 
         self.viewModel = ChooseExhibitViewModel(data: self.rwData!)
@@ -32,21 +32,21 @@ class ChooseExhibitController: BaseViewController, UIScrollViewDelegate {
 
         //scroll
         let scroll = ExhibitScroll
-        scroll.delegate = self
+        scroll?.delegate = self
         let titles = self.viewModel.tags.map{$0.locMsg}
-        let buttons = self.createButtonsForScroll(titles, scroll: scroll)
+        let buttons = self.createButtonsForScroll(titles, scroll: scroll!)
 
-        for (index, button) in buttons.enumerate(){
+        for (index, button) in buttons.enumerated(){
             let tag = self.viewModel.tags[index]
             let uiItem = self.viewModel.uiItems[index]
             if(uiItem.active == false || self.rwData?.getChildren(uiItem).count == 0){
-                button.enabled = false
+                button.isEnabled = false
             }
             button.accessibilityLabel = tag.locMsg + ", \(index + 1) of \(buttons.count)"
 
             button.addTarget(self,
                              action: #selector(ChooseExhibitController.selectedThis(_:)),
-                             forControlEvents: UIControlEvents.TouchUpInside)
+                             for: UIControlEvents.touchUpInside)
             button.tag = tag.id
         }
     }
@@ -56,7 +56,7 @@ class ChooseExhibitController: BaseViewController, UIScrollViewDelegate {
 
         //scroll
         let scroll = ExhibitScroll
-        let newContentOffsetX = (scroll.contentSize.width - scroll.bounds.size.width) / 2
-        scroll.contentOffset = CGPointMake(newContentOffsetX, 0)
+        let newContentOffsetX = ((scroll?.contentSize.width)! - (scroll?.bounds.size.width)!) / 2
+        scroll?.contentOffset = CGPoint(x: newContentOffsetX, y: 0)
     }
 }

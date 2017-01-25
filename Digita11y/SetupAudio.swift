@@ -1,13 +1,13 @@
 import Foundation
 import AVFoundation
 
-func setupAudio(audioSetup: (granted: Bool, error: NSError?) -> Void) {
+func setupAudio(_ audioSetup: @escaping (_ granted: Bool, _ error: NSError?) -> Void) {
     let avAudioSession = AVAudioSession.sharedInstance()
     var error: NSError?
 
     avAudioSession.requestRecordPermission { (granted: Bool) -> Void in
-        dispatch_async(dispatch_get_main_queue()) {
-            audioSetup(granted: granted, error: nil)
+        DispatchQueue.main.async {
+            audioSetup(granted, nil)
         }
     }
 
@@ -19,17 +19,17 @@ func setupAudio(audioSetup: (granted: Bool, error: NSError?) -> Void) {
         print("AppDelegate: could not set session category")
         if let e = error {
             print(e.localizedDescription)
-            dispatch_async(dispatch_get_main_queue()) {
-                audioSetup(granted: false, error: e)
+            DispatchQueue.main.async {
+                audioSetup(false, e)
             }
         }
     }
 
-    let override = (TARGET_IPHONE_SIMULATOR == 1 || isHeadsetPluggedIn()) ? AVAudioSessionPortOverride.None : AVAudioSessionPortOverride.Speaker
+    let override = (TARGET_IPHONE_SIMULATOR == 1 || isHeadsetPluggedIn()) ? AVAudioSessionPortOverride.none : AVAudioSessionPortOverride.speaker
 
     // Send audio to the speaker
     do {
-        try avAudioSession.overrideOutputAudioPort(AVAudioSessionPortOverride.Speaker)
+        try avAudioSession.overrideOutputAudioPort(AVAudioSessionPortOverride.speaker)
     } catch let error1 as NSError {
         error = error1
         print("AppDelegate: could not overide output audio port")

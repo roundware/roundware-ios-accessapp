@@ -24,7 +24,7 @@ class ThanksViewModel: BaseViewModel {
         //TODO get available get tags that have not been contributed too for this parent tag....
     }
 
-    func selectedTitle(title:String) {
+    func selectedTitle(_ title:String) {
         self.selectedTag = self.tags.filter{ $0.locMsg == title}.first!
     }
 }

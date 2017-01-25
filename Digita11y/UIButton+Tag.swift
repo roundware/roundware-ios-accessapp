@@ -34,33 +34,33 @@ import UIKit
         self.setupViews()
     }
 
-    override func setTitle(title: String?, forState state: UIControlState) {
-        super.setTitle(title, forState: state)
-        self.setTitleColor(UIColor.blackColor(), forState: .Normal)
+    override func setTitle(_ title: String?, for state: UIControlState) {
+        super.setTitle(title, for: state)
+        self.setTitleColor(UIColor.black, for: UIControlState())
         self.setType()
     }
 
     //include insets in intrinsic content size
-    override func intrinsicContentSize() -> CGSize {
-        return CGSizeMake(buttonWidth + self.titleEdgeInsets.left + self.titleEdgeInsets.right,
-                          buttonHeight + self.titleEdgeInsets.top + self.titleEdgeInsets.bottom)
+    override var intrinsicContentSize : CGSize {
+        return CGSize(width: buttonWidth + self.titleEdgeInsets.left + self.titleEdgeInsets.right,
+                          height: buttonHeight + self.titleEdgeInsets.top + self.titleEdgeInsets.bottom)
 //
 //        let s = super.intrinsicContentSize()
 //        return CGSizeMake(s.width + self.titleEdgeInsets.left + self.titleEdgeInsets.right,
 //            s.height + self.titleEdgeInsets.top + self.titleEdgeInsets.bottom);
     }
 
-        override class func requiresConstraintBasedLayout() -> Bool {
+        override class var requiresConstraintBasedLayout : Bool {
             return true
         }
 
     func setType(){
         self.titleLabel!.font = UIFont(name: "AvenirNext-Medium", size: 17.0)
-        self.titleLabel!.textAlignment = .Center
+        self.titleLabel!.textAlignment = .center
     }
 
     func setupViews() {
-        self.backgroundColor = UIColor.whiteColor()
+        self.backgroundColor = UIColor.white
         self.titleEdgeInsets = UIEdgeInsetsMake(2, 20, 2, 20)
         self.setType()
     }

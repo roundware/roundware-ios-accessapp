@@ -370,12 +370,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8AA85E741C7CF12D0086AA6B /* Build configuration list for PBXNativeTarget "Digita11y" */;
 			buildPhases = (
-				E7605E8C507ED8B1BE4AA4F1 /* Check Pods Manifest.lock */,
+				E7605E8C507ED8B1BE4AA4F1 /* [CP] Check Pods Manifest.lock */,
 				8AA85E5E1C7CF12D0086AA6B /* Sources */,
 				8AA85E5F1C7CF12D0086AA6B /* Frameworks */,
 				8AA85E601C7CF12D0086AA6B /* Resources */,
-				E32C329C9A1831B4AEF09142 /* Embed Pods Frameworks */,
-				DB92F13EC668BA1D41619686 /* Copy Pods Resources */,
+				E32C329C9A1831B4AEF09142 /* [CP] Embed Pods Frameworks */,
+				DB92F13EC668BA1D41619686 /* [CP] Copy Pods Resources */,
 				8ADED7B81C7F8FB600BBB65C /* ShellScript */,
 			);
 			buildRules = (
@@ -417,10 +417,12 @@
 				TargetAttributes = {
 					8A6598931C877398009A29C8 = {
 						CreatedOnToolsVersion = 7.2.1;
+						LastSwiftMigration = 0820;
 						TestTargetID = 8AA85E611C7CF12D0086AA6B;
 					};
 					8AA85E611C7CF12D0086AA6B = {
 						CreatedOnToolsVersion = 7.2.1;
+						LastSwiftMigration = 0820;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -432,6 +434,7 @@
 					};
 					8AB65BD01C90DCD8005D112B = {
 						CreatedOnToolsVersion = 7.2.1;
+						LastSwiftMigration = 0820;
 						TestTargetID = 8AA85E611C7CF12D0086AA6B;
 					};
 				};
@@ -499,14 +502,14 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\" 9a7986366f0e38594bbd2f373c2943145f22534e 910d97329292a6f1fba8d511bc42c6e7ec8ed1685f928dd83008e64fb14604e8";
 		};
-		DB92F13EC668BA1D41619686 /* Copy Pods Resources */ = {
+		DB92F13EC668BA1D41619686 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -514,14 +517,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Digita11y/Pods-Digita11y-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E32C329C9A1831B4AEF09142 /* Embed Pods Frameworks */ = {
+		E32C329C9A1831B4AEF09142 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -529,19 +532,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Digita11y/Pods-Digita11y-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E7605E8C507ED8B1BE4AA4F1 /* Check Pods Manifest.lock */ = {
+		E7605E8C507ED8B1BE4AA4F1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -661,6 +664,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.roundware.Digita11yTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Digita11y.app/Digita11y";
 			};
 			name = Debug;
@@ -674,6 +678,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.roundware.Digita11yTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Digita11y.app/Digita11y";
 			};
 			name = Release;
@@ -776,6 +781,7 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-DDEBUG\"";
 				PRODUCT_BUNDLE_IDENTIFIER = org.roundware.Digita11y;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -790,6 +796,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.roundware.Digita11y;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -801,6 +808,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.roundware.Digita11yUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = Digita11y;
 				USES_XCTRUNNER = YES;
 			};
@@ -814,6 +822,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.roundware.Digita11yUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = Digita11y;
 				USES_XCTRUNNER = YES;
 			};

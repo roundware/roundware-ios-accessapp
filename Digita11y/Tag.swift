@@ -12,7 +12,7 @@ struct Tag {
 
     init(json: JSON) {
         id = json["id"].int ?? 0
-        relationships = json["relationships"].dictionaryObject ?? [:]
+        relationships = json["relationships"].dictionaryObject as [String : AnyObject?]? ?? [:]
         value = json["value"].string ?? ""
         locMsg = json["loc_msg"].string ?? ""
         description = json["description"].string ?? ""

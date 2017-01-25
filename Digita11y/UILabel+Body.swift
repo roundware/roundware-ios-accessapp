@@ -26,8 +26,8 @@ import UIKit
     func setupViews() {
         self.font = UIFont(name: "AvenirNext-Medium", size: 14.0)
         self.numberOfLines = 0
-        self.lineBreakMode = NSLineBreakMode.ByWordWrapping
-        self.textColor = UIColor.whiteColor()
+        self.lineBreakMode = NSLineBreakMode.byWordWrapping
+        self.textColor = UIColor.white
     }
 
     //required method to present changes in IB

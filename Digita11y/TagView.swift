@@ -57,22 +57,22 @@ import UIKit
         view.frame = bounds
 //        view.frame = CGRectMake(bounds.origin.x, bounds.origin.y, 50, 300);
 //        view.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, 50, 300);
-        view.autoresizingMask = [UIViewAutoresizing.FlexibleWidth, UIViewAutoresizing.FlexibleHeight]
+        view.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
                 addSubview(view)
     }
 
-    func setTag(tagModel:Tag, index: Int, total: Int){
+    func setTag(_ tagModel:Tag, index: Int, total: Int){
 //        debugPrint("setting tag for \(tagModel.id) at index \(index)")
 //        debugPrint("hasImage \(String(hasImages)) and hasText \(String(hasTexts))")
-        tagTitle.setTitle(tagModel.locMsg, forState: .Normal)
+        tagTitle.setTitle(tagModel.locMsg, for: UIControlState())
         tagTitle.accessibilityLabel = tagModel.locMsg + ", \(index + 1) of \(total)"
 
 
         id = tagModel.id
-        var subviews : [UIView] = [audioImage, textButton, cameraButton, tagProgress]
+        let subviews : [UIView] = [audioImage, textButton, cameraButton, tagProgress]
 
         subviews.forEach{
-            $0.hidden = true
+            $0.isHidden = true
             $0.alpha = 0
             $0.center.x -= 50
         }
@@ -87,9 +87,9 @@ import UIKit
     }
 
     func loadViewFromNib() -> UIView {
-        let bundle = NSBundle(forClass: self.dynamicType)
+        let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "TagView", bundle: bundle)
-        let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         return view
     }
 
@@ -101,7 +101,7 @@ import UIKit
 
     func select(){
         self.selected = true
-        self.tagTitle.selected = true
+        self.tagTitle.isSelected = true
 
         var hiddenSubviews      : [UIView] = [self.audioImage, self.tagProgress]
 
@@ -113,12 +113,12 @@ import UIKit
         }
 
         hiddenSubviews.forEach{
-            $0.hidden = false
+            $0.isHidden = false
         }
 
 //        self.tagTitle.backgroundColor = UIColor.clearColor()
 
-        UIView.animateWithDuration(duration, delay: delay, usingSpringWithDamping: springDamping, initialSpringVelocity: springVelocity, options: [], animations:
+        UIView.animate(withDuration: duration, delay: delay, usingSpringWithDamping: springDamping, initialSpringVelocity: springVelocity, options: [], animations:
             {
                 hiddenSubviews.forEach{
                     $0.alpha = 1
@@ -133,7 +133,7 @@ import UIKit
 
     func deselect(){
         self.selected = false
-        self.tagTitle.selected = false
+        self.tagTitle.isSelected = false
 
         var hiddenSubviews      : [UIView] = [self.audioImage, self.tagProgress]
         if hasImages {
@@ -143,7 +143,7 @@ import UIKit
             hiddenSubviews.append(self.textButton)
         }
 
-        UIView.animateWithDuration(duration, delay: delay, usingSpringWithDamping: springDamping, initialSpringVelocity: springVelocity, options: [], animations:
+        UIView.animate(withDuration: duration, delay: delay, usingSpringWithDamping: springDamping, initialSpringVelocity: springVelocity, options: [], animations:
             {
 
                 hiddenSubviews.forEach{
@@ -157,7 +157,7 @@ import UIKit
 
         }, completion: { finished in
             hiddenSubviews.forEach{
-                $0.hidden = true
+                $0.isHidden = true
             }
 //            self.tagTitle.backgroundColor = UIColor.GreenishTeal85Color()
 

@@ -17,21 +17,21 @@ class WelcomeViewController: BaseViewController, CLLocationManagerDelegate {
     @IBOutlet weak var WelcomeLogo: UIImageView!
 
 
-    @IBAction func next(sender: UIButton) {
-        if (CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse) {
+    @IBAction func next(_ sender: UIButton) {
+        if (CLLocationManager.authorizationStatus() == .authorizedWhenInUse) {
             DebugLog("authorized when in use")
-            self.performSegueWithIdentifier("SkipToExhibitSegue", sender: nil)
+            self.performSegue(withIdentifier: "SkipToExhibitSegue", sender: nil)
         } else {
             DebugLog("location not authorized for in use")
             debugPrint(CLLocationManager.authorizationStatus())
-            self.performSegueWithIdentifier("LocationSegue", sender: nil)
+            self.performSegue(withIdentifier: "LocationSegue", sender: nil)
         }
     }
 
     // MARK: View
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         super.view.addBackground("bg-blue.png")
         self.viewModel = WelcomeViewModel(data: self.rwData!)
         WelcomeLabelHeadline.text = self.viewModel.title

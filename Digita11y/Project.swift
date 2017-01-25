@@ -44,8 +44,8 @@ struct Project {
     static func initFromPlist() -> [Project] {
         print("running init")
 
-        let path = NSBundle.mainBundle().pathForResource("Info", ofType: "plist")
-        let info  = NSDictionary(contentsOfFile: path!) as! [String:AnyObject!]
+        let path = Bundle.main.path(forResource: "Info", ofType: "plist")
+        let info  = NSDictionary(contentsOfFile: path!) as! [String:AnyObject?]
         var projectsArray: [Project] = []
 
         guard let projectsDictArray = info["Projects"] else {
@@ -54,17 +54,17 @@ struct Project {
 
         for project in projectsDictArray as! [[String:AnyObject]] {
             if let id = project["id"],
-                name = project["name"],
-                active = project["active"],
-                reverseDomain = project["reverse_domain"],
-                welcome = project["welcome"],
-                mapURL = project["map_url"],
-                logo = project["logo"]
+                let name = project["name"],
+                let active = project["active"],
+                let reverseDomain = project["reverse_domain"],
+                let welcome = project["welcome"],
+                let mapURL = project["map_url"],
+                let logo = project["logo"]
             {
                 let idInt : Int? = Int(id as! String)
 
                 let thisLogo: UIImage?
-                if let logoStr = logo as? String where !logoStr.isEmpty
+                if let logoStr = logo as? String, !logoStr.isEmpty
                 {
                     thisLogo = UIImage(named: logoStr)
                 } else {

@@ -29,16 +29,16 @@ import UIKit
         self.setupViews()
     }
 
-    override func setTitle(title: String?, forState state: UIControlState) {
-        super.setTitle(title, forState: state)
+    override func setTitle(_ title: String?, for state: UIControlState) {
+        super.setTitle(title, for: state)
         self.setType()
     }
 
     //include insets in intrinsic content size
-    override func intrinsicContentSize() -> CGSize {
-        let s = super.intrinsicContentSize()
-        return CGSizeMake(s.width + self.titleEdgeInsets.left + self.titleEdgeInsets.right,
-            s.height + self.titleEdgeInsets.top + self.titleEdgeInsets.bottom);
+    override var intrinsicContentSize : CGSize {
+        let s = super.intrinsicContentSize
+        return CGSize(width: s.width + self.titleEdgeInsets.left + self.titleEdgeInsets.right,
+            height: s.height + self.titleEdgeInsets.top + self.titleEdgeInsets.bottom);
     }
 
 //    override class func requiresConstraintBasedLayout() -> Bool {
@@ -47,11 +47,11 @@ import UIKit
 
     func setType(){
         self.titleLabel!.font = UIFont(name: "AvenirNext-Medium", size: 24.0)
-        self.titleLabel!.textAlignment = .Center
+        self.titleLabel!.textAlignment = .center
     }
 
     func setupViews() {
-        self.backgroundColor = UIColor.whiteColor()
+        self.backgroundColor = UIColor.white
         self.titleEdgeInsets = UIEdgeInsetsMake(2, 20, 2, 20)
         self.setType()
     }

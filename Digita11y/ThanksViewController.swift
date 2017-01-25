@@ -15,20 +15,20 @@ class ThanksViewController: BaseViewController, UIScrollViewDelegate {
     @IBOutlet weak var thanksHeadline: UILabelHeadline!
     @IBOutlet weak var thanksBody: UILabelBody!
 
-    @IBAction func selectedThis(sender: UIButton) {
+    @IBAction func selectedThis(_ sender: UIButton) {
         self.viewModel.uiGroup.selectedUIItem = self.viewModel.uiGroup.uiItems.filter({$0.tagId == sender.tag}).first
         DebugLog("selected tag id \(sender.tag)")
 //        dump(self.viewModel.uiGroup.selectedUIItem )
         self.viewModel.data.updateUIGroup(self.viewModel.uiGroup)
-        self.performSegueWithIdentifier("Recontribute", sender: nil)
+        self.performSegue(withIdentifier: "Recontribute", sender: nil)
     }
 
-    @IBAction func noThanks(sender: UIButton) {
-        self.performSegueWithIdentifier("NoThanksSegue", sender: nil)
+    @IBAction func noThanks(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "NoThanksSegue", sender: nil)
     }
 
     // MARK: View
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController!.setNavigationBarHidden(true, animated: true)
     }
@@ -41,19 +41,19 @@ class ThanksViewController: BaseViewController, UIScrollViewDelegate {
 
         //Scroll view for subviews of tags
         let scroll = ThanksScroll
-        scroll.delegate = self
+        scroll?.delegate = self
         let tags = self.viewModel.tags
         let total = tags.count
-        let buttons = createCenteredTagButtonsForScroll(total, scroll: scroll)
+        let buttons = createCenteredTagButtonsForScroll(total, scroll: scroll!)
 
         //set titles and actions
-        for (index, button) in buttons.enumerate(){
+        for (index, button) in buttons.enumerated(){
             let tag = tags[index]
-            button.setTitle(tag.locMsg, forState: .Normal)
+            button.setTitle(tag.locMsg, for: UIControlState())
             button.accessibilityLabel = tag.locMsg + ", \(index + 1) of \(buttons.count)"
             button.addTarget(self,
                              action: #selector(self.selectedThis(_:)),
-                             forControlEvents: UIControlEvents.TouchUpInside)
+                             for: UIControlEvents.touchUpInside)
             button.tag = tag.id
         }
 

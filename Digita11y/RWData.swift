@@ -7,8 +7,8 @@ class RWData {
     let projects: [Project] = Project.initFromPlist()
     var selectedProject: Project?
 
-    func getProjectById(id: Int) -> Project? {
-        if let index = projects.indexOf({ $0.id == id }) {
+    func getProjectById(_ id: Int) -> Project? {
+        if let index = projects.index(where: { $0.id == id }) {
             return projects[index]
         } else {
             return nil
@@ -20,7 +20,7 @@ class RWData {
     var uiGroups: [UIGroup] = []
 
     //TODO real error handling
-    func getUIGroupForIndexAndMode(index: Int, mode: String) -> UIGroup? {
+    func getUIGroupForIndexAndMode(_ index: Int, mode: String) -> UIGroup? {
         guard let thisProject = selectedProject else{
             DebugLog("needs project")
             return nil
@@ -45,7 +45,7 @@ class RWData {
         }
     }
 
-    func getMaxUIGroupIndexWithSelected(mode:String) -> Int {
+    func getMaxUIGroupIndexWithSelected(_ mode:String) -> Int {
         guard let thisProject = selectedProject else{
             DebugLog("needs project")
             return 0
@@ -66,7 +66,7 @@ class RWData {
         return max
     }
 
-    func resetUIGroupAndAbove(index: Int, mode: String) -> Bool{
+    func resetUIGroupAndAbove(_ index: Int, mode: String) -> Bool{
         guard let thisProject = selectedProject else{
             DebugLog("needs project")
             return false
@@ -90,10 +90,10 @@ class RWData {
         }
     }
 
-    func updateUIGroup(uiGroup: UIGroup) -> Void {
+    func updateUIGroup(_ uiGroup: UIGroup) -> Void {
         //TODO filter ofr active
         if let thisProject = selectedProject,
-            let index = uiGroups.indexOf({
+            let index = uiGroups.index(where: {
                 $0.index == uiGroup.index &&
                     $0.uiMode == uiGroup.uiMode &&
                     $0.project == thisProject.id
@@ -106,7 +106,7 @@ class RWData {
     }
 
     //TODO mode should be uiMode
-    func getTagForIndexAndMode(index: Int, mode: String) -> Tag? {
+    func getTagForIndexAndMode(_ index: Int, mode: String) -> Tag? {
         if  let uiGroup = getUIGroupForIndexAndMode(index, mode: mode),
             let uiItem = uiGroup.selectedUIItem,
             let tag = getTagForUIItem(uiItem){
@@ -118,7 +118,7 @@ class RWData {
     }
 
     // MARK: - UIItem
-    func getRelevantUIItems(uiGroup: UIGroup) -> [UIItem] {
+    func getRelevantUIItems(_ uiGroup: UIGroup) -> [UIItem] {
         if uiGroup.index > 1,
         let previousUIGroup = uiGroups.filter({
             $0.uiMode == uiGroup.uiMode &&
@@ -139,18 +139,18 @@ class RWData {
         }
     }
 
-    func getTagsForUIItems(uiItems: [UIItem]) -> [Tag] {
+    func getTagsForUIItems(_ uiItems: [UIItem]) -> [Tag] {
         let tagIds = uiItems.map { $0.tagId }
         return tags.filter({ tagIds.contains($0.id) })
     }
 
-    func getTagsWithAudioAssetsForUIItems(uiItems: [UIItem]) -> [Tag] {
+    func getTagsWithAudioAssetsForUIItems(_ uiItems: [UIItem]) -> [Tag] {
         let tagIds = uiItems.map { $0.tagId }
-        return tags.filter({ tagIds.contains($0.id) && self.getAssetsForTagIdOfMediaType($0.id, mediaType: MediaType.Audio).count > 0})
+        return tags.filter({ tagIds.contains($0.id) && self.getAssetsForTagIdOfMediaType($0.id, mediaType: MediaType.audio).count > 0})
     }
 
 
-    func getTagForUIItem(uiItem: UIItem) -> Tag? {
+    func getTagForUIItem(_ uiItem: UIItem) -> Tag? {
         if let tag = tags.filter({$0.id == uiItem.tagId}).first {
             return tag
         } else {
@@ -159,7 +159,7 @@ class RWData {
         }
     }
 
-    func getSelectedTagForUIGroup(uiGroup: UIGroup) -> Tag? {
+    func getSelectedTagForUIGroup(_ uiGroup: UIGroup) -> Tag? {
         if let selectedUIItem = uiGroup.selectedUIItem {
           return getTagForUIItem(selectedUIItem)
         } else {
@@ -170,7 +170,7 @@ class RWData {
 
 
     // for active state fudging
-    func getUIGroupFromUIItem(uiItem: UIItem) -> UIGroup? {
+    func getUIGroupFromUIItem(_ uiItem: UIItem) -> UIGroup? {
         if let uiGroup = uiGroups.filter({$0.uiItems.map{$0.id}.contains(uiItem.id)}).first{
             return uiGroup
         } else{
@@ -178,7 +178,7 @@ class RWData {
         }
     }
     
-    func getChildren(uiItem: UIItem) -> [UIItem]{
+    func getChildren(_ uiItem: UIItem) -> [UIItem]{
         if let uiGroupTop = getUIGroupFromUIItem(uiItem),
             let uiGroupBottom = getUIGroupForIndexAndMode(uiGroupTop.index + 1, mode: uiGroupTop.uiMode){
             return uiGroupBottom.uiItems.filter({ $0.parent == uiItem.id})
@@ -191,18 +191,18 @@ class RWData {
 
     var tags: [Tag] = []
 
-    func getTagById(id: Int) -> Tag? {
-        if let index = tags.indexOf({ $0.id == id }) {
+    func getTagById(_ id: Int) -> Tag? {
+        if let index = tags.index(where: { $0.id == id }) {
             return tags[index]
         } else {
             return nil
         }
     }
 
-    func getAssetsForTagIdOfMediaType(tagId: Int, mediaType: MediaType) -> [Asset] {
+    func getAssetsForTagIdOfMediaType(_ tagId: Int, mediaType: MediaType) -> [Asset] {
 //        debugPrint("looking for assets with tagID \(tagId) and media type \(mediaType)")
 //        return assets.filter({$0.tagIDs.contains(tagId) && $0.mediaType == mediaType })
-        var theseAssets = assets.filter({$0.tagIDs.contains(tagId)})
+        let theseAssets = assets.filter({$0.tagIDs.contains(tagId)})
 //        debugPrint("assets for tag \(tagId)")
 //        dump(theseAssets)
 //        if(theseAssets.count > 0){

@@ -20,10 +20,10 @@ class ReadViewModel: BaseViewModel  {
         tag = data.getTagForIndexAndMode(3, mode: "listen")!
         prompt = tag.locMsg
 //        debugPrint("prompt is \(tag.locMsg)")
-        assets = data.getAssetsForTagIdOfMediaType(tag.id, mediaType: .Text)
+        assets = data.getAssetsForTagIdOfMediaType(tag.id, mediaType: .text)
         response = ""
         //TODO render as separate ui items
-        for (i, asset) in assets.enumerate() {
+        for (i, asset) in assets.enumerated() {
             if let resp = asset.text{
                 response += resp + "\n\n"
             }

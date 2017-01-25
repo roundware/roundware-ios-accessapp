@@ -3,7 +3,7 @@
 
 # This is the minimum version number required.
 # Update this, if you use features of a newer version
-fastlane_version "1.66.0"
+fastlane_version "2.11.0"
 
 default_platform :ios
 
@@ -35,7 +35,7 @@ platform :ios do |options|
         language: 'English',
         app_version: '1.0',
         sku: '123',
-        team_name: '' # only necessary when in multiple teams
+        team_name: 'SEE READ LLC' # only necessary when in multiple teams
       )
       register_devices( devices_file: './fastlane/devices.txt')
     end
@@ -58,8 +58,9 @@ platform :ios do |options|
     gym(scheme: "Digita11y", use_legacy_build_api: true)
     crashlytics(crashlytics_path: "./Pods/Crashlytics/iOS/Crashlytics.framework",
                     notes: changelog,
-                    groups: "Digita11yInternal")
+                    #groups: "Digita11yInternal")
                     #groups: "Digita11yTech")
+                    groups: "Digita11yDebug")
 	slack(
       channel: "digita11y-notify",
       default_payloads: [], # reduce the notification to the minimum

@@ -6,13 +6,13 @@
 
 import Foundation
 import Crashlytics
-func DebugLog(message: String,
+func DebugLog(_ message: String,
               file: StaticString = #file,
               function: StaticString = #function,
               line: Int = #line)
 {
     let output: String
-    if let filename = NSURL(string:file.stringValue)?.lastPathComponent?.componentsSeparatedByString(".").first
+    if let filename = URL(string:String(describing: file))?.lastPathComponent.components(separatedBy: ".").first
     {
         output = "\(filename).\(function) line \(line) $ \(message)"
     }

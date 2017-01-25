@@ -15,8 +15,8 @@ class MapViewController: BaseViewController {
 
     @IBOutlet weak var imageScrollView: ImageScrollView!
 
-    @IBAction func close(sender: AnyObject) {
-        self.performSegueWithIdentifier("closeMap", sender: sender)
+    @IBAction func close(_ sender: AnyObject) {
+        self.performSegue(withIdentifier: "closeMap", sender: sender)
     }
 
 
@@ -26,11 +26,11 @@ class MapViewController: BaseViewController {
 
         super.viewDidLoad()
         
-        let url = NSURL(string: self.viewModel.mapURL)
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-            let data = NSData(contentsOfURL: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check
-            dispatch_async(dispatch_get_main_queue(), {
-                self.imageScrollView.displayImage( UIImage(data: data!)!)
+        let url = URL(string: self.viewModel.mapURL)
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
+            let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check
+            DispatchQueue.main.async(execute: {
+                self.imageScrollView.display(image: UIImage(data: data!)!)
             });
         }
     }

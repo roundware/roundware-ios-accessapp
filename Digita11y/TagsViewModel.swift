@@ -42,7 +42,7 @@ class TagsViewModel: BaseViewModel  {
                 self.selectedItemIndex = 0
                 let rwf = RWFramework.sharedInstance
                 if(rwf.isPlaying){
-                    rwf.submitTags(String(tag.id))
+                    rwf.submitTags(tagIdsAsString: String(tag.id))
                 }
             } else {
                 self.roomUIGroup.selectedUIItem = nil
@@ -77,7 +77,7 @@ class TagsViewModel: BaseViewModel  {
                     data.updateUIGroup(self.itemsUIGroup)
                     let rwf = RWFramework.sharedInstance
                     DebugLog("submitting tag id \(tag.id)")
-                    rwf.submitTags(String(tag.id))
+                    rwf.submitTags(tagIdsAsString: String(tag.id))
                 }
             } else{
                 self.itemsUIGroup.selectedUIItem = nil

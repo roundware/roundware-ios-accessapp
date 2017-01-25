@@ -14,12 +14,12 @@ class ReadViewController: BaseViewController {
     @IBOutlet weak var prompt: UILabel!
     @IBOutlet weak var response: UILabelBody!
 
-    @IBAction func close(sender: AnyObject) {
-        self.performSegueWithIdentifier("closeRead", sender: sender)
+    @IBAction func close(_ sender: AnyObject) {
+        self.performSegue(withIdentifier: "closeRead", sender: sender)
     }
 
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
 

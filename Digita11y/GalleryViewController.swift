@@ -12,9 +12,9 @@ class GalleryViewController: BaseViewController, UIPageViewControllerDataSource 
 
     var viewModel: GalleryViewModel!
 
-    private var pageViewController: UIPageViewController?
+    fileprivate var pageViewController: UIPageViewController?
 
-    private let contentImages =
+    fileprivate let contentImages =
         ["play.png",
          "pause.png"];
 
@@ -23,8 +23,8 @@ class GalleryViewController: BaseViewController, UIPageViewControllerDataSource 
 
     @IBOutlet weak var pageContainer: UIView!
 
-    @IBAction func close(sender: AnyObject) {
-        self.performSegueWithIdentifier("closeGallery", sender: sender)
+    @IBAction func close(_ sender: AnyObject) {
+        self.performSegue(withIdentifier: "closeGallery", sender: sender)
     }
 
 
@@ -43,15 +43,15 @@ class GalleryViewController: BaseViewController, UIPageViewControllerDataSource 
         setupPageControl()
     }
 
-    private func createPageViewController() {
+    fileprivate func createPageViewController() {
 
-        let pageController = self.storyboard!.instantiateViewControllerWithIdentifier("PageController") as! UIPageViewController
+        let pageController = self.storyboard!.instantiateViewController(withIdentifier: "PageController") as! UIPageViewController
         pageController.dataSource = self
 
         if contentImages.count > 0 {
             let firstController = getItemController(0)!
             let startingViewControllers: NSArray = [firstController]
-            pageController.setViewControllers(startingViewControllers as! [UIViewController], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
+            pageController.setViewControllers(startingViewControllers as! [UIViewController], direction: UIPageViewControllerNavigationDirection.forward, animated: false, completion: nil)
         }
 
         pageViewController = pageController
@@ -59,20 +59,20 @@ class GalleryViewController: BaseViewController, UIPageViewControllerDataSource 
         pageContainer.addSubview(pageViewController!.view)
         pageViewController!.view.frame = pageContainer.bounds
 
-        pageViewController!.didMoveToParentViewController(self)
+        pageViewController!.didMove(toParentViewController: self)
     }
 
-    private func setupPageControl() {
+    fileprivate func setupPageControl() {
         let appearance = UIPageControl.appearance()
-        appearance.pageIndicatorTintColor = UIColor.grayColor()
-        appearance.currentPageIndicatorTintColor = UIColor.whiteColor()
+        appearance.pageIndicatorTintColor = UIColor.gray
+        appearance.currentPageIndicatorTintColor = UIColor.white
 //        appearance.backgroundColor = UIColor.darkGrayColor()
     }
 
 
     // MARK: - UIPageViewControllerDataSource
 
-    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
 
         let itemController = viewController as! PageItemController
 
@@ -83,7 +83,7 @@ class GalleryViewController: BaseViewController, UIPageViewControllerDataSource 
         return nil
     }
 
-    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
 
         let itemController = viewController as! PageItemController
 
@@ -94,10 +94,10 @@ class GalleryViewController: BaseViewController, UIPageViewControllerDataSource 
         return nil
     }
 
-    private func getItemController(itemIndex: Int) -> PageItemController? {
+    fileprivate func getItemController(_ itemIndex: Int) -> PageItemController? {
 
         if itemIndex < contentImages.count {
-            let pageItemController = self.storyboard!.instantiateViewControllerWithIdentifier("ItemController") as! PageItemController
+            let pageItemController = self.storyboard!.instantiateViewController(withIdentifier: "ItemController") as! PageItemController
             pageItemController.itemIndex = itemIndex
             pageItemController.imageName = contentImages[itemIndex]
             return pageItemController
@@ -109,11 +109,11 @@ class GalleryViewController: BaseViewController, UIPageViewControllerDataSource 
 
     // MARK: - Page Indicator
 
-    func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
+    func presentationCount(for pageViewController: UIPageViewController) -> Int {
         return contentImages.count
     }
 
-    func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
+    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
         return 0
     }
 
