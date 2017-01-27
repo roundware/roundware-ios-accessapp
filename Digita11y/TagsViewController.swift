@@ -501,7 +501,9 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
         DebugLog("get asset id error")
         DebugLog((error?.localizedDescription)!)
     }
-    func rwObserveValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutableRawPointer) {
+
+    func rwObserveValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [NSKeyValueChangeKey : AnyObject]?, context: UnsafeMutableRawPointer?) {
+
         dump(keyPath)
         print("object")
         dump(object)
@@ -522,9 +524,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
             }
 
             //get values
-            guard let
-                changeEntry = change["new" as NSObject],
-                let newChange = changeEntry as? NSArray,
+            guard let newChange = change?[.newKey] as? NSArray,
                 let avMetadataItem = newChange.firstObject as? AVMetadataItem else{
                 return
             }
