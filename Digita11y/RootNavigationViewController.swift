@@ -37,49 +37,49 @@ class RootNavigationViewController: UINavigationController, UINavigationControll
 
     // MARK: - RWFrameworkProtocol
 
-    func rwUpdateStatus(_ message: String) {
+    func rwUpdateStatus( message: String) {
         DebugLog(message)
     }
 
-    func rwPostUsersFailure(_ error: NSError?) {
+    func rwPostUsersFailure( error: NSError?) {
         DebugLog("post users failure")
         DebugLog((error?.localizedDescription)!)
     }
 
-    func rwPostSessionsFailure(_ error: NSError?){
+    func rwPostSessionsFailure( error: NSError?){
         DebugLog("post sessions failure")
         DebugLog((error?.localizedDescription)!)
     }
 
 
-    func rwGetProjectsIdTagsSuccess(_ data: Data?) {
+    func rwGetProjectsIdTagsSuccess( data: Data?) {
         let json = JSON(data: data!)
         self.rwData?.tags = json["tags"].array?.map { Tag(json: $0) } ?? []
     }
 
-    func rwGetProjectsIdTagsFailure(_ error: NSError?) {
+    func rwGetProjectsIdTagsFailure( error: NSError?) {
         DebugLog("get projects id tags failure")
         DebugLog((error?.localizedDescription)!)
     }
 
-    func rwGetProjectsIdUIGroupsSuccess(_ data: Data?) {
+    func rwGetProjectsIdUIGroupsSuccess( data: Data?) {
         let json = JSON(data: data!)
         self.rwData?.uiGroups = json["ui_groups"].array?.map { UIGroup(json: $0) } ?? []
     }
 
-    func rwGetProjectsIdUIGroupsFailure(_ error: NSError?) {
+    func rwGetProjectsIdUIGroupsFailure( error: NSError?) {
         DebugLog("get projects id ui groups failure")
         DebugLog((error?.localizedDescription)!)
     }
 
-    func rwGetAssetsSuccess(_ data: Data?) {
+    func rwGetAssetsSuccess( data: Data?) {
         let json = JSON(data: data!)
         self.rwData?.assets = json.array?.map { Asset(json: $0) } ?? []
 //        debugPrint("assets json received")
 //        dump(self.rwData?.assets)
     }
 
-    func rwGetAssetsFailure(_ error: NSError?) {
+    func rwGetAssetsFailure( error: NSError?) {
         DebugLog("get assets failure")
         DebugLog((error?.localizedDescription)!)
     }

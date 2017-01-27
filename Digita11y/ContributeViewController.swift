@@ -388,7 +388,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
     }
 
     var elapsed = 0
-    func rwRecordingProgress(_ percentage: Double, maxDuration: TimeInterval, peakPower: Float, averagePower: Float) {
+    func rwRecordingProgress( percentage: Double, maxDuration: TimeInterval, peakPower: Float, averagePower: Float) {
         let dt = maxDuration - (percentage*maxDuration)
         let sec = Int(dt.truncatingRemainder(dividingBy: 60.0))
         elapsed = Int(maxDuration) - sec - 1 // fudging
@@ -403,7 +403,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
         self.uploadButton.isHidden = false
     }
 
-    func rwPlayingBackProgress(_ percentage: Double, duration: TimeInterval, peakPower: Float, averagePower: Float) {
+    func rwPlayingBackProgress( percentage: Double, duration: TimeInterval, peakPower: Float, averagePower: Float) {
         let dt = (percentage*duration)
         let sec = Int(dt.truncatingRemainder(dividingBy: 60.0))
         let secStr = sec < 10 ? "0\(sec)" : "\(sec)"
@@ -420,12 +420,12 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
 
     }
 
-    func rwPostEnvelopesSuccess(_ data: Data?){
+    func rwPostEnvelopesSuccess( data: Data?){
         DebugLog("post envelope success")
     }
 
     /// Sent in the case that the server can not return a new envelope id
-    func rwPostEnvelopesFailure(_ error: NSError?){
+    func rwPostEnvelopesFailure( error: NSError?){
         DebugLog("post envelope failure")
         SVProgressHUD.dismiss()
         //TODOnow display alert
@@ -433,7 +433,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
 
     }
 
-    func rwPatchEnvelopesIdSuccess(_ data: Data?){
+    func rwPatchEnvelopesIdSuccess( data: Data?){
     /// Sent in the case that the server can not accept an envelope item (media upload)
         DebugLog("patch envelope success")
         SVProgressHUD.dismiss()
@@ -446,7 +446,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
         self.performSegue(withIdentifier: "Thanks", sender: nil)
     }
 
-    func rwPatchEnvelopesIdFailure(_ error: NSError?){
+    func rwPatchEnvelopesIdFailure( error: NSError?){
         DebugLog("patch envelope failure")
         SVProgressHUD.dismiss()
         //TODO trigger undo

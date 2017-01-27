@@ -441,17 +441,17 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
     }
 
     // MARK: RWFramework Protocol
-    func rwUpdateStatus(_ message: String) {
+    func rwUpdateStatus( message: String) {
 //        print("update status")
 //        print(message)
     }
 
-    func rwGetStreamsIdCurrentSuccess(_ data: Data?) {
+    func rwGetStreamsIdCurrentSuccess( data: Data?) {
         DebugLog("current success")
 //        dump(data)
     }
 
-    func rwPostStreamsSuccess(_ data: Data?) {
+    func rwPostStreamsSuccess( data: Data?) {
         DebugLog("stream success")
 //        dump(data)
         DispatchQueue.main.async(execute: { () -> Void in
@@ -459,51 +459,51 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
         })
     }
 
-    func rwPostStreamsError(_ error: NSError?) {
+    func rwPostStreamsError( error: NSError?) {
         DebugLog((error?.localizedDescription)!)
     }
 
-    func rwPatchStreamsIdSuccess(_ data: Data?){
+    func rwPatchStreamsIdSuccess( data: Data?){
         DebugLog("patch stream success")
 //        dump(data)
 
     }
 
-    func rwPatchStreamsIdFailure(_ error: NSError?){
+    func rwPatchStreamsIdFailure( error: NSError?){
         DebugLog("patch streams failure")
         DebugLog((error?.localizedDescription)!)
     }
 
-    func rwPostStreamsIdHeartbeatSuccess(_ data: Data?) {
+    func rwPostStreamsIdHeartbeatSuccess( data: Data?) {
 //        DebugLog("heartbeat success")
 //        dump(data)
 //        dispatch_async(dispatch_get_main_queue(), { () -> Void in
 //        })
     }
 
-    func rwPostStreamsIdNextSuccess(_ data: Data?) {
+    func rwPostStreamsIdNextSuccess( data: Data?) {
         DebugLog("next success")
         dump(data)
     }
 
-    func rwPostStreamsIdNextFailure(_ error: NSError?) {
+    func rwPostStreamsIdNextFailure( error: NSError?) {
         DebugLog("rwPostStreamsIdNextFailureerror")
         DebugLog((error?.localizedDescription)!)
 
     }
 
-    func rwGetAssetsIdSuccess(_ data: Data?){
+    func rwGetAssetsIdSuccess( data: Data?){
         DebugLog("get asset id success")
 //        dump(data)
     }
 
-    func rwGetAssetsIdFailure(_ error: NSError?){
+    func rwGetAssetsIdFailure( error: NSError?){
         DebugLog("get asset id error")
         DebugLog((error?.localizedDescription)!)
     }
 
 
-    func rwObserveValueForKeyPath(_ keyPath: String, ofObject object: AnyObject, change: [AnyHashable: Any], context: UnsafeMutableRawPointer) {
+    func rwObserveValueForKeyPath( keyPath: String, ofObject object: AnyObject, change: [AnyHashable: Any], context: UnsafeMutableRawPointer) {
 
         //the stream has started
         if keyPath == "timedMetadata" {

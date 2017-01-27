@@ -80,7 +80,7 @@ class ChooseProjectViewController: BaseViewController, UIScrollViewDelegate, RWF
         scroll?.contentOffset = CGPoint(x: newContentOffsetX, y: 0)
     }
 
-    func rwGetProjectsIdSuccess(_ data: Data?) {
+    func rwGetProjectsIdSuccess(data: Data?) {
         let json = JSON(data: data!)
         print("projects id json")
         //TODO update project model and corresponding functionality with info from JSON
@@ -88,7 +88,7 @@ class ChooseProjectViewController: BaseViewController, UIScrollViewDelegate, RWF
         SVProgressHUD.dismiss()
         self.performSegue(withIdentifier: "ProjectSegue", sender: nil)
     }
-    func rwGetProjectsIdFailure(_ error: NSError?) {
+    func rwGetProjectsIdFailure(error: NSError?) {
         SVProgressHUD.dismiss()
         DebugLog("project id failure")
 
