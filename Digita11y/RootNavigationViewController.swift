@@ -52,8 +52,8 @@ class RootNavigationViewController: UINavigationController, UINavigationControll
     }
 
 
-    func rwGetProjectsIdTagsSuccess( data: Data?) {
-        let json = JSON(data: data!)
+    func rwGetProjectsIdTagsSuccess( data: NSData?) {
+        let json = JSON(data: data as! Data)
         self.rwData?.tags = json["tags"].array?.map { Tag(json: $0) } ?? []
     }
 
@@ -62,8 +62,8 @@ class RootNavigationViewController: UINavigationController, UINavigationControll
         DebugLog((error?.localizedDescription)!)
     }
 
-    func rwGetProjectsIdUIGroupsSuccess( data: Data?) {
-        let json = JSON(data: data!)
+    func rwGetProjectsIdUIGroupsSuccess( data: NSData?) {
+        let json = JSON(data: data! as Data)
         self.rwData?.uiGroups = json["ui_groups"].array?.map { UIGroup(json: $0) } ?? []
     }
 
@@ -72,8 +72,8 @@ class RootNavigationViewController: UINavigationController, UINavigationControll
         DebugLog((error?.localizedDescription)!)
     }
 
-    func rwGetAssetsSuccess( data: Data?) {
-        let json = JSON(data: data!)
+    func rwGetAssetsSuccess( data: NSData?) {
+        let json = JSON(data: data as! Data)
         self.rwData?.assets = json.array?.map { Asset(json: $0) } ?? []
 //        debugPrint("assets json received")
 //        dump(self.rwData?.assets)

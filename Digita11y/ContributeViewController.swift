@@ -54,7 +54,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
         } else {
             if(self.viewModel.tagsSelected){
             //record, play, stop
-                var rwf = RWFramework.sharedInstance
+                let rwf = RWFramework.sharedInstance
                 if rwf.isRecording() {
 //                    delay(0.5) {  // HACK: Let the buffers in the framework flush.
                         rwf.stopRecording()
@@ -104,7 +104,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
 
         //hide others
         let others = scroll?.subviews.filter({$0 as UIView != selectedView})
-        for (index, button) in (others?.enumerated())!{
+        for (_, button) in (others?.enumerated())!{
             button.isHidden = true
         }
 
@@ -420,7 +420,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
 
     }
 
-    func rwPostEnvelopesSuccess( data: Data?){
+    func rwPostEnvelopesSuccess( data: NSData?){
         DebugLog("post envelope success")
     }
 
@@ -433,14 +433,14 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
 
     }
 
-    func rwPatchEnvelopesIdSuccess( data: Data?){
+    func rwPatchEnvelopesIdSuccess( data: NSData?){
     /// Sent in the case that the server can not accept an envelope item (media upload)
         DebugLog("patch envelope success")
         SVProgressHUD.dismiss()
 
         //TODO now mark uiitems as contributed
         for (_, tag) in self.viewModel.tags.enumerated(){
-//            tag.contributed
+            dump(tag)
         }
 
         self.performSegue(withIdentifier: "Thanks", sender: nil)

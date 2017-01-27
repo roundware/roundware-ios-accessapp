@@ -27,7 +27,7 @@ class MapViewController: BaseViewController {
         super.viewDidLoad()
         
         let url = URL(string: self.viewModel.mapURL)
-        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
+        DispatchQueue.global(qos: .default).async {
             let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check
             DispatchQueue.main.async(execute: {
                 self.imageScrollView.display(image: UIImage(data: data!)!)

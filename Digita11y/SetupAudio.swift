@@ -25,7 +25,7 @@ func setupAudio(_ audioSetup: @escaping (_ granted: Bool, _ error: NSError?) -> 
         }
     }
 
-    let override = (TARGET_IPHONE_SIMULATOR == 1 || isHeadsetPluggedIn()) ? AVAudioSessionPortOverride.none : AVAudioSessionPortOverride.speaker
+    _ = (TARGET_IPHONE_SIMULATOR == 1 || isHeadsetPluggedIn()) ? AVAudioSessionPortOverride.none : AVAudioSessionPortOverride.speaker
 
     // Send audio to the speaker
     do {

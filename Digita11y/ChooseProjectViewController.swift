@@ -54,7 +54,7 @@ class ChooseProjectViewController: BaseViewController, UIScrollViewDelegate, RWF
             }
             button.accessibilityLabel = project.name + ", \(index + 1) of \(buttons.count)"
             button.addTarget(self,
-                             action: "selectedThis:",
+                             action: #selector(ChooseProjectViewController.selectedThis(_:)),
                              for: UIControlEvents.touchUpInside)
             button.tag = project.id
         }
@@ -80,8 +80,8 @@ class ChooseProjectViewController: BaseViewController, UIScrollViewDelegate, RWF
         scroll?.contentOffset = CGPoint(x: newContentOffsetX, y: 0)
     }
 
-    func rwGetProjectsIdSuccess(data: Data?) {
-        let json = JSON(data: data!)
+    func rwGetProjectsIdSuccess(data: NSData?) {
+        _ = JSON(data: data! as Data)
         print("projects id json")
         //TODO update project model and corresponding functionality with info from JSON
 //        dump(json)

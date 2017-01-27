@@ -23,7 +23,7 @@ class ReadViewModel: BaseViewModel  {
         assets = data.getAssetsForTagIdOfMediaType(tag.id, mediaType: .text)
         response = ""
         //TODO render as separate ui items
-        for (i, asset) in assets.enumerated() {
+        for (_, asset) in assets.enumerated() {
             if let resp = asset.text{
                 response += resp + "\n\n"
             }

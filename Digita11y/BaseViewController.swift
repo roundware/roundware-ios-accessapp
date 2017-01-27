@@ -86,7 +86,7 @@ class BaseViewController: UIViewController {
             item.removeFromSuperview()
         }
 
-        for (index, title) in titles.enumerated() {
+        for (_, title) in titles.enumerated() {
             button = UIButtonBorder(type: UIButtonType.system)
             button.setTitle(title, for: UIControlState())
             let frame = CGRect(

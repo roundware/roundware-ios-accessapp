@@ -289,16 +289,16 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
             waitingToStart = true
             return true
         } else {
-            var alertController = UIAlertController (title: "Location services", message: "Please enable location detection for streaming", preferredStyle: .alert)
+            let alertController = UIAlertController (title: "Location services", message: "Please enable location detection for streaming", preferredStyle: .alert)
 
-            var settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+            let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
                 let settingsUrl = URL(string: UIApplicationOpenSettingsURLString)
                 if let url = settingsUrl {
                     UIApplication.shared.openURL(url)
                 }
             }
 
-            var cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
             alertController.addAction(settingsAction)
             alertController.addAction(cancelAction)
 
@@ -437,7 +437,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
             resetRoomItems()
         }
         //TODO update labels
-        self.viewModel.roomTags[item].locMsg + ", \(item + 1) of \(self.viewModel.roomTags.count)"
+//        self.viewModel.roomTags[item].locMsg + ", \(item + 1) of \(self.viewModel.roomTags.count)"
     }
 
     // MARK: RWFramework Protocol
@@ -446,12 +446,12 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 //        print(message)
     }
 
-    func rwGetStreamsIdCurrentSuccess( data: Data?) {
+    func rwGetStreamsIdCurrentSuccess( data: NSData?) {
         DebugLog("current success")
 //        dump(data)
     }
 
-    func rwPostStreamsSuccess( data: Data?) {
+    func rwPostStreamsSuccess( data: NSData?) {
         DebugLog("stream success")
 //        dump(data)
         DispatchQueue.main.async(execute: { () -> Void in
@@ -463,7 +463,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
         DebugLog((error?.localizedDescription)!)
     }
 
-    func rwPatchStreamsIdSuccess( data: Data?){
+    func rwPatchStreamsIdSuccess( data: NSData?){
         DebugLog("patch stream success")
 //        dump(data)
 
@@ -474,14 +474,14 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
         DebugLog((error?.localizedDescription)!)
     }
 
-    func rwPostStreamsIdHeartbeatSuccess( data: Data?) {
+    func rwPostStreamsIdHeartbeatSuccess( data: NSData?) {
 //        DebugLog("heartbeat success")
 //        dump(data)
 //        dispatch_async(dispatch_get_main_queue(), { () -> Void in
 //        })
     }
 
-    func rwPostStreamsIdNextSuccess( data: Data?) {
+    func rwPostStreamsIdNextSuccess( data: NSData?) {
         DebugLog("next success")
         dump(data)
     }
@@ -492,7 +492,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 
     }
 
-    func rwGetAssetsIdSuccess( data: Data?){
+    func rwGetAssetsIdSuccess( data: NSData?){
         DebugLog("get asset id success")
 //        dump(data)
     }
@@ -501,9 +501,10 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
         DebugLog("get asset id error")
         DebugLog((error?.localizedDescription)!)
     }
-
-
-    func rwObserveValueForKeyPath( keyPath: String, ofObject object: AnyObject, change: [AnyHashable: Any], context: UnsafeMutableRawPointer) {
+    func rwObserveValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutableRawPointer) {
+        dump(keyPath)
+        print("object")
+        dump(object)
 
         //the stream has started
         if keyPath == "timedMetadata" {
@@ -521,7 +522,9 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
             }
 
             //get values
-            guard let newChange = change["new"] as? NSArray,
+            guard let
+                changeEntry = change["new" as NSObject],
+                let newChange = changeEntry as? NSArray,
                 let avMetadataItem = newChange.firstObject as? AVMetadataItem else{
                 return
             }
