@@ -30,6 +30,7 @@ class TagsViewModel: BaseViewModel  {
     var selectedRoomTag: Tag? {
         didSet {
             //TODO only submit if setting to a new room tag
+
             if let tag = self.selectedRoomTag {
                 self.roomUIGroup.selectedUIItem = self.roomUIGroup.uiItems.filter({$0.tagId == tag.id }).first
                 data.updateUIGroup(self.roomUIGroup)
@@ -42,6 +43,7 @@ class TagsViewModel: BaseViewModel  {
                 self.selectedItemIndex = 0
                 let rwf = RWFramework.sharedInstance
                 if(rwf.isPlaying){
+                    debugPrint("room tag submitted\(tag.id)")
                     rwf.submitTags(tagIdsAsString: String(tag.id))
                 }
             } else {
@@ -70,11 +72,14 @@ class TagsViewModel: BaseViewModel  {
     }
     var selectedItemTag: Tag?  {
         willSet(newItemTag) {
+            //TODO how to distinguish viewmodel update if selection is from query meta rather than a tap and prevent submitTag request
             if let tag = newItemTag {
                 //only submit tag if it's a new tag selection
                 if (selectedItemTag == nil || tag.id != selectedItemTag!.id){
                     self.itemsUIGroup.selectedUIItem = self.itemsUIGroup.uiItems.filter({$0.tagId == tag.id }).first
                     data.updateUIGroup(self.itemsUIGroup)
+
+                    //TODO this needs change maybe?
                     let rwf = RWFramework.sharedInstance
                     DebugLog("submitting tag id \(tag.id)")
                     rwf.submitTags(tagIdsAsString: String(tag.id))
@@ -84,6 +89,8 @@ class TagsViewModel: BaseViewModel  {
             }
         }
     }
+
+    var currentAsset : Asset?
 
     //TODO mapURL
     //TODO handle missing data
@@ -105,5 +112,6 @@ class TagsViewModel: BaseViewModel  {
 //        dump(data.getUIGroupForIndexAndMode(3, mode: "listen"))
         //set stream
         self.stream = data.stream
+        self.currentAsset = nil
     }
 }

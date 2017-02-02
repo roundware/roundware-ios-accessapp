@@ -20,7 +20,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
     var tagViews : [TagView] = []
     var waitingToStart: Bool = false
 
-    // MARK: Outlets and Actions
+    // MARK: Outlets
 
     @IBOutlet weak var roomsLabel: UILabel!
     @IBOutlet weak var parentTagPickerView: AKPickerView!
@@ -36,6 +36,11 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
     @IBOutlet weak var speedButton: UIButton!
     @IBOutlet weak var countdownLabel: UILabel!
 
+    @IBOutlet weak var moreButton: UIButton!
+
+
+    // MARK: Player actions
+
     @IBAction func cycleSpeed(_ sender: AnyObject) {
         //TODO cycle speed
         debugPrint("cycle speed")
@@ -46,66 +51,69 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
         if (rwf.isPlaying) {
             SVProgressHUD.dismiss()
             DebugLog("pause timer")
-            timer.invalidate()
-            rwf.stop()
+            countdownTimer.invalidate()
+            rwf.pause()
+            pauseLock = true
             self.playPauseButton.showButtonIsPlaying(false)
             self.nextButton.isEnabled = false
             self.previousButton.isEnabled = false
             UIApplication.shared.isIdleTimerDisabled = false
         } else {
             startPlaying()
-            UIApplication.shared.isIdleTimerDisabled = true
         }
     }
 
-    //really next asset
-    //TODOsoon rewrite with api update
+    //TODO rename & relabel "skip"
     @IBAction func nextTag(_ sender: AnyObject) {
-        DebugLog("next item")
+        DebugLog("skip item")
         let rwf = RWFramework.sharedInstance
-        if (rwf.isPlaying) {
-            //set to first item if none is selected
-            guard let index = self.viewModel.selectedItemIndex else {
-                selectItemAtIndex(0)
-                return
-            }
+//        if (!rwf.isPlaying) { return }
+        rwf.skip()
+        SVProgressHUD.show(withStatus: "Loading next...")
+        //data model & UI update should follow from metadata.
+        //set to first item if none is selected
+//        guard let index = self.viewModel.selectedItemIndex else {
+//            selectItemAtIndex(0)
+//            return
+//        }
 
-            //switch to next asset if available
-            if(index < tagViews.count &&
-                //does not account for new assets since start
-                tagViews[index].currentAssetIndex + 1 < tagViews[index].arrayOfAssetIds.count){
-                rwf.next()
-                return
-            }
-
-            //switch to next item if available
-            var nextIndex = index + 1
-            if(self.viewModel.itemTags.count - 1 >= nextIndex){
-                selectItemAtIndex(nextIndex)
-            } else {
-                //switch to next room if available
-                guard let roomIndex = self.viewModel.selectedRoomIndex else {
-                    return
-                }
-                nextIndex = roomIndex + 1
-                if(self.viewModel.roomTags.count - 1 >= nextIndex){
-                    self.parentTagPickerView.selectItem(nextIndex)
-                } else {
-                    //TODO notification if next room finished
-                    // or restart
-                }
-
-            }
-        }
+//        //switch to next asset if available
+//        if(index < tagViews.count &&
+//            //does not account for new assets since start
+//            tagViews[index].currentAssetIndex + 1 < tagViews[index].arrayOfAssetIds.count){
+//            return
+//        }
+//
+//        //switch to next item if available
+//        var nextIndex = index + 1
+//        if(self.viewModel.itemTags.count - 1 >= nextIndex){
+//            selectItemAtIndex(nextIndex)
+//        } else {
+//            //switch to next room if available
+//            guard let roomIndex = self.viewModel.selectedRoomIndex else {
+//                return
+//            }
+//            nextIndex = roomIndex + 1
+//            if(self.viewModel.roomTags.count - 1 >= nextIndex){
+//                self.parentTagPickerView.selectItem(nextIndex)
+//            } else {
+//                //TODO notification if next room finished
+//                // or restart
+//            }
+//
+//        }
     }
 
+    //TODO rename & relabel replay
     @IBAction func previousTag(_ sender: AnyObject) {
-        //TODOsoon will restart current asset or
-        //move to previous asset
-        DebugLog("previous tag")
-
+        DebugLog("replay")
+        let rwf = RWFramework.sharedInstance
+        rwf.replayAsset()
+        SVProgressHUD.show(withStatus: "Remixing your live audio stream… please hold!")
     }
 
+
+    // MARK: other top level actions
     @IBAction func contribute(_ sender: AnyObject) {
         let rwf = RWFramework.sharedInstance
         if (rwf.isPlaying) {
@@ -114,6 +122,45 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
         self.performSegue(withIdentifier: "ContributeSegue", sender: sender)
     }
 
+    @IBAction func expandMore(_ sender: AnyObject) {
+        //TODO set title and message
+        let rwf = RWFramework.sharedInstance
+
+        let moreModal = UIAlertController(title: "More", message: "", preferredStyle: UIAlertControllerStyle.alert)
+        let asset_id = String(1)
+        //Block Recording
+        moreModal.addAction(UIAlertAction(title: "Block Recording", style: UIAlertActionStyle.default, handler: {(alert: UIAlertAction!) in
+            rwf.apiPostAssetsIdVotes(asset_id: asset_id, vote_type: "block_recording",
+                success: { (data) -> Void in
+                }, failure:  { (error) -> Void in
+            })
+        }))
+        //Block User
+        moreModal.addAction(UIAlertAction(title: "Block User", style: UIAlertActionStyle.default, handler: {(alert: UIAlertAction!) in
+                rwf.apiPostAssetsIdVotes(asset_id: asset_id, vote_type: "block_user",
+                    success: { (data) -> Void in
+                    }, failure:  { (error) -> Void in
+                })
+        }))
+        //Flag Recording
+        moreModal.addAction(UIAlertAction(title: "Flag Recording", style: UIAlertActionStyle.default, handler: {(alert: UIAlertAction!) in
+            rwf.apiPostAssetsIdVotes(asset_id: asset_id, vote_type: "flag",
+                success: { (data) -> Void in
+                }, failure:  { (error) -> Void in
+            })
+        }))
+
+        //TODO dismissals?
+
+        //Cancel
+        moreModal.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
+        self.present(moreModal, animated: true, completion: nil)
+    }
+
+    func blockUser(){
+    }
+
+    //deprecated?
     @IBAction func seeMap(_ sender: AnyObject) {
         let rwf = RWFramework.sharedInstance
         if (rwf.isPlaying) {
@@ -123,16 +170,20 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
     }
 
 
-    // MARK: Asset Actions
+    // MARK: UIItem/Tag Actions
 
+    //selects Roundware.UIItem
     //do not confuse with pickerView delegate method
     @IBAction func selectItem(_ sender: UIButton) {
         DebugLog("selected tag at index \(String(sender.tag))")
         selectItemAtIndex(sender.tag)
     }
 
+
+    //countdown timer init
     var countdownTime = 60
-    var timer = Timer()
+    var countdownTimer = Timer()
+
     @IBAction func selectItemAtIndex(_ index: Int) {
         let tagView = tagViews[index]
         if (tagView.selected){
@@ -146,15 +197,12 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
             //start playing if not playing
             let rwf = RWFramework.sharedInstance
             if(!rwf.isPlaying){
-                self.playPauseButton.showButtonIsPlaying(true)
                 startPlaying()
             }
-
             //set times
             countdownTime = Int(tagView.totalLength)
         }
     }
-
     func countdown() {
 //        debugPrint("counting")
         if countdownTime > 0 {
@@ -190,7 +238,6 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 
 
     // MARK: Segue Actions
-
 
     //back from modals
     @IBAction func prepareForTagsDimiss(_ segue: UIStoryboardSegue) {
@@ -278,17 +325,13 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
         super.didReceiveMemoryWarning()
     }
 
-
+    var pauseLock = false
     func startPlaying() -> Bool {
-        //TODO rework for geolocation toggle && project settings
-        if (CLLocationManager.authorizationStatus() == .authorizedWhenInUse) {
-            let rwf = RWFramework.sharedInstance
-            rwf.play()
-            SVProgressHUD.show(withStatus: "Loading Stream")
-            self.playPauseButton.showButtonIsPlaying(true)
-            waitingToStart = true
-            return true
-        } else {
+        // location services should be asked for here if they are:
+        // TODO a. "required" based server sent config hash
+        // b. not already authorized
+        if (CLLocationManager.authorizationStatus() != .authorizedWhenInUse){
+
             let alertController = UIAlertController (title: "Location services", message: "Please enable location detection for streaming", preferredStyle: .alert)
 
             let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
@@ -301,9 +344,22 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
             let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
             alertController.addAction(settingsAction)
             alertController.addAction(cancelAction)
-
             present(alertController, animated: true, completion: nil)
             return false
+
+        } else {
+            let rwf = RWFramework.sharedInstance
+
+            if(pauseLock){
+                pauseLock = false
+                rwf.resume()
+            } else {
+                rwf.play()
+            }
+
+            SVProgressHUD.show(withStatus: "Loading Stream")
+            waitingToStart = true
+            return true
         }
     }
 
@@ -400,7 +456,6 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 
 
     // MARK: - AKPickerViewDataSource
-
     func numberOfItemsInPickerView(_ pickerView: AKPickerView) -> Int {
         return self.viewModel.roomTags.count
     }
@@ -408,6 +463,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
     func pickerView(_ pickerView: AKPickerView, titleForItem item: Int) -> String {
         return self.viewModel.roomTags[item].locMsg
     }
+
     func pickerView(_ pickerView: AKPickerView, accessibilityLabelForItem item: Int) -> String {
         return self.viewModel.roomTags[item].locMsg + ", \(item + 1) of \(self.viewModel.roomTags.count)"
     }
@@ -427,9 +483,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
     }
 
 
-
     // MARK: - AKPickerViewDelegate
-
     func pickerView(_ pickerView: AKPickerView, didSelectItem item: Int) {
         DebugLog("selected room with index \(item)")
         if( self.viewModel.selectedRoomIndex != item){
@@ -441,10 +495,6 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
     }
 
     // MARK: RWFramework Protocol
-    func rwUpdateStatus( message: String) {
-//        print("update status")
-//        print(message)
-    }
 
     func rwGetStreamsIdCurrentSuccess( data: NSData?) {
         DebugLog("current success")
@@ -465,8 +515,6 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 
     func rwPatchStreamsIdSuccess( data: NSData?){
         DebugLog("patch stream success")
-//        dump(data)
-
     }
 
     func rwPatchStreamsIdFailure( error: NSError?){
@@ -481,15 +529,33 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 //        })
     }
 
-    func rwPostStreamsIdNextSuccess( data: NSData?) {
-        DebugLog("next success")
+    func rwPostStreamsIdSkipSuccess( data: NSData?) {
+        DebugLog("skip success")
         dump(data)
     }
 
-    func rwPostStreamsIdNextFailure( error: NSError?) {
-        DebugLog("rwPostStreamsIdNextFailureerror")
+    func rwPostStreamsIdSkipFailure( error: NSError?) {
+        DebugLog("rwPostStreamsIdSkipFailure")
         DebugLog((error?.localizedDescription)!)
+        let alert = UIAlertController(title: "Error", message: "rwPostStreamsIdSkipFailure", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
 
+    func rwPostStreamsIdResumeFailure( error: NSError?) {
+        DebugLog("rwPostStreamsIdResumeFailure")
+        DebugLog((error?.localizedDescription)!)
+        let alert = UIAlertController(title: "Error", message: "rwPostStreamsIdResumeFailure", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    func rwPostStreamsIdReplayAssetFailure(error: NSError?){
+        DebugLog("rwPostStreamsIdReplayAssetFailure")
+        DebugLog((error?.localizedDescription)!)
+        let alert = UIAlertController(title: "Error", message: "rwPostStreamsIdReplayAssetFailure", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 
     func rwGetAssetsIdSuccess( data: NSData?){
@@ -511,12 +577,17 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
         //the stream has started
         if keyPath == "timedMetadata" {
 
+            //TODO should countdown timer happen elsewhere in logic (also?)
             if waitingToStart{
                 //start playing actually!
 //                debugPrint("starting time")
                 DebugLog("playback has begun in UI")
                 waitingToStart = false
-                timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(TagsViewController.countdown), userInfo: nil, repeats: true)
+
+
+                //this is the main "start playing block"
+                UIApplication.shared.isIdleTimerDisabled = true
+                countdownTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(TagsViewController.countdown), userInfo: nil, repeats: true)
                 SVProgressHUD.dismiss()
                 self.playPauseButton.showButtonIsPlaying(true)
 //                self.nextButton.enabled = true
@@ -534,7 +605,6 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
                     return
             }
             value = value.replacingOccurrences(of: "Roundware - ", with: "?", options: NSString.CompareOptions.literal, range: nil)
-
             guard let params = URL(string: value) else{
                 DebugLog("param problem")
                 DebugLog(value)
@@ -548,22 +618,22 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 
             //ok we have our values
             //let see what asset we are on
-            guard let assetID = queryItems["asset"] else{
-//                DebugLog("no assetID set")
-//                DebugLog(String(queryItems))
+            guard let assetID = queryItems["asset"],
+            let currentAsset = self.viewModel.data.getAssetById(Int(assetID)!)
+                else{
+                DebugLog("no assetID")
+                DebugLog(String(describing: queryItems))
                 return
             }
 
-            //TODO soon api update will mean we look at remaining and total in queryItems and update progress based on that
-
-//            debugPrint("assetID is \(assetID)")
+            self.viewModel.currentAsset = currentAsset
             guard let assetTagView = tagViews.filter({ $0.arrayOfAssetIds.contains( assetID )}).first else {
-//                DebugLog("no assetTagView found")
+                DebugLog("no assetTagView found")
                 return
             }
 
             guard let index = self.viewModel.selectedItemIndex else {
-//                DebugLog("no item selected")
+                DebugLog("no item selected")
                 return
             }
 
@@ -573,13 +643,11 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 
             //TODO should have a check on the index
 
+            //set the correct progress when the most recently selected was already selected
             if tagViews[index] == assetTagView {
 //                debugPrint("the current asset belongs to our current tagview")
-
                 if let remaining = queryItems["remaining"] {
-
                     assetTagView.currentAssetIndex = assetTagView.arrayOfAssetIds.count - Int(remaining)! - 1
-
                     if assetTagView.arrayOfAssetIds.count > 0 {
                         //update tag progress based on remaining count
 //                        debugPrint("there are \(remaining) assets remaining of \(assetTagView.arrayOfAssetIds.count)")
@@ -589,10 +657,11 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
                         assetTagView.tagProgress.setProgress(percentage, animated: true)
 
                     } else {
-                        DebugLog("0 assets in tagview")
+                        DebugLog("0 assets in tag")
                     }
 
                     //TODO mark as completed in uiItem and ui
+
                     //completed an asset
 //                            if let complete = queryItems["complete"]  {
 //                                if Int(remaining)! == 0 {
@@ -600,11 +669,14 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 //                                    assetTagView.selected = false
 //                                    self.viewModel.selectedItemIndex = nil
 
-//                                    elapsedTimeLabel.text = "00:00"
+//                                   elapsedTimeLabel.text = "00:00"
 //                                    elapsedTimeLabel.accessibilityLabel = "estimated time elapsed for tag playback"
 //                                }
 //                            }
                 }
+            } else {
+                DebugLog("new tag view selected, update ui")
+
             }
         }
 //        debugPrint("keypath")
