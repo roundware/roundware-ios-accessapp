@@ -59,8 +59,8 @@ platform :ios do |options|
     crashlytics(crashlytics_path: "./Pods/Crashlytics/iOS/Crashlytics.framework",
                     notes: changelog,
                     #groups: "Digita11yInternal")
-                    #groups: "Digita11yTech")
-                    groups: "Digita11yDebug")
+                    groups: "Digita11yTech")
+                    #groups: "Digita11yDebug")
 	slack(
       channel: "digita11y-notify",
       default_payloads: [], # reduce the notification to the minimum
