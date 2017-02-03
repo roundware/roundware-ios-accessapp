@@ -222,7 +222,7 @@ class RWData {
     var mediaTypeSelected: MediaType?
 
     func getAssetById(_ asset_id: Int) -> Asset? {
-        if let index = assets.index(where: { $0.asset_id == asset_id }) {
+        if let index = assets.index(where: { $0.assetID == asset_id }) {
             return assets[index]
         } else {
             return nil

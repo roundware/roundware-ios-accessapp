@@ -54,12 +54,18 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
             countdownTimer.invalidate()
             rwf.pause()
             pauseLock = true
+
             self.playPauseButton.showButtonIsPlaying(false)
             self.nextButton.isEnabled = false
             self.previousButton.isEnabled = false
             UIApplication.shared.isIdleTimerDisabled = false
         } else {
+
             startPlaying()
+            self.playPauseButton.showButtonIsPlaying(true)
+            self.nextButton.isEnabled = true
+            self.previousButton.isEnabled = true
+            UIApplication.shared.isIdleTimerDisabled = true
         }
     }
 
@@ -231,6 +237,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
     @IBAction func seeTextForAsset(_ sender: UIButton) {
         let rwf = RWFramework.sharedInstance
         if (rwf.isPlaying) {
+            //TODO pause
             self.toggleStream(self)
         }
         self.performSegue(withIdentifier: "ReadSegue", sender: sender)
@@ -353,6 +360,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
             if(pauseLock){
                 pauseLock = false
                 rwf.resume()
+                //TODO show button playing right away
             } else {
                 rwf.play()
             }
@@ -498,11 +506,13 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 
     func rwGetStreamsIdCurrentSuccess( data: NSData?) {
         DebugLog("current success")
+
 //        dump(data)
     }
 
     func rwPostStreamsSuccess( data: NSData?) {
         DebugLog("stream success")
+
 //        dump(data)
         DispatchQueue.main.async(execute: { () -> Void in
             self.playPauseButton.isEnabled = true
@@ -531,6 +541,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 
     func rwPostStreamsIdSkipSuccess( data: NSData?) {
         DebugLog("skip success")
+        SVProgressHUD.dismiss()
         dump(data)
     }
 
@@ -542,6 +553,12 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
         self.present(alert, animated: true, completion: nil)
     }
 
+    func rwPostStreamsIdResumeSuccess( data: NSData?) {
+        DebugLog("resume success")
+        SVProgressHUD.dismiss()
+        dump(data)
+    }
+
     func rwPostStreamsIdResumeFailure( error: NSError?) {
         DebugLog("rwPostStreamsIdResumeFailure")
         DebugLog((error?.localizedDescription)!)
@@ -550,6 +567,12 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
         self.present(alert, animated: true, completion: nil)
     }
 
+    func rwPostStreamsIdReplayAssetSuccess( data: NSData?) {
+        DebugLog("replay success")
+        SVProgressHUD.dismiss()
+        dump(data)
+    }
+    
     func rwPostStreamsIdReplayAssetFailure(error: NSError?){
         DebugLog("rwPostStreamsIdReplayAssetFailure")
         DebugLog((error?.localizedDescription)!)
@@ -579,13 +602,12 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 
             //TODO should countdown timer happen elsewhere in logic (also?)
             if waitingToStart{
-                //start playing actually!
-//                debugPrint("starting time")
+
+//                start playing actually!
                 DebugLog("playback has begun in UI")
                 waitingToStart = false
 
-
-                //this is the main "start playing block"
+//                this is the main "start playing block"
                 UIApplication.shared.isIdleTimerDisabled = true
                 countdownTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(TagsViewController.countdown), userInfo: nil, repeats: true)
                 SVProgressHUD.dismiss()
@@ -691,5 +713,6 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 
     func rwAudioPlayerDidFinishPlaying() {
         self.playPauseButton.showButtonIsPlaying(false)
+        //TODO clear timer?
     }
 }
