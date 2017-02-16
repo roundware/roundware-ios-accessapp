@@ -15,12 +15,11 @@ class TagsViewModel: BaseViewModel  {
 
     var roomUIGroup: UIGroup
     let roomTags: [Tag]
-    // convenience for picker
-    // could bug if selectedRoomTag set directly
+
+    // convenience for pickerView
     var selectedRoomIndex: Int?  {
         didSet {
             if let index = self.selectedRoomIndex {
-//                debugPrint("selected room index \(index) out of \(self.roomTags)")
                 self.selectedRoomTag = self.roomTags[index]
             } else {
                 self.selectedRoomTag = nil
@@ -29,27 +28,15 @@ class TagsViewModel: BaseViewModel  {
     }
     var selectedRoomTag: Tag? {
         didSet {
-            //TODO only submit if setting to a new room tag
-
             if let tag = self.selectedRoomTag {
                 self.roomUIGroup.selectedUIItem = self.roomUIGroup.uiItems.filter({$0.tagId == tag.id }).first
                 data.updateUIGroup(self.roomUIGroup)
-//                debugPrint("selected ui item for room is \(self.roomUIGroup.selectedUIItem)")
-//                debugPrint("and their tags \(data.getTagsWithAudioAssetsForUIItems(data.getRelevantUIItems(self.itemsUIGroup)))")
                 self.itemTags = data.getTagsForUIItems(data.getRelevantUIItems(self.itemsUIGroup))
-//                self.itemTags = data.getTagsWithAudioAssetsForUIItems(data.getRelevantUIItems(self.itemsUIGroup))
-//                self.itemTags = data.getTagsForUIItems(data.getRelevantUIItems(self.itemsUIGroup))
-//                debugPrint("item tags set as \(itemTags)")
+
                 self.selectedItemIndex = 0
-                let rwf = RWFramework.sharedInstance
-                if(rwf.isPlaying){
-                    debugPrint("room tag submitted\(tag.id)")
-                    rwf.submitTags(tagIdsAsString: String(tag.id))
-                }
             } else {
                 self.roomUIGroup.selectedUIItem = nil
                 self.itemTags = []
-                //can't be set nil on rwData
             }
 
         }
@@ -72,17 +59,11 @@ class TagsViewModel: BaseViewModel  {
     }
     var selectedItemTag: Tag?  {
         willSet(newItemTag) {
-            //TODO how to distinguish viewmodel update if selection is from query meta rather than a tap and prevent submitTag request
             if let tag = newItemTag {
-                //only submit tag if it's a new tag selection
+                //if new tag or nil update ui group
                 if (selectedItemTag == nil || tag.id != selectedItemTag!.id){
                     self.itemsUIGroup.selectedUIItem = self.itemsUIGroup.uiItems.filter({$0.tagId == tag.id }).first
                     data.updateUIGroup(self.itemsUIGroup)
-
-                    //TODO this needs change maybe?
-                    let rwf = RWFramework.sharedInstance
-                    DebugLog("submitting tag id \(tag.id)")
-                    rwf.submitTags(tagIdsAsString: String(tag.id))
                 }
             } else{
                 self.itemsUIGroup.selectedUIItem = nil
@@ -92,8 +73,6 @@ class TagsViewModel: BaseViewModel  {
 
     var currentAsset : Asset?
 
-    //TODO mapURL
-    //TODO handle missing data
     init(data: RWData) {
         self.data = data
 
@@ -110,6 +89,7 @@ class TagsViewModel: BaseViewModel  {
         //set items ui group
         self.itemsUIGroup = data.getUIGroupForIndexAndMode(3, mode: "listen")!
 //        dump(data.getUIGroupForIndexAndMode(3, mode: "listen"))
+
         //set stream
         self.stream = data.stream
         self.currentAsset = nil

@@ -20,6 +20,7 @@ struct Asset {
     var mediaType = MediaType.none
     var tagIDs: [Int] = []
     var fileURL = URL(string:"")
+    var completed: Bool = false
     var audioLength: Float = 0.0
     var text: String? {
         get {

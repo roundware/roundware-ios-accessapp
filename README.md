@@ -39,11 +39,19 @@ $ bundle exec fastlane crashlytics
 
 When you want to add a new device or team member to a distribution, invite them to the team and project in Beta (Crashlytics) and then add their device and name to the `devices.txt` file (untracked).  Then run `bundle exec fastlane devices` and then the crashlytics command.
 
-## Hierarchy
+## Data Model
+
+For Digita11y
 
 `Project -> Exhibition -> Room -> Item`
 
-Exhibition, Room, and Item are UIGroups, each with a set of UIItems filtered by the selected parent UIItem and each UIItems having a corresponding Tag.
+For RWFramework (via roundware server)
+
+`UIGroup -> UIItems -> Tag -> Assets`
+
+Projects are set in the `plist` while Exhibitions, Rooms, and Items are each UIGroups, each with a set of UIItems filtered by the selected parent UIItem.  UIItems each refer to tag and tags refer to assets.
+
+Be aware that iOS has it's own concept of tag (e.g. button.tag) and uses `UI` as a prefix (e.g. UIView).
 
 ## License
 

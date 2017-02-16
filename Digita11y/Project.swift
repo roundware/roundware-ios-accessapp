@@ -42,7 +42,7 @@ struct Project {
 // MARK: Static methods
 
     static func initFromPlist() -> [Project] {
-        print("running init")
+        DebugLog("running init")
 
         let path = Bundle.main.path(forResource: "Info", ofType: "plist")
         let info  = NSDictionary(contentsOfFile: path!) as! [String:AnyObject?]

@@ -8,6 +8,7 @@
 
 import UIKit
 
+//TODO rename itemTagView
 @IBDesignable class TagView: UIView {
 
     @IBOutlet weak var textButton: UIButton!
@@ -34,6 +35,7 @@ import UIKit
     var arrayOfAssetIds : [String] = []
     var currentAssetIndex : Int = 0
     var totalLength : Float = 0.0
+    var audioAssets : [Asset] = []
 
     var hasTexts: Bool = false
     var hasImages: Bool = false

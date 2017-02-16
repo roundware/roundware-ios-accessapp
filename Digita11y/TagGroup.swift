@@ -2,6 +2,8 @@ import Foundation
 import RWFramework
 import SwiftyJSON
 
+
+//not used
 struct TagGroup {
     var select: String = ""
     var order: Int = 0
