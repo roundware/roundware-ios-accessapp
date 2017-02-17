@@ -1,5 +1,5 @@
 //
-//  TagsViewController.swift
+//  RoomsViewController.swift
 //  Digita11y
 //
 //  Created by Christopher Reed on 2/29/16.
@@ -14,10 +14,9 @@ import CoreLocation
 import SVProgressHUD
 import AVFoundation
 
-//https://github.com/Akkyie/AKPickerView-Swift
-class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewDataSource, AKPickerViewDelegate {
-    var viewModel: TagsViewModel!
-    var tagViews : [TagView] = []
+class RoomsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewDataSource, AKPickerViewDelegate {
+    var viewModel: RoomsViewModel!
+    var objectViews : [ObjectView] = []
     var waitingToStart: Bool = false
 
     // MARK: Outlets
@@ -53,16 +52,26 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
             self.replayButton.isEnabled = false
             UIApplication.shared.isIdleTimerDisabled = false
         } else {
+            //TODO check if item is selected?
             startPlaying()
         }
     }
 
     @IBAction func skip(_ sender: AnyObject) {
-        //TODO mark asset as completed
+
         DebugLog("skip item")
         let rwf = RWFramework.sharedInstance
         rwf.skip()
         SVProgressHUD.show(withStatus: "Remixing your live audio stream… please hold!")
+        guard let currentAsset = self.viewModel.currentAsset,
+            let objectViewIndex = objectViews.index(where: { $0.arrayOfAssetIds.contains( String(currentAsset.assetID) )}) else {
+            DebugLog("no item to mark completed")
+            return
+        }
+        objectViews[objectViewIndex].audioAssets[objectViews[objectViewIndex].audioAssets.index(where:{$0.assetID == currentAsset.assetID})!].completed = true
+
+        countdownTimer.invalidate()
+
     }
 
     @IBAction func replay(_ sender: AnyObject) {
@@ -81,12 +90,17 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
     }
 
     @IBAction func expandMore(_ sender: AnyObject) {
+        guard let currentAsset = self.viewModel.currentAsset else {
+            return
+        }
+
+        let assetID = String(currentAsset.assetID)
         let rwf = RWFramework.sharedInstance
-        let assetID = String(describing: self.viewModel.currentAsset?.assetID)
 
         let moreModal = UIAlertController(title: "More actions", message: "", preferredStyle: UIAlertControllerStyle.alert)
 
         //Block Recording
+        //TODO mark completed
         moreModal.addAction(UIAlertAction(title: "Block Recording", style: UIAlertActionStyle.default, handler: {(alert: UIAlertAction!) in
             rwf.apiPostAssetsIdVotes(asset_id: assetID, vote_type: "block_recording",
                 success: { (data) -> Void in
@@ -115,67 +129,72 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
         self.present(moreModal, animated: true, completion: nil)
     }
 
+    var audioKeepsPlaying = false
     @IBAction func seeMap(_ sender: AnyObject) {
-        //TODO keep audio playing?
+        audioKeepsPlaying = true
         self.performSegue(withIdentifier: "MapSegue", sender: sender)
     }
 
 
     // MARK: UIItem/Tag Actions
-    @IBAction func selectTag(_ sender: UIButton) {
-        DebugLog("selected item tag with button tag / tagview index \(String(sender.tag))")
+    @IBAction func selectObject(_ sender: UIButton) {
+        DebugLog("selected item tag with button tag / objectView index \(String(sender.tag))")
         //find tag view
-        let tagView = tagViews[sender.tag]
-        if (tagView.selected){
-            DebugLog("this item was already selected")
-        } else {
+
+//        let objectView = objectViews[sender.tag]
+//        if (objectView.selected){
+//            DebugLog("this item was already selected")
+//        } else {
             //TODO lock this to prevent UI jitter from metadata while stream buffers
-            selectTagAtIndex(sender.tag)
-            guard let thisTag = self.viewModel.selectedItemTag else{
-                DebugLog("selectedItemTag not set")
+            selectObjectViewAtIndex(sender.tag) //sets selectedObjectTag
+            guard let thisTag = self.viewModel.selectedObjectTag else{
+                DebugLog("selectedObjectTag not set")
                 return
             }
             let thisTagId = thisTag.id
             DebugLog("thisTagId \(thisTagId)")
             let rwf = RWFramework.sharedInstance
             rwf.submitTags(tagIdsAsString: "\(thisTagId)")
-        }
+//        }
     }
 
-   func selectTagAtIndex(_ index: Int?) {
-        self.viewModel.selectedItemIndex = index
+   func selectObjectViewAtIndex(_ index: Int?) {
+        self.viewModel.selectedObjectIndex = index
 
         guard let thisIndex = index else {
-            tagViews.forEach({$0.selected = false })
+            objectViews.forEach({$0.selected = false })
+            self.contributeButton.isEnabled = false
             return
         }
 
+        self.contributeButton.isEnabled = true
+
         //set selected
-        let tagView = tagViews[thisIndex]
-        tagView.selected = true
+        let objectView = objectViews[thisIndex]
+        objectView.selected = true
 
         //deselect others
-        let others = tagViews.filter({$0 !== tagView})
+        let others = objectViews.filter({$0 !== objectView})
         others.forEach({$0.selected = false })
 
         //start playing if not playing
         let rwf = RWFramework.sharedInstance
-        if(!rwf.isPlaying){
+        if(!rwf.isPlaying || pauseLock){
             startPlaying()
         }
 
         //set times
-        countdownTime = Int(tagView.totalLength)
+        countdownTime = Int(objectView.totalLength)
     }
 
     @IBAction func seeGalleryForAsset(_ sender: UIButton) {
-        //TODO keep audio playing?
+        audioKeepsPlaying = true
         self.performSegue(withIdentifier: "GallerySegue", sender: sender)
         
     }
 
     @IBAction func seeTextForAsset(_ sender: UIButton) {
-        //TODO keep audio playing?
+        audioKeepsPlaying = true
         self.performSegue(withIdentifier: "ReadSegue", sender: sender)
     }
 
@@ -198,10 +217,11 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
         super.viewDidLoad()
         SVProgressHUD.dismiss()
         countdownTimer.invalidate()
+        self.toggleButton.showButtonIsPlaying(false)
 
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         super.view.addBackground("bg-comment.png")
-        self.viewModel = TagsViewModel(data: self.rwData!)
+        self.viewModel = RoomsViewModel(data: self.rwData!)
 
         self.navigationItem.title = self.viewModel.title
 
@@ -215,7 +235,6 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
         self.roomsPickerView.highlightedFont = UIFont(name: "AvenirNext-Medium", size: 30)!
         self.roomsPickerView.reloadData()
         self.roomsPickerView.selectItem(0)
-        self.contributeButton.isEnabled = true
 
         self.roomsLabel.accessibilityLabel = "Rooms"
         self.roomsLabel.accessibilityTraits = UIAccessibilityTraitHeader
@@ -226,21 +245,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 
         let rwf = RWFramework.sharedInstance
         rwf.addDelegate(object: self)
-        self.toggleButton.showButtonIsPlaying(false)
 
-        //show a map button if we have a map
-        if !self.rwData!.selectedProject!.mapURL.isEmpty {
-            let button: UIButton = UIButton(type:UIButtonType.custom)
-            //set image for button
-            button.setImage(UIImage(named: "map.png"), for: UIControlState())
-            //add function for button
-            button.addTarget(self, action: #selector(self.seeMap(_:)), for: UIControlEvents.touchUpInside)
-            //set frame
-            button.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-            let barButton = UIBarButtonItem(customView: button)
-            //assign button to navigationbar
-            self.navigationItem.rightBarButtonItem = barButton
-        }
 
         //TODO double check for location...
         // TODO move this location stuff out of here
@@ -273,12 +278,31 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        stop()
+        if (audioKeepsPlaying){
+            audioKeepsPlaying = false
+        } else {
+            stop()
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController!.setNavigationBarHidden(false, animated: true)
+
+        //show a map button if we have a map
+        if !self.rwData!.selectedProject!.mapURL.isEmpty {
+            let button: UIButton = UIButton(type:UIButtonType.custom)
+            //set image for button
+            button.setImage(UIImage(named: "map.png"), for: UIControlState())
+            //add function for button
+            button.addTarget(self, action: #selector(self.seeMap(_:)), for: UIControlEvents.touchUpInside)
+            //set frame
+            button.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+            let barButton = UIBarButtonItem(customView: button)
+            //assign button to navigationbar
+            self.navigationItem.rightBarButtonItem = barButton
+        }
+
     }
 
     override func viewDidLayoutSubviews(){
@@ -297,10 +321,10 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 
     //countdown timer init
     var countdownTime = 0
-    var countdownTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(TagsViewController.countdown), userInfo: nil, repeats: true)
+    var countdownTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(RoomsViewController.countdown), userInfo: nil, repeats: true)
 
     func countdown() {
-        DebugLog("counting down \(countdownTime)")
+//        DebugLog("counting down \(countdownTime)")
          if countdownTime >= 0 {
             let seconds = countdownTime % 60
             let minutes = (countdownTime / 60) % 60
@@ -311,21 +335,21 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
             countdownLabel.accessibilityLabel = "\(minutes) minutes and \(seconds) seconds total for this tag"
             countdownTime -= 1
 
-            //update progress on current tagView
-            guard let index = self.viewModel.selectedItemIndex,
-                tagViews.indices.contains(index) else{
+            //update progress on current objectView
+            guard let index = self.viewModel.selectedObjectIndex,
+                objectViews.indices.contains(index) else{
                     DebugLog("no selected item index")
                 return
             }
-            let tagView = tagViews[index]
-            DebugLog("countdownTime \(countdownTime) tagview.TotalLength \(tagView.totalLength)")
+            let objectView = objectViews[index]
+//            DebugLog("countdownTime \(countdownTime) objectView.TotalLength \(objectView.totalLength)")
 
-            let percentage = Float((tagView.totalLength - Float(countdownTime)) / (tagView.totalLength))
-            DebugLog("progress \(percentage)")
-            tagView.tagProgress.setProgress(percentage, animated: false)
+            let percentage = Float((objectView.totalLength - Float(countdownTime)) / (objectView.totalLength))
+//            DebugLog("progress \(percentage)")
+            objectView.objectProgress.setProgress(percentage, animated: true)
          } else{
             countdownTimer.invalidate()
-            selectTagAtIndex(nil)
+            selectObjectViewAtIndex(nil)
         }
     }
 
@@ -343,9 +367,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
     var pauseLock = false
     func startPlaying() {
         let rwf = RWFramework.sharedInstance
-        //is paused
         if(pauseLock){
-            pauseLock = false
             rwf.resume()
         } else {
             rwf.play()
@@ -410,7 +432,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
             }
 
             //show new assets
-            let total = self.viewModel.itemTags.count
+            let total = self.viewModel.objectTags.count
             DebugLog("\(total) items in this room")
             //        dump(self.viewModel.itemTags)
             scroll?.delegate = self
@@ -419,52 +441,52 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
             scroll?.contentSize.width = CGFloat(itemWidth)
             scroll?.contentSize.height = CGFloat(itemHeight * total)
 
-            tagViews = []
+            objectViews = []
 
             for index in 0..<total {
-                let tagView = TagView()
-                let tag = self.viewModel.itemTags[index]
+                let objectView = ObjectView()
+                let tag = self.viewModel.objectTags[index]
                 let images = self.viewModel.data.getAssetsForTagIdOfMediaType(tag.id, mediaType: MediaType.photo)
                 let texts = self.viewModel.data.getAssetsForTagIdOfMediaType(tag.id, mediaType: MediaType.text)
 
-                tagView.hasImages = images.count > 0
-                //            debugPrint("tagview index \(index) has \(images.count) images")
-                tagView.hasTexts = texts.count > 0
-                tagView.setTag(tag, index: index, total: total)
+                objectView.hasImages = images.count > 0
+                //            debugPrint("objectView index \(index) has \(images.count) images")
+                objectView.hasTexts = texts.count > 0
+                objectView.setObject(tag, index: index, total: total)
 
-                //TODO should really go into setTag and use delegate...
-                tagView.tagTitle.addTarget(self,
-                                           action: #selector(selectTag),
+                //TODO should really go into setObject and use delegate...
+                objectView.objectTitle.addTarget(self,
+                                           action: #selector(selectObject),
                                            for: UIControlEvents.touchUpInside)
                 //TODO needs unique tag?
-                tagView.tagTitle.tag = index
+                objectView.objectTitle.tag = index
 
                 //show text button?
-                if(tagView.hasTexts){
-                    tagView.textButton.addTarget(self,
+                if(objectView.hasTexts){
+                    objectView.textButton.addTarget(self,
                                                  action: #selector(seeTextForAsset(_:)),
                                                  for: UIControlEvents.touchUpInside)
                     //TODO needs unique tag?
-                    tagView.textButton.tag = tag.id
+                    objectView.textButton.tag = tag.id
                 }
 
                 //show gallery button?
-                if(tagView.hasImages){
-                    tagView.cameraButton.addTarget(self,
+                if(objectView.hasImages){
+                    objectView.cameraButton.addTarget(self,
                                                    action: #selector(seeGalleryForAsset(_:)),
                                                    for: UIControlEvents.touchUpInside)
                     //TODO needs unique tag?
-                    tagView.cameraButton.tag = tag.id
+                    objectView.cameraButton.tag = tag.id
                 }
 
                 //determine audio assets and total length
-                let audioAssets = self.viewModel.data.getAssetsForTagIdOfMediaType(tagView.id!, mediaType: MediaType.audio)
-                tagView.audioAssets = audioAssets
+                let audioAssets = self.viewModel.data.getAssetsForTagIdOfMediaType(objectView.id!, mediaType: MediaType.audio)
+                objectView.audioAssets = audioAssets
                 let totalLength = audioAssets.map({$0.audioLength}).reduce(0, +)
-                tagView.totalLength = totalLength
+                objectView.totalLength = totalLength
                 let arrayOfAssetIds = audioAssets.map({ String($0.assetID)})
-                tagView.arrayOfAssetIds = arrayOfAssetIds
-                //            debugPrint("audio assets for tag \(tagView.id!)")
+                objectView.arrayOfAssetIds = arrayOfAssetIds
+                //            debugPrint("audio assets for tag \(objectView.id!)")
                 //            dump(audioAssets)
                 //            debugPrint("total length is \(totalLength)")
 
@@ -473,21 +495,21 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
                     y: index * itemHeight,
                     width: Int(itemWidth),
                     height: itemHeight)
-                tagView.frame = frame
-                tagView.alpha = 0
-                tagView.center.y -= 30
-                scroll?.addSubview(tagView)
+                objectView.frame = frame
+                objectView.alpha = 0
+                objectView.center.y -= 30
+                scroll?.addSubview(objectView)
                 UIView.animate(withDuration: duration, delay: Double(index) * delay, usingSpringWithDamping: springDamping, initialSpringVelocity: springVelocity, options: [], animations: {
-                    tagView.alpha = 1
-                    tagView.center.y += 30
+                    objectView.alpha = 1
+                    objectView.center.y += 30
                 }, completion: { finished in
                 })
-                tagViews.append(tagView)
+                objectViews.append(objectView)
             }
 
             //select first item tag
-//            if(tagViews.count > 0){
-//                selectTagAtIndex(0)
+//            if(objectViews.count > 0){
+//                selectObjectViewAtIndex(0)
 //            }
 
         }
@@ -524,6 +546,7 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
 
     func rwPostStreamsIdSkipSuccess( data: NSData?) {
         DebugLog("skip success")
+        dump(data)
     }
 
     func rwPostStreamsIdSkipFailure( error: NSError?) {
@@ -624,21 +647,21 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
                 return
             }
 
-            guard let assetTagViewIndex = tagViews.index(where: { $0.arrayOfAssetIds.contains( assetID )}) else {
-                DebugLog("no matching assetTagView found for \(assetID)")
+            guard let objectViewIndex = objectViews.index(where: { $0.arrayOfAssetIds.contains( assetID )}) else {
+                DebugLog("no matching objectView found for \(assetID)")
                 return
             }
 
-            guard let index = self.viewModel.selectedItemIndex else {
+            guard let index = self.viewModel.selectedObjectIndex else {
                 DebugLog("no item was previously selected")
-                selectTagAtIndex(assetTagViewIndex)
+                selectObjectViewAtIndex(objectViewIndex)
                 return
             }
 
             if(self.viewModel.currentAsset != nil && thisAsset.assetID == self.viewModel.currentAsset!.assetID ){
                 DebugLog("same asset")
                 if queryItems["complete"] != nil  {
-                    tagViews[assetTagViewIndex].audioAssets[tagViews[assetTagViewIndex].audioAssets.index(where:{$0.assetID == thisAsset.assetID})!].completed = true
+                    objectViews[objectViewIndex].audioAssets[objectViews[objectViewIndex].audioAssets.index(where:{$0.assetID == thisAsset.assetID})!].completed = true
                 }
             } else {
                 DebugLog("new asset")
@@ -646,19 +669,19 @@ class TagsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewD
                 self.viewModel.currentAsset = thisAsset
                 SVProgressHUD.dismiss()
 
-                let remainingTime = tagViews[assetTagViewIndex].audioAssets.filter({$0.completed == false}).map({$0.audioLength}).reduce(0, +)
+                let remainingTime = objectViews[objectViewIndex].audioAssets.filter({$0.completed == false}).map({$0.audioLength}).reduce(0, +)
                 DebugLog("remainingTime \(remainingTime)")
                 if(countdownTimer.isValid){
                     countdownTimer.invalidate()
                 }
                 countdownTime = Int(remainingTime)
-                countdownTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(TagsViewController.countdown), userInfo: nil, repeats: true)
+                countdownTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(RoomsViewController.countdown), userInfo: nil, repeats: true)
 
-                if(assetTagViewIndex == index) {
+                if(objectViewIndex == index) {
                     DebugLog("stream metadata confirms current tag view")
                 } else {
                     DebugLog("new tag view selected, update ui")
-                    selectTagAtIndex(assetTagViewIndex)
+                    selectObjectViewAtIndex(objectViewIndex)
                 }
             }
         }

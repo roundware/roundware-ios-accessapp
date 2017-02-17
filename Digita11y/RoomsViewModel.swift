@@ -1,6 +1,6 @@
 import RWFramework
 import Foundation
-class TagsViewModel: BaseViewModel  {
+class RoomsViewModel: BaseViewModel  {
     let data: RWData
 
     let exhibitionTag: Tag
@@ -31,42 +31,41 @@ class TagsViewModel: BaseViewModel  {
             if let tag = self.selectedRoomTag {
                 self.roomUIGroup.selectedUIItem = self.roomUIGroup.uiItems.filter({$0.tagId == tag.id }).first
                 data.updateUIGroup(self.roomUIGroup)
-                self.itemTags = data.getTagsForUIItems(data.getRelevantUIItems(self.itemsUIGroup))
-
-                self.selectedItemIndex = 0
+                self.objectTags = data.getTagsForUIItems(data.getRelevantUIItems(self.objectsUIGroup))
             } else {
                 self.roomUIGroup.selectedUIItem = nil
-                self.itemTags = []
+                self.objectTags = []
             }
 
         }
     }
 
 
-    var itemsUIGroup: UIGroup
-    var itemTags: [Tag] = []
-    var selectedItemIndex: Int?  {
+    var objectsUIGroup: UIGroup
+    var objectTags: [Tag] = []
+    var selectedObjectIndex: Int?  {
         didSet {
-            if let index = selectedItemIndex {
+            if let index = selectedObjectIndex {
 //                debugPrint("selected item index \(index)")
-                if (self.itemTags.count > 0) {
-                    self.selectedItemTag = self.itemTags[index]
+                if (self.objectTags.count > 0) {
+                    self.selectedObjectTag = self.objectTags[index]
                 }
             } else {
-                self.selectedItemTag = nil
+                self.selectedObjectTag = nil
             }
         }
     }
-    var selectedItemTag: Tag?  {
-        willSet(newItemTag) {
-            if let tag = newItemTag {
+
+    var selectedObjectTag: Tag?  {
+        willSet(newObjectTag) {
+            if let tag = newObjectTag {
                 //if new tag or nil update ui group
-                if (selectedItemTag == nil || tag.id != selectedItemTag!.id){
-                    self.itemsUIGroup.selectedUIItem = self.itemsUIGroup.uiItems.filter({$0.tagId == tag.id }).first
-                    data.updateUIGroup(self.itemsUIGroup)
+                if (selectedObjectTag == nil || tag.id != selectedObjectTag!.id){
+                    self.objectsUIGroup.selectedUIItem = self.objectsUIGroup.uiItems.filter({$0.tagId == tag.id }).first
+                    data.updateUIGroup(self.objectsUIGroup)
                 }
             } else{
-                self.itemsUIGroup.selectedUIItem = nil
+                self.objectsUIGroup.selectedUIItem = nil
             }
         }
     }
@@ -83,11 +82,11 @@ class TagsViewModel: BaseViewModel  {
         //get room options
         self.roomUIGroup = data.getUIGroupForIndexAndMode(2, mode: "listen")!
         self.roomTags = data.getTagsForUIItems(data.getRelevantUIItems(self.roomUIGroup))
-        DebugLog("room tags \(self.roomTags)")
+//        DebugLog("room tags \(self.roomTags)")
 //        dump(data.getRelevantUIItems(self.roomUIGroup))
 
         //set items ui group
-        self.itemsUIGroup = data.getUIGroupForIndexAndMode(3, mode: "listen")!
+        self.objectsUIGroup = data.getUIGroupForIndexAndMode(3, mode: "listen")!
 //        dump(data.getUIGroupForIndexAndMode(3, mode: "listen"))
 
         //set stream

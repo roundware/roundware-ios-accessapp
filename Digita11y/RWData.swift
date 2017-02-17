@@ -19,7 +19,6 @@ class RWData {
     // MARK: - UIGroup
     var uiGroups: [UIGroup] = []
 
-    //TODO real error handling
     func getUIGroupForIndexAndMode(_ index: Int, mode: String) -> UIGroup? {
         guard let thisProject = selectedProject else{
             DebugLog("needs project")
@@ -45,6 +44,7 @@ class RWData {
         }
     }
 
+    //used for re-contribute flow
     func getMaxUIGroupIndexWithSelected(_ mode:String) -> Int {
         guard let thisProject = selectedProject else{
             DebugLog("needs project")
@@ -66,6 +66,7 @@ class RWData {
         return max
     }
 
+    //used for re-contribute flow
     func resetUIGroupAndAbove(_ index: Int, mode: String) -> Bool{
         guard let thisProject = selectedProject else{
             DebugLog("needs project")
@@ -90,8 +91,9 @@ class RWData {
         }
     }
 
+    //used to update uigroup after changes
     func updateUIGroup(_ uiGroup: UIGroup) -> Void {
-        //TODO filter ofr active
+        //TODO filter for active
         if let thisProject = selectedProject,
             let index = uiGroups.index(where: {
                 $0.index == uiGroup.index &&
@@ -144,6 +146,7 @@ class RWData {
         return tags.filter({ tagIds.contains($0.id) })
     }
 
+    //deprecated
     func getTagsWithAudioAssetsForUIItems(_ uiItems: [UIItem]) -> [Tag] {
         let tagIds = uiItems.map { $0.tagId }
         return tags.filter({ tagIds.contains($0.id) && self.getAssetsForTagIdOfMediaType($0.id, mediaType: MediaType.audio).count > 0})

@@ -12,7 +12,7 @@ class ReadViewController: BaseViewController {
     // MARK: Outlets and Actions
 
     @IBOutlet weak var prompt: UILabel!
-    @IBOutlet weak var response: UILabelBody!
+    @IBOutlet weak var responses: UIStackView!
 
     @IBAction func close(_ sender: AnyObject) {
         self.performSegue(withIdentifier: "closeRead", sender: sender)
@@ -28,6 +28,11 @@ class ReadViewController: BaseViewController {
         self.viewModel = ReadViewModel(data: self.rwData!)
         prompt.text = self.viewModel.prompt
         //TODO as separate ui items
-        response.text = self.viewModel.response
+        self.viewModel.responses.forEach { (text) in
+            let body = UILabelBody()
+            body.text = text
+            DebugLog(text)
+            responses.addArrangedSubview(body)
+        }
     }
 }

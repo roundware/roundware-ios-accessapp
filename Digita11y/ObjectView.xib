@@ -9,12 +9,12 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TagView" customModule="Digita11y" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ObjectView" customModule="Digita11y" customModuleProvider="target">
             <connections>
                 <outlet property="audioImage" destination="n0c-Fs-qmN" id="rA8-KW-yka"/>
                 <outlet property="cameraButton" destination="on6-1g-kvA" id="5vK-g4-Ecd"/>
-                <outlet property="tagProgress" destination="9rZ-wA-hjy" id="RNU-Qe-h6U"/>
-                <outlet property="tagTitle" destination="eW2-6p-iDo" id="W5T-6F-leB"/>
+                <outlet property="objectProgress" destination="9rZ-wA-hjy" id="4Hv-H4-f9P"/>
+                <outlet property="objectTitle" destination="eW2-6p-iDo" id="i25-bG-5at"/>
                 <outlet property="textButton" destination="ETJ-vD-KP7" id="tge-Vd-BoO"/>
             </connections>
         </placeholder>
@@ -30,10 +30,10 @@
                         <constraint firstAttribute="width" constant="1" id="t6C-Xq-eEJ"/>
                     </constraints>
                 </view>
-                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wjd-cm-8mq" userLabel="Tag Wrap">
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wjd-cm-8mq" userLabel="Object Wrap">
                     <rect key="frame" x="0.0" y="30" width="121" height="50"/>
                     <subviews>
-                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" misplaced="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="9rZ-wA-hjy">
+                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" misplaced="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="9rZ-wA-hjy" userLabel="Object Progress">
                             <rect key="frame" x="0.0" y="0.0" width="121" height="50"/>
                             <color key="tintColor" red="0.30196078430000001" green="0.73725490199999999" blue="0.44705882349999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
@@ -48,7 +48,7 @@
                                 <constraint firstAttribute="height" constant="21" id="u3v-8m-s4z"/>
                             </constraints>
                         </imageView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eW2-6p-iDo">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eW2-6p-iDo" userLabel="Object Title">
                             <rect key="frame" x="0.0" y="0.0" width="121" height="50"/>
                             <accessibility key="accessibilityConfiguration" hint="Cue this asset"/>
                             <constraints>

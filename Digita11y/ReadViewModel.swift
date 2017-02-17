@@ -12,7 +12,7 @@ class ReadViewModel: BaseViewModel  {
     let tag: Tag
     let assets: [Asset]
     let prompt: String
-    var response: String
+    var responses: [String] = []
 
     init(data: RWData) {
         self.data = data
@@ -21,11 +21,10 @@ class ReadViewModel: BaseViewModel  {
         prompt = tag.locMsg
 //        debugPrint("prompt is \(tag.locMsg)")
         assets = data.getAssetsForTagIdOfMediaType(tag.id, mediaType: .text)
-        response = ""
         //TODO render as separate ui items
         for (_, asset) in assets.enumerated() {
             if let resp = asset.text{
-                response += resp + "\n\n"
+                responses.append(resp)
             }
         }
     }

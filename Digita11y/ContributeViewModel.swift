@@ -38,7 +38,6 @@ class ContributeViewModel: BaseViewModel  {
                 //get next set of tags
                 speakIndex += 1
 
-                //TODO might not have relevant uiItems
                 guard let uiGroup = data.getUIGroupForIndexAndMode(speakIndex, mode: "speak") else {
                     tagsSelected = true
                     return
@@ -62,7 +61,9 @@ class ContributeViewModel: BaseViewModel  {
         self.data = data
         exhibitionTag = data.getTagForIndexAndMode(1, mode: "listen")!
         roomTag = data.getTagForIndexAndMode(2, mode: "listen")!
+        dump(roomTag)
         itemTag = data.getTagForIndexAndMode(3, mode: "listen")!
+        dump(itemTag)
         uiGroup = data.getUIGroupForIndexAndMode(speakIndex, mode: "speak")!
         uiItems = data.getRelevantUIItems(self.uiGroup)
         tags = data.getTagsForUIItems(self.uiItems)
@@ -72,8 +73,8 @@ class ContributeViewModel: BaseViewModel  {
         uiGroup = data.getUIGroupForIndexAndMode(data.getMaxUIGroupIndexWithSelected("speak"), mode: "speak")!
         uiItems = data.getRelevantUIItems(self.uiGroup)
         tags = data.getTagsForUIItems(self.uiItems)
-
     }
+
     func tagIds() -> String{
         var ids = String(itemTag.id) + ","
         for index in 1 ..< speakIndex {

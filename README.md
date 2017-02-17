@@ -43,7 +43,7 @@ When you want to add a new device or team member to a distribution, invite them 
 
 For Digita11y
 
-`Project -> Exhibition -> Room -> Item`
+`Project -> Exhibition -> Room -> Object`
 
 For RWFramework (via roundware server)
 

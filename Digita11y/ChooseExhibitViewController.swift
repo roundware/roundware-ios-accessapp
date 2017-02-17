@@ -17,7 +17,7 @@ class ChooseExhibitController: BaseViewController, UIScrollViewDelegate {
 
     @IBAction func selectedThis(_ sender: UIButton) {
         self.viewModel.selectedTag = self.viewModel.data.getTagById(sender.tag)
-        self.performSegue(withIdentifier: "TagsSegue", sender: nil)
+        self.performSegue(withIdentifier: "RoomsSegue", sender: nil)
     }
 
     // MARK: View

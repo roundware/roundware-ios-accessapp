@@ -1,5 +1,5 @@
 //
-//  TagView.swift
+//  ObjectView.swift
 //  Digita11y
 //
 //  Created by Christopher Reed on 3/24/16.
@@ -8,17 +8,15 @@
 
 import UIKit
 
-//TODO rename itemTagView
-@IBDesignable class TagView: UIView {
+@IBDesignable class ObjectView: UIView {
 
     @IBOutlet weak var textButton: UIButton!
     @IBOutlet weak var cameraButton: UIButton!
     
-    @IBOutlet weak var tagProgress: UIProgressView!
-    @IBOutlet weak var tagTitle: UIButton!
+    @IBOutlet weak var objectProgress: UIProgressView!
+    @IBOutlet weak var objectTitle: UIButton!
     @IBOutlet weak var audioImage: UIImageView!
 
-//    var tagModel: Tag?
     var selected : Bool = false {
         didSet {
             if oldValue != self.selected {
@@ -63,26 +61,27 @@ import UIKit
                 addSubview(view)
     }
 
-    func setTag(_ tagModel:Tag, index: Int, total: Int){
+    func setObject(_ tagModel:Tag, index: Int, total: Int){
 //        debugPrint("setting tag for \(tagModel.id) at index \(index)")
 //        debugPrint("hasImage \(String(hasImages)) and hasText \(String(hasTexts))")
-        tagTitle.setTitle(tagModel.locMsg, for: UIControlState())
-        tagTitle.accessibilityLabel = tagModel.locMsg + ", \(index + 1) of \(total)"
+        objectTitle.setTitle(tagModel.locMsg, for: UIControlState())
+        objectTitle.accessibilityLabel = tagModel.locMsg + ", \(index + 1) of \(total)"
 
 
         id = tagModel.id
-        let subviews : [UIView] = [audioImage, textButton, cameraButton, tagProgress]
+        let subviews : [UIView] = [audioImage, textButton, cameraButton, objectProgress]
 
         subviews.forEach{
             $0.isHidden = true
             $0.alpha = 0
             $0.center.x -= 50
         }
-        tagProgress.progress = 0
+        objectProgress.progress = 0
+        objectProgress.layer.cornerRadius = 0.0
 
         self.cameraButton.accessibilityLabel = "Images for " + tagModel.locMsg
         self.textButton.accessibilityLabel = "Texts for " + tagModel.locMsg
-        self.tagProgress.accessibilityLabel = "Progress of " + tagModel.locMsg
+        self.objectProgress.accessibilityLabel = "Progress of " + tagModel.locMsg
 
         self.layoutIfNeeded()
 
@@ -90,7 +89,7 @@ import UIKit
 
     func loadViewFromNib() -> UIView {
         let bundle = Bundle(for: type(of: self))
-        let nib = UINib(nibName: "TagView", bundle: bundle)
+        let nib = UINib(nibName: "ObjectView", bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         return view
     }
@@ -103,9 +102,9 @@ import UIKit
 
     func select(){
         self.selected = true
-        self.tagTitle.isSelected = true
+        self.objectTitle.isSelected = true
 
-        var hiddenSubviews      : [UIView] = [self.audioImage, self.tagProgress]
+        var hiddenSubviews      : [UIView] = [self.audioImage, self.objectProgress]
 
         if hasImages {
             hiddenSubviews.append(self.cameraButton)
@@ -118,7 +117,7 @@ import UIKit
             $0.isHidden = false
         }
 
-//        self.tagTitle.backgroundColor = UIColor.clearColor()
+//        self.objectTitle.backgroundColor = UIColor.clearColor()
 
         UIView.animate(withDuration: duration, delay: delay, usingSpringWithDamping: springDamping, initialSpringVelocity: springVelocity, options: [], animations:
             {
@@ -126,8 +125,8 @@ import UIKit
                     $0.alpha = 1
                     $0.center.x += 30
                 }
-                self.tagTitle.contentEdgeInsets.right += 20
-                self.tagTitle.superview!.layoutIfNeeded()
+                self.objectTitle.contentEdgeInsets.right += 20
+                self.objectTitle.superview!.layoutIfNeeded()
 
             }, completion: { finished in
         })
@@ -135,9 +134,9 @@ import UIKit
 
     func deselect(){
         self.selected = false
-        self.tagTitle.isSelected = false
+        self.objectTitle.isSelected = false
 
-        var hiddenSubviews      : [UIView] = [self.audioImage, self.tagProgress]
+        var hiddenSubviews      : [UIView] = [self.audioImage, self.objectProgress]
         if hasImages {
             hiddenSubviews.append(self.cameraButton)
         }
@@ -153,15 +152,15 @@ import UIKit
                     $0.center.x -= 0
 
                 }
-                self.tagTitle.contentEdgeInsets.right -= 20
-                self.tagTitle.superview!.layoutIfNeeded()
-                self.tagProgress.progress = 0
+                self.objectTitle.contentEdgeInsets.right -= 20
+                self.objectTitle.superview!.layoutIfNeeded()
+                self.objectProgress.progress = 0
 
         }, completion: { finished in
             hiddenSubviews.forEach{
                 $0.isHidden = true
             }
-//            self.tagTitle.backgroundColor = UIColor.GreenishTeal85Color()
+//            self.objectTitle.backgroundColor = UIColor.GreenishTeal85Color()
 
         })
     }
