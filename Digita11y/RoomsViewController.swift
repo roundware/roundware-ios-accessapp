@@ -40,7 +40,8 @@ class RoomsViewController: BaseViewController, RWFrameworkProtocol, AKPickerView
     // MARK: Player related actions
     @IBAction func toggleStream(_ sender: AnyObject) {
         let rwf = RWFramework.sharedInstance
-        if (rwf.isPlaying) {
+        //TODO check
+        if (self.skipButton.isEnabled) {
             DebugLog("pausing")
             SVProgressHUD.dismiss()
             countdownTimer.invalidate()
@@ -91,6 +92,7 @@ class RoomsViewController: BaseViewController, RWFrameworkProtocol, AKPickerView
 
     @IBAction func expandMore(_ sender: AnyObject) {
         guard let currentAsset = self.viewModel.currentAsset else {
+            DebugLog("currentAsset not set")
             return
         }
 
@@ -101,8 +103,8 @@ class RoomsViewController: BaseViewController, RWFrameworkProtocol, AKPickerView
 
         //Block Recording
         //TODO mark completed
-        moreModal.addAction(UIAlertAction(title: "Block Recording", style: UIAlertActionStyle.default, handler: {(alert: UIAlertAction!) in
-            rwf.apiPostAssetsIdVotes(asset_id: assetID, vote_type: "block_recording",
+        moreModal.addAction(UIAlertAction(title: "Block Asset", style: UIAlertActionStyle.default, handler: {(alert: UIAlertAction!) in
+            rwf.apiPostAssetsIdVotes(asset_id: assetID, vote_type: "block_asset",
                 success: { (data) -> Void in
                 }, failure:  { (error) -> Void in
             })
@@ -608,6 +610,7 @@ class RoomsViewController: BaseViewController, RWFrameworkProtocol, AKPickerView
         if keyPath == "timedMetadata" {
 
             //TODO what metadata should we actually be waiting for
+            //TODO dismiss modal after resume
             if waitingToStart{
                 DebugLog("playback has begun in stream")
                 waitingToStart = false
@@ -662,9 +665,11 @@ class RoomsViewController: BaseViewController, RWFrameworkProtocol, AKPickerView
                 DebugLog("same asset")
                 if queryItems["complete"] != nil  {
                     objectViews[objectViewIndex].audioAssets[objectViews[objectViewIndex].audioAssets.index(where:{$0.assetID == thisAsset.assetID})!].completed = true
+                    moreButton.isEnabled = false
                 }
             } else {
                 DebugLog("new asset")
+                moreButton.isEnabled = true
 
                 self.viewModel.currentAsset = thisAsset
                 SVProgressHUD.dismiss()

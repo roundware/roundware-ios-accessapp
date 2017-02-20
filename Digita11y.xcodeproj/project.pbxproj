@@ -187,7 +187,7 @@
 			path = Digita11yTests;
 			sourceTree = "<group>";
 		};
-		8AA491231C84C36900422274 /* Controllers */ = {
+		8AA491231C84C36900422274 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				8A4BA3291C93DDEB00D5DDC6 /* RootNavigationViewController.swift */,
@@ -204,7 +204,7 @@
 				8AA491291C84C3BE00422274 /* ThanksViewController.swift */,
 				8ABADE471C9871D200660907 /* BaseViewController.swift */,
 			);
-			name = Controllers;
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 		8AA491241C84C37700422274 /* Categories */ = {
@@ -269,8 +269,8 @@
 				8AA85E651C7CF12D0086AA6B /* AppDelegate.swift */,
 				8ABADE4B1C98725600660907 /* Operations */,
 				8AA491371C84D26C00422274 /* Models */,
-				8ABADE521C98764A00660907 /* View Models */,
-				8AA491231C84C36900422274 /* Controllers */,
+				8ABADE521C98764A00660907 /* ViewModels */,
+				8AA491231C84C36900422274 /* ViewControllers */,
 				8AC0C40F1C888C1D00D4847E /* Views */,
 				8AA491241C84C37700422274 /* Categories */,
 				8ADED7B41C7F773400BBB65C /* Assets.xcassets */,
@@ -299,7 +299,7 @@
 			name = Operations;
 			sourceTree = "<group>";
 		};
-		8ABADE521C98764A00660907 /* View Models */ = {
+		8ABADE521C98764A00660907 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 				8ABADE501C98764400660907 /* ChooseProjectViewModel.swift */,
@@ -313,7 +313,7 @@
 				8ABADE531C987C5300660907 /* ThanksViewModel.swift */,
 				8A00CF4E1C988AC00011C5D9 /* BaseViewModel.swift */,
 			);
-			name = "View Models";
+			name = ViewModels;
 			sourceTree = "<group>";
 		};
 		8AC0C40F1C888C1D00D4847E /* Views */ = {
@@ -776,7 +776,7 @@
 			baseConfigurationReference = 1D332F49278593270CAB8C72 /* Pods-Digita11y.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_TEAM = DBBDPFEZKE;
 				INFOPLIST_FILE = Digita11y/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -793,7 +793,7 @@
 			baseConfigurationReference = 3705801AFC5389EC249AD8F7 /* Pods-Digita11y.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_TEAM = DBBDPFEZKE;
 				INFOPLIST_FILE = Digita11y/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
