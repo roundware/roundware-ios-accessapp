@@ -77,7 +77,7 @@ import UIKit
             $0.center.x -= 50
         }
         objectProgress.progress = 0
-        objectProgress.layer.cornerRadius = 0.0
+//        objectProgress.layer.cornerRadius = 0.0
 
         self.cameraButton.accessibilityLabel = "Images for " + tagModel.locMsg
         self.textButton.accessibilityLabel = "Texts for " + tagModel.locMsg

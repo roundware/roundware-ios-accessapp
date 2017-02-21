@@ -33,15 +33,17 @@ class ChooseExhibitController: BaseViewController, UIScrollViewDelegate {
         //scroll
         let scroll = ExhibitScroll
         scroll?.delegate = self
+        
         let titles = self.viewModel.tags.map{$0.locMsg}
         let buttons = self.createButtonsForScroll(titles, scroll: scroll!)
 
         for (index, button) in buttons.enumerated(){
             let tag = self.viewModel.tags[index]
-            let uiItem = self.viewModel.uiItems[index]
-            if(uiItem.active == false || self.rwData?.getChildren(uiItem).count == 0){
-                button.isEnabled = false
-            }
+//            let uiItem = self.viewModel.uiItems[index]
+            //show inactive items as disabled
+//            if(uiItem.active == false || self.rwData?.getChildren(uiItem).count == 0){
+//                button.isEnabled = false
+//            }
             button.accessibilityLabel = tag.locMsg + ", \(index + 1) of \(buttons.count)"
 
             button.addTarget(self,

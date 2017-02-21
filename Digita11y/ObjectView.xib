@@ -33,8 +33,8 @@
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wjd-cm-8mq" userLabel="Object Wrap">
                     <rect key="frame" x="0.0" y="30" width="121" height="50"/>
                     <subviews>
-                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" misplaced="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="9rZ-wA-hjy" userLabel="Object Progress">
-                            <rect key="frame" x="0.0" y="0.0" width="121" height="50"/>
+                        <progressView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="750" misplaced="YES" progressViewStyle="bar" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="9rZ-wA-hjy" userLabel="Object Progress">
+                            <rect key="frame" x="0.0" y="47.5" width="121" height="2.5"/>
                             <color key="tintColor" red="0.30196078430000001" green="0.73725490199999999" blue="0.44705882349999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="9Yo-0S-VJX"/>

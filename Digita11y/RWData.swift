@@ -130,12 +130,17 @@ class RWData {
         let previousSelectedUIItem = previousUIGroup.selectedUIItem {
             DebugLog("previous uigroup \(previousUIGroup.index)")
             DebugLog("and its selected uiitem \(previousSelectedUIItem.id)")
-            let uiItems = uiGroup.uiItems.filter({ $0.parent == previousSelectedUIItem.id})
+            let uiItems = uiGroup.uiItems.filter({
+                $0.parent == previousSelectedUIItem.id  &&
+                $0.active == true
+            })
 //            dump(uiItems)
             return uiItems
         } else {
             DebugLog("no previous uiGroup selection.  showing all uiItems for group")
-            let uiItems = uiGroup.uiItems
+            let uiItems = uiGroup.uiItems.filter({
+                    $0.active == true
+            })
 //            dump(uiItems)
             return uiItems
         }

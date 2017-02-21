@@ -220,6 +220,7 @@ class RoomsViewController: BaseViewController, RWFrameworkProtocol, AKPickerView
         SVProgressHUD.dismiss()
         countdownTimer.invalidate()
         self.toggleButton.showButtonIsPlaying(false)
+        self.contributeButton.isEnabled = false
 
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         super.view.addBackground("bg-comment.png")
@@ -247,7 +248,6 @@ class RoomsViewController: BaseViewController, RWFrameworkProtocol, AKPickerView
 
         let rwf = RWFramework.sharedInstance
         rwf.addDelegate(object: self)
-
 
         //TODO double check for location...
         // TODO move this location stuff out of here
@@ -373,14 +373,14 @@ class RoomsViewController: BaseViewController, RWFrameworkProtocol, AKPickerView
             rwf.resume()
         } else {
             rwf.play()
+            SVProgressHUD.show(withStatus: "Loading Stream")
+            waitingToStart = true
         }
 
         self.toggleButton.showButtonIsPlaying(true)
         self.skipButton.isEnabled = true
         self.replayButton.isEnabled = true
         UIApplication.shared.isIdleTimerDisabled = true
-        SVProgressHUD.show(withStatus: "Loading Stream")
-        waitingToStart = true
     }
 
     // MARK: - AKPickerViewDataSource
