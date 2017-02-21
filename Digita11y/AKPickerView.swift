@@ -88,11 +88,6 @@ private class AKCollectionViewCell: UICollectionViewCell {
             animation.duration = 0.15
             self.label.layer.add(animation, forKey: "")
             self.label.font = self.isSelected ? self.highlightedFont : self.font
-            if(selected){
-                self.label.accessibilityHint = "Selected"
-            } else {
-                self.label.accessibilityHint = "Tap to select"
-            }
         }
     }
 
@@ -107,7 +102,6 @@ private class AKCollectionViewCell: UICollectionViewCell {
         self.label.textColor = UIColor.gray
         self.label.numberOfLines = 1
         self.label.lineBreakMode = .byTruncatingTail
-        self.label.accessibilityHint = "Tap to select"
         self.label.highlightedTextColor = UIColor.black
         self.label.font = self.font
         self.label.autoresizingMask = [.flexibleTopMargin, .flexibleLeftMargin, .flexibleBottomMargin, .flexibleRightMargin]
@@ -513,6 +507,10 @@ open class AKPickerView: UIView, UICollectionViewDataSource, UICollectionViewDel
      Private.
      */
     fileprivate func didEndScrolling() {
+        guard (!UIAccessibilityIsVoiceOverRunning()) else{
+            return
+        }
+        DebugLog("did end scrolling")
         switch self.pickerViewStyle {
         case .flat:
             //            let left = self.convertPoint(CGPoint(x: self.collectionView.frame.origin.x + 50, y: self.collectionView.frame.origin.y + 10), toView: self.collectionView)
@@ -569,6 +567,9 @@ open class AKPickerView: UIView, UICollectionViewDataSource, UICollectionViewDel
         if let accessibilityLabel = self.dataSource?.pickerView?(self, accessibilityLabelForItem: indexPath.item) {
             cell.label.accessibilityLabel = accessibilityLabel
         }
+
+//        cell.label.accessibilityHint = (indexPath.item == self.selectedItem) ? "Selected" : "Tap to select"
+
         cell._selected = (indexPath.item == self.selectedItem)
         return cell
     }

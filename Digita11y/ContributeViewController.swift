@@ -32,6 +32,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
     @IBOutlet weak var responseTextView: UITextView!
 
 
+    //TODO rename as tappedAudioButton
     @IBAction func selectAudio(_ sender: AnyObject) {
         if(!self.viewModel.mediaSelected){
             let duration = 0.1
@@ -76,6 +77,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
 
     }
 
+    //TODO rename as tappedSelectButton
     @IBAction func selectText(_ sender: AnyObject) {
         if(!self.viewModel.mediaSelected){
 
@@ -305,10 +307,13 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
     // MARK: Audio layout
     func displayPreviewAudio() {
         audioButton.accessibilityLabel = "Preview audio"
+        audioButton.accessibilityHint = "Tap to preview your audio"
+
         let sec = elapsed
         let secStr = sec < 10 ? "0\(sec)" : "\(sec)"
         progressLabel.text = "00:\(secStr)"
         progressLabel.accessibilityLabel = "\(secStr) seconds"
+        progressLabel.accessibilityHint = "Length of your recording"
         audioButton.setImage(UIImage(named: "playContribute"), for: UIControlState())
         //TODOnow fix upload undo index order
         //TODOnow fix upload under sizing
@@ -316,16 +321,22 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
 
     func displayStopPlayback() {
         audioButton.accessibilityLabel = "Stop playback"
+        audioButton.accessibilityHint = "Tap to stop playback"
+
         audioButton.setImage(UIImage(named: "stop"), for: UIControlState())
     }
 
     func displayStopRecording() {
         audioButton.accessibilityLabel = "Stop recording"
+        audioButton.accessibilityHint = "Tap to stop recording"
+
         audioButton.setImage(UIImage(named: "stop"), for: UIControlState())
     }
 
     func displayRecordAudio() {
         audioButton.accessibilityLabel = "Record audio"
+        audioButton.accessibilityHint = "Tap to record audio"
+
         audioButton.setImage(UIImage(named: "record"), for: UIControlState())
 
         let duration = 0.1
@@ -334,6 +345,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
             self.progressLabel.isHidden = false
             self.progressLabel.text = "00:30"
             self.progressLabel.accessibilityLabel = "30 seconds"
+            self.progressLabel.accessibilityHint = "Max recording length"
             }, completion: { finished in
                 UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.audioButton);
         })
@@ -395,6 +407,8 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
         let secStr = sec < 10 ? "0\(sec)" : "\(sec)"
         progressLabel.text = "00:\(secStr)"
         progressLabel.accessibilityLabel = "\(secStr) seconds"
+        progressLabel.accessibilityHint = "Length of your recording"
+
     }
 
     func rwAudioRecorderDidFinishRecording() {
@@ -409,6 +423,8 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
         let secStr = sec < 10 ? "0\(sec)" : "\(sec)"
         progressLabel.text = "00:\(secStr)"
         progressLabel.accessibilityLabel = "\(secStr) seconds"
+        progressLabel.accessibilityHint = "Elapsed time"
+
     }
 
     func rwAudioPlayerDidFinishPlaying() {

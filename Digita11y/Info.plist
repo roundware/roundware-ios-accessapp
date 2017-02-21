@@ -62,6 +62,8 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>We use your location to suggest and tag media.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>We use your microphone to record your audio submissions.</string>
 	<key>Projects</key>
 	<array>
 		<dict>

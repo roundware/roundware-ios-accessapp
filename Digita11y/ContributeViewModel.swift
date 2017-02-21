@@ -61,9 +61,9 @@ class ContributeViewModel: BaseViewModel  {
         self.data = data
         exhibitionTag = data.getTagForIndexAndMode(1, mode: "listen")!
         roomTag = data.getTagForIndexAndMode(2, mode: "listen")!
-        dump(roomTag)
+//        dump(roomTag)
         itemTag = data.getTagForIndexAndMode(3, mode: "listen")!
-        dump(itemTag)
+//        dump(itemTag)
         uiGroup = data.getUIGroupForIndexAndMode(speakIndex, mode: "speak")!
         uiItems = data.getRelevantUIItems(self.uiGroup)
         tags = data.getTagsForUIItems(self.uiItems)

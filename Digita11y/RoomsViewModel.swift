@@ -31,14 +31,13 @@ class RoomsViewModel: BaseViewModel  {
             if let tag = self.selectedRoomTag {
                 self.roomUIGroup.selectedUIItem = self.roomUIGroup.uiItems.filter({$0.tagId == tag.id }).first
 
-                //TODO don't show inactive objects
                 data.updateUIGroup(self.roomUIGroup)
                 DebugLog("roomUIGroup")
-                dump(self.roomUIGroup)
+//                dump(self.roomUIGroup)
                 DebugLog("objectsUIGroup")
-                dump(self.objectsUIGroup)
+//                dump(self.objectsUIGroup)
                 DebugLog("relevantUIItems")
-                dump(data.getRelevantUIItems(self.objectsUIGroup))
+//                dump(data.getRelevantUIItems(self.objectsUIGroup))
                 self.objectTags = data.getTagsForUIItems(data.getRelevantUIItems(self.objectsUIGroup))
             } else {
                 self.roomUIGroup.selectedUIItem = nil

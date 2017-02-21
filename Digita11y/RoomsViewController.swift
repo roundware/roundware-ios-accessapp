@@ -221,6 +221,8 @@ class RoomsViewController: BaseViewController, RWFrameworkProtocol, AKPickerView
         countdownTimer.invalidate()
         self.toggleButton.showButtonIsPlaying(false)
         self.contributeButton.isEnabled = false
+        self.moreButton.isEnabled = false
+
 
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         super.view.addBackground("bg-comment.png")
@@ -300,9 +302,10 @@ class RoomsViewController: BaseViewController, RWFrameworkProtocol, AKPickerView
             button.addTarget(self, action: #selector(self.seeMap(_:)), for: UIControlEvents.touchUpInside)
             //set frame
             button.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-            let barButton = UIBarButtonItem(customView: button)
+            button.accessibilityHint = "Tap to view map"
+            let mapButton = UIBarButtonItem(customView: button)
             //assign button to navigationbar
-            self.navigationItem.rightBarButtonItem = barButton
+            self.navigationItem.rightBarButtonItem = mapButton
         }
 
     }
@@ -393,7 +396,9 @@ class RoomsViewController: BaseViewController, RWFrameworkProtocol, AKPickerView
     }
 
     func pickerView(_ pickerView: AKPickerView, accessibilityLabelForItem item: Int) -> String {
-        return self.viewModel.roomTags[item].locMsg + ", \(item + 1) of \(self.viewModel.roomTags.count)"
+        let label = self.viewModel.roomTags[item].locMsg + ", \(item + 1) of \(self.viewModel.roomTags.count)"
+        DebugLog(label)
+        return label
     }
 
     func pickerView(_ pickerView: AKPickerView, configureLabel label: UILabel, forItem item: Int) {
@@ -548,7 +553,7 @@ class RoomsViewController: BaseViewController, RWFrameworkProtocol, AKPickerView
 
     func rwPostStreamsIdSkipSuccess( data: NSData?) {
         DebugLog("skip success")
-        dump(data)
+//        dump(data)
     }
 
     func rwPostStreamsIdSkipFailure( error: NSError?) {
