@@ -134,6 +134,8 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
             }
             showMedia()
         }
+        DebugLog("tags selected: \(self.viewModel.tagIds())")
+
 
     }
 

@@ -241,12 +241,9 @@ class RoomsViewController: BaseViewController, RWFrameworkProtocol, AKPickerView
         self.roomsPickerView.reloadData()
         self.roomsPickerView.selectItem(0)
 
-        self.roomsLabel.accessibilityLabel = "Rooms"
-        self.roomsLabel.accessibilityTraits = UIAccessibilityTraitHeader
-        self.itemsLabel.accessibilityLabel = "Items"
-        self.itemsLabel.accessibilityTraits = UIAccessibilityTraitHeader
-        self.playerLabel.accessibilityLabel = "Player"
-        self.playerLabel.accessibilityTraits = UIAccessibilityTraitHeader
+        self.roomsLabel.accessibilityTraits |= UIAccessibilityTraitHeader
+        self.itemsLabel.accessibilityTraits |= UIAccessibilityTraitHeader
+        self.playerLabel.accessibilityTraits |= UIAccessibilityTraitHeader
 
         let rwf = RWFramework.sharedInstance
         rwf.addDelegate(object: self)
