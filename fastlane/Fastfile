@@ -1,40 +1,104 @@
-before_all do
-  # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
-  cocoapods
-  # increment_build_number
+# If you want to automatically update fastlane if a new version is available:
+# update_fastlane
 
-  ipa({
-    workspace: "Digita11y.xcworkspace",
-    configuration: "Release",
-    scheme: "Digita11y",
-  })
+# This is the minimum version number required.
+# Update this, if you use features of a newer version
+fastlane_version "2.11.0"
+
+default_platform :ios
+
+platform :ios do |options|
+  before_all do |lane, options|
+    # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
+    if options[:slow]
+        cocoapods
+    end
+  end
+
+  desc "Register any new devices"
+  lane :devices do |options|
+    register_devices( devices_file: './fastlane/devices.txt')
+  end
+
+  desc "Runs all the tests"
+  lane :test do |options|
+    scan
+  end
+
+  desc "Build and load to my device"
+  lane :load do |options|
+    if options[:first]
+      produce(
+        username: 'developers@seeread.info',
+        app_identifier: 'org.roundware.Digita11y',
+        app_name: 'Digita11y',
+        language: 'English',
+        app_version: '1.0',
+        sku: '123',
+        team_name: 'SEE READ LLC' # only necessary when in multiple teams
+      )
+      register_devices( devices_file: './fastlane/devices.txt')
+    end
+    match(type: "development")
+    gym(scheme: "Digita11y", use_legacy_build_api: true)
+    install_on_device(
+      device_id: ENV["TEST_DEVICE"],
+      ipa: "./Digita11y.ipa"
+    )
+  end
+
+  desc "Submit a new build to Crashlytics"
+  desc "This will also make sure the profile is up to date"
+  lane :crashlytics do |options|
+	build_number = increment_build_number
+    notification(subtitle: "Changelog prompt ready", message: "Please add your notes for testers...")
+    changelog = prompt(text: "Enter the change log: ",
+                       multi_line_end_keyword: "END")
+    match(type: "adhoc", force_for_new_devices: true)
+    gym(scheme: "Digita11y", use_legacy_build_api: true)
+    crashlytics(crashlytics_path: "./Pods/Crashlytics/iOS/Crashlytics.framework",
+                    notes: changelog,
+                    #groups: "Digita11yInternal")
+                    groups: "Digita11yTech")
+                    #groups: "Digita11yDebug")
+	slack(
+      channel: "digita11y-notify",
+      default_payloads: [], # reduce the notification to the minimum
+      message: "Successfully distributed build number #{build_number} :rocket:",
+      payload: {
+        "Changes" => changelog
+      }
+    )
+  end
+
+  desc "Submit a new Beta Build to Apple TestFlight"
+  desc "This will also make sure the profile is up to date"
+  lane :beta do |options|
+    match(type: "appstore", force_for_new_devices: true) 
+    gym(scheme: "Digita11y") 
+    pilot
+  end
+
+  desc "Deploy a new version to the App Store"
+  lane :appstore do |options|
+    match(type: "appstore")
+    # snapshot
+    gym(scheme: "Digita11y") # Build your app - more options available
+    deliver(force: true)
+    # frameit
+  end
+
+  after_all do |lane, options|
+    # This block is called, only if the executed lane was successful
+  end
+
+  error do |lane, exception, options|
+    # slack(
+    #   message: exception.message,
+    #   success: false
+    # )
+  end
 end
 
-lane :inhouse do
-  sigh
-end
-
-lane :beta do
-  sigh
-  deliver :skip_deploy, :beta
-end
-
-lane :deploy do
-  # snapshot
-  sigh
-  deliver :skip_deploy, :force
-  # frameit
-end
-
-after_all do |lane|
-  # This block is called, only if the executed lane was successful
-  # slack({
-  #   message: "Successfully deployed new App Update for [App](http://link.com).",
-  #   success: true,
-  #   channel: 'development'
-  # })
-end
-
-
-error do |lane, exception|
-end
+# More information about multiple platforms in fastlane: https://github.com/fastlane/fastlane/blob/master/docs/Platforms.md
+# All available actions: https://github.com/fastlane/fastlane/blob/master/docs/Actions.md

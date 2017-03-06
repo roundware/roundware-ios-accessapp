@@ -1,79 +1,69 @@
+//
+//  AppDelegate.swift
+//  Digita11y
+//
+//  Created by Christopher Reed on 2/23/16.
+//  Copyright © 2016 Roundware. All rights reserved.
+//
 import UIKit
-import Crashlytics
+import Fabric
 import RWFramework
-
-extension UIWindow {
-  public override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent) {
-    if event.type == .Motion && event.subtype == .MotionShake {
-      NSNotificationCenter.defaultCenter().postNotificationName("SHAKESHAKESHAKE", object: nil)
-    }
-  }
-}
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, RWFrameworkProtocol {
 
-  var window: UIWindow?
+    var window: UIWindow?
 
-  func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-    Crashlytics.startWithAPIKey("69056dd4dfd70d4a7ca049983df384d1c090537f")
-    CLSNSLogv("APPLICATION DID FINISH LAUNCHING", getVaList([]))
-    debugPrintln("APPLICATION DID FINISH LAUNCHING")
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        Fabric.with([Crashlytics.self])
 
-    UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
+        //TODO reset endpoint function
+        let appDomain = Bundle.main.bundleIdentifier!
+        UserDefaults.standard.removePersistentDomain(forName: appDomain)
 
-    setupAudio() { granted, error in
-      if granted == false {
-        debugPrintln("Unable to setup audio: \(error)")
-        if let error = error {
-          CLSNSLogv("Unable to setup audio: \(error)", getVaList([error]))
-        }
-      }
+        let root = self.window!.rootViewController as! RootNavigationViewController
+        root.delegate = root
+        root.rwData = RWData()
+
+        let rwf = RWFramework.sharedInstance
+        rwf.addDelegate(object: root)
+        rwf.start(letFrameworkRequestWhenInUseAuthorizationForLocation: false)
+
+        return true
     }
-    setupRWFramework()
 
-    application.applicationSupportsShakeToEdit = true
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        DebugLog("APPLICATION DID BECOME ACTIVE")
+    }
 
-    return true
-  }
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        DebugLog("APPLICATION DID ENTER BACKGROUND")
+    }
 
-  func applicationDidBecomeActive(application: UIApplication) {
-    debugPrintln("APPLICATION DID BECOME ACTIVE")
-    CLSNSLogv("APPLICATION DID BECOME ACTIVE", getVaList([]))
-  }
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        DebugLog("APPLICATION WILL ENTER FOREGROUND")
+    }
 
-  func applicationDidEnterBackground(application: UIApplication) {
-    debugPrintln("APPLICATION DID ENTER BACKGROUND")
-    CLSNSLogv("APPLICATION DID ENTER BACKGROUND", getVaList([]))
-  }
+    func applicationWillResignActive(_ application: UIApplication) {
+        DebugLog("APPLICATION WILL RESIGN ACTIVE")
+    }
 
-  func applicationWillEnterForeground(application: UIApplication) {
-    debugPrintln("APPLICATION WILL ENTER FOREGROUND")
-    CLSNSLogv("APPLICATION WILL ENTER FOREGROUND", getVaList([]))
-  }
+    func applicationWillTerminate(_ application: UIApplication) {
+        DebugLog("APPLICATION WILL TERMINATE")
+    }
 
-  func applicationWillResignActive(application: UIApplication) {
-    debugPrintln("APPLICATION WILL RESIGN ACTIVE")
-    CLSNSLogv("APPLICATION WILL RESIGN ACTIVE", getVaList([]))
-  }
-
-  func applicationWillTerminate(application: UIApplication) {
-    debugPrintln("APPLICATION WILL TERMINATE")
-    CLSNSLogv("APPLICATION WILL TERMINATE", getVaList([]))
-  }
-
-  func setupRWFramework() {
-    var root = self.window!.rootViewController as! RootTabBarController
-    root.delegate = root
-    root.rwData = RWData()
-
-    var rwf = RWFramework.sharedInstance
-    rwf.addDelegate(root)
-    rwf.start()
-  }
-
-  override func accessibilityPerformMagicTap() -> Bool {
-    debugPrintln("ACCESSIBILITY PERFORM MAGIC TAP - APP DELEGATE")
-    return MagicTapCenter.sharedInstance().execute()
-  }
+    //TODO move to correct view controllers and integrate with UI
+    override func accessibilityPerformMagicTap() -> Bool {
+        DebugLog("ACCESSIBILITY PERFORM MAGIC TAP - APP DELEGATE")
+        let rwf = RWFramework.sharedInstance
+        if(rwf.isPlaying){
+            rwf.pause()
+        } else if (rwf.isPlayingBack()){
+            rwf.stopPlayback()
+        } else if (rwf.isRecording()){
+            rwf.stopRecording()
+        }
+        return true
+    }
 }

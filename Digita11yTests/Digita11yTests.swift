@@ -1,5 +1,13 @@
-import UIKit
+//
+//  Digita11yTests.swift
+//  Digita11yTests
+//
+//  Created by Christopher Reed on 3/2/16.
+//  Copyright © 2016 Roundware. All rights reserved.
+//
+
 import XCTest
+@testable import Digita11y
 
 class Digita11yTests: XCTestCase {
     
@@ -13,14 +21,21 @@ class Digita11yTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
+    func testProjectInit(){
+        let project = Project.init(name: "Baltimore Museum of Art", id: 1, welcome: "Hello there", active: True, reverseDomain: "bma", mapUrl: "", logoImg: nil)
+        assert(project != nil, "Project should init")
+    }
+    
+    func testProjectInitFromPlist() {
+        let projects: [Project] = Project.initFromPlist()
+        assert(projects.count > 0, "Projects should instantiate from Info.plist")
         // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock() {
+        self.measure {
             // Put the code you want to measure the time of here.
         }
     }

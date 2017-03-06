@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.roundware.$(PRODUCT_NAME:rfc1034identifier)</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -15,19 +15,114 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.1</string>
+	<string>0.2.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>34</string>
+	<string>20</string>
+	<key>Fabric</key>
+	<dict>
+		<key>APIKey</key>
+		<string>9a7986366f0e38594bbd2f373c2943145f22534e</string>
+		<key>Kits</key>
+		<array>
+			<dict>
+				<key>KitInfo</key>
+				<dict/>
+				<key>KitName</key>
+				<string>Crashlytics</string>
+			</dict>
+		</array>
+	</dict>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>devapi.digita11y.org</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSTemporaryExceptionMinimumTLSVersion</key>
+				<string>TLSv1.1</string>
+			</dict>
+			<key>localhost</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSTemporaryExceptionMinimumTLSVersion</key>
+				<string>TLSv1.1</string>
+			</dict>
+		</dict>
+	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This is necessary because the audio stream changes based on your location.</string>
-	<key>UIBackgroundModes</key>
+	<string>We use your location to suggest and tag media.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>We use your microphone to record your audio submissions.</string>
+	<key>Projects</key>
 	<array>
-		<string>audio</string>
+		<dict>
+			<key>active</key>
+			<false/>
+			<key>id</key>
+			<string>1</string>
+			<key>map_url</key>
+			<string></string>
+			<key>name</key>
+			<string>Smithsonian Museum</string>
+			<key>reverse_domain</key>
+			<string>org.roundware.digita11y.smithsonian</string>
+			<key>url</key>
+			<string>https://devapi.digita11y.org/</string>
+			<key>welcome</key>
+			<string>Keytar retro gentrify, leggings 90&apos;s chillwave Bushwick Tumblr synth selvage paleo narwhal Thundercats. Selfies craft beer raw denim organic Vice Portland keffiyeh McSweeney&apos;s, photo booth crucifix Pinterest irony 8-bit mixtape. Master cleanse twee plaid next level scenester McSweeney&apos;s pour-over, Godard Austin synth. Keffiyeh lomo dreamcatcher Blue Bottle, mustache tofu chia Tumblr four loko messenger bag typewriter sartorial master cleanse salvia paleo. Marfa fixie normcore selvage put a bird on it, VHS skateboard mustache Brooklyn heirloom retro cronut Intelligentsia. Fashion axe asymmetrical wolf, VHS cold-pressed American Apparel distillery roof party Thundercats McSweeney&apos;s banh mi Wes Anderson sustainable. Mumblecore taxidermy banh mi authentic retro Williamsburg.</string>
+			<key>logo</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>active</key>
+			<true/>
+			<key>id</key>
+			<string>2</string>
+			<key>map_url</key>
+			<string>https://jasonstravelsdotcom.files.wordpress.com/2013/03/national-gallery-of-art-west-building-map-washington-dc.jpg</string>
+			<key>name</key>
+			<string>Peabody Essex Museum</string>
+			<key>reverse_domain</key>
+			<string>org.roundware.digita11y.pem</string>
+			<key>url</key>
+			<string>https://devapi.digita11y.org/</string>
+			<key>welcome</key>
+			<string>Welcome to PEM’s audio experience. We’re excited for you to test it out in these early phases of development. We’d love to hear your thoughts and welcome contributions - keep an eye out for the chat bubble!</string>
+			<key>logo</key>
+			<string>pem.jpg</string>
+		</dict>
+		<dict>
+			<key>active</key>
+			<false/>
+			<key>id</key>
+			<string>3</string>
+			<key>map_url</key>
+			<string></string>
+			<key>name</key>
+			<string>Baltimore Museum of Art</string>
+			<key>reverse_domain</key>
+			<string>org.roundware.digita11y.bma</string>
+			<key>url</key>
+			<string>https://devapi.digita11y.org/</string>
+			<key>welcome</key>
+			<string>Keytar retro gentrify, leggings 90&apos;s chillwave Bushwick Tumblr synth selvage paleo narwhal Thundercats. Selfies craft beer raw denim organic Vice Portland keffiyeh McSweeney&apos;s, photo booth crucifix Pinterest irony 8-bit mixtape. Master cleanse twee plaid next level scenester McSweeney&apos;s pour-over, Godard Austin synth. Keffiyeh lomo dreamcatcher Blue Bottle, mustache tofu chia Tumblr four loko messenger bag typewriter sartorial master cleanse salvia paleo. Marfa fixie normcore selvage put a bird on it, VHS skateboard mustache Brooklyn heirloom retro cronut Intelligentsia. Fashion axe asymmetrical wolf, VHS cold-pressed American Apparel distillery roof party Thundercats McSweeney&apos;s banh mi Wes Anderson sustainable. Mumblecore taxidermy banh mi authentic retro Williamsburg.</string>
+			<key>logo</key>
+			<string></string>
+		</dict>
 	</array>
+	<key>UIBackgroundModes</key>
+	<array/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -35,25 +130,10 @@
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
-		<string>accelerometer</string>
 	</array>
-	<key>UIStatusBarStyle</key>
-	<string>UIStatusBarStyleBlackOpaque</string>
-	<key>UIStatusBarTintParameters</key>
-	<dict>
-		<key>UINavigationBar</key>
-		<dict>
-			<key>Style</key>
-			<string>UIBarStyleDefault</string>
-			<key>Translucent</key>
-			<false/>
-		</dict>
-	</dict>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
@@ -62,7 +142,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
 </dict>
 </plist>

@@ -1,0 +1,4 @@
+git_url "git@gitlab.seeread.info:seeread-info/certificates.git"
+type "development" 
+app_identifier "org.roundware.Digita11y" 
+username "developers@seeread.info"
