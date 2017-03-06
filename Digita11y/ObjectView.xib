@@ -48,7 +48,7 @@
                                 <constraint firstAttribute="height" constant="21" id="u3v-8m-s4z"/>
                             </constraints>
                         </imageView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eW2-6p-iDo" userLabel="Object Title">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eW2-6p-iDo" userLabel="Object Title">
                             <rect key="frame" x="0.0" y="0.0" width="121" height="50"/>
                             <accessibility key="accessibilityConfiguration" hint="Cue this asset"/>
                             <constraints>
