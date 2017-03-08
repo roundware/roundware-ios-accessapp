@@ -36,9 +36,8 @@ import UIKit
             if self.completed == true {
                 objectWrap.backgroundColor = UIColor(red: 55, green: 125, blue: 127, alpha: 1.000)
                 objectTitle.accessibilityHint = "Completed"
-            } else {
-                objectWrap.backgroundColor = UIColor(red: 55, green: 152, blue: 127, alpha: 1.000)
-                objectTitle.accessibilityHint = "Tap to listen"
+                let completedColor = UIColor.GreenishTeal65Color()
+                self.objectWrap.backgroundColor = completedColor
             }
         }
     }
