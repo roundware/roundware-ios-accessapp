@@ -196,10 +196,10 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
 //        self.images.removeAll()
 //        self.uploadText = ""
         if self.viewModel.mediaType == MediaType.text {
-            rwf.addText(string: self.viewModel.uploadText)
+            let _ = rwf.addText(string: self.viewModel.uploadText)
             DebugLog("text added")
         } else {
-            rwf.addRecording()
+            let _ = rwf.addRecording()
             DebugLog("recording added")
         }
 
