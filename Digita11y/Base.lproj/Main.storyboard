@@ -412,7 +412,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="ChooseExhibit" text="Choose your exhibit at the whatever" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Usb-qh-GgL" customClass="UILabelHeadline" customModule="Digita11y" customModuleProvider="target">
-                                <rect key="frame" x="18.5" y="40" width="284.5" height="82"/>
+                                <rect key="frame" x="18" y="40" width="284.5" height="82"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="er3-bR-lpm"/>
                                 </constraints>
@@ -556,7 +556,7 @@
                                 </variation>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Items" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Md-KG-eZr" userLabel="Items Label">
-                                <rect key="frame" x="16" y="80" width="1" height="1"/>
+                                <rect key="frame" x="16" y="75" width="1" height="1"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="d7I-Ym-i1y"/>
                                     <constraint firstAttribute="width" constant="1" id="jhQ-wj-xQb"/>
@@ -681,8 +681,8 @@
                             </constraint>
                             <constraint firstItem="24E-P3-HvX" firstAttribute="top" secondItem="C7b-85-kju" secondAttribute="top" id="LTj-gB-hoE"/>
                             <constraint firstAttribute="trailingMargin" secondItem="JzA-bL-0dw" secondAttribute="trailing" id="Npy-B5-2hh"/>
-                            <constraint firstItem="0Md-KG-eZr" firstAttribute="top" secondItem="C7b-85-kju" secondAttribute="bottom" id="Oxj-78-tap"/>
                             <constraint firstItem="0Md-KG-eZr" firstAttribute="leading" secondItem="8Wk-MV-rj2" secondAttribute="leadingMargin" id="R9v-4x-zf6"/>
+                            <constraint firstItem="0Md-KG-eZr" firstAttribute="top" secondItem="wmp-MJ-emO" secondAttribute="top" constant="-5" id="W3b-uk-Q4g"/>
                             <constraint firstItem="oYr-FB-amj" firstAttribute="leading" secondItem="8Wk-MV-rj2" secondAttribute="leadingMargin" id="eWY-6y-MID"/>
                             <constraint firstItem="C7b-85-kju" firstAttribute="leading" secondItem="8Wk-MV-rj2" secondAttribute="leadingMargin" id="hU8-R6-uJl">
                                 <variation key="heightClass=regular" constant="0.0"/>
@@ -704,7 +704,6 @@
                                 <exclude reference="iaW-Vj-UBT"/>
                                 <exclude reference="A0B-2e-0q8"/>
                                 <exclude reference="tOY-nc-N44"/>
-                                <exclude reference="Oxj-78-tap"/>
                                 <exclude reference="R9v-4x-zf6"/>
                                 <exclude reference="Fye-Uh-2R1"/>
                                 <exclude reference="Npy-B5-2hh"/>
@@ -721,7 +720,6 @@
                                 <include reference="iaW-Vj-UBT"/>
                                 <include reference="A0B-2e-0q8"/>
                                 <include reference="tOY-nc-N44"/>
-                                <include reference="Oxj-78-tap"/>
                                 <include reference="R9v-4x-zf6"/>
                                 <include reference="Fye-Uh-2R1"/>
                                 <include reference="Npy-B5-2hh"/>
