@@ -19,7 +19,11 @@ class ChooseProjectViewController: BaseViewController, UIScrollViewDelegate, RWF
 
     @IBAction func selectedThis(_ sender: UIButton) {
         let projectId = sender.tag
-        SVProgressHUD.show(withStatus: "Loading project data")
+        let status = "Loading project data"
+        SVProgressHUD.show(withStatus: status)
+        if (UIAccessibilityIsVoiceOverRunning()) {
+            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, status);
+        }
         let rwf = RWFramework.sharedInstance
         self.viewModel.selectedProject = self.viewModel.data.getProjectById(projectId)
         rwf.setProjectId(project_id: String(projectId))

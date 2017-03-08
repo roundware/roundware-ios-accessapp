@@ -204,7 +204,11 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
         }
 
         rwf.uploadAllMedia(tagIdsAsString: self.viewModel.tagIds())
-        SVProgressHUD.show(withStatus: "Uploading")
+        let status = "Uploading"
+        SVProgressHUD.show(withStatus: status)
+        if (UIAccessibilityIsVoiceOverRunning()) {
+            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, status);
+        }
     }
 
 
