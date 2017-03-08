@@ -12,7 +12,9 @@ import UIKit
 
     @IBOutlet weak var textButton: UIButton!
     @IBOutlet weak var cameraButton: UIButton!
-    
+
+    @IBOutlet weak var objectWrap: UIView!
+
     @IBOutlet weak var objectProgress: UIProgressView!
     @IBOutlet weak var objectTitle: UIButton!
     @IBOutlet weak var audioImage: UIImageView!
@@ -25,6 +27,18 @@ import UIKit
                 } else {
                     self.deselect()
                 }
+            }
+        }
+    }
+
+    var completed : Bool = false {
+        didSet {
+            if self.completed == true {
+                objectWrap.backgroundColor = UIColor(red: 55, green: 125, blue: 127, alpha: 1.000)
+                objectTitle.accessibilityHint = "Completed"
+            } else {
+                objectWrap.backgroundColor = UIColor(red: 55, green: 152, blue: 127, alpha: 1.000)
+                objectTitle.accessibilityHint = "Tap to listen"
             }
         }
     }

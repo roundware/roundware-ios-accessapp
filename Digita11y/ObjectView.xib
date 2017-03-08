@@ -15,6 +15,7 @@
                 <outlet property="cameraButton" destination="on6-1g-kvA" id="5vK-g4-Ecd"/>
                 <outlet property="objectProgress" destination="9rZ-wA-hjy" id="4Hv-H4-f9P"/>
                 <outlet property="objectTitle" destination="eW2-6p-iDo" id="i25-bG-5at"/>
+                <outlet property="objectWrap" destination="Wjd-cm-8mq" id="HXC-m1-RJd"/>
                 <outlet property="textButton" destination="ETJ-vD-KP7" id="tge-Vd-BoO"/>
             </connections>
         </placeholder>
