@@ -23,13 +23,6 @@
             <rect key="frame" x="0.0" y="0.0" width="290" height="80"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a2u-iX-Xkc" userLabel="Line">
-                    <rect key="frame" x="150" y="0.0" width="1" height="80"/>
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="1" id="t6C-Xq-eEJ"/>
-                    </constraints>
-                </view>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wjd-cm-8mq" userLabel="Object Wrap">
                     <rect key="frame" x="0.0" y="30" width="121" height="50"/>
                     <subviews>
@@ -113,20 +106,12 @@
                 <constraint firstAttribute="bottom" secondItem="gi0-XN-4ZE" secondAttribute="bottom" constant="7" id="4Ya-Uq-BSb"/>
                 <constraint firstItem="Wjd-cm-8mq" firstAttribute="top" secondItem="YjI-6z-iHZ" secondAttribute="top" constant="30" id="Hdf-9K-uGe"/>
                 <constraint firstAttribute="bottom" secondItem="Wjd-cm-8mq" secondAttribute="bottom" id="SrH-2h-wFE"/>
-                <constraint firstItem="a2u-iX-Xkc" firstAttribute="top" secondItem="YjI-6z-iHZ" secondAttribute="top" id="f0e-Su-6Gk"/>
-                <constraint firstItem="a2u-iX-Xkc" firstAttribute="leading" secondItem="YjI-6z-iHZ" secondAttribute="leading" constant="150" id="j8M-Qi-bRU"/>
-                <constraint firstAttribute="bottom" secondItem="a2u-iX-Xkc" secondAttribute="bottom" id="jgF-y9-gRr"/>
                 <constraint firstItem="gi0-XN-4ZE" firstAttribute="leading" secondItem="Wjd-cm-8mq" secondAttribute="trailing" constant="20" id="m2Y-9E-CZf"/>
                 <constraint firstItem="Wjd-cm-8mq" firstAttribute="leading" secondItem="YjI-6z-iHZ" secondAttribute="leading" id="mOd-PM-5DM"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gi0-XN-4ZE" secondAttribute="trailing" id="tiA-D8-FGd"/>
                 <constraint firstItem="gi0-XN-4ZE" firstAttribute="top" secondItem="YjI-6z-iHZ" secondAttribute="top" constant="38" id="uS4-Vt-GgE"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <variation key="default">
-                <mask key="subviews">
-                    <exclude reference="a2u-iX-Xkc"/>
-                </mask>
-            </variation>
             <point key="canvasLocation" x="185" y="191"/>
         </view>
     </objects>
