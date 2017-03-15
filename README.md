@@ -39,6 +39,15 @@ $ bundle exec fastlane crashlytics
 
 When you want to add a new device or team member to a distribution, invite them to the team and project in Beta (Crashlytics) and then add their device and name to the `devices.txt` file (untracked).  Then run `bundle exec fastlane devices` and then the crashlytics command.
 
+## Release
+
+Untested, but this should work given a correctly setup [Appfile](https://github.com/roundware/roundware-ios-digita11y/blob/master/fastlane/Appfile), [Deliverfile](https://github.com/roundware/roundware-ios-digita11y/blob/master/fastlane/Deliverfile), [Matchfile](https://github.com/roundware/roundware-ios-digita11y/blob/master/fastlane/Matchfile), and certificates (see [codesigning.guide](https://codesigning.guide/)).
+
+```
+bundle exec fastlane ios appstore
+```
+
+
 ## Data Model
 
 For Digita11y
