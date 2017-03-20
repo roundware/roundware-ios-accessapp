@@ -22,7 +22,7 @@ class Digita11yTests: XCTestCase {
     }
     
     func testProjectInit(){
-        let project = Project.init(name: "Baltimore Museum of Art", id: 1, welcome: "Hello there", active: True, reverseDomain: "bma", mapUrl: "", logoImg: nil)
+        let project = Project.init(name: "Baltimore Museum of Art", id: 1, welcome: "Hello there", active: true, reverseDomain: "bma", mapURL: "", logoImg: nil)
         assert(project != nil, "Project should init")
     }
     

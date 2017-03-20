@@ -38,7 +38,7 @@ class Digita11yUITests: XCTestCase {
 //        app.buttons["Next"].tap()
         
         app.buttons["Ropes Mansion"].tap()
-        let kitchenStaticText = app.collectionViews.staticTexts["Kitchen"]
+        _ = app.collectionViews.staticTexts["Kitchen"]
         
     }
     
