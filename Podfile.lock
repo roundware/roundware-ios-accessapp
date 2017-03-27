@@ -14,12 +14,12 @@ DEPENDENCIES:
   - Crashlytics
   - Fabric
   - ImageScrollView
-  - RWFramework (from `../RWFramework`)
+  - RWFramework (from `../roundware-ios-framework-v2`)
   - SVProgressHUD
 
 EXTERNAL SOURCES:
   RWFramework:
-    :path: "../RWFramework"
+    :path: ../roundware-ios-framework-v2
 
 SPEC CHECKSUMS:
   Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
@@ -30,6 +30,6 @@ SPEC CHECKSUMS:
   SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 8523ee4f26358e9a45f4efa7aa45b5dbe2ed4402
+PODFILE CHECKSUM: 0c853633adc3cc58a0e9e71f29d21db8766d5dac
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.0
