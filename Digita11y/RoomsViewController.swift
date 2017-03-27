@@ -81,6 +81,7 @@ class RoomsViewController: BaseViewController, RWFrameworkProtocol, AKPickerView
         countdownTimer.invalidate()
 
         //don't reset currentAsset...let metadata do that
+        waitingToStart = true
 
     }
 
@@ -169,6 +170,7 @@ class RoomsViewController: BaseViewController, RWFrameworkProtocol, AKPickerView
             DebugLog("thisTagId \(thisTagId)")
             let rwf = RWFramework.sharedInstance
             rwf.submitTags(tagIdsAsString: "\(thisTagId)")
+            rwf.skip()
 //        }
     }
 
