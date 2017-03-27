@@ -23,7 +23,7 @@
 	<key>listen_enabled</key>
 	<true/>
 	<key>geo_listen_enabled</key>
-	<true/>
+	<false/>
 	<key>speak_enabled</key>
 	<true/>
 	<key>geo_speak_enabled</key>

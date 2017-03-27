@@ -32,14 +32,18 @@ class Digita11yUITests: XCTestCase {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         let app = XCUIApplication()
-        app.buttons["Smithsonian Museum"].tap()
-        app.buttons["Begin"].tap()
-//        if location
-//        app.buttons["Next"].tap()
-        
-        app.buttons["Ropes Mansion"].tap()
-        let kitchenStaticText = app.collectionViews.staticTexts["Kitchen"]
-        
+        app.navigationBars["Location"].buttons["Back"].tap()
+        let peabodyEssexMuseum2Of3Button = app.buttons["Peabody Essex Museum, 2 of 3"]
+        peabodyEssexMuseum2Of3Button.tap()
+        let beginButton = app.buttons["Begin"]
+        beginButton.tap()
+        app.buttons["Next"].tap()
+//        app.alerts["Allow “Digita11y” to access your location while you use the app?"].buttons["Allow"].tap()
+//        app.buttons["Rodin: Transforming Sculpture, 2 of 2"].tap()
+//        app.scrollViews.otherElements.buttons["Clay / Plaster Process, 1 of 1"].tap()
+//        app.buttons["Pause"].tap()
+
+
     }
     
 }

@@ -63,7 +63,13 @@ class RoomsViewController: BaseViewController, RWFrameworkProtocol, AKPickerView
         DebugLog("skip item")
         let rwf = RWFramework.sharedInstance
         rwf.skip()
-        SVProgressHUD.show(withStatus: "Remixing your live audio stream… please hold!")
+        let status = "Remixing your live audio stream… please hold!"
+        SVProgressHUD.show(withStatus: status)
+        if (UIAccessibilityIsVoiceOverRunning()) {
+            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, status);
+        }
+
+        //mark current asset completed
         guard let currentAsset = self.viewModel.currentAsset,
             let objectViewIndex = objectViews.index(where: { $0.arrayOfAssetIds.contains( String(currentAsset.assetID) )}) else {
             DebugLog("no item to mark completed")
@@ -71,7 +77,10 @@ class RoomsViewController: BaseViewController, RWFrameworkProtocol, AKPickerView
         }
         objectViews[objectViewIndex].audioAssets[objectViews[objectViewIndex].audioAssets.index(where:{$0.assetID == currentAsset.assetID})!].completed = true
 
+        //reset timer
         countdownTimer.invalidate()
+
+        //don't reset currentAsset...let metadata do that
 
     }
 
@@ -79,7 +88,11 @@ class RoomsViewController: BaseViewController, RWFrameworkProtocol, AKPickerView
         DebugLog("replay")
         let rwf = RWFramework.sharedInstance
         rwf.replayAsset()
-        SVProgressHUD.show(withStatus: "Remixing your live audio stream… please hold!")
+        let status = "Remixing your live audio stream… please hold!"
+        SVProgressHUD.show(withStatus: status)
+        if (UIAccessibilityIsVoiceOverRunning()) {
+            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, status);
+        }
     }
 
 
@@ -102,7 +115,6 @@ class RoomsViewController: BaseViewController, RWFrameworkProtocol, AKPickerView
         let moreModal = UIAlertController(title: "More actions", message: "", preferredStyle: UIAlertControllerStyle.alert)
 
         //Block Recording
-        //TODO mark completed
         moreModal.addAction(UIAlertAction(title: "Block Asset", style: UIAlertActionStyle.default, handler: {(alert: UIAlertAction!) in
             rwf.apiPostAssetsIdVotes(asset_id: assetID, vote_type: "block_asset",
                 success: { (data) -> Void in
@@ -373,7 +385,11 @@ class RoomsViewController: BaseViewController, RWFrameworkProtocol, AKPickerView
             rwf.resume()
         } else {
             rwf.play()
-            SVProgressHUD.show(withStatus: "Loading Stream")
+            let status = "Loading Stream"
+            SVProgressHUD.show(withStatus: status)
+            if (UIAccessibilityIsVoiceOverRunning()) {
+                UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, status);
+            }
             waitingToStart = true
         }
 
@@ -669,6 +685,10 @@ class RoomsViewController: BaseViewController, RWFrameworkProtocol, AKPickerView
                     objectViews[objectViewIndex].audioAssets[objectViews[objectViewIndex].audioAssets.index(where:{$0.assetID == thisAsset.assetID})!].completed = true
                     moreButton.isEnabled = false
                 }
+                if (objectViews[objectViewIndex].audioAssets.filter({$0.completed == false}).count == 0){
+                    objectViews[objectViewIndex].completed = true
+                }
+
             } else {
                 DebugLog("new asset")
                 moreButton.isEnabled = true

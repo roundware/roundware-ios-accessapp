@@ -196,15 +196,19 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
 //        self.images.removeAll()
 //        self.uploadText = ""
         if self.viewModel.mediaType == MediaType.text {
-            rwf.addText(string: self.viewModel.uploadText)
+            let _ = rwf.addText(string: self.viewModel.uploadText)
             DebugLog("text added")
         } else {
-            rwf.addRecording()
+            let _ = rwf.addRecording()
             DebugLog("recording added")
         }
 
         rwf.uploadAllMedia(tagIdsAsString: self.viewModel.tagIds())
-        SVProgressHUD.show(withStatus: "Uploading")
+        let status = "Uploading"
+        SVProgressHUD.show(withStatus: status)
+        if (UIAccessibilityIsVoiceOverRunning()) {
+            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, status);
+        }
     }
 
 

@@ -15,6 +15,7 @@
                 <outlet property="cameraButton" destination="on6-1g-kvA" id="5vK-g4-Ecd"/>
                 <outlet property="objectProgress" destination="9rZ-wA-hjy" id="4Hv-H4-f9P"/>
                 <outlet property="objectTitle" destination="eW2-6p-iDo" id="i25-bG-5at"/>
+                <outlet property="objectWrap" destination="Wjd-cm-8mq" id="HXC-m1-RJd"/>
                 <outlet property="textButton" destination="ETJ-vD-KP7" id="tge-Vd-BoO"/>
             </connections>
         </placeholder>
@@ -23,18 +24,11 @@
             <rect key="frame" x="0.0" y="0.0" width="290" height="80"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a2u-iX-Xkc" userLabel="Line">
-                    <rect key="frame" x="150" y="0.0" width="1" height="80"/>
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="1" id="t6C-Xq-eEJ"/>
-                    </constraints>
-                </view>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wjd-cm-8mq" userLabel="Object Wrap">
                     <rect key="frame" x="0.0" y="30" width="121" height="50"/>
                     <subviews>
-                        <progressView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="750" misplaced="YES" progressViewStyle="bar" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="9rZ-wA-hjy" userLabel="Object Progress">
-                            <rect key="frame" x="0.0" y="47.5" width="121" height="2.5"/>
+                        <progressView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="9rZ-wA-hjy" userLabel="Object Progress">
+                            <rect key="frame" x="0.0" y="0.0" width="121" height="51"/>
                             <color key="tintColor" red="0.30196078430000001" green="0.73725490199999999" blue="0.44705882349999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="9Yo-0S-VJX"/>
@@ -79,6 +73,11 @@
                         <constraint firstAttribute="bottom" secondItem="eW2-6p-iDo" secondAttribute="bottom" id="oc1-W6-PWp"/>
                         <constraint firstItem="9rZ-wA-hjy" firstAttribute="top" secondItem="Wjd-cm-8mq" secondAttribute="top" id="yCh-KW-LDH"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="IP9-TB-v8S"/>
+                        </mask>
+                    </variation>
                 </view>
                 <stackView opaque="NO" contentMode="scaleAspectFit" distribution="equalSpacing" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="gi0-XN-4ZE" userLabel="Actions">
                     <rect key="frame" x="141" y="38" width="78" height="35"/>
@@ -108,20 +107,12 @@
                 <constraint firstAttribute="bottom" secondItem="gi0-XN-4ZE" secondAttribute="bottom" constant="7" id="4Ya-Uq-BSb"/>
                 <constraint firstItem="Wjd-cm-8mq" firstAttribute="top" secondItem="YjI-6z-iHZ" secondAttribute="top" constant="30" id="Hdf-9K-uGe"/>
                 <constraint firstAttribute="bottom" secondItem="Wjd-cm-8mq" secondAttribute="bottom" id="SrH-2h-wFE"/>
-                <constraint firstItem="a2u-iX-Xkc" firstAttribute="top" secondItem="YjI-6z-iHZ" secondAttribute="top" id="f0e-Su-6Gk"/>
-                <constraint firstItem="a2u-iX-Xkc" firstAttribute="leading" secondItem="YjI-6z-iHZ" secondAttribute="leading" constant="150" id="j8M-Qi-bRU"/>
-                <constraint firstAttribute="bottom" secondItem="a2u-iX-Xkc" secondAttribute="bottom" id="jgF-y9-gRr"/>
                 <constraint firstItem="gi0-XN-4ZE" firstAttribute="leading" secondItem="Wjd-cm-8mq" secondAttribute="trailing" constant="20" id="m2Y-9E-CZf"/>
                 <constraint firstItem="Wjd-cm-8mq" firstAttribute="leading" secondItem="YjI-6z-iHZ" secondAttribute="leading" id="mOd-PM-5DM"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gi0-XN-4ZE" secondAttribute="trailing" id="tiA-D8-FGd"/>
                 <constraint firstItem="gi0-XN-4ZE" firstAttribute="top" secondItem="YjI-6z-iHZ" secondAttribute="top" constant="38" id="uS4-Vt-GgE"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <variation key="default">
-                <mask key="subviews">
-                    <exclude reference="a2u-iX-Xkc"/>
-                </mask>
-            </variation>
             <point key="canvasLocation" x="185" y="191"/>
         </view>
     </objects>
