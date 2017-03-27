@@ -45,7 +45,7 @@ class RoomsViewController: BaseViewController, RWFrameworkProtocol, AKPickerView
             DebugLog("pausing")
             SVProgressHUD.dismiss()
             countdownTimer.invalidate()
-            rwf.pause()
+            rwf.stop()
             pauseLock = true
 
             self.toggleButton.showButtonIsPlaying(false)
@@ -383,6 +383,8 @@ class RoomsViewController: BaseViewController, RWFrameworkProtocol, AKPickerView
         let rwf = RWFramework.sharedInstance
         if(pauseLock){
             rwf.resume()
+            let status = "Buffering Stream"
+            SVProgressHUD.show(withStatus: status)
         } else {
             rwf.play()
             let status = "Loading Stream"
@@ -390,8 +392,8 @@ class RoomsViewController: BaseViewController, RWFrameworkProtocol, AKPickerView
             if (UIAccessibilityIsVoiceOverRunning()) {
                 UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, status);
             }
-            waitingToStart = true
         }
+        waitingToStart = true
 
         self.toggleButton.showButtonIsPlaying(true)
         self.skipButton.isEnabled = true
