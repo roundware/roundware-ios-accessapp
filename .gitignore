@@ -65,3 +65,5 @@ fastlane/devices.txt
 
 #builds
 *.zip
+Podfile.lock
+Gemfile.lock
