@@ -25,20 +25,6 @@ func setupAudio(_ audioSetup: @escaping (_ granted: Bool, _ error: NSError?) -> 
         }
     }
 
-    _ = (TARGET_IPHONE_SIMULATOR == 1 || isHeadsetPluggedIn()) ? AVAudioSessionPortOverride.none : AVAudioSessionPortOverride.speaker
-
-    // Send audio to the speaker
-    do {
-        try avAudioSession.overrideOutputAudioPort(AVAudioSessionPortOverride.speaker)
-    } catch let error1 as NSError {
-        error = error1
-        print("AppDelegate: could not overide output audio port")
-        if let e = error {
-            print(e.localizedDescription)
-        }
-    }
-
-
     // Activiate the AVAudioSession
     do {
         try avAudioSession.setActive(true)
