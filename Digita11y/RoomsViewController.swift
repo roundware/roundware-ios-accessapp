@@ -704,7 +704,9 @@ class RoomsViewController: BaseViewController, RWFrameworkProtocol, AKPickerView
                 moreButton.isEnabled = true
 
                 self.viewModel.currentAsset = thisAsset
-                SVProgressHUD.dismiss()
+                if(SVProgressHUD.isVisible()) {
+                    SVProgressHUD.dismiss()
+                }
 
                 let remainingTime = objectViews[objectViewIndex].audioAssets.filter({$0.completed == false}).map({$0.audioLength}).reduce(0, +)
                 DebugLog("remainingTime \(remainingTime)")
