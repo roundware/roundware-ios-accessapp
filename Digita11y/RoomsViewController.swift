@@ -55,6 +55,8 @@ class RoomsViewController: BaseViewController, RWFrameworkProtocol, AKPickerView
         } else {
             //TODO check if item is selected?
             startPlaying()
+            self.skipButton.isEnabled = true
+            self.replayButton.isEnabled = true
         }
     }
 
@@ -171,6 +173,7 @@ class RoomsViewController: BaseViewController, RWFrameworkProtocol, AKPickerView
             let rwf = RWFramework.sharedInstance
             rwf.submitTags(tagIdsAsString: "\(thisTagId)")
             rwf.skip()
+            self.toggleButton.isEnabled = true
 //        }
     }
 
@@ -236,6 +239,9 @@ class RoomsViewController: BaseViewController, RWFrameworkProtocol, AKPickerView
         self.toggleButton.showButtonIsPlaying(false)
         self.contributeButton.isEnabled = false
         self.moreButton.isEnabled = false
+        self.skipButton.isEnabled = false
+        self.replayButton.isEnabled = false
+        self.toggleButton.isEnabled = false
 
 
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
