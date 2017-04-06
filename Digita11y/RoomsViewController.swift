@@ -11,7 +11,6 @@ import RWFramework
 import Crashlytics
 import SwiftyJSON
 import CoreLocation
-import SVProgressHUD
 import AVFoundation
 
 class RoomsViewController: BaseViewController, RWFrameworkProtocol, AKPickerViewDataSource, AKPickerViewDelegate {
@@ -43,7 +42,7 @@ class RoomsViewController: BaseViewController, RWFrameworkProtocol, AKPickerView
         //TODO check
         if (self.skipButton.isEnabled) {
             DebugLog("pausing")
-            SVProgressHUD.dismiss()
+            //SVProgressHUD.dismiss()
             countdownTimer.invalidate()
             rwf.stop()
             pauseLock = true
@@ -66,7 +65,7 @@ class RoomsViewController: BaseViewController, RWFrameworkProtocol, AKPickerView
         let rwf = RWFramework.sharedInstance
         rwf.skip()
         let status = "Remixing your live audio stream… please hold!"
-        SVProgressHUD.show(withStatus: status)
+        //SVProgressHUD.show(withStatus: status)
         if (UIAccessibilityIsVoiceOverRunning()) {
             UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, status);
         }
@@ -92,7 +91,7 @@ class RoomsViewController: BaseViewController, RWFrameworkProtocol, AKPickerView
         let rwf = RWFramework.sharedInstance
         rwf.replayAsset()
         let status = "Remixing your live audio stream… please hold!"
-        SVProgressHUD.show(withStatus: status)
+        //SVProgressHUD.show(withStatus: status)
         if (UIAccessibilityIsVoiceOverRunning()) {
             UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, status);
         }
@@ -234,7 +233,7 @@ class RoomsViewController: BaseViewController, RWFrameworkProtocol, AKPickerView
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        SVProgressHUD.dismiss()
+        //SVProgressHUD.dismiss()
         countdownTimer.invalidate()
         self.toggleButton.showButtonIsPlaying(false)
         self.contributeButton.isEnabled = false
@@ -383,7 +382,7 @@ class RoomsViewController: BaseViewController, RWFrameworkProtocol, AKPickerView
         self.replayButton.isEnabled = false
         countdownTimer.invalidate()
         UIApplication.shared.isIdleTimerDisabled = false
-        SVProgressHUD.dismiss()
+        //SVProgressHUD.dismiss()
     }
 
     var pauseLock = false
@@ -392,11 +391,11 @@ class RoomsViewController: BaseViewController, RWFrameworkProtocol, AKPickerView
         if(pauseLock){
             rwf.resume()
             let status = "Buffering Stream"
-            SVProgressHUD.show(withStatus: status)
+            //SVProgressHUD.show(withStatus: status)
         } else {
             rwf.play()
             let status = "Loading Stream"
-            SVProgressHUD.show(withStatus: status)
+            //SVProgressHUD.show(withStatus: status)
             if (UIAccessibilityIsVoiceOverRunning()) {
                 UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, status);
             }
@@ -642,7 +641,7 @@ class RoomsViewController: BaseViewController, RWFrameworkProtocol, AKPickerView
             if waitingToStart{
                 DebugLog("playback has begun in stream")
                 waitingToStart = false
-                SVProgressHUD.dismiss()
+                //SVProgressHUD.dismiss()
                 self.toggleButton.showButtonIsPlaying(true)
             }
 
@@ -704,9 +703,9 @@ class RoomsViewController: BaseViewController, RWFrameworkProtocol, AKPickerView
                 moreButton.isEnabled = true
 
                 self.viewModel.currentAsset = thisAsset
-                if(SVProgressHUD.isVisible()) {
-                    SVProgressHUD.dismiss()
-                }
+//                if(SVProgressHUD.isVisible()) {
+//                    SVProgressHUD.dismiss()
+//                }
 
                 let remainingTime = objectViews[objectViewIndex].audioAssets.filter({$0.completed == false}).map({$0.audioLength}).reduce(0, +)
                 DebugLog("remainingTime \(remainingTime)")

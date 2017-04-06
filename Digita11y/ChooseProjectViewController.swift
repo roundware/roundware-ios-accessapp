@@ -9,7 +9,6 @@
 import UIKit
 import RWFramework
 import SwiftyJSON
-import SVProgressHUD
 
 class ChooseProjectViewController: BaseViewController, UIScrollViewDelegate, RWFrameworkProtocol {
     var viewModel: ChooseProjectViewModel!
@@ -20,7 +19,7 @@ class ChooseProjectViewController: BaseViewController, UIScrollViewDelegate, RWF
     @IBAction func selectedThis(_ sender: UIButton) {
         let projectId = sender.tag
         let status = "Loading project data"
-        SVProgressHUD.show(withStatus: status)
+        //SVProgressHUD.show(withStatus: status)
         if (UIAccessibilityIsVoiceOverRunning()) {
             UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, status);
         }
@@ -89,11 +88,11 @@ class ChooseProjectViewController: BaseViewController, UIScrollViewDelegate, RWF
         print("projects id json")
         //TODO update project model and corresponding functionality with info from JSON
 //        dump(json)
-        SVProgressHUD.dismiss()
+        //SVProgressHUD.dismiss()
         self.performSegue(withIdentifier: "ProjectSegue", sender: nil)
     }
     func rwGetProjectsIdFailure(error: NSError?) {
-        SVProgressHUD.dismiss()
+        //SVProgressHUD.dismiss()
         DebugLog("project id failure")
 
     }
