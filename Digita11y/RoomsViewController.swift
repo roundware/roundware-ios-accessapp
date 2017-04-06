@@ -390,7 +390,7 @@ class RoomsViewController: BaseViewController, RWFrameworkProtocol, AKPickerView
         let rwf = RWFramework.sharedInstance
         if(pauseLock){
             rwf.resume()
-            let status = "Buffering Stream"
+            //let status = "Buffering Stream"
             //SVProgressHUD.show(withStatus: status)
         } else {
             rwf.play()
