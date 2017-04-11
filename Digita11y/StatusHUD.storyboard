@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--StatusHUD-->
+        <scene sceneID="zKY-IA-wBA">
+            <objects>
+                <viewController storyboardIdentifier="StatusHUD" id="KpJ-A0-yIX" customClass="StatusHUD" customModule="Digita11y" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qg8-bF-MfU"/>
+                        <viewControllerLayoutGuide type="bottom" id="OoX-lb-ZlT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="TNz-ge-uly">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KUB-tg-pY1">
+                                <rect key="frame" x="67" y="213" width="240" height="240"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="e1E-NU-4M5">
+                                        <rect key="frame" x="102" y="102" width="37" height="37"/>
+                                    </activityIndicatorView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a really long status text to show how this will wrap" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HDE-3h-Uh2">
+                                        <rect key="frame" x="8" y="147" width="224" height="85"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.75112371575342463" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="e1E-NU-4M5" firstAttribute="centerX" secondItem="KUB-tg-pY1" secondAttribute="centerX" id="6iT-cx-sEA"/>
+                                    <constraint firstItem="e1E-NU-4M5" firstAttribute="top" secondItem="KUB-tg-pY1" secondAttribute="top" constant="102" id="8MJ-GL-daj"/>
+                                    <constraint firstItem="HDE-3h-Uh2" firstAttribute="leading" secondItem="KUB-tg-pY1" secondAttribute="leading" constant="8" id="AQ4-B1-jJo"/>
+                                    <constraint firstItem="e1E-NU-4M5" firstAttribute="centerY" secondItem="KUB-tg-pY1" secondAttribute="centerY" id="GlA-Ch-Q70"/>
+                                    <constraint firstItem="HDE-3h-Uh2" firstAttribute="top" secondItem="e1E-NU-4M5" secondAttribute="bottom" constant="8" symbolic="YES" id="KMa-wk-upa"/>
+                                    <constraint firstItem="e1E-NU-4M5" firstAttribute="leading" secondItem="KUB-tg-pY1" secondAttribute="leading" constant="102" id="Pqc-1i-NFq"/>
+                                    <constraint firstItem="HDE-3h-Uh2" firstAttribute="bottom" secondItem="KUB-tg-pY1" secondAttribute="bottomMargin" id="liJ-YU-Du1"/>
+                                    <constraint firstItem="HDE-3h-Uh2" firstAttribute="centerX" secondItem="e1E-NU-4M5" secondAttribute="centerX" id="m6a-Mj-Owc"/>
+                                    <constraint firstItem="HDE-3h-Uh2" firstAttribute="leading" secondItem="KUB-tg-pY1" secondAttribute="leadingMargin" id="mN1-1s-8cc"/>
+                                    <constraint firstAttribute="trailing" secondItem="HDE-3h-Uh2" secondAttribute="trailing" constant="8" id="tcC-9I-k8k"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.49737799657534248" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="KUB-tg-pY1" firstAttribute="centerX" secondItem="TNz-ge-uly" secondAttribute="centerX" id="ipQ-K3-V9h"/>
+                            <constraint firstItem="KUB-tg-pY1" firstAttribute="centerY" secondItem="TNz-ge-uly" secondAttribute="centerY" id="vJG-KS-4kt"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="box" destination="KUB-tg-pY1" id="2GV-tl-nCZ"/>
+                        <outlet property="label" destination="HDE-3h-Uh2" id="AKq-w3-fcT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nw2-UJ-e4C" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-736.79999999999995" y="158.77061469265368"/>
+        </scene>
+    </scenes>
+</document>
