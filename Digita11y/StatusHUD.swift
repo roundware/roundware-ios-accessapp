@@ -20,7 +20,8 @@ open class StatusHUD: UIViewController {
     @IBOutlet weak var box: UIView?
     @IBOutlet weak var label: UILabel?
     
-    var s: String?
+    var s: String = ""
+    var dt: DispatchTime = DispatchTime.now()
     
     override open func viewWillAppear(_ animated: Bool) {
         self.box?.layer.cornerRadius = 7.0;
@@ -31,11 +32,14 @@ open class StatusHUD: UIViewController {
         if let kw = UIApplication.shared.windows.last {
             self.s = s
             kw.addSubview(self.view)
+            self.dt = DispatchTime.now()
         }
     }
     
     open func hide() {
-        self.view.removeFromSuperview()
+        DispatchQueue.main.asyncAfter(deadline: self.dt + .milliseconds(500)) {
+            self.view.removeFromSuperview()
+        }
     }
     
 }
