@@ -27,6 +27,8 @@ open class StatusHUD: UIViewController {
     var dtMinimumShowTime: DispatchTime = DispatchTime.now()
     var maximumShowTimeTask: DispatchWorkItem? = nil
     
+    var previouslyFocusedElement: Any? = nil
+    
     override open func viewWillAppear(_ animated: Bool) {
         self.box?.layer.cornerRadius = 7.0;
         self.label?.text = self.s
@@ -52,8 +54,13 @@ open class StatusHUD: UIViewController {
             // schedule the maximum show task
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + self.dtMaximumShowTimeInterval, execute: self.maximumShowTimeTask!)
 
+            self.previouslyFocusedElement = UIAccessibilityFocusedElement(nil)
+            print("previouslyFocusedElement = \(String(describing: self.previouslyFocusedElement))")
+            
             self.s = s
             kw.addSubview(self.view)
+            
+            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.label);
         }
     }
     
@@ -79,7 +86,8 @@ open class StatusHUD: UIViewController {
     
     func _hide() {
         self.view.removeFromSuperview()
-    }
+        UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.previouslyFocusedElement);
+   }
 }
 
 extension StatusHUD {
