@@ -10,11 +10,11 @@ import UIKit
 import Foundation
 import Crashlytics
 import RWFramework
-import SVProgressHUD
 import AVFoundation
 
 class ContributeViewController: BaseViewController, UIScrollViewDelegate, UITextViewDelegate, RWFrameworkProtocol{
     var viewModel: ContributeViewModel!
+    var hud: StatusHUD? = StatusHUD.create()
 
     // MARK: Outlets and Actions
 
@@ -210,7 +210,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
 
         rwf.uploadAllMedia(tagIdsAsString: self.viewModel.tagIds())
         let status = "Uploading"
-        SVProgressHUD.show(withStatus: status)
+        self.hud?.show(string: status)
         if (UIAccessibilityIsVoiceOverRunning()) {
             UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, status);
         }
@@ -244,7 +244,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        SVProgressHUD.dismiss()
+        self.hud?.hide()
         UIApplication.shared.isIdleTimerDisabled = false
         //Looks for single or multiple taps.
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
@@ -454,7 +454,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
     /// Sent in the case that the server can not return a new envelope id
     func rwPostEnvelopesFailure( error: NSError?){
         DebugLog("post envelope failure")
-        SVProgressHUD.dismiss()
+        self.hud?.hide()
         //TODOnow display alert
         //TODOnow trigger undo
 
@@ -463,7 +463,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
     func rwPatchEnvelopesIdSuccess( data: NSData?){
     /// Sent in the case that the server can not accept an envelope item (media upload)
         DebugLog("patch envelope success")
-        SVProgressHUD.dismiss()
+        self.hud?.hide()
 
         //TODO now mark uiitems as contributed
         for (_, tag) in self.viewModel.tags.enumerated(){
@@ -475,7 +475,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
 
     func rwPatchEnvelopesIdFailure( error: NSError?){
         DebugLog("patch envelope failure")
-        SVProgressHUD.dismiss()
+        self.hud?.hide()
         //TODO trigger undo
     }
 

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		755EF52D1E9C61000036CA5B /* StatusHUD.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 755EF52C1E9C61000036CA5B /* StatusHUD.storyboard */; };
+		755EF52F1E9C614F0036CA5B /* StatusHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755EF52E1E9C614F0036CA5B /* StatusHUD.swift */; };
 		8A00CF4D1C9883960011C5D9 /* WelcomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A00CF4C1C9883960011C5D9 /* WelcomeViewModel.swift */; };
 		8A00CF4F1C988AC00011C5D9 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A00CF4E1C988AC00011C5D9 /* BaseViewModel.swift */; };
 		8A00CF511C9897140011C5D9 /* ChooseExhibitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A00CF501C9897140011C5D9 /* ChooseExhibitViewModel.swift */; };
@@ -87,6 +89,8 @@
 		1D332F49278593270CAB8C72 /* Pods-Digita11y.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Digita11y.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Digita11y/Pods-Digita11y.debug.xcconfig"; sourceTree = "<group>"; };
 		3705801AFC5389EC249AD8F7 /* Pods-Digita11y.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Digita11y.release.xcconfig"; path = "Pods/Target Support Files/Pods-Digita11y/Pods-Digita11y.release.xcconfig"; sourceTree = "<group>"; };
 		622AAACFCD81D342B9F20D78 /* Pods_Digita11y.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Digita11y.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		755EF52C1E9C61000036CA5B /* StatusHUD.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StatusHUD.storyboard; sourceTree = "<group>"; };
+		755EF52E1E9C614F0036CA5B /* StatusHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusHUD.swift; sourceTree = "<group>"; };
 		8A00CF4C1C9883960011C5D9 /* WelcomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewModel.swift; sourceTree = "<group>"; };
 		8A00CF4E1C988AC00011C5D9 /* BaseViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		8A00CF501C9897140011C5D9 /* ChooseExhibitViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseExhibitViewModel.swift; sourceTree = "<group>"; };
@@ -320,6 +324,8 @@
 			isa = PBXGroup;
 			children = (
 				8AA85E691C7CF12D0086AA6B /* Main.storyboard */,
+				755EF52C1E9C61000036CA5B /* StatusHUD.storyboard */,
+				755EF52E1E9C614F0036CA5B /* StatusHUD.swift */,
 				8A404AEE1CA4344C009E3E3B /* ObjectView.xib */,
 				8A404AF11CA43501009E3E3B /* ObjectView.swift */,
 				8AA85E6E1C7CF12D0086AA6B /* LaunchScreen.storyboard */,
@@ -412,7 +418,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = Roundware;
 				TargetAttributes = {
 					8A6598931C877398009A29C8 = {
@@ -477,6 +483,7 @@
 				8A404AF01CA4344C009E3E3B /* ObjectView.xib in Resources */,
 				8ADED7B51C7F773400BBB65C /* Assets.xcassets in Resources */,
 				8AB65BCC1C90D923005D112B /* RWFramework.plist in Resources */,
+				755EF52D1E9C61000036CA5B /* StatusHUD.storyboard in Resources */,
 				8AA85E6B1C7CF12D0086AA6B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -564,6 +571,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				755EF52F1E9C614F0036CA5B /* StatusHUD.swift in Sources */,
 				8A2C200C1CA4CBF7002A9245 /* ReadViewModel.swift in Sources */,
 				8AA85E681C7CF12D0086AA6B /* ChooseProjectViewController.swift in Sources */,
 				8ACEC8E71D4FD60D00E1FFA4 /* DebugLog.swift in Sources */,
