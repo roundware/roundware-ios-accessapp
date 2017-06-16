@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5244836F1EF2CFBC00864A92 /* plimoth.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5244836E1EF2CFBC00864A92 /* plimoth.jpg */; };
 		755EF52D1E9C61000036CA5B /* StatusHUD.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 755EF52C1E9C61000036CA5B /* StatusHUD.storyboard */; };
 		755EF52F1E9C614F0036CA5B /* StatusHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755EF52E1E9C614F0036CA5B /* StatusHUD.swift */; };
 		8A00CF4D1C9883960011C5D9 /* WelcomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A00CF4C1C9883960011C5D9 /* WelcomeViewModel.swift */; };
@@ -88,6 +89,7 @@
 /* Begin PBXFileReference section */
 		1D332F49278593270CAB8C72 /* Pods-Digita11y.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Digita11y.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Digita11y/Pods-Digita11y.debug.xcconfig"; sourceTree = "<group>"; };
 		3705801AFC5389EC249AD8F7 /* Pods-Digita11y.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Digita11y.release.xcconfig"; path = "Pods/Target Support Files/Pods-Digita11y/Pods-Digita11y.release.xcconfig"; sourceTree = "<group>"; };
+		5244836E1EF2CFBC00864A92 /* plimoth.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = plimoth.jpg; sourceTree = "<group>"; };
 		622AAACFCD81D342B9F20D78 /* Pods_Digita11y.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Digita11y.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		755EF52C1E9C61000036CA5B /* StatusHUD.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StatusHUD.storyboard; sourceTree = "<group>"; };
 		755EF52E1E9C614F0036CA5B /* StatusHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusHUD.swift; sourceTree = "<group>"; };
@@ -127,7 +129,7 @@
 		8AA4912D1C84C68600422274 /* UILabel+Body.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Body.swift"; sourceTree = "<group>"; };
 		8AA491311C84C94800422274 /* UIColor+Digita11y.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Digita11y.swift"; sourceTree = "<group>"; };
 		8AA491331C84D25800422274 /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
-		8AA85E621C7CF12D0086AA6B /* Digita11y.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Digita11y.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8AA85E621C7CF12D0086AA6B /* Access App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Access App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AA85E651C7CF12D0086AA6B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8AA85E671C7CF12D0086AA6B /* ChooseProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseProjectViewController.swift; sourceTree = "<group>"; };
 		8AA85E6A1C7CF12D0086AA6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -260,7 +262,7 @@
 		8AA85E631C7CF12D0086AA6B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8AA85E621C7CF12D0086AA6B /* Digita11y.app */,
+				8AA85E621C7CF12D0086AA6B /* Access App.app */,
 				8A6598941C877398009A29C8 /* Digita11yTests.xctest */,
 				8AB65BD11C90DCD8005D112B /* Digita11yUITests.xctest */,
 			);
@@ -278,6 +280,7 @@
 				8AC0C40F1C888C1D00D4847E /* Views */,
 				8AA491241C84C37700422274 /* Categories */,
 				8ADED7B41C7F773400BBB65C /* Assets.xcassets */,
+				5244836E1EF2CFBC00864A92 /* plimoth.jpg */,
 				8AB65BCB1C90D923005D112B /* RWFramework.plist */,
 				8AA85E711C7CF12D0086AA6B /* Info.plist */,
 			);
@@ -390,7 +393,7 @@
 			);
 			name = Digita11y;
 			productName = Digita11y;
-			productReference = 8AA85E621C7CF12D0086AA6B /* Digita11y.app */;
+			productReference = 8AA85E621C7CF12D0086AA6B /* Access App.app */;
 			productType = "com.apple.product-type.application";
 		};
 		8AB65BD01C90DCD8005D112B /* Digita11yUITests */ = {
@@ -481,6 +484,7 @@
 			files = (
 				8AA85E701C7CF12D0086AA6B /* LaunchScreen.storyboard in Resources */,
 				8A404AF01CA4344C009E3E3B /* ObjectView.xib in Resources */,
+				5244836F1EF2CFBC00864A92 /* plimoth.jpg in Resources */,
 				8ADED7B51C7F773400BBB65C /* Assets.xcassets in Resources */,
 				8AB65BCC1C90D923005D112B /* RWFramework.plist in Resources */,
 				755EF52D1E9C61000036CA5B /* StatusHUD.storyboard in Resources */,
@@ -801,7 +805,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-DDEBUG\"";
 				PRODUCT_BUNDLE_IDENTIFIER = org.pem.digita11y;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Access App";
 				PROVISIONING_PROFILE = "dc7f012e-5bed-486d-bfc3-5c8e504e2035";
 				PROVISIONING_PROFILE_SPECIFIER = "PEM-development-2017";
 				SWIFT_VERSION = 3.0;
@@ -815,13 +819,15 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 21;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = Z3PBJZWMY5;
 				INFOPLIST_FILE = Digita11y/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.pem.digita11y;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PRODUCT_NAME = "Access App";
+				PROVISIONING_PROFILE = "dc7f012e-5bed-486d-bfc3-5c8e504e2035";
+				PROVISIONING_PROFILE_SPECIFIER = "PEM-development-2017";
 				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
