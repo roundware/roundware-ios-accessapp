@@ -18,7 +18,7 @@ class ThanksViewModel: BaseViewModel {
         self.data = data
         self.uiGroup = data.getUIGroupForIndexAndMode(data.getMaxUIGroupIndexWithSelected("speak"), mode: "speak")!
         itemTag = data.getTagForIndexAndMode(3, mode: "listen")!
-        self.title = "Thanks for your contribution to: \(self.itemTag.locMsg)!"
+        self.title = "Thanks for your contribution to: \n\n\(self.itemTag.locMsg)!"
         self.tags = data.getTagsForUIItems(self.uiGroup.uiItems)
 
         //TODO get available get tags that have not been contributed too for this parent tag....

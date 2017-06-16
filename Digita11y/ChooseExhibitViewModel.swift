@@ -23,7 +23,8 @@ class ChooseExhibitViewModel: BaseViewModel  {
         self.uiGroup = data.getUIGroupForIndexAndMode(1, mode: "listen")!
         self.uiItems = data.getRelevantUIItems(uiGroup)
         self.tags = data.getTagsForUIItems(self.uiItems)
-        self.title = "Welcome to the \(self.project.name)! \n \(self.uiGroup.headerTextLoc)"
+//        self.title = "Welcome to the \(self.project.name)! \n \(self.uiGroup.headerTextLoc)"
+        self.title = self.uiGroup.headerTextLoc
     }
 
 

@@ -261,7 +261,7 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
         super.view.addBackground("bg-comment.png")
         self.viewModel = ContributeViewModel(data: self.rwData!)
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancel(_:)))
-        ContributeAsk.text = "How would you like to contribute to \(self.viewModel.itemTag.locMsg)?"
+        ContributeAsk.text = "How would you like to contribute to: \n\(self.viewModel.itemTag.locMsg)?"
 
         ContributeScroll.isHidden = true
         uploadButton.isHidden = true
@@ -354,8 +354,9 @@ class ContributeViewController: BaseViewController, UIScrollViewDelegate, UIText
         UIView.animate(withDuration: duration, delay: 0, options: [], animations: {
             self.audioButton.isEnabled = true
             self.progressLabel.isHidden = false
-            self.progressLabel.text = "00:30"
-            self.progressLabel.accessibilityLabel = "30 seconds"
+            // these need to be read from project.max_recording_length, not hard-coded
+            self.progressLabel.text = "00:60"
+            self.progressLabel.accessibilityLabel = "60 seconds"
             self.progressLabel.accessibilityHint = "Max recording length"
             }, completion: { finished in
                 UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.audioButton);
