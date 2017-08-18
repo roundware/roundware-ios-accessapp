@@ -1,14 +1,12 @@
-# Digita11y iOS
+# Access App iOS
 
 Native iOS client for Roundware built for PEM, Smithsonian, and BMA using the RWFramework.
 
 ## Links
-- [Digita11y Project Site](https://www.digita11y.org/)
-- [Digita11y: Development](https://github.com/seeRead/roundware-ios-digita11y)
-- [Digita11y: App](https://github.com/roundware/roundware-ios-digita11y)
-- [RWFramework:Development](https://github.com/seeRead/roundware-ios-framework-v2)
+- [Access App Project Site](https://www.theaccessapp.org/)
+- [Access App: App](https://github.com/roundware/roundware-ios-accessapp)
 - [RWFramework](https://github.com/roundware/roundware-ios-framework-v2)
-- [Slack](https://roundware.slack.com/messages/digita11y-ios/)
+- [Slack](https://roundware.slack.com/messages/accessapp-ios/)
 
 ## Build
 
@@ -41,7 +39,7 @@ When you want to add a new device or team member to a distribution, invite them 
 
 ## Release
 
-Untested, but this should work given a correctly setup [Appfile](https://github.com/roundware/roundware-ios-digita11y/blob/master/fastlane/Appfile), [Deliverfile](https://github.com/roundware/roundware-ios-digita11y/blob/master/fastlane/Deliverfile), [Matchfile](https://github.com/roundware/roundware-ios-digita11y/blob/master/fastlane/Matchfile), and certificates (see [codesigning.guide](https://codesigning.guide/)).
+Untested, but this should work given a correctly setup [Appfile](https://github.com/roundware/roundware-ios-accessapp/blob/master/fastlane/Appfile), [Deliverfile](https://github.com/roundware/roundware-ios-accessapp/blob/master/fastlane/Deliverfile), [Matchfile](https://github.com/roundware/roundware-ios-accessapp/blob/master/fastlane/Matchfile), and certificates (see [codesigning.guide](https://codesigning.guide/)).
 
 ```
 bundle exec fastlane ios appstore
@@ -50,7 +48,7 @@ bundle exec fastlane ios appstore
 
 ## Data Model
 
-For Digita11y
+For Access App
 
 `Project -> Exhibition -> Room -> Object`
 
